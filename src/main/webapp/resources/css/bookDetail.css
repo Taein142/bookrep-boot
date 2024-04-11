@@ -1,0 +1,114 @@
+@charset "UTF-8";
+body{
+	background-color: #F5F5F5;
+}
+
+#total-body {
+	margin: 2%;
+}
+
+#br-body {
+	display: flex;
+	justify-content: space-around;
+}
+
+#book, #report {
+	max-height: 800px;
+	overflow-y: auto;
+	margin: 3%;
+}
+
+.report-content {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 13px;;
+	background-color: fff;
+}
+
+/* 북마크 아이콘 스타일 */
+.overlay img {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+#report {
+	background-color: #a6a6a6;
+	width: 60%
+}
+
+#report-container a #report_container p {
+	margin: 0 0 10px;
+	text-decoration: none;
+	margin: 5px;
+	color: white;
+}
+
+.report-title a {
+	font-size: 15px;
+}
+.report-user a{
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+
+.report-content p {
+	font-size: 12px;;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+/* 각 독후감 이미지 컨테이너 스타일 */
+.image-container {
+	position: relative;
+	box-sizing: border-box;
+	max-width: 90%;
+	max-height: 90%;
+	margin: 0 auto;
+}
+
+.overlay {
+	z-index: 1;
+}
+
+.image-container img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+/* 오버레이 스타일 */
+.image-container .overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+/* 오버레이 내부 텍스트 스타일 */
+.image-container .overlay p {
+	margin: 0 0 10px;
+	font-size: 15px;
+}
+
+/* 이미지 컨테이너 호버 시 오버레이 표시 */
+.image-container:hover .overlay {
+	opacity: 1;
+}

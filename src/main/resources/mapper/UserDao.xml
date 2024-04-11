@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+
+<mapper namespace="com.rep.book.bookrepboot.dao.UserDao">
+	<resultMap id="UserDTO" type="com.rep.book.bookrepboot.dto.UserDTO">
+    	<result property="email" column="user_email" />
+    	<result property="password" column="user_password" />
+    	<result property="name" column="user_name" />
+    	<result property="image" column="user_image" />
+		<result property="longitude" column="user_longtitude" />
+		<result property="latitude" column="user_latitude" />
+	</resultMap>
+	
+	
+	<select id="getUserList" parameterType="String" resultMap="UserDTO">
+		SELECT *
+		FROM user 
+		WHERE user_name LIKE "%${keyword}%"  OR user_email LIKE "%${keyword}%" 
+	</select>
+	<select id="signIn" parameterType="java.util.Map" resultType="int">
+		SELECT count(*) FROM user 
+		WHERE user_email = #{email} AND user_password = #{password}
+	</select>
+	<select id="getUserImage" parameterType="String" resultType="String">
+		SELECT user_image
+		FROM user
+		WHERE user_email = #{userEmail}
+	</select>
+	<select id="emailCheck" parameterType="java.lang.String" resultType="int">
+		SELECT count(*) FROM user WHERE user_email = #{email}
+	</select>
+	<insert id="applySignUp" parameterType="com.rep.book.bookrepboot.dto.UserDTO">
+		INSERT user (user_email, user_name, user_password, user_longtitude, user_latitude) VALUES (#{email}, #{name}, #{password}, #{longitude}, #{latitude})
+	</insert>
+	<select id="getPassword" parameterType="java.util.Map" resultType="java.lang.String">
+		SELECT user_password FROM user WHERE user_email = #{email} AND user_name = #{name}
+	</select>
+	<select id="showModify" parameterType="java.lang.String" resultMap="UserDTO">
+		SELECT * FROM user WHERE user_email = #{email}
+	</select>
+	<update id="modify" parameterType="com.rep.book.bookrepboot.dto.UserDTO">
+		UPDATE user 
+		SET user_name = #{name}, user_password = #{password}, user_image = #{image} 
+		WHERE user_email = #{email}
+	</update>
+	<delete id="resign" parameterType="java.lang.String">
+		DELETE FROM user WHERE user_email = #{email}
+	</delete>
+	<select id="getNameByEmail" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT user_name FROM user WHERE user_email = #{userEmail}
+	</select>
+	<select id="findUserByEmail" resultMap="UserDTO" parameterType="java.lang.String">
+		SELECT * FROM user WHERE user_email = #{username}
+	</select>
+</mapper>

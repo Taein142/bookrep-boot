@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+		/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+h1 {
+	text-align: center;
+}
+
+.page a {
+	text-align: center;	
+}
+
+/* Container */
+.container {
+    max-width: 960px;
+    margin: 50px 165px;
+    display: flex; /* For potential header & search bar */
+    flex-direction: column; /* Stack sections vertically */
+    align-items: center;
+}
+
+/* Search Title */
+#search-title {
+    margin: 75px 0px;
+}
+
+/* Sections */
+.section {
+    width: 100%; 
+    margin-bottom: 40px;
+}
+
+.section h2 {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+/* User and Book Listings (Grid-based) */
+.page-container ul { 
+    display: grid;
+    grid-template-columns: repeat(6, 200px);
+    grid-gap: 20px;
+    margin: 0; /* Reset default ul margin */
+    padding: 0; /* Reset default ul padding */
+    list-style-type: none; /* Remove bullet points */
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #918981;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #918981;
+}
+
+.display a {
+	text-decoration: none; /* 링크 밑줄 제거 */
+    color: black;
+}
+
+.display a:hover {
+    color: white;
+}
+
+/* Additional Styling (Optional) */
+.display img { /* If you have images for users and books */
+    width: 100px; 
+    height: 100px;
+    margin-bottom: 10px;
+}
+		
+		

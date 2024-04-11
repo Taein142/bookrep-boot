@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rep.book.bookrepboot.dao.BookDao">
+	<resultMap id="BookDTO" type="com.rep.book.bookrepboot.dto.BookDTO">
+		<result property="name" column="book_name" />
+		<result property="author" column="book_author" />
+		<result property="publisher" column="book_publisher" />
+		<result property="isbn" column="book_isbn" />
+		<result property="image" column="book_image" />
+	</resultMap>
+	<select id="getBookList" parameterType="String" resultMap="BookDTO">
+		SELECT *
+		FROM book
+		WHERE (book_name LIKE '%${keyword}%' ) OR (book_author LIKE '%${keyword}%' )
+	</select>
+	<select id="getImage" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT
+		book_image
+		FROM book
+		WHERE book_isbn = #{bookIsbn}
+	</select>
+	<insert id="saveBook" parameterType="com.rep.book.bookrepboot.dto.BookDTO">
+		INSERT book 
+		(book_name, book_author, book_publisher, book_isbn, book_image) 
+		VALUES (#{name}, #{author}, #{publisher}, #{isbn}, #{image})
+	</insert>
+	<select id="getBookByIsbn" parameterType="java.lang.String" resultMap="BookDTO">
+		SELECT * FROM book WHERE book_isbn = #{isbn}
+	</select>
+	<select id="getBookmarkByEmail" parameterType="java.lang.String" resultMap="BookDTO">
+		SELECT b.* 
+		FROM book b, bookmark m 
+		WHERE b.book_isbn = m.bookmark_book_isbn 
+		AND m.bookmark_user_email = #{email}
+	</select>
+    <select id="getBookForTradeById" resultMap="BookDTO" parameterType="java.lang.String">
+		SELECT * FROM book WHERE book_author = #{userEmail}
+	</select>
+</mapper>

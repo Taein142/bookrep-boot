@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rep.book.bookrepboot.dao.ReportDao">
+  <resultMap type="com.rep.book.bookrepboot.dto.ReportDTO" id="ReportDTO">
+	   <result property="id" column="report_id" />
+	   <result property="userEmail" column="report_user_email" />
+	   <result property="bookIsbn" column="report_book_isbn" />
+	   <result property="title" column="report_title" />
+	   <result property="content" column="report_content" />
+	   <result property="publicBool" column="report_public" />
+	   <result property="time" column="report_time" />
+	</resultMap>
+	<select id="getReportSummaryById" parameterType="String" resultMap="ReportDTO">
+		SELECT *
+		FROM report
+		WHERE report_user_email = #{userEmail} ORDER BY report_time DESC
+	</select>
+	<insert id="setReport" parameterType="com.rep.book.bookrepboot.dto.ReportDTO">
+		INSERT report (report_user_email, report_book_isbn, report_title, report_content, report_public)
+		VALUES (#{userEmail}, #{bookIsbn}, #{title}, #{content}, #{publicBool})
+	</insert>
+	<select id="getReportDetailByReportId" parameterType="java.lang.Long" resultMap="ReportDTO">
+		SELECT * FROM report WHERE report_id = ${id}
+	</select>
+	<delete id="deleteReportByReportId" parameterType="java.lang.Long">
+		DELETE FROM report WHERE report_id = ${id}
+	</delete>
+	
+	<update id="applyReportUpdate" parameterType="com.rep.book.bookrepboot.dto.ReportDTO">
+		UPDATE report 
+		SET report_title = #{title}, report_content = #{content} 
+		WHERE report_id = ${id}
+	</update>
+	<select id="getReportOfFollowing" parameterType="java.lang.String" resultMap="ReportDTO">
+		SELECT r.* FROM report r, follow f
+		WHERE r.report_user_email = f.follower_email AND f.followee_email = #{email} AND r.report_public = 1
+		ORDER BY r.report_time desc
+	</select>
+	<select id="getReportByIsbn" parameterType="java.lang.String" resultMap="ReportDTO">
+		SELECT * FROM report WHERE report_book_isbn = #{isbn} ORDER BY report_time DESC
+	</select>
+</mapper>

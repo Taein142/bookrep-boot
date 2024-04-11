@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.rep.book.bookrepboot.dao.LikeDao">
+   <select id="getLikeValueByReportId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+      SELECT count(*) FROM `like` WHERE like_report_id = ${id}
+   </select>
+   <insert id="setLike" parameterType="com.rep.book.bookrepboot.dto.LikeDTO">
+      INSERT `like` (like_user_email, like_report_id) VALUES (#{userEmail}, ${reportId}) 
+   </insert>
+   <delete id="removeLike" parameterType="com.rep.book.bookrepboot.dto.LikeDTO">
+    DELETE FROM `like` WHERE like_user_email = #{userEmail} AND like_report_id = #{reportId}
+   </delete>
+   <select id="isLike" parameterType="com.rep.book.bookrepboot.dto.LikeDTO" resultType="int">
+   		SELECT count(*) FROM `like` WHERE like_user_email = #{userEmail} AND like_report_id = #{reportId}
+   </select>
+</mapper>

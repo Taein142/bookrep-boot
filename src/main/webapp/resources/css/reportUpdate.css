@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+body {
+    background-color: #F5F5F5;
+    font-family: Arial, sans-serif;
+}
+
+#total-body {
+    background-color: #D9D9D9;
+    margin: 0 20%; 
+    padding: 20px;
+}
+
+#update-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#report-top,
+#report-body {
+    margin-bottom: 15px;
+}
+
+#total-body label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#total-body input[type="text"],
+#total-body textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+#report-body textarea {
+	height: 350px;
+}
+
+#total-body button {
+    background-color: #808080;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#total-body button:hover {
+    background-color: #45a049;
+}
+
+.separator {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+    width: 100%;
+}

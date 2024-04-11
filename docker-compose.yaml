@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=icia402
+    ports:
+      - "3306:3306"
+
+  web:
+    build:
+      dockerfile: ./Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db

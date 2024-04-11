@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5f5f5;
+}
+/* 전체 컨테이너 스타일 */
+#report-container {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	padding: 180px;
+	text-align: center;
+}
+
+/* 각 독후감 이미지 컨테이너 스타일 */
+.report-container {
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 35px;
+	width: 250px;
+	border-radius: 5px;
+	background-color: #918981;
+	border: solid 1px #918981;
+	color: white;
+	height: 250px;
+	max-height: 250px;
+	overflow-y: auto;
+}
+
+.report-con {
+	
+}
+
+.report-container a {
+	color: white;
+	text-decoration: none;
+}
+

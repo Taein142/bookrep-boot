@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5f5f5;
+}
+
+hr {
+	margin: 30px 0px;
+}
+
+h1 {
+	margin: 0px 0px;
+}
+
+.container{
+	margin: 3% 6%;
+}
+
+/* 전체 컨테이너 스타일 */
+.book-list {
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+	margin: 10px;
+}
+.book-list img{
+	z-index: -1;
+}
+
+.book-list .book-info {
+	text-align: center;
+}
+
+.btn-info {
+	margin-left: 10px;
+	padding: 6px 12px;
+	background-color: #555;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.form-control {
+	padding: 5px 10px;
+}
+
+.book-info .select-btn {
+	margin-left: 10px;
+	padding: 9px 12px;
+	background-color: #918981;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;	
+}

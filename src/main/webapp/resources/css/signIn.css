@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5f5f5;
+}
+
+a {
+	color: #918981;
+}
+
+button {
+	padding: 1% 18%;
+}
+
+fieldset {
+	border-radius: 5px;
+}
+
+.sign-in-box, .sign-up-link {
+	text-align: center;
+}
+
+.login-page-button button {
+	background-color: #918981;
+	border: solid 1px #918981;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+
+.out-line { 
+	text-align: center; 
+	padding: 10% 40% 
+}
+ 

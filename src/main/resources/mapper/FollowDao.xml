@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.rep.book.bookrepboot.dao.FollowDao">
+	<select id="getFollowerByEmail" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT followee_email FROM follow WHERE follower_email = #{email}
+	</select>
+	<select id="getFollowingByEmail" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT follower_email FROM follow WHERE followee_email = #{email}
+	</select>
+	<select id="isFollowing" parameterType="com.rep.book.bookrepboot.dto.FollowDTO" resultType="int">
+		SELECT count(*) FROM follow WHERE follower_email = #{followerEmail} AND followee_email = #{followeeEmail}
+	</select>
+	<insert id="follow" parameterType="com.rep.book.bookrepboot.dto.FollowDTO">
+		INSERT follow (follower_email, followee_email) VALUES (#{followerEmail}, #{followeeEmail})
+	</insert>
+	<delete id="unfollow" parameterType="com.rep.book.bookrepboot.dto.FollowDTO">
+		DELETE FROM follow WHERE follower_email = #{followerEmail} AND followee_email = #{followeeEmail}
+	</delete>
+</mapper>

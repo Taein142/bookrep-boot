@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+body {
+	background-color: #f5f5f5;
+}
+
+h1 {
+	text-align: center;
+}
+
+fieldset {
+	border-radius: 5px;
+}
+
+.btn-box button {
+	padding: 1% 13%;
+	background-color: #918981;
+	border: solid 1px #918981;
+	border-radius: 5px;
+	font-size: 20px;
+	background-color: #918981;
+}
+
+.update-frm {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+input {
+	width: 65%;
+}
+ 
+
+.input1 {
+	margin-left: 12px;
+}
+
+.input2 {
+	margin-left: 32px;
+}
+
+.label1 {
+	padding: 0px 15px;
+}
+
+.label2 {
+	padding: 0px 15px;
+}
+
+.label3 {
+	padding: 0px 11px;
+}
+
+.enter-area label {
+	display: inline-block;
+	margin-bottom: 5px;
+	text-align: left;
+}
+
+.real-out-line {
+	padding: 10% 37%
+}
