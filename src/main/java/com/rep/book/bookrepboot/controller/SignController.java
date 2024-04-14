@@ -1,10 +1,13 @@
 package com.rep.book.bookrepboot.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import jakarta.servlet.http.HttpSession;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,13 +78,13 @@ public class SignController {
 			@RequestParam("email") String email,
 			@RequestParam("name") String name,
 			@RequestParam("password") String password,
-			@RequestParam("longitude") Double longitude,
-			@RequestParam("latitude") Double latitude,
-			RedirectAttributes rttr) {
+			@RequestParam("address") String address,
+			@RequestParam("detail") String detail,
+			RedirectAttributes rttr) throws IOException, ParseException, InterruptedException {
 		
 		log.info("applySignUp()");
 		
-		String[] arr =  signService.applySignUp(email, name, password, longitude, latitude);
+		String[] arr =  signService.applySignUp(email, name, password, address, detail);
 		
 		rttr.addFlashAttribute("msg", arr[0]);
 		

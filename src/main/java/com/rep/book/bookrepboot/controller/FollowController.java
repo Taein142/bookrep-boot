@@ -1,7 +1,6 @@
 package com.rep.book.bookrepboot.controller;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.rep.book.bookrepboot.util.SecurityUtil;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.rep.book.bookrepboot.dto.PageDTO;
 import com.rep.book.bookrepboot.dto.UserDTO;
 import com.rep.book.bookrepboot.service.FollowService;
 import com.rep.book.bookrepboot.util.MainUtil;

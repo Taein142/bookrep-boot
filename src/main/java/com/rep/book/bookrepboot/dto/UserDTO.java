@@ -27,6 +27,8 @@ public class UserDTO {
 
 	private Double latitude;
 
+	private String detail;
+
 	private final List<String> roles = List.of("USER");
 	
 }

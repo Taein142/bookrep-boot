@@ -32,6 +32,7 @@ dependencies {
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
     implementation 'org.springframework.security:spring-security-taglibs'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

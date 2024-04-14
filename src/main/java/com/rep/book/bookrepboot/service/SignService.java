@@ -1,13 +1,24 @@
 package com.rep.book.bookrepboot.service;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.rep.book.bookrepboot.APIKEY;
 import com.rep.book.bookrepboot.util.SecurityUtil;
 import jakarta.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,14 +65,17 @@ public class SignService {
 		return cnt;
 	}
 
-	public String[] applySignUp(String email, String name, String password, Double longitude, Double latitude) {
+	public String[] applySignUp(String email, String name, String password, String address, String detail) throws IOException, ParseException, InterruptedException {
 		log.info("applySignUp()");
 		
 		String msg = "회원가입 성공";
 		String view = "redirect:/";
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		password = bCryptPasswordEncoder.encode(password);
-		UserDTO userDTO = new UserDTO(email, password, name, null, longitude, latitude);
+		Map<String, Double> pointMap = getPointByAddress(address);
+		Double longitude = pointMap.get("longitude");
+		Double latitude = pointMap.get("latitude");
+		UserDTO userDTO = new UserDTO(email, password, name, null, longitude, latitude, detail);
 		
 		try {
 			userDao.applySignUp(userDTO);
@@ -156,4 +170,29 @@ public class SignService {
 		session.invalidate();
 	}
 
+	public Map<String, Double> getPointByAddress(String address) throws IOException, InterruptedException, ParseException {
+		HttpClient client = HttpClient.newHttpClient();
+		String url = "https://api.vworld.kr/req/address?service=address&request=getCoord&key="
+				+ APIKEY.GEO_KEY
+				+ "&type=road"
+				+ "&address=" + URLEncoder.encode(address, StandardCharsets.UTF_8);
+		HttpRequest request = HttpRequest.newBuilder()
+				.uri(URI.create(url))
+				.GET()
+				.build();
+		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		String body = response.body();
+		System.out.println(body);
+		JSONParser parser = new JSONParser();
+		JSONObject object = (JSONObject) parser.parse(body);
+		JSONObject res = (JSONObject) object.get("response");
+		JSONObject result = (JSONObject) res.get("result");
+		JSONObject point = (JSONObject) result.get("point");
+		Double x = Double.parseDouble((String) point.get("x"));
+		Double y = Double.parseDouble((String) point.get("y"));
+		Map<String, Double> map = new HashMap<>();
+		map.put("longitude", x);
+		map.put("latitude", y);
+		return map;
+	}
 }
