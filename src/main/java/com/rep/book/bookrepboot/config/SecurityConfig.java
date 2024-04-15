@@ -36,6 +36,8 @@ public class SecurityConfig {
             "/emailCheck",
             "/find-password",
             "/get-image",
+            "/privacy-policy",
+            "/terms",
             "/resources/**",
             "/WEB-INF/**",
             "https://code.jquery.com/jquery-3.7.1.min.js", // jquery

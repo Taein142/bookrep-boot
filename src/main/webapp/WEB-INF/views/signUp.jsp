@@ -12,7 +12,11 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+    <style>
+        .agreed-label {
+            font-size: 13px;
+        }
+    </style>
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
@@ -31,7 +35,7 @@
             <form id="signup-form" action="sign-up" method="post">
                 <p>
                 <div class="int-area">
-                    <input type="text" name="email" id="email" autocomplete="off"
+                    <input type="email" name="email" id="email" autocomplete="off"
                            placeholder="email" onblur="checkId()" required> <br>
                     <span id="checkEmail"></span>
                 </div>
@@ -74,6 +78,28 @@
                 </div>
 
                 <p>
+                <div>
+                    <div>
+                        <input type="checkbox" id="agreedToTerms" name="agreedToTerms" required disabled>
+                        <label for="agreedToTerms" class="agreed-label">[필수] 약관에 동의합니다.</label>
+                    </div>
+                    <div>
+                        <input type="button" id="terms" value="내용보기" onclick="openWindow('/terms', 'agreedToTerms')"/>
+                    </div>
+                </div>
+
+                <p>
+                <div>
+                    <div>
+                        <input type="checkbox" id="agreedToPrivacyPolicy" name="agreedToPrivacyPolicy" required disabled>
+                        <label for="agreedToPrivacyPolicy" class="agreed-label">[필수] 개인정보 처리 방침에 동의합니다.</label>
+                    </div>
+                    <div>
+                        <input type="button" id="privacyPolicy" value="내용보기" onclick="openWindow('/privacy-policy', 'agreedToPrivacyPolicy')"/>
+                    </div>
+                </div>
+
+                <p>
                 <div class="signUp-page-button">
                     <button>회원가입</button>
                 </div>
@@ -92,6 +118,7 @@
         </div>
     </fieldset>
 </div>
+
 </body>
 <script>
 
@@ -121,7 +148,7 @@
                 alert("에러입니다");
             }
         });
-    };
+    }
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -176,5 +203,13 @@
             }
         }).open();
     }
+
+    function openWindow(url, id) {
+        var newWindow = window.open(url, "_blank", "width=600,height=400");
+        newWindow.onload = function() {
+            document.getElementById(id).disabled = false;
+        };
+    }
+
 </script>
 </html>

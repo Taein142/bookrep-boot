@@ -80,10 +80,18 @@ public class SignController {
 			@RequestParam("password") String password,
 			@RequestParam("address") String address,
 			@RequestParam("detail") String detail,
+			@RequestParam("agreedToTerms") boolean agreedToTerms,
+			@RequestParam("agreedToPrivacyPolicy") boolean agreedToPrivacyPolicy,
 			RedirectAttributes rttr) throws IOException, ParseException, InterruptedException {
 		
 		log.info("applySignUp()");
-		
+
+		if (!(agreedToTerms && agreedToPrivacyPolicy)){
+			String msg = "약관 및 개인정보 처리방침에 동의하지 않으면 회원가입할 수 없습니다.";
+			rttr.addFlashAttribute("msg", msg);
+			return "home";
+		}
+
 		String[] arr =  signService.applySignUp(email, name, password, address, detail);
 		
 		rttr.addFlashAttribute("msg", arr[0]);
