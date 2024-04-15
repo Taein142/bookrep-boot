@@ -37,4 +37,6 @@ public interface UserDao {
 
 
 	UserDTO findUserByEmail(String username);
+
+	void pwdChangeProc(Map<String, String> map);
 }

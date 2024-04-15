@@ -135,9 +135,23 @@ public class SignController {
 		
 		return "redirect:/";
 	}
-	
-	
-	
+
+	@GetMapping("pwd-change")
+	public String pwdChange(){
+		log.info("pwdChange");
+
+		return "th/pwdChange";
+	}
+
+	@PostMapping("pwd-change-proc")
+	public String pwdChangeProc(@RequestParam String password,
+								@RequestParam String fucku,
+								HttpSession session,
+								RedirectAttributes rttr) {
+		log.info("pwdChangeProc");
+
+		return signService.pwdChangeProc(password, session, rttr);
+	}
 	
 	
 	

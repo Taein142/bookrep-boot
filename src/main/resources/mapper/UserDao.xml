@@ -46,7 +46,12 @@
 		SET user_name = #{name}, user_password = #{password}, user_image = #{image} 
 		WHERE user_email = #{email}
 	</update>
-	<delete id="resign" parameterType="java.lang.String">
+    <update id="pwdChangeProc" parameterType="java.util.Map">
+		UPDATE user
+		SET user_password = #{password}
+		WHERE user_email = #{email}
+	</update>
+    <delete id="resign" parameterType="java.lang.String">
 		DELETE FROM user WHERE user_email = #{email}
 	</delete>
 	<select id="getNameByEmail" parameterType="java.lang.String" resultType="java.lang.String">

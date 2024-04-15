@@ -12,6 +12,69 @@
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
 </head>
+<script>
+    $(function(){
+        // 받은 코드를 입력하고 전송하는 부분 숨기기
+        $(".tbmg").hide();
+
+        $("#sbtn").click(function(){
+            let email = $("#email").val();
+            if(email===""){
+                alert("정보를 입력하세요.");
+                return;
+            }
+
+            console.log(email);
+
+            $.ajax({
+                url: "mailConfirm",
+                type: "post",
+                data: {"email" : email},
+                success: (res) => {
+                    if(res == "ok"){
+                        alert("인증코드를 메일로 전송했습니다.");
+                        $(".tbmg").show();
+                        $("#sbtn").attr("disabled", true)// 전송버튼 비활성화
+                    }
+                    else{
+                        alert("메일 전송에 실패했습니다.");
+                    }
+                },
+                error: (err) => {
+                    console.log(err);
+                    alert("메일 전송에 실패했습니다.");
+                }
+            })
+        })
+    });
+    $(function () {
+        $("#cbtn").click(function(){
+            let vcode =$("#v_code").val();
+            if(vcode === ""){
+                alert("인증코드를 입력하세요.")
+                return;
+            }
+
+            $.ajax({
+                url: "codeAuth",
+                type: "post",
+                data: {"vCode" : vcode},
+                success: (res) => {
+                    if (res === "ok"){
+                        location.href = "/pwd-change";
+                    }else {
+                        alert("코드가 맞지 않습니다");
+                        location.reload();
+                    }
+                },
+                error: (err) => {
+                    console.log(err);
+                    alert("코드 인증 실패");
+                }
+            });
+        });
+    });
+</script>
 <body>
 <sec:authorize access="isAuthenticated()">
     <jsp:include page="loggedHeader.jsp"></jsp:include>
@@ -29,9 +92,8 @@
                  src="resources/images/free-icon-padlock-747305.png">
 
             <h2>로그인에 문제가 있나요?</h2>
-            가입 당시 입력한 이메일과 이름으로 <br> 비밀번호를 찾을 수 있습니다.
+            가입 당시 입력한 이메일로 <br> 비밀번호를 변경할 수 있습니다.
 
-            <form id="findPwForm">
                 <p>
                 <div class="int-area">
                     <input type="text" name="email" id="email" autocomplete="off"
@@ -39,16 +101,21 @@
                 </div>
 
                 <p>
-                <div class="int-area">
-                    <input type="text" name="name" id="name" autocomplete="off"
-                           placeholder="이름" required>
+                <div class="findPw-page-button">
+                    <button type="button" id="sbtn">인증번호 전송</button>
                 </div>
 
-                <p>
-                <div class="findPw-page-button">
-                    <button type="button" onclick="findPassword()">비밀번호 찾기</button>
+                <div class="tbmg">
+                    <p>
+                    <div class="int-area">
+                        <input type="text" id="v_code" placeholder="인증번호를 입력해주세요">
+                    </div>
+
+                    <p>
+                    <div class="findPw-page-button">
+                        <button type="button" id="cbtn">인증</button>
+                    </div>
                 </div>
-            </form>
 
             <h5>or</h5>
 

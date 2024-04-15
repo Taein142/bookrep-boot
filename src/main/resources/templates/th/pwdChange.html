@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>비밀번호 변경</title>
+</head>
+<style>
+    input {
+        margin: 10px;
+        padding: 5px;
+    }
+    button {
+        margin: 10px;
+        padding: 5px;
+    }
+    #guide {
+        margin: 10px;
+        padding: 5px;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+
+<body>
+    <form action="/pwd-change-proc" method="post">
+        <input type="text" id="new_pwd" name="password" placeholder="새 비밀번호" required><br>
+        <input type="text" id="check_pwd" name="fucku" placeholder="비밀번호 확인" required><br>
+        <span id="guide"></span>
+        <button id="apply">변경</button>
+    </form>
+
+</body>
+<script>
+    $(function () {
+        $('#new_pwd').onblur(function () {
+            let pwd = $(this).val();
+            if (pwd.length < 8) {
+                $('#guide').text('비밀번호는 8자 이상이어야 합니다.').css('color', 'red').show();
+                $('#apply').attr('disabled', true);
+            }
+        });
+        $('#check_pwd').onblur(function () {
+            let pwd = $('#new_pwd').val();
+            let check = $(this).val();
+            if (pwd !== check) {
+                $('#guide').text('비밀번호가 일치하지 않습니다.').css('color', 'red').show();
+                $('#apply').attr('disabled', true);
+            } else {
+                $('#guide').text('비밀번호가 일치합니다.').css('color', 'green').show();
+                $('#apply').attr('disabled', false);
+            }
+        });
+    });
+</script>
+</html>

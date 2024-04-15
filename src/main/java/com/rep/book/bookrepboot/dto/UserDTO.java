@@ -29,6 +29,6 @@ public class UserDTO {
 
 	private String detail;
 
-	private final List<String> roles = List.of("USER");
+	private final String role = "USER";
 	
 }
