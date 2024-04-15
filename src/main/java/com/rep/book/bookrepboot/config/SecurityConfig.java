@@ -90,7 +90,6 @@ public class SecurityConfig {
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
                                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() // forward 허용
-                                        .dispatcherTypeMatchers(DispatcherType.REQUEST).permitAll()
                                         .requestMatchers(
                                                 Stream // permitList에 있는 경로는 모두 허용
                                                         .of(PERMIT_LIST)
