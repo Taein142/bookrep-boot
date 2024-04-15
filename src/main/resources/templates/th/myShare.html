@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="html://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./customer.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>MyShare</title>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <section>
+        <div id="myShareLogo">
+            <div>
+                <img src="./images/newFullLogo.png ">
+            </div>
+            <div>
+                <h1>My Share</h1>
+            </div>
+        </div>
+        
+                
+                
+
+        <div id="myShare_content">
+           
+            <!-- RFBTL = request for book trade List (교환 신청 받은 책 리스트)-->
+            <div id="RFBTL">
+                <div id="RFBTL_Text"><h3>교환 신청 받은 책</h3></div>
+                <th:block th:if="${EX.isEmpty(EX1List)}">
+                    <th:block th:each="EX:${EX2List}">
+                        <div id="RFBTL_content">
+                            <div>
+                                <img src="./images/image.png">
+                            </div>
+                            <div>
+                                <p>책이름: 예시예시예시예시예시예시</p><br>
+                                <p>저자: 예시예시예시예시예시예시</p><br>
+                                <p>출판사: 예시예시예시예시예시예시</p>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+                <div id="paging_area">
+                    <div class="RFBTLPaging">${RFBTLPaging}</div>
+                </div>
+            </div>
+
+            <!-- AFBEL = apply for book trade list (교환 신청 한 책 리스트)-->
+            <div id="AFBTL">
+                <div id="AFBTL_Text"><h3>교환 신청 한 책</h3></div>
+                <th:block th:unless="${EX.isEmpty(EX1List)}">
+                    <th:block th:each="EX:${EX2List}">
+                        <div id="AFBTL_content">
+                            <div>
+                                <img src="./images/image.png">
+                            </div>
+                            <div>
+                                <p>책이름: 예시예시예시예시예시예시</p><br>
+                                <p>저자: 예시예시예시예시예시예시</p><br>
+                                <p>출판사: 예시예시예시예시예시예시</p>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+                <div id="paging_area">
+                    <div class="AFBTLPaging">${AFBTLPaging}</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <footer>
+        
+    </footer>
+</body>
+
+</html>

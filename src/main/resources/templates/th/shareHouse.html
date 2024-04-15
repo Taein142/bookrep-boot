@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="html://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./customer.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Share House</title>
+</head>
+
+<body>
+    <header></header>
+    <section>
+        <div id="shareHouseLogo">
+            <div>
+                <img src="./images/newFullLogo.png ">
+            </div>
+            <div>
+                <h1>Share House</h1>
+            </div>
+        </div>
+       
+
+        <div id="shareHouse_content">
+            <div>
+                <div id="tradeRegistration">
+                    <a href="/"><button>교환 등록</button></a>
+                </div>
+                <th:block th:if="${EX.isEmpty(EX1List)}">
+                    <th:block th:each="EX:${EX2List}">
+                        <div id="shareList">
+                            <div>
+                                <img src="./images/image.png">
+                            </div>
+                            <div>
+                                <p>책이름: 예시예시예시예시예시예시</p><br>
+                                <p>저자: 예시예시예시예시예시예시</p><br>
+                                <p>출판사: 예시예시예시예시예시예시</p>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
+                <div id="paging_area">
+                    <div class="sharePaging">${sharePaging}</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <footer></footer>
+</body>
+
+</html>
