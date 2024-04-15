@@ -28,6 +28,7 @@ import com.rep.book.bookrepboot.dao.UserDao;
 import com.rep.book.bookrepboot.dto.UserDTO;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Service
 @Slf4j
@@ -194,5 +195,27 @@ public class SignService {
 		map.put("longitude", x);
 		map.put("latitude", y);
 		return map;
+	}
+
+	public String pwdChangeProc(String password, HttpSession session, RedirectAttributes rttr) {
+		log.info("pwdChangeProc()");
+
+		String email = session.getAttribute("email").toString();
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		password = bCryptPasswordEncoder.encode(password);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("email", email);
+		map.put("password", password);
+		try {
+			userDao.pwdChangeProc(map);
+			rttr.addFlashAttribute("msg", "비밀번호가 변경되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			rttr.addFlashAttribute("msg", "비밀번호 변경에 실패했습니다.");
+		}
+		session.removeAttribute("email");
+		rttr.addFlashAttribute("msg", "비밀번호가 변경되었습니다.");
+
+		return "redirect:/";
 	}
 }
