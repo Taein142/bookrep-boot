@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="html://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" href="./manager.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <th:block th:insert="~{fragments::header(${session.manager})}" />
+    </header>
+    <section>
+        <div id="container2">
+                <div id="mainAuthorization" href="#">권한 부여</div>
+                <div id="mainDeliveryStatus" href="#">배송 현황</div>
+                <div id="mainOrderManagement" href="#">주문 관리</div>
+                <div id="mainBookreportManagement" href="#">독후감 관리</div>
+                <div id="mainBookManagement" href="#">도서 관리</div>
+                <div id="mainUserManagement" href="#">유저 관리</div>
+        </div>
+    </section>
+</body>
+
+</html>

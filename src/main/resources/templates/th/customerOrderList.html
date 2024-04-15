@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./manager.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <th:block th:insert="~{fragments::haeder(session.manager)}"></th:block>
+    </header>
+    <section>
+        <div id="orderListContent">
+            <div id="orderListContentTop">
+                <div>
+                    날짜?
+                </div>
+                <div>
+                    <a href="/">주문 상세보기></a>
+                </div>
+            </div>
+            <div id="orderListBookContent">
+                <div><img src=".//images/다운로드.png"></div>
+                <div id="orderBookContent">
+                    <div>예시로 들어가는 내용입니다: 서적이름</div><br>
+                    <div>예시로 들어가는 내용입니다: 저자</div><br>
+                    <div>예시로 들어가는 내용입니다: 내용 요약</div><br>
+
+                    <!-- <th:block th:text="${bookList.b_name}" ></th:block>
+                    <th:block th:text="${bookList.b_author}" ></th:block>
+                    <th:block th:text="${bookList.b_detail}" ></th:block> -->
+                </div>
+                <div id="orderListContentButton">
+                    <button id="deliveryTrackingButton">배송조회</button><br>
+                    <button>반품 신청</button><br>
+                    <button>문의</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+</body>
+
+</html>
