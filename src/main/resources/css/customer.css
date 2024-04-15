@@ -50,10 +50,10 @@ section {
     width: 110px;
     font-size: 1.2em;
     color: rgb(255, 255, 255);
-    background-color: rgb(149, 196, 127);
+    background-color:  rgb(126, 165, 108);
     border: 0px;
     border-radius: 5px;
-   
+
 }
 
 /* --------------------------------------------------------- */
@@ -130,9 +130,9 @@ section {
 
 #paging_area{
     width: 300px;
-	margin: 0px auto;
-	margin-bottom: 50px;
-	text-align: center;
+    margin: 0px auto;
+    margin-bottom: 50px;
+    text-align: center;
 }
 /* ----------------------------------------- */
 
@@ -216,4 +216,77 @@ section {
 #tradeApplication_BookSelectLink img{
     height: 690px;
     width: 520px;
+}
+
+/* ------------------------------------- */
+
+
+
+
+
+
+/* myTradeApplication */
+
+#myTradeApplication_content{
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#myTradeApplication_content_00, #myTradeApplication_content_03{
+    border: 2px solid black;
+    height: 690px;
+    width: 520px;
+    padding: 25px;
+    font-size: large;
+    background-color: #ffffffb2;
+}
+
+#myTradeApplication_content_01,#myTradeApplication_content_04{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#myTradeApplication_content_01_detailBox,#myTradeApplication_content_04_detailBox{
+    margin-left: 20px;
+    width: 300px;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#myTradeApplication_content_02,#myTradeApplication_content_05{
+    margin-top: 20px;
+}
+
+#myTradeApplication_content_01_imgBox img,#myTradeApplication_content_04_imgBox img{
+    width: auto;
+    height: 290px;
+}
+
+#blankSpace{
+    min-width: 100px;
+    height: auto;
+}
+
+#myTradeApplication_fullContent_button{
+    margin: 10px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#myTradeApplication_fullContent_button button{
+    height: 35px;
+    width: 110px;
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
+    background-color: rgb(126, 165, 108);
+    border: 0px;
+    border-radius: 5px;
+    margin: 5px;
 }
