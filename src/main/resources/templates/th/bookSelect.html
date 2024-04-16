@@ -2,7 +2,6 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./customer.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>교환 책 선택</title>
@@ -14,34 +13,53 @@
 
     <form action="/book-select" method="get">
         <div class="form-group">
-            <input type="text" id="searchKeyword" name="keyword" class="form-control" required>
+            <input type="text" id="keyword" name="keyword" class="form-control">
+            <input type="hidden" name="checkNum" value="${checkNum}">
             <button type="submit" class="btn btn-info">검색</button>
         </div>
-    </form> <br><hr><br>
+    </form>
+    <br>
+    <hr>
+    <br>
 
-    <th:block th:each="book:${bookList.objectList}">
+    <div th:each="book:${bookList.objectList}">
         <img th:src="${book.image}">
         <p th:text="${book.name}"></p>
         <p th:text="${book.publisher}"></p>
+        <form th:action="@{/apply-book-select}" method="get">
+            <input type="hidden" name="name" th:value="${book.name}">
+            <input type="hidden" name="author" th:value="${book.author}">
+            <input type="hidden" name="publisher" th:value="${book.publisher}">
+            <input type="hidden" name="isbn" th:value="${book.isbn}">
+            <input type="hidden" name="image" th:value="${book.image}">
+            <input type="hidden" name="checkNum" th:value="${checkNum}">
+            <input class="select-btn" type="submit" value="선택">
+        </form>
+    </div>
+
+    <a th:href="@{'?checkNum=' + ${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=1'}"
+       class="page-link">|◀</a>
+    <th:block th:if="${currentPageNum > 3}">
+       <a th:href="@{'?checkNum=' + ${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${currentPageNum - 3}}" class="page-link">이전</a>
     </th:block>
-
-    <!--폼 만들어야됨-->
-
-
-    <!--페이지 링크 버튼 만들어야됨-->
-    <span id="first-page-btn"></span>
-    <span id="prv-page-btn"></span>
-    <span id="mid-page-btn"></span>
-    <span id="next-page-btn"></span>
-    <span id="last-page-btn"></span>
+    <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+        <th:block th:if="${pageNum >= 1 && pageNum <= bookListSize}">
+            <a th:href="@{'?checkNum='+${checkNum}+(${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${pageNum}}"
+               th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+        </th:block>
+    </th:block>
+    <th:block th:if="${currentPageNum + 2 < bookListSize}">
+       <a th:href="@{'?checkNum=' +${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${currentPageNum + 3}}"
+       class="page-link">다음</a>
+    </th:block>
+    <a th:href="@{'?checkNum=' + ${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${bookListSize}}"
+       class="page-link">▶|</a>
 
 </section>
 <footer></footer>
-</body>
 <script th:inline="javascript">
-    var currentPageNum = [[${currentPageNum}]];
+    let currentPageNum = [[${currentPageNum}]];
     console.log("currentPageNum: ", currentPageNum);
-
-
 </script>
+</body>
 </html>
