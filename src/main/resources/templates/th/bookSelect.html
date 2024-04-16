@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./customer.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>교환 책 선택</title>
+</head>
+<body>
+<header></header>
+<section>
+    <h2>책 검색</h2>
+
+    <form action="/book-select" method="get">
+        <div class="form-group">
+            <input type="text" id="searchKeyword" name="keyword" class="form-control" required>
+            <button type="submit" class="btn btn-info">검색</button>
+        </div>
+    </form> <br><hr><br>
+
+    <th:block th:each="book:${bookList.objectList}">
+        <img th:src="${book.image}">
+        <p th:text="${book.name}"></p>
+        <p th:text="${book.publisher}"></p>
+    </th:block>
+
+    <!--폼 만들어야됨-->
+
+
+    <!--페이지 링크 버튼 만들어야됨-->
+    <span id="first-page-btn"></span>
+    <span id="prv-page-btn"></span>
+    <span id="mid-page-btn"></span>
+    <span id="next-page-btn"></span>
+    <span id="last-page-btn"></span>
+
+
+</section>
+<footer></footer>
+</body>
+<script th:inline="javascript">
+    var currentPageNum = [[${currentPageNum}]];
+    console.log("currentPageNum: ", currentPageNum);
+
+
+</script>
+</html>

@@ -38,4 +38,13 @@
     <select id="getBookForTradeById" resultMap="BookDTO" parameterType="java.lang.String">
 		SELECT * FROM book WHERE book_author = #{userEmail}
 	</select>
+	<select id="getOwnBookByKeyword" parameterType="Map" resultMap="BookDTO">
+		SELECT *
+		FROM book b, report r
+		WHERE b.book_isbn = r.report_book_isbn AND r.report_user_email = #{email}
+		<if test="keyword != null and keyword != ''">
+			AND b.book_name LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY book_name ASC;
+	</select>
 </mapper>

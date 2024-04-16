@@ -1,6 +1,7 @@
 package com.rep.book.bookrepboot.dao;
 
 import java.util.List;
+import java.util.Map;
 
 
 import com.rep.book.bookrepboot.dto.BookDTO;
@@ -22,4 +23,6 @@ public interface BookDao {
 	List<BookDTO> getBookmarkByEmail(String email);
 
     List<BookDTO> getBookForTradeById(String userEmail);
+
+	List<BookDTO> getOwnBookByKeyword(Map<String, String> map);
 }
