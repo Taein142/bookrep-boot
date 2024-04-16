@@ -16,6 +16,7 @@ section {
     height: 100%;
     margin-top: 100px;
 }
+
 /* --------------------------- */
 
 
@@ -24,12 +25,12 @@ section {
 
 
 /* Share House */
-#shareHouse_content{
+#shareHouse_content {
     display: flex;
     justify-content: center;
 }
 
-#shareList{
+#shareList {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,7 +38,7 @@ section {
     background-color: #ffffffb2;
 }
 
-#tradeRegistration{
+#tradeRegistration {
     margin-top: 20px;
     margin-bottom: 3px;
     display: flex;
@@ -45,12 +46,12 @@ section {
     justify-content: flex-end;
 }
 
-#tradeRegistration button{
+#tradeRegistration button {
     height: 35px;
     width: 110px;
     font-size: 1.2em;
     color: rgb(255, 255, 255);
-    background-color:  rgb(126, 165, 108);
+    background-color: rgb(126, 165, 108);
     border: 0px;
     border-radius: 5px;
 
@@ -65,31 +66,35 @@ section {
 
 
 /* My share */
-#myShareLogo,#shareHouseLogo{
+#myShareLogo,
+#shareHouseLogo {
     border-bottom: 2px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#myShareLogo img, #shareHouseLogo img{
+#myShareLogo img,
+#shareHouseLogo img {
     height: 100px;
     width: auto;
     margin-right: 10px;
 }
 
-#myShareLogo h1,#shareHouseLogo h1 {
+#myShareLogo h1,
+#shareHouseLogo h1 {
     font-size: 3em;
 }
 
-#AFBTL_Text,#RFBTL_Text{
+#AFBTL_Text,
+#RFBTL_Text {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 5px;
 }
 
-#myShare_content{
+#myShare_content {
     margin-left: 15%;
     margin-right: 15%;
     display: flex;
@@ -97,43 +102,49 @@ section {
     align-items: center;
 }
 
-#myShare_content img,#shareHouse_content img{
+#myShare_content img,
+#shareHouse_content img {
     height: 200px;
     width: auto;
 }
 
-#RFBTL{
+#RFBTL {
     margin: 5px;
     margin-right: 25px;
 }
 
 #RFBTL_content {
     display: flex;
-    justify-content: flex-end; /* 자식 요소들을 부모 요소의 오른쪽에 정렬합니다. */
-    align-items: center; /* 세로 방향 가운데 정렬합니다. */
+    justify-content: flex-end;
+    /* 자식 요소들을 부모 요소의 오른쪽에 정렬합니다. */
+    align-items: center;
+    /* 세로 방향 가운데 정렬합니다. */
     border: 1px solid black;
     background-color: #ffffffb2;
 }
 
-#AFBTL{
+#AFBTL {
     margin: 5px;
     margin-left: 25px;
 }
 
 #AFBTL_content {
     display: flex;
-    justify-content: flex-end; /* 자식 요소들을 부모 요소의 오른쪽에 정렬합니다. */
-    align-items: center; /* 세로 방향 가운데 정렬합니다. */
+    justify-content: flex-end;
+    /* 자식 요소들을 부모 요소의 오른쪽에 정렬합니다. */
+    align-items: center;
+    /* 세로 방향 가운데 정렬합니다. */
     border: 1px solid black;
     background-color: #ffffffb2;
 }
 
-#paging_area{
+#paging_area {
     width: 300px;
     margin: 0px auto;
     margin-bottom: 50px;
     text-align: center;
 }
+
 /* ----------------------------------------- */
 
 
@@ -150,10 +161,11 @@ section {
     align-items: center;
 }
 
-#tradeRegistration img{
+#tradeRegistration img {
     height: 690px;
     width: 520px;
 }
+
 /* -------------------------------------------- */
 
 
@@ -162,13 +174,14 @@ section {
 
 
 /* tradeApplication */
-#tradeApplication_fullContents{
+#tradeApplication_fullContents {
     margin-top: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#tradeApplication_Contents_00{
+
+#tradeApplication_Contents_00 {
     border: 2px solid black;
     margin-right: 50px;
     height: 690px;
@@ -177,17 +190,17 @@ section {
     font-size: large;
 }
 
-#tradeApplication_contents_01{
+#tradeApplication_contents_01 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#tradeApplication_contents_01 img{
+#tradeApplication_contents_01 img {
     height: 290px;
 }
 
-#tradeApplication_contents_detailBox1{
+#tradeApplication_contents_detailBox1 {
     margin-left: 20px;
     width: 300px;
     height: 290px;
@@ -196,24 +209,24 @@ section {
     justify-content: space-between;
 }
 
-#tradeApplication_contents_detailBox1 div{
+#tradeApplication_contents_detailBox1 div {
     padding: 5px;
 }
 
-#tradeApplication_contents_detailBox1_writer{
-    border-bottom:  2px solid black;
+#tradeApplication_contents_detailBox1_writer {
+    border-bottom: 2px solid black;
 }
 
 
-#tradeApplication_contents_02{
+#tradeApplication_contents_02 {
     margin-top: 20px;
 }
 
-#tradeApplication_BookSelectLink{
+#tradeApplication_BookSelectLink {
     margin-left: 50px;
 }
 
-#tradeApplication_BookSelectLink img{
+#tradeApplication_BookSelectLink img {
     height: 690px;
     width: 520px;
 }
@@ -225,16 +238,20 @@ section {
 
 
 
-/* myTradeApplication */
+/* myTradeApplication,myTradeRegistration */
 
-#myTradeApplication_content{
+#myTradeApplication_content,
+#myTradeRegistration_content {
     margin-top: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#myTradeApplication_content_00, #myTradeApplication_content_03{
+#myTradeApplication_content_00,
+#myTradeApplication_content_03,
+#myTradeRegistration_content_00,
+#myTradeRegistration_content_03 {
     border: 2px solid black;
     height: 690px;
     width: 520px;
@@ -243,13 +260,19 @@ section {
     background-color: #ffffffb2;
 }
 
-#myTradeApplication_content_01,#myTradeApplication_content_04{
+#myTradeApplication_content_01,
+#myTradeApplication_content_04,
+#myTradeRegistration_content_01,
+#myTradeRegistration_content_04 {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#myTradeApplication_content_01_detailBox,#myTradeApplication_content_04_detailBox{
+#myTradeApplication_content_01_detailBox,
+#myTradeApplication_content_04_detailBox,
+#myTradeRegistration_content_01_detailBox,
+#myTradeRegistration_content_04_detailBox {
     margin-left: 20px;
     width: 300px;
     height: 290px;
@@ -258,21 +281,28 @@ section {
     justify-content: space-between;
 }
 
-#myTradeApplication_content_02,#myTradeApplication_content_05{
+#myTradeApplication_content_02,
+#myTradeApplication_content_05,
+#myTradeRegistration_content_02,
+#myTradeRegistration_content_05 {
     margin-top: 20px;
 }
 
-#myTradeApplication_content_01_imgBox img,#myTradeApplication_content_04_imgBox img{
+#myTradeApplication_content_01_imgBox img,
+#myTradeApplication_content_04_imgBox img,
+#myTradeRegistration_content_01_imgBox img,
+#myTradeRegistration_content_04_imgBox img {
     width: auto;
     height: 290px;
 }
 
-#blankSpace{
+#blankSpace {
     min-width: 100px;
     height: auto;
 }
 
-#myTradeApplication_fullContent_button{
+#myTradeApplication_fullContent_button,
+#myTradeRegistration_fullContent_button {
     margin: 10px;
     margin-bottom: 200px;
     display: flex;
@@ -280,7 +310,8 @@ section {
     align-items: center;
 }
 
-#myTradeApplication_fullContent_button button{
+#myTradeApplication_fullContent_button button,
+#myTradeRegistration_fullContent_button button {
     height: 35px;
     width: 110px;
     font-size: 1.2em;
@@ -290,3 +321,42 @@ section {
     border-radius: 5px;
     margin: 5px;
 }
+
+#myTradeApplication_content_03:hover,
+#myTradeRegistration_content_03:hover {
+    background-color: rgba(175, 175, 175, 0.5);
+    /* 반투명한 회색 배경을 지정합니다. */
+}
+
+#myTradeApplication_content_03:hover img,
+#myTradeRegistration_content_03:hover img {
+    filter: brightness(70%);
+    /* 이미지의 밝기를 줄여 반투명하게 만듭니다. */
+}
+
+.hover-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    /* 초기에는 보이지 않도록 설정합니다. */
+}
+.hover-overlay img{
+    width: 130px;
+    height: 130px;
+}
+
+#myTradeApplication_content_03:hover .hover-overlay,
+#myTradeRegistration_content_03:hover .hover-overlay {
+    opacity: 1;
+    /* 호버 효과가 발생했을 때 보이도록 설정합니다. */
+}
+
+#myTradeApplication_content_03,
+#myTradeRegistration_content_03 {
+    position: relative;
+    /* 부모 요소에 상대적 위치를 설정합니다. */
+}
+
+/* --------------------------------------- */
