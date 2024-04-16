@@ -76,6 +76,8 @@ public class SignController {
 	@PostMapping("sign-up")
 	public String applySignUp(
 			@RequestParam("email") String email,
+			@RequestParam("domain") String domain,
+			@RequestParam("domainList") String domainList,
 			@RequestParam("name") String name,
 			@RequestParam("password") String password,
 			@RequestParam("address") String address,
@@ -92,7 +94,7 @@ public class SignController {
 			return "home";
 		}
 
-		String[] arr =  signService.applySignUp(email, name, password, address, detail);
+		String[] arr =  signService.applySignUp(email,domain, name, password, address, detail);
 		
 		rttr.addFlashAttribute("msg", arr[0]);
 		
