@@ -35,8 +35,18 @@
             <form id="signup-form" action="sign-up" method="post">
                 <p>
                 <div class="int-area">
-                    <input type="email" name="email" id="email" autocomplete="off"
-                           placeholder="email" onblur="checkId()" required> <br>
+                    <input type="text" name="email" id="email" autocomplete="off"
+                           placeholder="email" onblur="checkId()" required style="width: 70px">
+                    <span>@</span>
+                    <input type="text" name="domain" id="domain" style="width: 70px" required><br>
+                    <select name="domainList" id="domainList" onblur="checkId()" onclick="toggleInput()">
+                        <option value="naver.com">naver.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="self">직접 입력</option>
+                    </select>
+                    <br>
                     <span id="checkEmail"></span>
                 </div>
                 <p>
@@ -101,7 +111,7 @@
 
                 <p>
                 <div class="signUp-page-button">
-                    <button>회원가입</button>
+                    <button id="sbtn">회원가입</button>
                 </div>
             </form>
 
@@ -123,10 +133,13 @@
 <script>
 
     function checkId() {
-
-        var email = $('#email').val(); //id값이 "id"인 입력란의 값을 저장
-
+        const first = $('#email').val();
+        const last = $('#domain').val();
+        const email = first + "@" + last; //id값이 "id"인 입력란의 값을 저장
+        console.log(email);
         var checkEmail = document.getElementById("checkEmail");
+        let disable = $('#sbtn').prop("disabled");
+        const pattern = /\s/g;
 
         $.ajax({
             url: 'emailCheck', //Controller에서 요청 받을 주소
@@ -136,16 +149,31 @@
             },
             success: function (cnt) { //컨트롤러에서 넘어온 cnt값을 받는다
                 if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
-                    checkEmail.innerHTML = "사용 가능한 이메일입니다.";
+                    if (email.match(pattern)){
+                        checkEmail.innerText = "공백은 입력 불가합니다";
+                        $('#email').val('');
+                        disable = true;
+                    }else if(last === ""){
+                        checkEmail.innerText = "도메인을 입력해주세요";
+                        disable = true;
+                    } else if(first === ""){
+                        checkEmail.innerText = "이메일을 입력해주세요";
+                        disable = true;
+                    } else {
+                        checkEmail.innerHTML = "사용 가능한 이메일입니다.";
+                        disable = false;
+                    }
                 } else { // cnt가 1일 경우 -> 이미 존재하는 아이디
                     console.log(cnt);
                     checkEmail.innerHTML = "중복된 이메일이에요.";
                     alert("아이디를 다시 입력해주세요");
                     $('#email').val('');
+                    disable = true;
                 }
             },
             error: function () {
                 alert("에러입니다");
+                disable = true;
             }
         });
     }
@@ -210,6 +238,49 @@
             document.getElementById(id).disabled = false;
         };
     }
+    $(
+        function () {
+            let selection = $('#domainList').val();
+            if (selection === "self"){
+                    console.log("activateInput");
+                    let domain =  $('#domain');
+                    if (domain.prop('readonly') === true){
+                        domain.prop('readonly', false);
+                    }else {
+                        return;
+                    }
+                    domain.val("");
+            }else {
+                console.log("disableInput");
+                let domain =  $('#domain');
+                if (domain.prop('readonly') === false){
+                    domain.prop('readonly', true);
+                }
+                domain.val(selection);
+            }
+        }
+    );
+    function toggleInput(){
+        let selection = $('#domainList').val();
+        if (selection === "self"){
+                console.log("activateInput");
+                let domain =  $('#domain');
+                if (domain.prop('readonly') === true){
+                    domain.prop('readonly', false);
+                }else {
+                    return;
+                }
+                domain.val("");
+        }else {
+            console.log("disableInput");
+            let domain =  $('#domain');
+            if (domain.prop('readonly') === false){
+                domain.prop('readonly', true);
+            }
+            domain.val(selection);
+        }
+    }
+
 
 </script>
 </html>

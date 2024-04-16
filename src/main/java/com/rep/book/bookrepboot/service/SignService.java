@@ -66,7 +66,7 @@ public class SignService {
 		return cnt;
 	}
 
-	public String[] applySignUp(String email, String name, String password, String address, String detail) throws IOException, ParseException, InterruptedException {
+	public String[] applySignUp(String email,String domain, String name, String password, String address, String detail) throws IOException, ParseException, InterruptedException {
 		log.info("applySignUp()");
 		
 		String msg = "회원가입 성공";
@@ -76,7 +76,8 @@ public class SignService {
 		Map<String, Double> pointMap = getPointByAddress(address);
 		Double longitude = pointMap.get("longitude");
 		Double latitude = pointMap.get("latitude");
-		UserDTO userDTO = new UserDTO(email, password, name, null, longitude, latitude, detail);
+		String fullEmail = email + "@" + domain;
+		UserDTO userDTO = new UserDTO(fullEmail, password, name, null, longitude, latitude, detail);
 		
 		try {
 			userDao.applySignUp(userDTO);
