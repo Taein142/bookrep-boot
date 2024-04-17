@@ -15,7 +15,7 @@
     <form action="/user/book-select" method="get">
         <div class="form-group">
             <input type="text" id="keyword" name="keyword" class="form-control">
-            <input type="hidden" name="checkNum" value="${checkNum}">
+            <input type="hidden" name="checkNum" th:value="${checkNum}">
             <button type="submit" class="btn btn-info">검색</button>
         </div>
     </form>
