@@ -3,13 +3,21 @@ package com.rep.book.bookrepboot.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class BookTradeDTO {
-    Long trade_id;
-    String user_email;
-    String book_isbn;
-    int book_quantity;
+
+    private Long book_trade_id;
+
+    @NonNull
+    private String user_email;
+
+    @NonNull
+    private String book_isbn;
+
+    @NonNull
+    private Integer book_quantity;
 }
