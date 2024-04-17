@@ -30,7 +30,7 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 	
-	@GetMapping("search")
+	@GetMapping("user/search")
 	public String getTotalSearchByString(@RequestParam("keyword") String keyword,
 											Model model,
 											@RequestParam(required = false) Integer userPageNum,
@@ -71,7 +71,7 @@ public class SearchController {
 		return "search";
 	}
 	
-	@PostMapping("user-result")
+	@PostMapping("user/user-result")
 	@ResponseBody
 	public String getUserResult(@RequestParam("keyword") String keyword, @RequestParam("pageNum") int pageNum) throws JsonProcessingException {
 		log.info("getUserResult()");
@@ -84,7 +84,7 @@ public class SearchController {
 		return userListJson;
 	}
 	
-	@PostMapping("book-result")
+	@PostMapping("user/book-result")
 	@ResponseBody
 	public String getBookResult(@RequestParam("keyword") String keyword, @RequestParam("pageNum") int pageNum) throws JsonProcessingException {
 		log.info("getBookResult()");

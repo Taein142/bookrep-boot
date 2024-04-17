@@ -21,7 +21,7 @@
 			<div class="profile">
 					<sec:authorize access="isAuthenticated()">
 						<sec:authentication property="principal" var="principal"/>
-						<a href="/feed/${principal.username}" id="userImage"></a>
+						<a href="/user/feed/${principal.username}" id="userImage"></a>
 					</sec:authorize>
 					<sec:authorize>
 						<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
@@ -39,13 +39,13 @@
 			</div>
 			<div class="buttons">
 				<div class="search-box">
-					<form action="/search" method="GET">
+					<form action="${pageContext.request.contextPath}/user/search" method="GET">
 						<input type="text" name="keyword" placeholder="검색어를 입력하세요">
 						<button type="submit" class="search">검색</button>
 					</form>
 				</div>
 				<div class="logout-button">
-					<a href="/sign-out"><button>로그아웃</button></a>
+					<a href="${pageContext.request.contextPath}/sign-out"><button>로그아웃</button></a>
 				</div>
 			</div>
 		</div>
@@ -55,7 +55,7 @@
 	var logggggggggggemail = "${principal.username}";
 	var userImage = document.getElementById("userImage");
 	$.ajax({
-		url : '<%=request.getContextPath()%>/get-image',
+		url : '<%=request.getContextPath()%>/user/get-image',
 		type : 'post', 
 		data : {
 			email : logggggggggggemail
@@ -71,10 +71,10 @@
 	});
 	const moveToHome = () => {
 
-		var email = "${sessionScope.email}";
+		var email = "${principal.username}";
 		
 		if(email != null) {
-			location.href = "/home";
+			location.href = "/user/home";
 		} else {
 			location.href = "/";
 		}
@@ -82,15 +82,15 @@
 	
 	const moveToFeed = () => {
 		
-		var email1 = "${sessionScope.email}"; 
+		var email1 = "${principal.username}";
 		
 		if(email1 != null){
-			location.href = "/feed";
+			location.href = "/user/feed";
 		}
 	}
 	
 	const moveToWrite = () => {
-		location.href = "/write";
+		location.href = "/user/write";
 	}
 	
 </script>

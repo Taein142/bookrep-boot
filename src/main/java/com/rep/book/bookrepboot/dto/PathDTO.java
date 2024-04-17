@@ -8,18 +8,16 @@ import lombok.NonNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookTradeDTO {
+public class PathDTO {
 
-    private Long book_trade_id;
-
-    @NonNull
-    private String user_email;
+    private Long path_id;
 
     @NonNull
-    private String book_isbn;
+    private String trade_json;
 
     @NonNull
-    private Integer book_quantity;
+    private String user_json;
 
+    @NonNull
+    private String path_json;
 }
-

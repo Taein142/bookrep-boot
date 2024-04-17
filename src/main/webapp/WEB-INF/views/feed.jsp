@@ -22,10 +22,10 @@
 </script>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 <input type="hidden" value="${isFollowing}" id="isFollowing">
 <input type="hidden" value="${userEmail}" id="currentEmail">
@@ -55,7 +55,7 @@
                         </button>
                     </c:otherwise>
                 </c:choose>
-                <a href="/bookmark/${userEmail}"> <img class="bookmark-image"
+                <a href="/user/bookmark/${userEmail}"> <img class="bookmark-image"
                                                        class="top-line-margin" alt="bookmark"
                                                        src="../resources/images/bookmark_icon_black.png"
                                                        style="width: 30px; height: 30px;"></a>
@@ -67,11 +67,11 @@
                     <span style="margin-right: 10%">Posts</span><span>${reportValue}</span>
                 </div>
                 <div class="bottom-line-margin">
-                    <a class="f-a" href="/follower/${userEmail}" style="margin-right: 10%">팔로워</a><span
+                    <a class="f-a" href="/user/follower/${userEmail}" style="margin-right: 10%">팔로워</a><span
                         id="follower">${followerCnt}</span>
                 </div>
                 <div class="bottom-line-margin">
-                    <a class="f-a" href="/following/${userEmail}" style="margin-right: 10%">팔로잉</a><span
+                    <a class="f-a" href="/user/following/${userEmail}" style="margin-right: 10%">팔로잉</a><span
                         id="following">${followingCnt}</span>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                                 <p>${report.report.title}</p>
                                 <p>${report.report.userEmail}</p>
                                 <p>좋아요 수: ${report.like}</p>
-                                <a href="/report-detail?id=${report.report.id}">독후감
+                                <a href="${pageContext.request.contextPath}/user/report-detail?id=${report.report.id}">독후감
                                     상세보기</a>
                             </div>
                         </div>
@@ -190,7 +190,7 @@
     function follow(userEmail) {
         $.ajax({
             type: 'post',
-            url: '/follow',
+            url: '/user/follow',
             data: {
                 email: userEmail
             },
@@ -206,7 +206,7 @@
     function unfollow(userEmail) {
         $.ajax({
             type: 'post',
-            url: '/unfollow',
+            url: '/user/unfollow',
             data: {
                 email: userEmail
             },

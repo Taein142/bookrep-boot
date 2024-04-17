@@ -30,7 +30,7 @@ public class FollowController {
 	
 	
 	
-	@GetMapping("following/{email}")
+	@GetMapping("user/following/{email}")
 	public String showFollowing(@PathVariable String email,
 								Model model,
 								@RequestParam(required = false) Integer pageNum) {
@@ -55,7 +55,7 @@ public class FollowController {
 		return "following";
 	}
 	
-	@GetMapping("follower/{email}")
+	@GetMapping("user/follower/{email}")
 	public String showFollower(@PathVariable String email,
 								Model model,
 								@RequestParam(required = false) Integer pageNum) {
@@ -81,7 +81,7 @@ public class FollowController {
 		return "follower";
 	}
 	
-	@PostMapping("/follow")
+	@PostMapping("/user/follow")
 	@ResponseBody
 	public String follow(@RequestParam("email") String followerEmail, HttpSession session) {
 		log.info("follow()");
@@ -90,10 +90,10 @@ public class FollowController {
 		
 		followService.follow(followerEmail, followeeEmail);
 		
-		return "redirect:feed/" + followerEmail;
+		return "redirect:user/feed/" + followerEmail;
 	}
 
-	@PostMapping("/unfollow")
+	@PostMapping("/user/unfollow")
 	@ResponseBody
 	public String unfollow(@RequestParam("email") String followerEmail, HttpSession session) {
 		log.info("unfollow()");
@@ -102,7 +102,7 @@ public class FollowController {
 		
 		followService.unfollow(followerEmail, followeeEmail);
 		
-		return "redirect:feed/" + followerEmail;
+		return "redirect:user/feed/" + followerEmail;
 	}
 	
 }

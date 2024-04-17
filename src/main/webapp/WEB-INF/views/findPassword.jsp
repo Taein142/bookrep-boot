@@ -77,10 +77,10 @@
 </script>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 
 <div class="out-line">
@@ -119,7 +119,7 @@
 
             <h5>or</h5>
 
-            <a href="/sign-up">회원가입</a>
+            <a href="${pageContext.request.contextPath}/sign-up">회원가입</a>
             <p>
         </div>
 
@@ -129,7 +129,7 @@
     <fieldset>
         <div class="back-signin-link">
             <p>
-                <a href="/sign-in">로그인</a>
+                <a href="${pageContext.request.contextPath}/sign-in">로그인</a>
             <p>
         </div>
     </fieldset>

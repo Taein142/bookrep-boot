@@ -36,7 +36,7 @@ public class HomeController {
 		return "home1";
 	}
 	
-	@GetMapping("/home")
+	@GetMapping("/user/home")
 	public String home(HttpSession session, Model model) {
     
 		String email = SecurityUtil.getCurrentUserEmail();
@@ -56,7 +56,7 @@ public class HomeController {
 		}
 	}
 	
-	@PostMapping("get-image")
+	@PostMapping("user/get-image")
 	@ResponseBody
 	public String getImage(@RequestParam("email") String email) {
 		log.info("getImage()");

@@ -39,14 +39,14 @@ public class SignController {
 	}
 
 	// 로그인 로직
-	@PostMapping("sign-in-proc")
-	public String signIn(HttpSession session, @RequestParam String username, @RequestParam String password) {
-		log.info("email:{}, pw:{}", username, password);
-
-		String view = signService.signIn(session, username, password);
-		log.info(view);
-		return view;
-	}
+//	@PostMapping("sign-in-proc")
+//	public String signIn(HttpSession session, @RequestParam String username, @RequestParam String password) {
+//		log.info("email:{}, pw:{}", username, password);
+//
+//		String view = signService.signIn(session, username, password);
+//		log.info(view);
+//		return view;
+//	}
 
 	// 로그아웃 로직
 	@GetMapping("sign-out")
@@ -118,7 +118,7 @@ public class SignController {
 		return result;
 	}
 	
-	@GetMapping("update")
+	@GetMapping("user/update")
 	public String showModify(HttpSession session, Model model) {
 		log.info("showModify()");
 		
@@ -128,7 +128,7 @@ public class SignController {
 		return "update";
 	}
 	
-	@PostMapping("update")
+	@PostMapping("user/update")
 	public String modify(@RequestPart List<MultipartFile> files, UserDTO userDTO, HttpSession session) throws Exception {
 		log.info("modify()");
 		
@@ -137,7 +137,7 @@ public class SignController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("resign")
+	@GetMapping("user/resign")
 	public String resign(HttpSession session) {
 		log.info("resign()");
 		

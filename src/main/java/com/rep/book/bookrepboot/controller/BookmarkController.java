@@ -23,7 +23,7 @@ public class BookmarkController {
 	@Autowired
 	private BookmarkService bookmarkService;
 	
-	@GetMapping("bookmark/{email}")
+	@GetMapping("user/bookmark/{email}")
 	public String showBookmark(@PathVariable String email,
 								Model model,
 								@RequestParam(required = false) Integer pageNum) {
