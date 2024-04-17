@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+<section>
+    <div id="container1">
+        <div id="loginLogo">
+            <img src="./images/newFullLogo.png">
+        </div>
+        <div id="loginContent">
+            <div id="loginContent-form">
+                <div id="loginText">Login</div>
+                <form action="/managerSign-in" method="post">
+                    <input type="text" name="email" id="email" autocomplete="off" placeholder="Email" required><br>
+                    <input type="password" name="password" id="password" autocomplete="off" placeholder="Password"
+                           required><br>
+                    <button>Login</button>
+                </form>
+            </div>
+        </div>
+</section>
+</body>
+
+</html>

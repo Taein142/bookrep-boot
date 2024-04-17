@@ -18,12 +18,145 @@ section {
     margin-top: 200px;
 }
 
-/* haeder */
+/* fragmants(haeder,footer) */
+/* 스타일 은 CSS로 넘어가야 합니다. */
+/* haeder-bar */
+.haeder-bar {
+    width: 100%;
+    margin: 0;
+    background-color: rgba(200, 200, 200, 0.8);
+}
 
-/* -------------------------------------------------- */
+#haederContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-/* footer */
+#haederLeftContent {
+    display: flex;
+    align-items: center;
+}
 
+#haederLeftContent div {
+    display: flex;
+    align-items: center;
+}
+
+#haederLeftContent p {
+    margin: 0px;
+}
+
+#haederLeftContent img {
+    height: 60px;
+    /* 높이를 60px로 지정 */
+    width: auto;
+    /* 너비는 자동으로 조정하여 비율 유지 */
+    border-radius: 50%;
+    /* 원형 모양으로 만들기 */
+    object-fit: cover;
+    /* 이미지 비율 유지 */
+    margin: 5px;
+}
+
+
+#headerCenterContent {
+    display: flex;
+    align-items: center;
+}
+
+#haederLogoText h2 {
+    color: rgb(255, 255, 255);
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    /* 그림자 효과 적용 */
+}
+
+#headerCenterContent img {
+    width: auto;
+    /* 이미지의 너비를 100px로 설정 */
+    height: 60px;
+    /* 이미지의 높이를 자동으로 조정하여 비율을 유지 */
+    margin: 5px;
+}
+
+
+#UnLogout {
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: #55555579;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#Logout {
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: #555555;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* footer-bar */
+.footer-bar {
+    width: 100%;
+    background-color: rgba(200, 200, 200, 0.8);
+    position: fixed;
+    /* 변경 */
+    bottom: 0;
+    left: 0;
+    /* 추가 */
+    z-index: 999;
+    /* 추가 */
+}
+
+#footerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footerContent a {
+    color: #000000;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+#footerContent img {
+    width: auto;
+    height: 60px;
+    margin: 5px;
+}
+
+/* ---(추가) 해더 우측 검색 버튼--- */
+#haederRightContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#haederRightContent_searchImg {
+    width: 20px;
+    width: 20px;
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+#haederRightContent_input{
+    border: #000000 solid;
+    border-radius: 4px;
+}
+
+#searchForm_div{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+/* --- --- */
 /* -------------------------------------------------- */
 
 

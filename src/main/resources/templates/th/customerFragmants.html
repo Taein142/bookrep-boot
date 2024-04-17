@@ -62,6 +62,7 @@
         margin: 5px;
     }
 
+
     #UnLogout {
         margin: 5px;
         padding: 8px 12px;
@@ -112,14 +113,40 @@
         height: 60px;
         margin: 5px;
     }
+
+    /* ---(추가) 해더 우측 검색 버튼--- */
+    #haederRightContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #haederRightContent_searchImg {
+        width: 20px;
+        width: 20px;
+        cursor: pointer;
+        margin-left: 3px;
+    }
+
+    #haederRightContent_input{
+        border: #000000 solid;
+        border-radius: 4px;
+    }
+
+    #searchForm_div{
+        position: relative;
+        display: flex; 
+        align-items: center;
+    }
+    /* --- --- */
 </style>
 
 <body>
     <!-- haeder -->
-    <div th:fragment="header(addmin)" class="haeder-bar">
+    <div th:fragment="header(manager)" class="haeder-bar">
         <div id="haederContent">
             <div id="haederLeftContent">
-                <th:block th:if="${addmin == null}">
+                <th:block th:if="${manager == null}">
                     <div>
                         <img src=".//images/noimage.png">
                         <p>Unknown</p>
@@ -128,12 +155,12 @@
                 <!-- <th:block th:unless="${manager == null}">
                     <div>
                         <img src="/">
-                        <th:block th:text="${addmin.manager_name}"></th:block>
+                        <th:block th:text="${manger.manager_name}"></th:block>
                     </div>
                 </th:block> -->
             </div>
 
-            <div id="headerCenterContent" onclick="goaddMinLogin()">
+            <div id="headerCenterContent" onclick="goManagerLogin()">
                 <img src=".//images/newFullLogo.png">
                 <div id="haederLogoText">
                     <h2>BOOKREP</h2>
@@ -142,7 +169,13 @@
             </div>
 
             <div id="haederRightContent">
-                <!-- <th:block th:if="${addmin == null}">
+                <form action="/" method="/">
+                    <div id="searchForm_div">
+                        <input type="text" id="haederRightContent_input">
+                        <img src=".//images/search.png" id="haederRightContent_searchImg">
+                    </div>
+                </form>
+                <!-- <th:block th:if="${manager == null}">
                         <button id="UnLogout">logout</button>
                 </th:block> -->
                 <th:block th:unless="${manager == null}">

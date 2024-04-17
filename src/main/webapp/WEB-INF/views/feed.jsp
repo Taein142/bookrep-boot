@@ -125,7 +125,7 @@
 
             <!-- 이전 버튼 -->
             <c:if test="${currentPageNum > 3}">
-                <a href="?pageNum=${currentPageNum - 5}" class="page-link">이전</a>
+                <a href="?pageNum=${currentPageNum - 3}" class="page-link">이전</a>
             </c:if>
 
             <!-- 페이지 번호 5개씩 표시 -->
