@@ -20,7 +20,7 @@ public class ReportDController {
 	@Autowired
 	private ReportDService reportDService;
 	
-	@GetMapping("delete")
+	@GetMapping("user/delete")
 	public String deleteReportByReportId(@RequestParam("id") Long id, HttpSession session, RedirectAttributes rttr , @RequestParam("reportUserEmail") String reportEmail) {
 		log.info("deleteReportByReportId()");
 		
@@ -29,7 +29,7 @@ public class ReportDController {
 		String view = null;
 		if (email == null || !email.equals(reportEmail)) {
 			msg = "you are not an owner of this report";
-			view = "redirect:/report-detail?id=" + id;
+			view = "redirect:/user/report-detail?id=" + id;
 		}else {
 			try {
 				reportDService.deleteReportByReportId(id);
@@ -38,7 +38,7 @@ public class ReportDController {
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = "delete failed";
-				view = "redirect:/report-detail?id=" + id;
+				view = "redirect:/user/report-detail?id=" + id;
 			}
 		}
 		rttr.addFlashAttribute("msg", msg);

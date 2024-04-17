@@ -13,10 +13,10 @@
 </head>
 <body>
 	<sec:authorize access="isAuthenticated()">
-		<jsp:include page="loggedHeader.jsp"></jsp:include>
+		<jsp:include page="loggedHeader.jsp"/>
 	</sec:authorize>
 	<sec:authorize access="!isAuthenticated()">
-		<jsp:include page="header.jsp"></jsp:include>
+		<jsp:include page="header.jsp"/>
 	</sec:authorize>
 	<!-- 현재 페이지 설정 -->
 	<c:choose>
@@ -40,7 +40,7 @@
 					<c:forEach var="report" items="${page.objectList}">
 						<div class="report-con">
 							<div class="report-container">
-								<a href="/feed/${report.userEmail}"><p>${report.userEmail}</p></a>
+								<a href="/user/feed/${report.userEmail}"><p>${report.userEmail}</p></a>
 								<div class="report-detail"
 									onclick="moveToReportDetail(${report.id})">
 									<p>${report.title}</p>
@@ -91,7 +91,7 @@
 </body>
 <script type="text/javascript">
 function moveToReportDetail(reportId) {
-	location.href = "/report-detail?id=" + reportId;
+	location.href = "/user/report-detail?id=" + reportId;
 }
 </script>
 </html>

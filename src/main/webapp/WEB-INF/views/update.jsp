@@ -14,10 +14,10 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 
 <div class="real-out-line">

@@ -17,10 +17,10 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 
 <input type="hidden" value="${isLike}" id="isLike">
@@ -42,7 +42,7 @@
         <div class="r_content">${report.content}</div>
         <div class="comment">
             <!-- 댓글 입력 창 & 입력 버튼 -->
-            <form action="comment" method="post">
+            <form action="user/comment" method="post">
                 <input type="hidden" name="id" value="${report.id}">
                 <textarea name="comment" placeholder="댓글을 입력하세요"></textarea>
                 <button type="submit">등록</button>
@@ -110,7 +110,7 @@
                 <div>${likeValue}</div>
             </div>
             <button class="update-btn"
-                    onclick="location.href='/report-update?id=${report.id}'">수정
+                    onclick="location.href='/user/report-update?id=${report.id}'">수정
             </button>
         </div>
         <div id="report_bottom_right">
@@ -160,7 +160,7 @@
 
     function confirmDelete(reportId, reportUserEmail) {
         if (confirm("게시글을 삭제하시겠습니까?")) {
-            location.href = 'delete?id=' + reportId + '&reportUserEmail=' + reportUserEmail;
+            location.href = 'user/delete?id=' + reportId + '&reportUserEmail=' + reportUserEmail;
             var msg = "${msg}";
             if (msg) {
                 alert(msg);
@@ -179,7 +179,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "<%=request.getContextPath()%>/like",
+                url: "<%=request.getContextPath()%>/user/like",
                 data: {id: reportId},
                 success: function (response) {
                     isLike = !isLike;

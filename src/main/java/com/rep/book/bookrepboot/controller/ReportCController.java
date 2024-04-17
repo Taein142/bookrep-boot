@@ -29,13 +29,13 @@ public class ReportCController {
 	@Autowired
 	private ReportCService reportCService;
 	
-	@GetMapping("write")
+	@GetMapping("user/write")
 	public String showReportWriter(@ModelAttribute("book") BookDTO bookDTO) {
 		log.info("showReportWriter()");
 		return "write";
 	}
 	
-	@GetMapping("book-search")
+	@GetMapping("user/book-search")
 	public String getBookSearch(@RequestParam("keyword") String keyword, Model model) throws IOException, InterruptedException {
 		log.info("getBookSearch()");
 		List<BookDTO> bookList = reportCService.getBookByAPI(keyword);
@@ -45,16 +45,16 @@ public class ReportCController {
 		return "bookSearch";
 	}
 	
-	@GetMapping("apply")
+	@GetMapping("user/apply")
 	public String applyBookSearch(RedirectAttributes rttr, BookDTO bookDTO) {
 		log.info("applyBookSearch()");
 		reportCService.saveBook(bookDTO);
 
 		rttr.addFlashAttribute("book", bookDTO);
-		return "redirect:write";
+		return "redirect:user/write";
 	}
 	
-	@PostMapping("save")
+	@PostMapping("user/save")
 	public String setReport(HttpSession session, ReportDTO reportDTO, RedirectAttributes rttr) {
 		log.info("setReport()");
 		

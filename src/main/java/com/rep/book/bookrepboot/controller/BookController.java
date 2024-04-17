@@ -32,7 +32,7 @@ public class BookController {
 	private BookmarkService bookmarkService;
 	
 	
-	@GetMapping("book-detail")
+	@GetMapping("user/book-detail")
 	public String showBookDetail(HttpSession session, @RequestParam("isbn") String isbn, Model model) {
 		log.info("showBookDetail()");
 		
@@ -50,7 +50,7 @@ public class BookController {
 		return "bookDetail";
 	}
 	
-	@PostMapping("bookmark")
+	@PostMapping("user/bookmark")
 	@ResponseBody
 	public int setBookmark(HttpSession session, @RequestParam("isbn") String isbn) {
 		log.info("setBookmark()");

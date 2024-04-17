@@ -18,10 +18,10 @@
 </script>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 
 <h1 id="search-title">"${keyword}"에 대한 검색결과</h1>
@@ -36,13 +36,13 @@
             <ul>
                 <c:forEach items="${userList}" var="user">
                     <li class="display">
-                        <a href="feed/${user.email}">
+                        <a href="user/feed/${user.email}">
                                 ${user.name} </a>
                         <br>
-                        <a href="feed/${user.email}">
+                        <a href="user/feed/${user.email}">
                                 ${user.email} </a>
                         <br>
-                        <a href="feed/${user.email}">
+                        <a href="user/feed/${user.email}">
                             <img src="<%=request.getContextPath()%>/resources/images/${user.image}"> </a>
                     </li>
                 </c:forEach>
@@ -74,10 +74,10 @@
             <ul>
                 <c:forEach items="${bookList}" var="book">
                     <li class="display">
-                        <a href="book-detail?isbn=${book.isbn}">
+                        <a href="user/book-detail?isbn=${book.isbn}">
                                 ${book.name} </a>
                         <br>
-                        <a href="book-detail?isbn=${book.isbn}">
+                        <a href="user/book-detail?isbn=${book.isbn}">
                             <img src="${book.image}"> </a>
                     </li>
                 </c:forEach>

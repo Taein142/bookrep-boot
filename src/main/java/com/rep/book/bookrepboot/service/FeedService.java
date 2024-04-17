@@ -36,7 +36,7 @@ public class FeedService {
 	public List<PageDTO> getReportSummaryById(String userEmail, String loggedInUserEmail) {
 
 		log.info("getRepostSummarybyId()");
-		log.info(userEmail + " and " + loggedInUserEmail);
+        log.info("{} and {}", userEmail, loggedInUserEmail);
 		List<ReportDTO> userReports = new ArrayList<>();
 		
 		log.info("getReportSummaryById() 진입시도");

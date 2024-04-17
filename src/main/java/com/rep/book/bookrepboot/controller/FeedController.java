@@ -28,7 +28,7 @@ public class FeedController {
 	@Autowired
 	private FollowService followService;
 
-	@GetMapping("feed/{userEmail}")
+	@GetMapping("user/feed/{userEmail}")
 	public String showFeed(@PathVariable String userEmail, HttpSession session, Model model) {
 
 		// 세션에서 현재 로그인한 사용자 이메일 가져옴.

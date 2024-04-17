@@ -15,18 +15,18 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
     <sec:authentication property="principal" var="principal"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 <div class="wrap">
 
     <br> <br> <br>
     <div class="content">
         <!-- 검색어 입력 폼 -->
-        <form action="<c:url value='/book-search' />" method="get"
+        <form action="<c:url value='/user/book-search' />" method="get"
               accept-charset="UTF-8">
             <div class="form-group">
                 <input type="text" id="searchKeyword" name="keyword" class="form-control" required>
@@ -41,7 +41,7 @@
                    value="${not empty book ? book.name : 'No Book Title'}">
         </div>
         <br>
-        <form class="form-write" action="save" method="post" accept-charset="UTF-8">
+        <form class="form-write" action="user/save" method="post" accept-charset="UTF-8">
             <input type="hidden" name="userEmail" value="${principal.username}">
             <input type="text" class="write-input" name="title" placeholder="독후감 제목(필수)" required>
             <input type="text" class="write-input" name="bookIsbn" placeholder="ISBN"

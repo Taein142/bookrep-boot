@@ -26,7 +26,7 @@ public class ReportUController {
 	@Autowired
 	private ReportUService reportUService;
 	
-	@GetMapping("report-update")
+	@GetMapping("user/report-update")
 	public String showReportUpdate(HttpSession session, @RequestParam("id") Long id, Model model) {
 		log.info("showReportUpdate()");
 		
@@ -36,13 +36,13 @@ public class ReportUController {
 		return view;
 	}
 	
-	@PostMapping("/apply-update")
+	@PostMapping("/user/apply-update")
 	public String applyReportUpdate(@ModelAttribute ReportDTO reportDTO) {
 	    log.info("applyReportUpdate()");
 	    
 	    reportUService.applyReportUpdate(reportDTO);
 	    
-	    return "redirect:/report-detail?id=" + reportDTO.getId();
+	    return "redirect:/user/report-detail?id=" + reportDTO.getId();
 	}
 	
 	

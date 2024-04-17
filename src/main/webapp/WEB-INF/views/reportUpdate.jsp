@@ -12,17 +12,18 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
+    <sec:authentication property="principal" var="principal"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 <div id="total-body">
     <div id="update-form">
-        <form action="/apply-update" method="post">
+        <form action="${pageContext.request.contextPath}/user/apply-update" method="post">
             <div id="report-top">
                 <input type="hidden" name="id" value="${report.id}">
-                <input type="hidden" name="userEmail" value="${sessionScope.email}">
+                <input type="hidden" name="userEmail" value="${principal.username}">
                 <input type="hidden" name="bookIsbn" value="${report.bookIsbn}">
                 <label for="title">제목:</label>
                 <input type="text" id="title" name="title" value="${report.title}" required>
