@@ -28,7 +28,7 @@
                     <a th:href="@{/trade-resister?checkNum=1}"><button>교환 등록</button></a>
                 </div>
                     <th:block th:each="trade:${tradeList}">
-                        <div id="shareList" onclick="goTradeApplication(${trade.id})">
+                        <div id="shareList" onclick="goTradeApplication([[${trade.id}]])">
                             <div>
                                 <img src="./images/image.png">
                             </div>
