@@ -34,9 +34,9 @@
                                 <img src="./images/image.png">
                             </div>
                             <div>
-                                <p>책이름: 예시예시예시예시예시예시</p><br>
-                                <p>저자: 예시예시예시예시예시예시</p><br>
-                                <p>출판사: 예시예시예시예시예시예시</p>
+                                <th:block th:text="${book.name}"/><!--책이름-->
+                                <th:block th:text="${book.author}"/><!--책작가-->
+                                <th:block th:text="${book.publisher}"/><!--출판사-->
                             </div>
                         </div>
                     </th:block>
