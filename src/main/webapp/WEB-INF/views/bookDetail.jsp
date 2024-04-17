@@ -131,7 +131,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<%=request.getContextPath()%>/bookmark",
+            url: "<%=request.getContextPath()%>/user/bookmark",
             data: {isbn: "${book.isbn}"},
             success: function (response) {
                 if (isBookmark) {

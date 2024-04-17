@@ -2,5 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rep.book.bookrepboot.dao.BookTradeDao">
-
+    <insert id="registerTrade" parameterType="com.rep.book.bookrepboot.dto.BookTradeDTO">
+        INSERT book_trade
+        (user_email, book_isbn, book_quantity)
+        VALUES (#{user_email}, #{book_isbn}, #{book_quantity})
+    </insert>
 </mapper>

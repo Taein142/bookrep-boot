@@ -7,8 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>독후감 수정</title>
-    <link rel="stylesheet" href="resources/css/page.css">
-    <link rel="stylesheet" href="resources/css/reportUpdate.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/page.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/reportUpdate.css">
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">

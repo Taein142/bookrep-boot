@@ -41,7 +41,7 @@
                         <a href="/user/feed/${following.email}">
                                 ${following.name} </a>
                         <br>
-                        <a href="/feed/${following.email}">
+                        <a href="/user/feed/${following.email}">
                             <img src="<%=request.getContextPath()%>/resources/images/${following.image}"></a>
                     </li>
                 </c:forEach>

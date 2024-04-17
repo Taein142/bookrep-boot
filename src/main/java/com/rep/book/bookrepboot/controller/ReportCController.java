@@ -51,7 +51,7 @@ public class ReportCController {
 		reportCService.saveBook(bookDTO);
 
 		rttr.addFlashAttribute("book", bookDTO);
-		return "redirect:user/write";
+		return "redirect:write";
 	}
 	
 	@PostMapping("user/save")

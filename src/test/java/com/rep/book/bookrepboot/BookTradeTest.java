@@ -1,7 +1,7 @@
 package com.rep.book.bookrepboot;
 
 import com.rep.book.bookrepboot.dto.BookTradeDTO;
-import com.rep.book.bookrepboot.service.TradeService;
+import com.rep.book.bookrepboot.service.BookTradeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,9 +9,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 @SpringBootTest
-public class TradeTest {
+public class BookTradeTest {
     @Autowired
-    TradeService tradeService;
+    BookTradeService bookTradeService;
 
     @Test
     public void saveTradeResisterTest() {
@@ -21,7 +21,7 @@ public class TradeTest {
         bookTradeDTO.setBook_quantity(1);
 
         RedirectAttributes rttr = new RedirectAttributesModelMap();
-        String view = tradeService.saveTradeRegister(bookTradeDTO, rttr);
+        String view = bookTradeService.saveTradeRegister(bookTradeDTO, rttr);
         System.out.println(view);
     }
 }

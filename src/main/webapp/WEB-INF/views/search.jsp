@@ -36,13 +36,13 @@
             <ul>
                 <c:forEach items="${userList}" var="user">
                     <li class="display">
-                        <a href="user/feed/${user.email}">
+                        <a href="/user/feed/${user.email}">
                                 ${user.name} </a>
                         <br>
-                        <a href="user/feed/${user.email}">
+                        <a href="/user/feed/${user.email}">
                                 ${user.email} </a>
                         <br>
-                        <a href="user/feed/${user.email}">
+                        <a href="/user/feed/${user.email}">
                             <img src="<%=request.getContextPath()%>/resources/images/${user.image}"> </a>
                     </li>
                 </c:forEach>
@@ -53,15 +53,13 @@
 <div class="page">
     <!-- 이전 버튼 -->
     <c:if test="${currentUserPageNum > 1}">
-        <a
-                href="?keyword=${keyword}&userPageNum=${currentUserPageNum - 1}&bookPageNum=${currentBookPageNum}"
-                class="page-link">이전</a>
+        <a href="?keyword=${keyword}&userPageNum=${currentUserPageNum - 1}&bookPageNum=${currentBookPageNum}"
+           class="page-link">이전</a>
     </c:if>
     <!-- 다음 버튼 -->
     <c:if test="${currentUserPageNum * 6 < totalUserSize}">
-        <a
-                href="?keyword=${keyword}&userPageNum=${currentUserPageNum + 1}&bookPageNum=${currentBookPageNum}"
-                class="page-link">다음</a>
+        <a href="?keyword=${keyword}&userPageNum=${currentUserPageNum + 1}&bookPageNum=${currentBookPageNum}"
+           class="page-link">다음</a>
     </c:if>
 </div>
 <div class="container">
@@ -74,10 +72,10 @@
             <ul>
                 <c:forEach items="${bookList}" var="book">
                     <li class="display">
-                        <a href="user/book-detail?isbn=${book.isbn}">
+                        <a href="/user/book-detail?isbn=${book.isbn}">
                                 ${book.name} </a>
                         <br>
-                        <a href="user/book-detail?isbn=${book.isbn}">
+                        <a href="/user/book-detail?isbn=${book.isbn}">
                             <img src="${book.image}"> </a>
                     </li>
                 </c:forEach>
@@ -88,15 +86,13 @@
 <div class="page">
     <!-- 이전 버튼 -->
     <c:if test="${currentBookPageNum > 1}">
-        <a
-                href="?keyword=${keyword}&userPageNum=${currentUserPageNum}&bookPageNum=${currentBookPageNum - 1}"
-                class="page-link">이전</a>
+        <a href="?keyword=${keyword}&userPageNum=${currentUserPageNum}&bookPageNum=${currentBookPageNum - 1}"
+           class="page-link">이전</a>
     </c:if>
     <!-- 다음 버튼 -->
     <c:if test="${currentBookPageNum * 6 < totalBookSize}">
-        <a
-                href="?keyword=${keyword}&userPageNum=${currentUserPageNum}&bookPageNum=${currentBookPageNum + 1}"
-                class="page-link">다음</a>
+        <a href="?keyword=${keyword}&userPageNum=${currentUserPageNum}&bookPageNum=${currentBookPageNum + 1}"
+           class="page-link">다음</a>
     </c:if>
 </div>
 
