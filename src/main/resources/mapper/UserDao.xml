@@ -9,7 +9,7 @@
     	<result property="password" column="user_password" />
     	<result property="name" column="user_name" />
     	<result property="image" column="user_image" />
-		<result property="longitude" column="user_longtitude" />
+		<result property="longitude" column="user_longitude" />
 		<result property="latitude" column="user_latitude" />
 		<result property="detail" column="user_detail"/>
 	</resultMap>
@@ -33,7 +33,7 @@
 		SELECT count(*) FROM user WHERE user_email = #{email}
 	</select>
 	<insert id="applySignUp" parameterType="com.rep.book.bookrepboot.dto.UserDTO">
-		INSERT user (user_email, user_name, user_password, user_longtitude, user_latitude, user_detail) VALUES (#{email}, #{name}, #{password}, #{longitude}, #{latitude}, #{detail})
+		INSERT user (user_email, user_name, user_password, user_longitude, user_latitude, user_detail) VALUES (#{email}, #{name}, #{password}, #{longitude}, #{latitude}, #{detail})
 	</insert>
 	<select id="getPassword" parameterType="java.util.Map" resultType="java.lang.String">
 		SELECT user_password FROM user WHERE user_email = #{email} AND user_name = #{name}

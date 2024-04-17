@@ -28,8 +28,9 @@ public class BookmarkService {
 		log.info("isBookmark()");
 		
 		String email = SecurityUtil.getCurrentUserEmail();
-		
-		BookmarkDTO bookmarkDTO = new BookmarkDTO(email, isbn);
+
+        assert email != null;
+        BookmarkDTO bookmarkDTO = new BookmarkDTO(email, isbn);
 		
 		int isBookmark = bookmarkDao.isBookmark(bookmarkDTO);
 		
@@ -46,7 +47,8 @@ public class BookmarkService {
 		log.info("setBookmark()");
 		
 		String email = SecurityUtil.getCurrentUserEmail();
-		BookmarkDTO bookmarkDTO = new BookmarkDTO(email, isbn);
+        assert email != null;
+        BookmarkDTO bookmarkDTO = new BookmarkDTO(email, isbn);
 		
 		bookmarkDao.setBookmark(bookmarkDTO);
 		
@@ -66,7 +68,8 @@ public class BookmarkService {
 		log.info("removeBookmark()");
 		
 		String email = SecurityUtil.getCurrentUserEmail();
-		BookmarkDTO bookmarkDTO = new BookmarkDTO(email, isbn);
+        assert email != null;
+        BookmarkDTO bookmarkDTO = new BookmarkDTO(email, isbn);
 		
 		bookmarkDao.removeBookmark(bookmarkDTO);
 	}

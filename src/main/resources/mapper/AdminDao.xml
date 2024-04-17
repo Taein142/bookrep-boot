@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rep.book.bookrepboot.dao.AdminDao">
+    <insert id="adminUp" parameterType="com.rep.book.bookrepboot.dto.AdminDTO">
+        insert into admin (admin_password, admin_role) VALUES (#{admin_password}, #{admin_role})
+    </insert>
+
+    <select id="findUserByEmail" resultType="com.rep.book.bookrepboot.dto.AdminDTO" parameterType="java.lang.String">
+        select * from admin where admin_id = #{username}
+    </select>
+</mapper>

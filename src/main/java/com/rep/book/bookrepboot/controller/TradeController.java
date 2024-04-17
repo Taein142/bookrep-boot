@@ -21,7 +21,7 @@ public class TradeController {
     @Autowired
     private TradeService tradeService;
 
-    @GetMapping("book-select")
+    @GetMapping("user/book-select")
     public String bookSelect(@RequestParam(value = "keyword", required = false) String keyword,
                              @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                              Model model) {

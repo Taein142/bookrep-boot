@@ -53,7 +53,7 @@ public class ReportRController {
 		return "reportDetail";
 	}
 	
-	@PostMapping("like")
+	@PostMapping("user/like")
 	public String setLike(@RequestParam("id") Long id, HttpSession session) {
 		log.info("setLike()");
 		
@@ -61,10 +61,10 @@ public class ReportRController {
 		
 		reportRService.setLike(email, id);
 		
-		return "redirect:report-detail?id=" + id;
+		return "redirect:user/report-detail?id=" + id;
 	}
 	
-	@PostMapping("comment")
+	@PostMapping("user/comment")
 	public String setComment(@RequestParam("id") Long id, HttpSession session, @RequestParam("comment") String comment) {
 		log.info("setComment()");
 		
@@ -72,7 +72,7 @@ public class ReportRController {
 		
 		reportRService.setComment(email, id, comment);
 		
-		return "redirect:report-detail?id=" + id;
+		return "redirect:user/report-detail?id=" + id;
 	}
 	
 	

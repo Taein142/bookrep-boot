@@ -20,10 +20,10 @@
 </head>
 <body>
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 
 <div class="out-line">
@@ -123,7 +123,7 @@
     <fieldset>
         <div class="sign-up-link">
             <p>
-                이미 계정이 있나요? <a href="/sign-in">로그인</a>
+                이미 계정이 있나요? <a href="${pageContext.request.contextPath}/sign-in">로그인</a>
             <p>
         </div>
     </fieldset>

@@ -14,10 +14,10 @@
 <body>
 
 <sec:authorize access="isAuthenticated()">
-    <jsp:include page="loggedHeader.jsp"></jsp:include>
+    <jsp:include page="loggedHeader.jsp"/>
 </sec:authorize>
 <sec:authorize access="!isAuthenticated()">
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"/>
 </sec:authorize>
 
 
@@ -25,7 +25,7 @@
     <h2>책 검색</h2>
 
     <!-- 검색어 입력 폼 -->
-    <form action="<c:url value='/book-search' />" method="get">
+    <form action="<c:url value='/user/book-search' />" method="get">
         <div class="form-group">
             <input type="text"
                    id="searchKeyword" name="keyword" class="form-control" required>
@@ -64,7 +64,7 @@
                                         <p>제목: ${book.name}</p>
                                         <p>저자: ${book.author}</p>
                                         <!-- 선택 버튼 -->
-                                        <form action="<c:url value='/apply' />" method="get">
+                                        <form action="<c:url value='/user/apply' />" method="get">
                                             <input type="hidden" name="name" value="${book.name}">
                                             <input type="hidden" name="author" value="${book.author}">
                                             <input type="hidden" name="publisher" value="${book.publisher}">
@@ -133,7 +133,7 @@
     function submitSelectedBook(book) {
         var form = document.createElement("form");
         form.setAttribute("method", "get");
-        form.setAttribute("action", "<c:url value='/apply' />");
+        form.setAttribute("action", "<c:url value='/user/apply' />");
 
         addHiddenField(form, "selectedBook.isbn", book.isbn);
         addHiddenField(form, "selectedBook.book_name", book.name);
