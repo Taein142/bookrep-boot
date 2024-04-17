@@ -57,7 +57,7 @@
                 </c:choose>
                 <a href="/user/bookmark/${userEmail}"> <img class="bookmark-image"
                                                        class="top-line-margin" alt="bookmark"
-                                                       src="../resources/images/bookmark_icon_black.png"
+                                                       src="<%=request.getContextPath()%>/resources/images/bookmark_icon_black.png"
                                                        style="width: 30px; height: 30px;"></a>
             </div>
             <div class="user-name">${name}</div>
@@ -156,7 +156,7 @@
 
 <script type="text/javascript">
     function showModify() {
-        window.location.href = "/update";
+        window.location.href = "/user/update";
     }
 
     var userEmail = document.getElementById("currentEmail").value;

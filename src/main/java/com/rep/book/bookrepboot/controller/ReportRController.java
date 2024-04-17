@@ -27,7 +27,7 @@ public class ReportRController {
 	@Autowired
 	private ReportRService reportRService; 
 	
-	@GetMapping("report-detail")
+	@GetMapping("user/report-detail")
 	public String showReportDetail(@RequestParam("id") Long id, HttpSession session,Model model) {
 		log.info("showReportDetail()");
 		
@@ -61,7 +61,7 @@ public class ReportRController {
 		
 		reportRService.setLike(email, id);
 		
-		return "redirect:user/report-detail?id=" + id;
+		return "redirect:report-detail?id=" + id;
 	}
 	
 	@PostMapping("user/comment")
@@ -72,7 +72,7 @@ public class ReportRController {
 		
 		reportRService.setComment(email, id, comment);
 		
-		return "redirect:user/report-detail?id=" + id;
+		return "redirect:report-detail?id=" + id;
 	}
 	
 	

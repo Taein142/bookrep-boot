@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/customer.css}">
+    <link rel="stylesheet" th:href="@{static/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>tradeRegistration</title>
@@ -11,7 +11,7 @@
 <body>
     <header></header>
     <section>
-        <form action="/book-select" method="get">
+        <form action="/user/book-select" method="get">
             <input type="text" id="searchKeyword" name="keyword" class="form-control">
             <input type="hidden" name="checkNum" value="1">
             <button type="submit" class="btn btn-info">책 검색</button>
@@ -24,11 +24,11 @@
                 <img th:src="${book.image}" alt="No Image" style="width: 150px; height: 200px;">
             </th:block>
             <th:block th:unless="${book != null}">
-                <img src="./resources/images/no_book.png" alt="noImage">
+                <img src="../resources/images/no_book.jpg" alt="noBook" style="height: 250px; width: 200px;">
             </th:block>
         </div>
 
-        <form class="form-resister" action="save-resister" method="post" accept-charset="UTF-8">
+        <form class="form-resister" action="/user/save-resister" method="post" accept-charset="UTF-8">
             <div>
                 <input type="text" name="user_email" th:value="${userEmail}" required readonly placeholder="email">
             </div>
@@ -44,9 +44,6 @@
                 <input type="submit" class="btn-write" value="등록" required>
             </div>
         </form>
-
-
-
     </section>
     <footer></footer>
 <script th:inline="javascript">

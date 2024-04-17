@@ -87,11 +87,11 @@ public class ReportCService {
 			try {
 				reportDao.setReport(reportDTO);
 				msg = "작성완료";
-				view = "redirect:user/feed/" + email;
+				view = "redirect:feed/" + email;
 			} catch (Exception e) {
 				e.printStackTrace();
 				msg = "다시 입력해주세요";
-				view = "redirect:user/write";
+				view = "redirect:write";
 			}
 		}
 		

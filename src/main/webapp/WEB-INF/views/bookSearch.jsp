@@ -8,8 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>책 검색</title>
-    <link rel="stylesheet" href="resources/css/page.css">
-    <link rel="stylesheet" href="resources/css/bookSearch.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/page.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bookSearch.css">
 </head>
 <body>
 

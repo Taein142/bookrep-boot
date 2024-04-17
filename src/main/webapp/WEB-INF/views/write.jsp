@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>글쓰기</title>
-    <link rel="stylesheet" href="resources/css/write.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/write.css">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
             integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
             crossorigin="anonymous"></script>
@@ -26,7 +26,7 @@
     <br> <br> <br>
     <div class="content">
         <!-- 검색어 입력 폼 -->
-        <form action="<c:url value='/user/book-search' />" method="get"
+        <form action="<c:url value='/user/book-search'/>" method="get"
               accept-charset="UTF-8">
             <div class="form-group">
                 <input type="text" id="searchKeyword" name="keyword" class="form-control" required>
@@ -41,7 +41,7 @@
                    value="${not empty book ? book.name : 'No Book Title'}">
         </div>
         <br>
-        <form class="form-write" action="user/save" method="post" accept-charset="UTF-8">
+        <form class="form-write" action="/user/save" method="post" accept-charset="UTF-8">
             <input type="hidden" name="userEmail" value="${principal.username}">
             <input type="text" class="write-input" name="title" placeholder="독후감 제목(필수)" required>
             <input type="text" class="write-input" name="bookIsbn" placeholder="ISBN"

@@ -46,11 +46,11 @@ public class TradeService {
         try {
             tradeDao.registerTrade(bookTradeDTO);
             msg = "등록 성공";
-            view = "redirect:/share-house";
+            view = "redirect:share-house";
         } catch (Exception e) {
             e.printStackTrace();
             msg = "등록 실패";
-            view = "redirect:/trade-resister";
+            view = "redirect:trade-resister";
         }
 
         rttr.addFlashAttribute("msg", msg);

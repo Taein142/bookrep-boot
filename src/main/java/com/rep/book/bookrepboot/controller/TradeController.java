@@ -6,7 +6,6 @@ import com.rep.book.bookrepboot.dto.PageDTO;
 import com.rep.book.bookrepboot.service.TradeService;
 import com.rep.book.bookrepboot.util.MainUtil;
 import com.rep.book.bookrepboot.util.SecurityUtil;
-import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,22 +46,22 @@ public class TradeController {
         return "th/bookSelect";
     }
 
-    @GetMapping("apply-book-select")
+    @GetMapping("user/apply-book-select")
     public String applyBookSelect(@RequestParam("checkNum") int checkNum, BookDTO bookDTO, RedirectAttributes rttr){
         log.info("applyBookSelect");
         rttr.addFlashAttribute("book", bookDTO);
         log.info("bookDTO {}", bookDTO);
 
         if (checkNum == 1){
-            return "redirect:/trade-resister";
+            return "redirect:trade-resister";
         } else if (checkNum == 2){
-            return "redirect:/trade-request";
+            return "redirect:trade-request";
         } else {
-            return "redirect:/share-house";
+            return "redirect:share-house";
         }
     }
 
-    @GetMapping("trade-resister")
+    @GetMapping("user/trade-resister")
     public String showTradeResister(@ModelAttribute("bookTrade") BookTradeDTO bookTradeDTO, Model model){
         String email = SecurityUtil.getCurrentUserEmail();
         model.addAttribute("userEmail", email);
@@ -70,7 +69,7 @@ public class TradeController {
         return "th/tradeRegistration";
     }
 
-    @PostMapping("save-resister")
+    @PostMapping("user/save-resister")
     public String saveTradeResister(BookTradeDTO bookTradeDTO, RedirectAttributes rttr){
         log.info("saveTradeResister");
 
@@ -79,7 +78,7 @@ public class TradeController {
         return view;
     }
 
-    @GetMapping("share-house")
+    @GetMapping("user/share-house")
     public String showShareHouse(){
         log.info("showShareHouse()");
 

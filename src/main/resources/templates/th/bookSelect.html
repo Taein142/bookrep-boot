@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" th:href="@{/css/customer.css}">
-    <title>교환 책 선택</title>
+    <link rel="stylesheet" th:href="@{static/css/customer.css}">
+    <title>책 선택</title>
 </head>
 <body>
 <header></header>
 <section>
     <h2>책 검색</h2>
 
-    <form action="/book-select" method="get">
+    <form action="/user/book-select" method="get">
         <div class="form-group">
             <input type="text" id="keyword" name="keyword" class="form-control">
             <input type="hidden" name="checkNum" value="${checkNum}">
@@ -27,7 +27,7 @@
         <img th:src="${book.image}">
         <p th:text="${book.name}"></p>
         <p th:text="${book.publisher}"></p>
-        <form th:action="@{/apply-book-select}" method="get">
+        <form th:action="@{/user/apply-book-select}" method="get">
             <input type="hidden" name="name" th:value="${book.name}">
             <input type="hidden" name="author" th:value="${book.author}">
             <input type="hidden" name="publisher" th:value="${book.publisher}">
