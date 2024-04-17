@@ -11,10 +11,49 @@
 <body>
     <header></header>
     <section>
+        <form action="/book-select" method="get">
+            <input type="text" id="searchKeyword" name="keyword" class="form-control">
+            <input type="hidden" name="checkNum" value="1">
+            <button type="submit" class="btn btn-info">책 검색</button>
+        </form> <br><hr>
+
+        <h2>교환 등록</h2>
+        <div th:text="${userEmail} + '님'"></div>
         <div id="tradeRegistration">
-          <img src=".//images/exBookPluse.png">
+            <th:block th:if="${book != null}">
+                <img th:src="${book.image}" alt="No Image" style="width: 150px; height: 200px;">
+            </th:block>
+            <th:block th:unless="${book != null}">
+                <img src="./resources/images/no_book.png" alt="noImage">
+            </th:block>
         </div>
+
+        <form class="form-resister" action="save-resister" method="post" accept-charset="UTF-8">
+            <div>
+                <input type="text" name="user_email" th:value="${userEmail}" required readonly placeholder="email">
+            </div>
+            <div>
+                <input type="text" name="book_isbn"
+                       th:value="${book != null ? book.isbn : ''}"
+                       required readonly placeholder="isbn">
+            </div>
+            <div>
+                <input type="text" name="book_quantity" th:value="1" required placeholder="수량">
+            </div>
+            <div>
+                <input type="submit" class="btn-write" value="등록" required>
+            </div>
+        </form>
+
+
+
     </section>
     <footer></footer>
+<script th:inline="javascript">
+    let lg = [[${userEmail}]];
+    console.log("lg: ", lg);
+
+
+</script>
 </body>
 </html>

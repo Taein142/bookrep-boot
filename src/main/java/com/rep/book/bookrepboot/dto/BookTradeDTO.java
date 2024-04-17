@@ -20,4 +20,6 @@ public class BookTradeDTO {
 
     @NonNull
     private Integer book_quantity;
+
 }
+
