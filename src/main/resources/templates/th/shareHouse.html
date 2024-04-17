@@ -25,30 +25,50 @@
         <div id="shareHouse_content">
             <div>
                 <div id="tradeRegistration">
-                    <a href="/"><button>교환 등록</button></a>
+                    <a th:href="@{/trade-resister?checkNum=1}"><button>교환 등록</button></a>
                 </div>
-                <th:block th:if="${EX.isEmpty(EX1List)}">
-                    <th:block th:each="EX:${EX2List}">
-                        <div id="shareList">
+                    <th:block th:each="trade:${tradeList}">
+                        <div id="shareList" onclick="goTradeApplication([[${trade.id}]])">
                             <div>
                                 <img src="./images/image.png">
                             </div>
                             <div>
-                                <th:block th:text="${book.name}"/><!--책이름-->
-                                <th:block th:text="${book.author}"/><!--책작가-->
-                                <th:block th:text="${book.publisher}"/><!--출판사-->
+                                <p th:text="${trade.user}"></p>
+                                <p th:text="${trade.name}"></p>
+                                <p th:text="${trade.author}"></p>
+                                <p th:text="${trade.publisher}"></p>
                             </div>
                         </div>
                     </th:block>
-                </th:block>
                 <div id="paging_area">
-                    <div class="sharePaging">${sharePaging}</div>
+                    <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+ '&pageNum=1'}"
+                       class="page-link">|◀</a>
+                    <th:block th:if="${currentPageNum > 3}">
+                        <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''} + '&pageNum=' + ${currentPageNum - 3}}"
+                           class="page-link">이전</a>
+                    </th:block>
+                    <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                        <th:block th:if="${pageNum >= 1 && pageNum <= tradeListSize}">
+                            <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+'&pageNum=' + ${pageNum}}"
+                               th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${currentPageNum + 2 < tradeListSize}">
+                        <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+'&pageNum=' + ${currentPageNum + 3}}"
+                           class="page-link">다음</a>
+                    </th:block>
+                    <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''} + '&pageNum=' + ${tradeListSize}}"
+                       class="page-link">▶|</a>
                 </div>
             </div>
         </div>
-
     </section>
     <footer></footer>
 </body>
-
+<script th:inline="javascript">
+function goTradeApplication(id) {
+    console.log(id);
+    location.href="/tradeApplication?id="+id;
+}
+</script>
 </html>
