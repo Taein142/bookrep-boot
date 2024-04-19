@@ -42,7 +42,6 @@ public class FeedService {
 		log.info("getReportSummaryById() 진입시도");
 		try {
 			userReports = reportDao.getReportSummaryById(userEmail);
-			System.out.println(userReports);
 		} catch (Exception e) {
 			log.info("getReportSummaryById에서 못 받아옴");
 			e.printStackTrace();
@@ -77,7 +76,6 @@ public class FeedService {
 		
 		try {
 			List<PageDTO> reportSummaries = MainUtil.setPaging(summaryList, 6);
-			System.out.println(reportSummaries);
 			return reportSummaries;
 		} catch (Exception e) {
 			log.info("setPaging에서 못 받아옴");

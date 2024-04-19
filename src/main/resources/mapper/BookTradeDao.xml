@@ -7,4 +7,13 @@
         (user_email, book_isbn, book_quantity)
         VALUES (#{user_email}, #{book_isbn}, #{book_quantity})
     </insert>
+    <select id="getBookTradeByKeyword" parameterType="String" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
+        SELECT *
+        FROM book_trade bt, book b
+        WHERE bt.book_isbn = b.book_isbn
+        <if test="keyword != null and keyword != ''">
+            AND b.book_name LIKE CONCAT('%', #{keyword}, '%')
+        </if>
+        ORDER BY book_trade_id DESC
+    </select>
 </mapper>

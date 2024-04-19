@@ -79,12 +79,20 @@ public class BookTradeController {
     }
 
     @GetMapping("user/share-house")
-    public String showShareHouse(){
+    public String showShareHouse(@RequestParam(value = "keyword", required = false) String keyword,
+                                 @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                 Model model){
         log.info("showShareHouse()");
+
+        List<PageDTO> getTradeListByKeyword = bookTradeService.getTradeListByKeyword(keyword);
+        log.info("allTradeList {}", getTradeListByKeyword);
+        model.addAttribute("tradeList", getTradeListByKeyword);
+        model.addAttribute("currentPageNum", pageNum);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("tradeListSize", getTradeListByKeyword.size());
 
         return "th/shareHouse";
     }
-
 
 
 }
