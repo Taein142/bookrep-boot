@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
-    <link rel="stylesheet" href="resources/css/signIn.css">
+    <link rel="stylesheet" href="../resources/css/signIn.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
@@ -26,7 +26,7 @@
 
             <h1>로그인</h1>
 
-            <form action="${pageContext.request.contextPath}/sign-in-proc" method="post">
+            <form action="/user/sign-in-proc" method="post">
                 <p>
                 <div class="int-area">
                     <input type="text" name="username" id="email" autocomplete="off"

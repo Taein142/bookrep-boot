@@ -32,7 +32,7 @@ public class SignController {
 	SignService signService;
 
 	// 로그인 이동
-	@GetMapping("sign-in")
+	@GetMapping("user/sign-in")
 	public String showSignIn() {
 		log.info("로그인 화면 이동");
 		return "signIn";
@@ -49,7 +49,7 @@ public class SignController {
 //	}
 
 	// 로그아웃 로직
-	@GetMapping("sign-out")
+	@GetMapping("user/sign-out")
 	public String signOut(HttpSession session) {
 		session.invalidate();
 		log.info("로그아웃");
