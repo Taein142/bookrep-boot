@@ -4,6 +4,8 @@ import com.rep.book.bookrepboot.dao.BookDao;
 import com.rep.book.bookrepboot.dao.BookTradeDao;
 import com.rep.book.bookrepboot.dto.BookDTO;
 import com.rep.book.bookrepboot.dto.BookTradeDTO;
+import com.rep.book.bookrepboot.dto.PageDTO;
+import com.rep.book.bookrepboot.util.MainUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,6 +57,28 @@ public class BookTradeService {
 
         rttr.addFlashAttribute("msg", msg);
         return view;
+    }
+
+    public List<PageDTO> getTradeListByKeyword(String keyword) {
+        log.info("getAllTrade()");
+        List<BookTradeDTO> allBookTradeList = bookTradeDao.getBookTradeByKeyword(keyword);
+        List<Object> SHlist = new ArrayList<>();
+
+        try{
+            for (int i = 0; i < allBookTradeList.size(); i++) {
+                Map<String, Object> map = new HashMap<>();
+                String isbn = allBookTradeList.get(i).getBook_isbn();
+                BookDTO book = bookDao.getBookByIsbn(isbn);
+                map.put("bookTrade", allBookTradeList.get(i));
+                map.put("book", book);
+                SHlist.add(map);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        log.info("SHlist {}", SHlist);
+
+        return MainUtil.setPaging(SHlist, 5);
     }
 }
 
