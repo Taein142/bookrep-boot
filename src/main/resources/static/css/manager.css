@@ -146,22 +146,19 @@ section {
     margin-left: 3px;
 }
 
-#haederRightContent_input{
+#haederRightContent_input {
     border: #000000 solid;
     border-radius: 4px;
 }
 
-#searchForm_div{
+#searchForm_div {
     position: relative;
     display: flex;
     align-items: center;
 }
+
 /* --- --- */
 /* -------------------------------------------------- */
-
-
-
-
 
 
 /* managerlogin */
@@ -276,11 +273,12 @@ section {
     background-color: #000000;
     border-radius: 5px;
 }
+
 #loginContent-form button:hover {
     background-color: #8a8a8a; /* 호버 시 버튼 배경색을 변경 */
 }
 
-#loginLogo>img {
+#loginLogo > img {
     width: 400px;
 }
 
@@ -306,10 +304,6 @@ section {
 /* ------------------------------------------------- */
 
 
-
-
-
-
 /* managerMain,superManagerMain */
 
 #container2 {
@@ -328,7 +322,7 @@ section {
     border-radius: 10px;
 }
 
-#container2> div:hover{
+#container2 > div:hover {
     background-color: #8a8a8a;
 }
 
@@ -345,28 +339,24 @@ section {
     border: 1px solid rgb(87, 87, 87);
     background-color: #000000;
     border-radius: 10px;
-    padding : 8px 0;
+    padding: 8px 0;
 }
+
 /* ---------------------------------------------- */
-
-
-
-
-
 
 
 /* customerOrderList */
 
- #orderListContent{
+#orderListContent {
     margin-top: 10px;
     margin-bottom: 10px;
     margin-left: 50px;
     margin-right: 50px;
     border: 1px solid black;
-    background-color: white; 
- }
+    background-color: white;
+}
 
- #orderListBookContent{
+#orderListBookContent {
     margin-bottom: 30px;
     margin-left: 30px;
     margin-right: 30px;
@@ -374,58 +364,57 @@ section {
     display: flex;
     align-items: center;
     justify-content: space-between
- }
+}
 
- #orderListBookContent img{
+#orderListBookContent img {
     width: auto;
-    height:150px;
- }
+    height: 150px;
+}
 
- #orderBookContent{
-    height:150px;
+#orderBookContent {
+    height: 150px;
     width: auto;
- }
+}
 
- #orderListContentButton button{
+#orderListContentButton button {
     border: 1px solid;
     margin: 5px;
-    height:40px;
+    height: 40px;
     width: 90px;
     background-color: white;
     border-radius: 5px;
- }
+}
 
- #deliveryTrackingButton{
+#deliveryTrackingButton {
     color: rgb(51, 140, 255);
     border: 1px solid rgb(51, 140, 255);
- }
+}
 
- #orderListContentTop{
+#orderListContentTop {
     display: flex;
     align-items: center;
     justify-content: space-between
- }
+}
 
- #orderListContentTop{
+#orderListContentTop {
     margin-top: 20px;
     margin-left: 30px;
     margin-right: 30px;
- }
+}
 
 /*----------------------------------------------*/
 
 
-
-
-
 /*bookReportManagement*/
-#BookReportManagementBox {
+#BookReportManagementBox,
+#LibraryManagementBox {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#bookReportManagement_SerchBox {
+#bookReportManagement_SerchBox,
+#libraryManagement_SerchBox {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -435,13 +424,15 @@ section {
     padding: 5px;
 }
 
-#bookReportManagement_SerchBox img{
+#bookReportManagement_SerchBox img,
+#libraryManagement_SerchBox img {
     height: 20px;
     margin-right: 10px;
     vertical-align: middle; /* 이미지를 수직으로 가운데 정렬 */
 }
 
-#bookReportManagement_input {
+#bookReportManagement_input,
+#libraryManagement_input {
     width: 230px;
     height: 30px;
     background-color: transparent;
@@ -452,12 +443,14 @@ section {
     /* 오른쪽에서 왼쪽으로 입력되도록 설정 */
 }
 
-#bookReportManagement_input:focus {
+#bookReportManagement_input:focus,
+#libraryManagement_input:focus {
     outline: none;
     /* 클릭 시 나타나는 태두리 제거 */
 }
 
-#BRB {
+#BRB,
+#LB {
     border: black 2px solid;
     border-radius: 5px;
     width: 520px;
@@ -465,7 +458,8 @@ section {
     background-color: #7e7d7d81;
 }
 
-#BRB_form {
+#BRB_form,
+#LB_form {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -474,7 +468,8 @@ section {
     margin-right: 20px;
 }
 
-#bookReportManagement_listArea_contentView {
+#bookReportManagement_listArea_contentView,
+#libraryManagement_listArea_contentView {
     border-radius: 5px;
     background-color: rgb(65, 65, 65);
     color: white;
@@ -488,11 +483,13 @@ section {
     /* 넘치는 부분에 생략 부호(...) 표시 */
 }
 
-#bookReportManagement_listArea_contentDel {
+#bookReportManagement_listArea_contentDel,
+#libraryManagement_listArea_contentDel {
     margin-left: 10px;
 }
 
-#bookReportManagement_listArea_contentDel button {
+#bookReportManagement_listArea_contentDel button,
+#libraryManagement_listArea_contentDel button {
     border: none;
     border-radius: 5px;
     height: 35px;
@@ -500,4 +497,5 @@ section {
     font-size: 16px;
     font-weight: bold;
 }
+
 /*----------------------------------------------*/
