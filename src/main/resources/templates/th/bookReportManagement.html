@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header>
+
+</header>
+<section>
+    <div id="BookReportManagementBox">
+        <div id="bookReportManagement_SerchBox">
+            <form action="/search" method="get">
+                <input type="text" id="bookReportManagement_input">
+                <img th:src="/images/search.png">
+            </form>
+        </div>
+        <div id="listArea">
+            <th:block th:each="bookReport:{bookReportList}">
+
+                <div id="BRB">
+                    <form action="/delete" method="get" id="BRB_form">
+                        <div id="listArea_content" class="listAreaContent" data-writer="${bookReport.Writer}"
+                             data-detail="${bookReport.detail}">
+                            <input type="hidden" th:value="${bookReport.writer}">
+                            <input type="hidden" th:value="${bookReport.title}">
+                            <input type="hidden" th:value="${bookReport.bookname}">
+                            <div id="bookReportManagement_listArea_contentView">
+                                <span>작성자: <span th:text="${bookReport.Writer}"></span></span>
+                                <span>제목: <span th:text="${bookReport.title}"></span></span>
+                                <span>도서명: <span th:text="${bookReport.bookname}"></span></span>
+                            </div>
+                        </div>
+                        <div id="bookReportManagement_listArea_contentDel">
+                            <button>삭제</button>
+                        </div>
+                    </form>
+                </div>
+            </th:block>
+        </div>
+        <div id="paging_area">
+            <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+ '&pageNum=1'}"
+               class="page-link">|◀</a>
+            <th:block th:if="${currentPageNum > 3}">
+                <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''} + '&pageNum=' + ${currentPageNum - 3}}"
+                   class="page-link">이전</a>
+            </th:block>
+            <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                <th:block th:if="${pageNum >= 1 && pageNum <= tradeListSize}">
+                    <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+'&pageNum=' + ${pageNum}}"
+                       th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                </th:block>
+            </th:block>
+            <th:block th:if="${currentPageNum + 2 < tradeListSize}">
+                <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+'&pageNum=' + ${currentPageNum + 3}}"
+                   class="page-link">다음</a>
+            </th:block>
+            <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''} + '&pageNum=' + ${tradeListSize}}"
+               class="page-link">▶|</a>
+        </div>
+    </div>
+</section>
+<footer>
+
+</footer>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var listAreaContents = document.querySelectorAll('.listAreaContent');
+        listAreaContents.forEach(function (listAreaContent) {
+            listAreaContent.addEventListener('click', function () {
+                var writer = this.getAttribute('data-writer');
+                var detail = this.getAttribute('data-detail');
+                window.location.href = '/usermypage?writer=' + encodeURIComponent(writer) + '&detail=' + encodeURIComponent(detail)
+            });
+        });
+    });
+</script>
+
+</html>
