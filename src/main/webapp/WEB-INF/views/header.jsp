@@ -22,7 +22,7 @@
             <c:choose>
                 <c:when test="${empty sessionScope.loggedEmail}">
                     <div class="login-button">
-                        <a href="${pageContext.request.contextPath}/sign-in">
+                        <a href="${pageContext.request.contextPath}/user/sign-in">
                             <button>로그인</button>
                         </a>
                     </div>
