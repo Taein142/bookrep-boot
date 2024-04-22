@@ -49,7 +49,7 @@ public class SignController {
 //	}
 
 	// 로그아웃 로직
-	@GetMapping("user/sign-out")
+	@GetMapping("sign-out")
 	public String signOut(HttpSession session) {
 		session.invalidate();
 		log.info("로그아웃");
