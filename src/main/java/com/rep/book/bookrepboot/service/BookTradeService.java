@@ -65,11 +65,11 @@ public class BookTradeService {
         List<Object> SHlist = new ArrayList<>();
 
         try{
-            for (int i = 0; i < allBookTradeList.size(); i++) {
+            for (BookTradeDTO bookTradeDTO : allBookTradeList) {
                 Map<String, Object> map = new HashMap<>();
-                String isbn = allBookTradeList.get(i).getBook_isbn();
+                String isbn = bookTradeDTO.getBook_isbn();
                 BookDTO book = bookDao.getBookByIsbn(isbn);
-                map.put("bookTrade", allBookTradeList.get(i));
+                map.put("bookTrade", bookTradeDTO);
                 map.put("book", book);
                 SHlist.add(map);
             }
@@ -79,6 +79,14 @@ public class BookTradeService {
         log.info("SHlist {}", SHlist);
 
         return MainUtil.setPaging(SHlist, 5);
+    }
+
+    public BookTradeDTO getInfoById(Long id) {
+        log.info("getInfoById()");
+        BookTradeDTO bookTradeDTO = bookTradeDao.getInfoById(id);
+        log.info("bookTradeDTO {}", bookTradeDTO);
+
+        return bookTradeDTO;
     }
 }
 

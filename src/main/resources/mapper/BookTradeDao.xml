@@ -16,4 +16,9 @@
         </if>
         ORDER BY book_trade_id DESC
     </select>
+    <select id="getInfoById" parameterType="Long" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
+        SELECT *
+        FROM book_trade
+        WHERE #{bookTradeId} = book_trade_id
+    </select>
 </mapper>

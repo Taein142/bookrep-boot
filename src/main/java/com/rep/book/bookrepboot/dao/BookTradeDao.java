@@ -10,4 +10,6 @@ public interface BookTradeDao {
     void registerTrade(BookTradeDTO bookTradeDTO);
 
     List<BookTradeDTO> getBookTradeByKeyword(String keyword);
+
+    BookTradeDTO getInfoById(Long id);
 }
