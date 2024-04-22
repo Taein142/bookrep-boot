@@ -34,32 +34,39 @@
             <input type="hidden" name="isbn" th:value="${book.isbn}">
             <input type="hidden" name="image" th:value="${book.image}">
             <input type="hidden" name="checkNum" th:value="${checkNum}">
+            <input th:if="${id!=null}" type="hidden" name="id" th:value="${id}">
             <input class="select-btn" type="submit" value="선택">
         </form>
     </div>
-    <a th:href="@{'?checkNum=' + ${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=1'}"
+    <a th:href="@{'?checkNum=' + ${checkNum} +  (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=1'}"
        class="page-link">|◀</a>
     <th:block th:if="${currentPageNum > 3}">
-        <a th:href="@{'?checkNum=' + ${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${currentPageNum - 3}}"
+        <a th:href="@{'?checkNum=' + ${checkNum} +  (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${currentPageNum - 3}}"
            class="page-link">이전</a>
     </th:block>
     <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
         <th:block th:if="${pageNum >= 1 && pageNum <= bookListSize}">
-            <a th:href="@{'?checkNum='+${checkNum}+(${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${pageNum}}"
+            <a th:href="@{'?checkNum='+${checkNum}+ (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${pageNum}}"
                th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
         </th:block>
     </th:block>
     <th:block th:if="${currentPageNum + 2 < bookListSize}">
-        <a th:href="@{'?checkNum=' +${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${currentPageNum + 3}}"
+        <a th:href="@{'?checkNum=' +${checkNum} + (${id != null ? '&id=' + id : ''}) + (${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${currentPageNum + 3}}"
            class="page-link">다음</a>
     </th:block>
-    <a th:href="@{'?checkNum=' + ${checkNum} + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${bookListSize}}"
+    <a th:href="@{'?checkNum=' + ${checkNum} + (${id != null ? '&id=' + id : ''}) + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${bookListSize}}"
        class="page-link">▶|</a>
 </section>
 <footer></footer>
 <script th:inline="javascript">
     let currentPageNum = [[${currentPageNum}]];
     console.log("currentPageNum: ", currentPageNum);
+
+    window.onload = function () {
+        // 현재 URL에서 파라미터 값 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+    }
 </script>
 </body>
 </html>
