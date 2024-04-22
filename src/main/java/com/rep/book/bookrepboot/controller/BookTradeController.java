@@ -115,16 +115,4 @@ public class BookTradeController {
         model.addAttribute("userEmail", email);
         return "th/tradeApplication";
     }
-
-    @PostMapping("/user/send-trade-msg")
-    public String sendTradeMsg(@RequestParam("fir_trade_id") Long firTradeId,
-                                   @RequestParam("fir_user_email") String firUserEmail,
-                                   @RequestParam("sec_user_email") String secUserEmail,
-                                   @RequestParam("fir_book_isbn") String firBookIsbn,
-                                   @RequestParam("sec_book_isbn") String secBookIsbn,
-                                   Model model) {
-
-
-        return null;
-    }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rep.book.bookrepboot.dao.TradeMsgDao">
+    <insert id="setTradeMsg" parameterType="com.rep.book.bookrepboot.dto.MsgDTO">
+        INSERT msg
+        (book_trade_id, sent_user_email, sent_book_isbn, received_user_email, received_book_isbn)
+        VALUES (#{book_trade_id},#{sent_user_email},#{sent_book_isbn},#{received_user_email},#{received_book_isbn})
+    </insert>
+</mapper>
