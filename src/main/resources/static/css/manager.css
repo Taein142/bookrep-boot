@@ -405,16 +405,18 @@ section {
 /*----------------------------------------------*/
 
 
-/*bookReportManagement*/
+/*bookReportManagement,libraryManagement,userManagement*/
 #BookReportManagementBox,
-#LibraryManagementBox {
+#LibraryManagementBox,
+#userManagementBox{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 #bookReportManagement_SerchBox,
-#libraryManagement_SerchBox {
+#libraryManagement_SerchBox,
+#userManagement_SerchBox{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -425,14 +427,16 @@ section {
 }
 
 #bookReportManagement_SerchBox img,
-#libraryManagement_SerchBox img {
+#libraryManagement_SerchBox img,
+#userManagement_SerchBox img{
     height: 20px;
     margin-right: 10px;
     vertical-align: middle; /* 이미지를 수직으로 가운데 정렬 */
 }
 
 #bookReportManagement_input,
-#libraryManagement_input {
+#libraryManagement_input,
+#userManagement_input{
     width: 230px;
     height: 30px;
     background-color: transparent;
@@ -444,13 +448,15 @@ section {
 }
 
 #bookReportManagement_input:focus,
-#libraryManagement_input:focus {
+#libraryManagement_input:focus,
+#userManagement_input:focus{
     outline: none;
     /* 클릭 시 나타나는 태두리 제거 */
 }
 
 #BRB,
-#LB {
+#LB,
+#UB{
     border: black 2px solid;
     border-radius: 5px;
     width: 520px;
@@ -459,7 +465,8 @@ section {
 }
 
 #BRB_form,
-#LB_form {
+#LB_form,
+#UB_form{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -469,7 +476,8 @@ section {
 }
 
 #bookReportManagement_listArea_contentView,
-#libraryManagement_listArea_contentView {
+#libraryManagement_listArea_contentView
+#userManagement_listArea_contentView{
     border-radius: 5px;
     background-color: rgb(65, 65, 65);
     color: white;
@@ -489,7 +497,8 @@ section {
 }
 
 #bookReportManagement_listArea_contentDel button,
-#libraryManagement_listArea_contentDel button {
+#libraryManagement_listArea_contentDel button,
+#userManagement_listArea_contentDel{
     border: none;
     border-radius: 5px;
     height: 35px;

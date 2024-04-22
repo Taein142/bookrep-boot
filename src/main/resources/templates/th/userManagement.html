@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library management</title>
+    <title>Main</title>
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -15,29 +15,29 @@
 
 </header>
 <section>
-    <div id="LibraryManagementBox">
-        <div id="libraryManagement_SerchBox">
+    <div id="userManagementBox">
+        <div id="userManagement_SerchBox">
             <form action="/search" method="get">
-                <input type="text" id="libraryManagement_input">
-                <img th:src="@{/images/search.png}">
+                <input type="text" id="userManagement_input">
+                <img th:src="/images/search.png">
             </form>
         </div>
         <div id="listArea">
-            <th:block th:each="library:${libraryList}">
-                <div id="LB">
-                    <form action="/delete" method="get" id="LB_form">
-                        <div id="listArea_content" class="listAreaContent" data-author="${library.author}"
-                             data-detail="${library.detail}" data-bookname="${library.bookname}">
-                            <input type="hidden" th:value="${library.author}">
-                            <input type="hidden" th:value="${library.bookname}">
-                            <input type="hidden" th:value="${library.detail}">
-                            <div id="libraryManagement_listArea_contentView">
-                                <span>작가: <span th:text="${library.author}"></span></span>
-                                <span>도서명: <span th:text="${library.bookname}"></span></span>
-                                <span>내용: <span th:text="${library.detail}"></span></span>
+            <th:block th:each="user:${userList}">
+
+                <div id="UB">
+                    <form action="/delete" method="get" id="UB_form">
+                        <div id="listArea_content" class="listAreaContent" user-Id="${user.id}" data-detail="${user.detail}">
+                            <input type="hidden" th:value="${user.id}">
+                            <input type="hidden" th:value="${user.name}">
+                            <input type="hidden" th:value="${user.email}">
+                            <div id="userManagement_listArea_contentView">
+                                <span>user-ID: <span th:text="${user.id}"></span></span>
+                                <span>user-NAME: <span th:text="${user.name}"></span></span>
+                                <span>user-EMAIL: <span th:text="${user.email}"></span></span>
                             </div>
                         </div>
-                        <div id="libraryManagement_listArea_contentDel">
+                        <div id="userManagement_listArea_contentDel">
                             <button>삭제</button>
                         </div>
                     </form>
@@ -75,11 +75,8 @@
         var listAreaContents = document.querySelectorAll('.listAreaContent');
         listAreaContents.forEach(function (listAreaContent) {
             listAreaContent.addEventListener('click', function () {
-                var author = this.getAttribute('data-author');
-                var detail = this.getAttribute('data-detail');
-                var name = this.getAttribute('data-bookname');
-                window.location.href = '/bookdetailpage?author=' + encodeURIComponent(author) + '&detail=' + encodeURIComponent(detail) + '&name=' + encodeURIComponent(name)
-            });
+                var id = this.getAttribute('user-Id');
+                window.location.href = '/usermypage?id=' + encodeURIComponent(id)
         });
     });
 </script>
