@@ -20,5 +20,12 @@
         SELECT *
         FROM book_trade
         WHERE #{bookTradeId} = book_trade_id
+        ORDER BY book_trade_id DESC
+    </select>
+    <select id="getBookTradeByEmail" parameterType="String" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
+        SELECT *
+        FROM book_trade
+        WHERE #{loggedInUserEmail} = user_email
+        ORDER BY book_trade_id DESC
     </select>
 </mapper>

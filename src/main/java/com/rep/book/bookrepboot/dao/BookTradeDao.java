@@ -12,4 +12,6 @@ public interface BookTradeDao {
     List<BookTradeDTO> getBookTradeByKeyword(String keyword);
 
     BookTradeDTO getInfoById(Long id);
+
+    List<BookTradeDTO> getBookTradeByEmail(String loggedInUserEmail);
 }
