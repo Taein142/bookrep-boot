@@ -8,4 +8,16 @@
         (book_trade_id, sent_user_email, sent_book_isbn, received_user_email, received_book_isbn)
         VALUES (#{book_trade_id},#{sent_user_email},#{sent_book_isbn},#{received_user_email},#{received_book_isbn})
     </insert>
+    <select id="getReceivedTradeMsg" parameterType="String" resultType="com.rep.book.bookrepboot.dto.MsgDTO">
+        SELECT *
+        FROM msg
+        WHERE received_user_email = #{loggedInUserEmail}
+        ORDER BY sent_datetime desc
+    </select>
+    <select id="getSentTradeMsg" parameterType="String" resultType="com.rep.book.bookrepboot.dto.MsgDTO">
+        SELECT *
+        FROM msg
+        WHERE sent_user_email = #{loggedInUserEmail}
+        ORDER BY sent_datetime desc
+    </select>
 </mapper>

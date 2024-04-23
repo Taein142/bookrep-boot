@@ -21,4 +21,6 @@ public class TradeMsgController {
 
         return tradeMsgService.sendTradeMsg(msgDTO, rttr);
     }
+
+    // 승낙 거절 기능 만들기
 }
