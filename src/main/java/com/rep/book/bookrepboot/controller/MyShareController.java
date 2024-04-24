@@ -19,7 +19,7 @@ public class MyShareController {
     MyShareService myShareService;
 
     @GetMapping("user/my-share")
-    public String showMyShare(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
+    public String showMyShare(Model model){
         log.info("showMyShare()");
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         List<PageDTO> receivedMessages = myShareService.getReceivedTradeMsg(loggedInUserEmail);
@@ -29,7 +29,6 @@ public class MyShareController {
         model.addAttribute("registerList", registerList);
         model.addAttribute("sentMsg", sentMessages);
         model.addAttribute("receivedMsg", receivedMessages);
-        model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("loggedInUserEmail",loggedInUserEmail);
 
         return "th/myShare";

@@ -45,7 +45,6 @@ public class BookTradeTest {
         System.out.println(getTradeListByKeyword);
     }
 
-    // getInfoById 테스트
     @Test
     public void getInfoByIDTest(){
         Long testId = 1L;

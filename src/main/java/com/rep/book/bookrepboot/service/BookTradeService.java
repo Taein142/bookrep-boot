@@ -2,8 +2,10 @@ package com.rep.book.bookrepboot.service;
 
 import com.rep.book.bookrepboot.dao.BookDao;
 import com.rep.book.bookrepboot.dao.BookTradeDao;
+import com.rep.book.bookrepboot.dao.TradeMsgDao;
 import com.rep.book.bookrepboot.dto.BookDTO;
 import com.rep.book.bookrepboot.dto.BookTradeDTO;
+import com.rep.book.bookrepboot.dto.MsgDTO;
 import com.rep.book.bookrepboot.dto.PageDTO;
 import com.rep.book.bookrepboot.util.MainUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +25,8 @@ public class BookTradeService {
     BookDao bookDao;
     @Autowired
     BookTradeDao bookTradeDao;
+    @Autowired
+    TradeMsgDao tradeMsgDao;
 
     public List<BookDTO> getBookByDB(String loggedInUserEmail, String keyword) {
         log.info("getBookByDB()");
@@ -33,7 +37,7 @@ public class BookTradeService {
 
         try {
             bookList = bookDao.getOwnBookByKeyword(map);
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return bookList;
@@ -62,20 +66,31 @@ public class BookTradeService {
     public List<PageDTO> getTradeListByKeyword(String keyword) {
         log.info("getAllTrade()");
         List<BookTradeDTO> allBookTradeList = bookTradeDao.getBookTradeByKeyword(keyword);
+        List<Long> ongoingTradeIDs = tradeMsgDao.getTradingID();
         List<Object> SHlist = new ArrayList<>();
 
-        try{
-            for (BookTradeDTO bookTradeDTO : allBookTradeList) {
+        for (BookTradeDTO bookTradeDTO : allBookTradeList) {
+            boolean isOngoing = false;
+            for (Long id : ongoingTradeIDs) {
+                if (bookTradeDTO.getBook_trade_id().equals(id)) {
+                    isOngoing = true;
+                    break;
+                }
+            }
+            if (!isOngoing) {
                 Map<String, Object> map = new HashMap<>();
-                String isbn = bookTradeDTO.getBook_isbn();
-                BookDTO book = bookDao.getBookByIsbn(isbn);
-                map.put("bookTrade", bookTradeDTO);
-                map.put("book", book);
+                try {
+                    String isbn = bookTradeDTO.getBook_isbn();
+                    BookDTO book = bookDao.getBookByIsbn(isbn);
+                    map.put("bookTrade", bookTradeDTO);
+                    map.put("book", book);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 SHlist.add(map);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
         log.info("SHlist {}", SHlist);
 
         return MainUtil.setPaging(SHlist, 5);
