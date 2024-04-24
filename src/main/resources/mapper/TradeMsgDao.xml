@@ -20,4 +20,14 @@
         WHERE sent_user_email = #{loggedInUserEmail}
         ORDER BY sent_datetime desc
     </select>
+    <select id="getMsgById" parameterType="Long" resultType="com.rep.book.bookrepboot.dto.MsgDTO">
+        SELECT *
+        FROM msg
+        WHERE msg_id = #{msgId}
+    </select>
+    <update id="updateMsgStatus" parameterType="Map">
+        UPDATE msg
+        SET msg_status = #{status}
+        WHERE msg_id = #{msgId}
+    </update>
 </mapper>

@@ -3,7 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rep.book.bookrepboot.dao.TradeDao">
 
-
+<insert id="setTrade" parameterType="com.rep.book.bookrepboot.dto.TradeDTO">
+    INSERT trade
+    (fir_user_email, sec_user_email, fir_book_isbn, sec_book_isbn, trade_status)
+    VALUES (#{fir_user_email}, #{sec_user_email}, #{fir_book_isbn}, #{sec_book_isbn}, #{trade_status})
+</insert>
 
 
 

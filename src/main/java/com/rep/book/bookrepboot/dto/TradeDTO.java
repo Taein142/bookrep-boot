@@ -24,6 +24,8 @@ public class TradeDTO {
     @NonNull
     private String sec_book_isbn;
 
-    @NonNull
     private Long deliver_admin_id;
+
+    @NonNull
+    private int trade_status;
 }

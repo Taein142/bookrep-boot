@@ -16,7 +16,7 @@ public class TradeMsgTest {
     @Test
     public void sendTradeMsgTest(){
         MsgDTO test = new MsgDTO();
-        test.setBook_trade_id(16L);
+        test.setBook_trade_id(15L);
         test.setSent_user_email("test02@naver.com");
         test.setSent_book_isbn("9781506292380");
         test.setReceived_user_email("test01@naver.com");
@@ -24,6 +24,21 @@ public class TradeMsgTest {
         RedirectAttributes rttr = new RedirectAttributesModelMap();
         tradeMsgService.sendTradeMsg(test, rttr);
         System.out.println(rttr.getFlashAttributes());
+    }
+
+    @Test
+    public void getMsgByIdTest(){
+        Long testId = 1L;
+        MsgDTO test = tradeMsgService.getMsgByID(testId);
+        System.out.println(test);
+    }
+
+    @Test
+    public void updateTradeMsgStatusTest(){
+        Long testId = 4L;
+        String testEmail = "test01@naver.com";
+        boolean testResult = tradeMsgService.updateTradeMsgStatus(testId, testEmail,1);
+        System.out.println(testResult);
     }
 
 }
