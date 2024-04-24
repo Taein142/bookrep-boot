@@ -32,7 +32,7 @@ public class SignController {
 	SignService signService;
 
 	// 로그인 이동
-	@GetMapping("user/sign-in")
+	@GetMapping("/user/sign-in")
 	public String showSignIn() {
 		log.info("로그인 화면 이동");
 		return "signIn";

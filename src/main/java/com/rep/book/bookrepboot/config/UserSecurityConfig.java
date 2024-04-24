@@ -1,6 +1,6 @@
 package com.rep.book.bookrepboot.config;
 
-import com.rep.book.bookrepboot.service.CustomUserDetailsServiceForUser;
+import com.rep.book.bookrepboot.service.CustomUserDetailsService;
 import jakarta.servlet.DispatcherType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,8 @@ public class UserSecurityConfig {
      * 사용자 인증을 위한 UserDetailsService와 PasswordEncoder를 주입받는다.
      */
     @Autowired
-    public CustomUserDetailsServiceForUser customUserDetailsServiceForUser;
+    public CustomUserDetailsService customUserDetailsService;
+
 
     /**
      * SecurityBeansConfig를 주입받는다.
@@ -51,7 +52,7 @@ public class UserSecurityConfig {
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(customUserDetailsServiceForUser).passwordEncoder(securityBeansConfig.passwordEncoder());
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(securityBeansConfig.passwordEncoder());
     }
 
     /**
@@ -73,6 +74,7 @@ public class UserSecurityConfig {
                 .authorizeHttpRequests( // 인가 설정
                         (authorizeHttpRequests) ->
                                 authorizeHttpRequests
+                                        .requestMatchers("/user/sign-in").permitAll()
                                         .requestMatchers("/user/sign-in-proc").permitAll()// forward 허용
                                         .anyRequest().hasAnyRole("USER", "ADMIN", "DRIVER", "SUPER_ADMIN")
                 )
@@ -90,10 +92,10 @@ public class UserSecurityConfig {
                                 logout
                                         .logoutUrl("/user/sign-out")
                 )
-                .userDetailsService(customUserDetailsServiceForUser)
+                .userDetailsService(customUserDetailsService)
                 .rememberMe(
                         (remember) -> remember
-                                .userDetailsService(customUserDetailsServiceForUser)
+                                .userDetailsService(customUserDetailsService)
                                 .alwaysRemember(true)
                 );
         return security.build();
@@ -134,10 +136,10 @@ public class UserSecurityConfig {
                                 logout
                                         .logoutUrl("/admin/sign-out")
                 )
-                .userDetailsService(customUserDetailsServiceForUser)
+                .userDetailsService(customUserDetailsService)
                 .rememberMe(
                         (remember) -> remember
-                                .userDetailsService(customUserDetailsServiceForUser)
+                                .userDetailsService(customUserDetailsService)
                                 .alwaysRemember(true)
                 );
         return security.build();
