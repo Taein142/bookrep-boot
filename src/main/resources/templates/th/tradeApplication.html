@@ -49,11 +49,11 @@
                     <div th:if="${book != null}">
                         <img th:src="${book.image}" alt="" style="width: 150px; height: 200px;">
                     </div>
-                    <input type="hidden" name="fir_trade_id" th:value="${firstTrade.getBook_trade_id()}">
-                    <input type="hidden" name="fir_user_email" th:value="${firstTrade.getUser_email()}">
-                    <input type="hidden" name="sec_user_email" th:value="${userEmail}" required readonly placeholder="email">
-                    <input type="hidden" name="fir_book_isbn" th:value="${firstTrade.getBook_isbn()}">
-                    <input type="hidden" name="sec_book_isbn" th:value="${book != null ? book.isbn : ''}">
+                    <input type="hidden" name="book_trade_id" th:value="${firstTrade.getBook_trade_id()}">
+                    <input type="hidden" name="sent_user_email" th:value="${userEmail}" required readonly placeholder="email">
+                    <input type="hidden" name="sent_book_isbn" th:value="${book != null ? book.isbn : ''}">
+                    <input type="hidden" name="received_user_email" th:value="${firstTrade.getUser_email()}">
+                    <input type="hidden" name="received_book_isbn" th:value="${firstTrade.getBook_isbn()}">
                     <div th:text="${userEmail}"/>
                     <div th:text="${book != null ? '도서명: ' + book.name : ''}"/>
                     <div th:text="${book != null ? '저자 : ' + book.author : ''}"/>

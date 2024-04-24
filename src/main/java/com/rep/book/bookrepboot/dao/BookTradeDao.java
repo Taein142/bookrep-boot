@@ -14,4 +14,6 @@ public interface BookTradeDao {
     BookTradeDTO getInfoById(Long id);
 
     List<BookTradeDTO> getBookTradeByEmail(String loggedInUserEmail);
+
+    boolean bookDeleteBookTrade(Long bookTradeId);
 }

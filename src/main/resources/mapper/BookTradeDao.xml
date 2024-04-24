@@ -28,4 +28,8 @@
         WHERE #{loggedInUserEmail} = user_email
         ORDER BY book_trade_id DESC
     </select>
+    <delete id="bookDeleteBookTrade" parameterType="Long">
+        DELETE FROM book_trade
+        WHERE book_trade_id = #{bookTradeId}
+    </delete>
 </mapper>
