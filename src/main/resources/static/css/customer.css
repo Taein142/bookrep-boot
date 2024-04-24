@@ -199,85 +199,8 @@ section {
 
 
 
-/* My share */
-#myShareLogo,
-#shareHouseLogo {
-    border-bottom: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* myShare,shareHouse*/
 
-#myShareLogo img,
-#shareHouseLogo img {
-    height: 100px;
-    width: auto;
-    margin-right: 10px;
-}
-
-#myShareLogo h1,
-#shareHouseLogo h1 {
-    font-size: 3em;
-}
-
-#AFBTL_Text,
-#RFBTL_Text {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px;
-}
-
-#myShare_content {
-    margin-left: 15%;
-    margin-right: 15%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#myShare_content img,
-#shareHouse_content img {
-    height: 200px;
-    width: auto;
-}
-
-#RFBTL {
-    margin: 5px;
-    margin-right: 25px;
-}
-
-#RFBTL_content {
-    display: flex;
-    justify-content: flex-end;
-    /* 자식 요소들을 부모 요소의 오른쪽에 정렬합니다. */
-    align-items: center;
-    /* 세로 방향 가운데 정렬합니다. */
-    border: 1px solid black;
-    background-color: #ffffffb2;
-}
-
-#AFBTL {
-    margin: 5px;
-    margin-left: 25px;
-}
-
-#AFBTL_content {
-    display: flex;
-    justify-content: flex-end;
-    /* 자식 요소들을 부모 요소의 오른쪽에 정렬합니다. */
-    align-items: center;
-    /* 세로 방향 가운데 정렬합니다. */
-    border: 1px solid black;
-    background-color: #ffffffb2;
-}
-
-#paging_area {
-    width: 300px;
-    margin: 0px auto;
-    margin-bottom: 50px;
-    text-align: center;
-}
 
 /* ----------------------------------------- */
 

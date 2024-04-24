@@ -5,81 +5,193 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>MyShare</title>
 </head>
 
 <body>
-    <header>
+<header>
+    <th:block th:insert="~{fragments::header(${session.customer})}"/>
+</header>
 
-    </header>
-    <section>
-        <div id="myShareLogo">
+<section>
+    <div id="myShareBox">
+        <!--내 교환 등록 리스트-->
+        <div id="myshare-tradeList">
             <div>
-                <img src="./images/newFullLogo.png ">
+                <h1>내 교환 등록 리스트</h1>
             </div>
-            <div>
-                <h1>My Share</h1>
-            </div>
-        </div>
-        
-                
-                
-
-        <div id="myShare_content">
-           
-            <!-- RFBTL = request for book trade List (교환 신청 받은 책 리스트)-->
-            <div id="RFBTL">
-                <div id="RFBTL_Text"><h3>교환 신청 받은 책</h3></div>
-                <!-- TAL = Trade Appication List(교환 신청 리스트) -->
-                    <th:block th:each="RFBT:${RFBTL}">
-                        <div id="RFBTL_content">
-                            <div>
-                                <img src="./images/image.png">
-                            </div>
-                            <div>
-<!--                                <form action="/trade-request" method="get">-->
-<!--                                    <input th:type="text" th:value="${RFBT.user}">-->
-<!--                                    <input th:type="text" th:value="${RFBT.name}">-->
-<!--                                    <input th:type="text" th:value="${RFBT.author}">-->
-<!--                                    <input th:type="text" th:value="${RFBT.publisher}">-->
-<!--                                </form>-->
-                            </div>
+            <div id="myshare-tradeList-content">
+                <th:blcok th:each="trade:${tradeList}">
+                    <div id="myshare-tradeList-content-imgbox">
+                        <th:block th:if="${trade.img}!=null">
+                            <img th:src="@{${trade.img}}">
+                        </th:block>
+                        <th:block th:unless="${trade.img}!=null">
+                            <img th:src="@{/images/no_book.img}">
+                        </th:block>
+                    </div>
+                    <div id="myshare-tradeList-content-infobox">
+                        <div>
+                            <th:blcok th:if="${trade.name}!=null">
+                                <p>도서명: <span th:text="${trade.name}"></span></p>
+                            </th:blcok>
+                            <th:blcok th:unless="${trade.name}!=null">
+                                <p>도서명: Unknown</p>
+                            </th:blcok>
                         </div>
-                    </th:block>
-                <div id="paging_areaL">
-                    <div class="RFBTLPaging">${RFBTLPaging}</div>
-                </div>
-            </div>
-
-            <!-- AFBEL = apply for book trade list (교환 신청 한 책 리스트)-->
-            <div id="AFBTL">
-                <div id="AFBTL_Text"><h3>교환 신청 한 책</h3></div>
-                    <th:block th:each="AFBE:${AFBEL}">
-                        <div id="AFBTL_content">
-                            <div>
-                                <img src="./images/image.png">
-                            </div>
-                            <div>
-                                <form action="/trade-request" method="get">
-<!--                                    <input th:type="text" th:value="${AFBE.user}">-->
-<!--                                    <input th:type="text" th:value="${AFBE.name}">-->
-<!--                                    <input th:type="text" th:value="${AFBE.author}">-->
-<!--                                    <input th:type="text" th:value="${AFBE.publisher}">-->
-                                </form>
-                            </div>
+                        <div>
+                            <th:blcok th:if="${trade.author}!=null">
+                                <p>작가: <span th:text="${trade.author}"></span></p>
+                            </th:blcok>
+                            <th:blcok th:unless="${trade.author}!=null">
+                                <p>작가: Unknown</p>
+                            </th:blcok>
                         </div>
-                    </th:block>
-                <div id="paging_areaR">
-                    <div class="AFBTLPaging">${AFBTLPaging}</div>
-                </div>
+                        <div>
+                            <th:blcok th:if="${trade.publisher}!=null">
+                                <p>출판사: <span th:text="${trade.publisher}"></span></p>
+                            </th:blcok>
+                            <th:blcok th:unless="${trade.publisher}!=null">
+                                <p>출판사: Unknown</p>
+                            </th:blcok>
+                        </div>
+                        <div>
+                            <th:blcok th:if="${trade.detail}!=null">
+                                <p>요약: <span th:text="${trade.detail}"></span></p>
+                            </th:blcok>
+                            <th:blcok th:unless="${trade.detail}!=null">
+                                <p>요약: Unknown</p>
+                            </th:blcok>
+                        </div>
+                    </div>
+                </th:blcok>
+            </div>
+            <div id="myshare-tradeList-pagingArea">
+
             </div>
         </div>
 
-    </section>
-    <footer>
-        
-    </footer>
+        <!--교환신청 받은 책 리스트-->
+        <div id="myshare-tradeRegistrationList">
+            <div>
+                <h1>
+                    교환 신청 받은 책 리스트
+                </h1>
+            </div>
+            <th:block th:each="tradeRegistration:${tradeRegistrationList}">
+                <div>
+                    <th:block th:if="${tradeRegistration.img}!=null">
+                        <img th:src="@{${tradeRegistration.img}}">
+                    </th:block>
+                    <th:block th:unless="${tradeRegistration.img}!=null">
+                        <img src="@{/images/no_book.img}">
+                    </th:block>
+                </div>
+                <div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.name}!=null">
+                            <p>도서명: <span th:text="${tradeRegistration.name}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.name}!=null">
+                            <p>도서명: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.author}!=null">
+                            <p>작가: <span th:text="${tradeRegistration.author}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.author}!=null">
+                            <p>작가: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.publisher}!=null">
+                            <p>출판사: <span th:text="${tradeRegistration.publisher}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.publisher}!=null">
+                            <p>출판사: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.detail}!=null">
+                            <p>요약: <span th:text="${tradeRegistration.detail}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.detail}!=null">
+                            <p>요약: Unknown</p>
+                        </th:blcok>
+                    </div>
+                </div>
+                <div id="myshare-tradeRegistrationList-pagingArea">
+
+                </div>
+            </th:block>
+        </div>
+
+        <!--교환 신청한 책 리스트-->
+        <div id="myshare-tradeApplicationList">
+            <div>
+                <h1>
+                    교환 신청한 책 리스트
+                </h1>
+            </div>
+            <th:block th:each="tradeApplication:${tradeApplicationList}">
+                <div>
+
+                    <th:block th:if="${tradeApplication.img}!=null">
+                        <img th:src="@{${tradeApplication.img}}">
+                    </th:block>
+                    <th:block th:unless="${tradeApplication.img}!=null">
+                        <img src="@{/images/no_book.img}">
+                    </th:block>
+                </div>
+                <div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.name}!=null">
+                            <p>도서명: <span th:text="${tradeRegistration.name}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.name}!=null">
+                            <p>도서명: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.author}!=null">
+                            <p>작가: <span th:text="${tradeRegistration.author}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.author}!=null">
+                            <p>작가: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.publisher}!=null">
+                            <p>출판사: <span th:text="${tradeRegistration.publisher}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.publisher}!=null">
+                            <p>출판사: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+                        <th:blcok th:if="${tradeRegistration.detail}!=null">
+                            <p>요약: <span th:text="${tradeRegistration.detail}"></span></p>
+                        </th:blcok>
+                        <th:blcok th:unless="${tradeRegistration.detail}!=null">
+                            <p>요약: Unknown</p>
+                        </th:blcok>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</section>
+<footer>
+    <th:block th:insert="~{fragments::footer}"/>
+</footer>
 </body>
+<script>
+
+</script>
 
 </html>
