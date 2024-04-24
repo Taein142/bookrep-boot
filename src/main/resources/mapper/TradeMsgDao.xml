@@ -30,4 +30,8 @@
         SET msg_status = #{status}
         WHERE msg_id = #{msgId}
     </update>
+    <select id="getTradingID" resultType="Long">
+        SELECT book_trade_id
+        FROM msg
+    </select>
 </mapper>

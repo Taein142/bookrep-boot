@@ -17,4 +17,6 @@ public interface TradeMsgDao {
     MsgDTO getMsgById(Long msgId);
 
     boolean updateMsgStatus(Map<String, Object> map);
+
+    List<Long> getTradingID();
 }
