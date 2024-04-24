@@ -45,7 +45,7 @@
 					</form>
 				</div>
 				<div class="logout-button">
-					<a href="${pageContext.request.contextPath}/sign-out"><button>로그아웃</button></a>
+					<a href="${pageContext.request.contextPath}/user/sign-out"><button>로그아웃</button></a>
 				</div>
 			</div>
 		</div>
