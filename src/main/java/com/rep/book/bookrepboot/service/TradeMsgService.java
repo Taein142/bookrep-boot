@@ -1,7 +1,10 @@
 package com.rep.book.bookrepboot.service;
 
+import com.rep.book.bookrepboot.dao.BookDao;
 import com.rep.book.bookrepboot.dao.TradeDao;
 import com.rep.book.bookrepboot.dao.TradeMsgDao;
+import com.rep.book.bookrepboot.dto.BookDTO;
+import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import com.rep.book.bookrepboot.dto.MsgDTO;
 import com.rep.book.bookrepboot.dto.TradeDTO;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +15,9 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -26,9 +31,11 @@ public class TradeMsgService {
     private PlatformTransactionManager manager;
     @Autowired
     private TransactionDefinition definition;
+    @Autowired
+    private BookDao bookDao;
 
-    public String sendTradeMsg(MsgDTO msgDTO, RedirectAttributes rttr) {
-        log.info("sendTradMsg() - service");
+    public String saveTradeMsg(MsgDTO msgDTO, RedirectAttributes rttr) {
+        log.info("saveTradMsg() - service");
         String msg = null;
         String view = null;
 
@@ -53,6 +60,7 @@ public class TradeMsgService {
         return msgDTO;
     }
 
+    // msg status 업테이트 메서드
     public boolean updateTradeMsgStatus(Long msgId, String userEmail, int status) {
         log.info("updateTradeMsgStatus()");
         TransactionStatus transactionStatus = manager.getTransaction(definition);
@@ -87,5 +95,27 @@ public class TradeMsgService {
             }
         }
         return result;
+    }
+
+    // 책 정보를 조합하여 리턴하는 메서드
+    public List<Object> addBookInfo(List<MsgDTO> msglist){
+        List<Object> mList = new ArrayList<>();
+
+        try{
+            for (MsgDTO msgDTO : msglist) {
+                Map<String, Object> map = new HashMap<>();
+                String receivedIsbn = msgDTO.getReceived_book_isbn();
+                String sentIsbn = msgDTO.getSent_book_isbn();
+                BookDTO receivedBook = bookDao.getBookByIsbn(receivedIsbn);
+                BookDTO sentBook = bookDao.getBookByIsbn(sentIsbn);
+                map.put("msg", msgDTO);
+                map.put("receivedBook", receivedBook);
+                map.put("sentBook", sentBook);
+                mList.add(map);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mList;
     }
 }
