@@ -26,15 +26,20 @@ public class MyShareService {
     TradeMsgDao tradeMsgDao;
     @Autowired
     BookDao bookDao;
+    @Autowired
+    TradeMsgService tradeMsgService;
 
-    public List<MsgDTO> getReceivedTradeMsg(String loggedInUserEmail) {
+    public List<Object> getReceivedTradeMsg(String loggedInUserEmail) {
         log.info("getReceivedTradeMsg()");
-         return tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
+         List<MsgDTO> receivedMsg =  tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
+
+         return tradeMsgService.addBookInfo(receivedMsg);
     }
 
-    public List<MsgDTO> getSentTradeMsg(String loggedInUserEmail) {
+    public List<Object> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsge()");
-        return tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
+        List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
+        return tradeMsgService.addBookInfo(sentMsg);
     }
 
     public List<Object> getRegisterList(String loggedInUserEmail) {

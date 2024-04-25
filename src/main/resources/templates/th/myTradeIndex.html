@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trade Index</title>
+</head>
+<body>
+    <h2>교환 인덱스 페이지 입니다.</h2>
+    <h3>유저가 자신의 교환 배송상태를 보기 위한 페이지 입니다.</h3>
+    <h3>trade 테이블을 참고합니다.</h3>
+    <h3>교환 승낙이 이루허진 이후의 데이터들을 다룹니다.</h3>
+    <h3>교환 신청 혹은 교환 등록만 한 상태라면 myShare 로 가주세요</h3>
+    <h3>페이징 되어 있으며, map 으로 책 정보도 같이 넘겨놓았습니다.</h3>
+    <h3>넘긴 데이터에서 2번~3번 더 들어가서 꺼내야 됩니다.</h3>
+    <h3>trade_status 는 다음과 같습니다.</h3>
+    <h4>교환신청 완료: 0, 배차가 완료: 1, 배송중: 2, 배송완료: 3</h4>
+    <h3>trade_status 는 int 데이터이므로 각각의 코드에 맞게 if문 등으로 하여 데이터를 표현해주세요</h3>
+    <h3>책 정보도 꺼내왔습니다.</h3>
+    <h3></h3>
+    <br>
+    <h3>아래는 예시입니다.</h3>
+    <hr>
+    <div th:text="'현재 로그인중이 유저 이메일: ' + ${user}"></div>
+    <div th:text="'사용자 이름: '+${userName}"></div>
+    <th:block th:each="pageDTO : ${tradeList}">
+        <th:block th:each="tradeMap : ${pageDTO.objectList}">
+            <div th:text="'거래 상태: '+${tradeMap.tradeInfo.trade_status}"></div> <!--스크립트에서 바꿔도 되고 여기서 바꿔도 됨-->
+            <div th:text="'거래 정보: ' + ${tradeMap.tradeInfo.fir_user_email} + ' <-> ' + ${tradeMap.tradeInfo.sec_user_email}"></div>
+            <img th:src="${tradeMap.firstBook.image}" alt="">
+            <div th:text="'첫 번째 책: ' + ${tradeMap.firstBook.name} + ' (' + ${tradeMap.firstBook.author} + ')'"></div>
+            <img th:src="${tradeMap.secondBook.image}" alt="">
+            <div th:text="'두 번째 책: ' + ${tradeMap.secondBook.name} + ' (' + ${tradeMap.secondBook.author} + ')'"></div>
+        </th:block>
+        <div th:text="'현재 페이지: ' + ${currentPageNum}"></div>
+    </th:block>
+</body>
+</html>
