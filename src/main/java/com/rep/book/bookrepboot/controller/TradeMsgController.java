@@ -27,21 +27,28 @@ public class TradeMsgController {
         return tradeMsgService.sendTradeMsg(msgDTO, rttr);
     }
 
-    @PostMapping("user/accept")
+    // 0: 메시지만 보낸 상태  1: 수락  2: 거절  3: 취소
+    @PostMapping("user/accept-msg") // 수락
     @ResponseBody
-    public boolean acceptTrade(Long msgId) {
+    public boolean acceptTrade(@RequestParam("msgId") Long msgId) {
         String loggedEmail = SecurityUtil.getCurrentUserEmail();
         return tradeMsgService.updateTradeMsgStatus(msgId, loggedEmail,1);
     }
 
-    @PostMapping("user/reject")
+    @PostMapping("user/reject-msg") // 거절
     @ResponseBody
-    public boolean rejectTrade(Long msgId) {
+    public boolean rejectTrade(@RequestParam("msgId") Long msgId) {
         String loggedEmail = SecurityUtil.getCurrentUserEmail();
         return tradeMsgService.updateTradeMsgStatus(msgId, loggedEmail,2);
     }
 
-    // 취소 기능 만들 예정
+    @PostMapping("user/cancel-msg") // 취속
+    @ResponseBody
+    public boolean cancelTrade(@RequestParam("msgId") Long msgId){
+        String loggedEmail = SecurityUtil.getCurrentUserEmail();
+        return tradeMsgService.updateTradeMsgStatus(msgId, loggedEmail,3);
+    }
+
 
     // 이거 sender, receiver 입장으로 페이지를 따로 나눈다고 하므로 수정해야 됨
     // 한 파일에서 if 문으로 나누지 않고 페이지를 따로 하고픈 것으로 보임.

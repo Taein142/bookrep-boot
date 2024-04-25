@@ -1,5 +1,6 @@
 package com.rep.book.bookrepboot.controller;
 
+import com.rep.book.bookrepboot.dto.MsgDTO;
 import com.rep.book.bookrepboot.dto.PageDTO;
 import com.rep.book.bookrepboot.service.MyShareService;
 import com.rep.book.bookrepboot.util.SecurityUtil;
@@ -22,9 +23,9 @@ public class MyShareController {
     public String showMyShare(Model model){
         log.info("showMyShare()");
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
-        List<PageDTO> receivedMessages = myShareService.getReceivedTradeMsg(loggedInUserEmail);
-        List<PageDTO> sentMessages = myShareService.getSentTradeMsg(loggedInUserEmail);
-        List<PageDTO> registerList = myShareService.getRegisterList(loggedInUserEmail);
+        List<MsgDTO> receivedMessages = myShareService.getReceivedTradeMsg(loggedInUserEmail);
+        List<MsgDTO> sentMessages = myShareService.getSentTradeMsg(loggedInUserEmail);
+        List<Object> registerList = myShareService.getRegisterList(loggedInUserEmail);
 
         model.addAttribute("registerList", registerList);
         model.addAttribute("sentMsg", sentMessages);
@@ -33,4 +34,8 @@ public class MyShareController {
 
         return "th/myShare";
     }
+
+    // myTradeRegistration 해야됨
+
+    // myTradeApplication 해야됨
 }
