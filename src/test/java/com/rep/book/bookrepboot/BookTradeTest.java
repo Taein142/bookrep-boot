@@ -15,7 +15,7 @@ import java.util.List;
 @SpringBootTest
 public class BookTradeTest {
     @Autowired
-    BookTradeService bookTradeService;
+    private BookTradeService bookTradeService;
 
     @Test
     public void saveTradeResisterTest() {
