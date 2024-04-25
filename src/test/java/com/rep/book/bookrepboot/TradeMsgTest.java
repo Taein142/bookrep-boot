@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 @SpringBootTest
 public class TradeMsgTest {
     @Autowired
-    TradeMsgService tradeMsgService;
+    private TradeMsgService tradeMsgService;
 
     @Test
     public void sendTradeMsgTest(){
@@ -22,7 +22,7 @@ public class TradeMsgTest {
         test.setReceived_user_email("test01@naver.com");
         test.setReceived_book_isbn("9788965795223");
         RedirectAttributes rttr = new RedirectAttributesModelMap();
-        tradeMsgService.sendTradeMsg(test, rttr);
+        tradeMsgService.saveTradeMsg(test, rttr);
         System.out.println(rttr.getFlashAttributes());
     }
 

@@ -12,19 +12,19 @@ import java.util.List;
 @SpringBootTest
 public class MyShareTest {
     @Autowired
-    MyShareService myShareService;
+    private MyShareService myShareService;
 
     @Test
     public void getReceivedTradeMsgTest(){
         String testEmail = "test01@naver.com";
-        List<MsgDTO> testList = myShareService.getReceivedTradeMsg(testEmail);
+        List<Object> testList = myShareService.getReceivedTradeMsg(testEmail);
         System.out.println(testList);
     }
 
     @Test
     public void getSentTradeMsgTest(){
         String testEmail = "test01@naver.com";
-        List<MsgDTO> testList = myShareService.getSentTradeMsg(testEmail);
+        List<Object> testList = myShareService.getSentTradeMsg(testEmail);
         System.out.println(testList);
     }
 
