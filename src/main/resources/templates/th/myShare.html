@@ -11,7 +11,7 @@
 
 <body>
 <header>
-    <th:block th:insert="~{fragments::header(${session.customer})}"/>
+    <th:block th:insert="~{th/fragments::header(${session.customer})}"></th:block>
 </header>
 
 <section>
@@ -187,7 +187,7 @@
     </div>
 </section>
 <footer>
-    <th:block th:insert="~{fragments::footer}"/>
+    <th:block th:insert="~{th/fragments::footer}"></th:block>>
 </footer>
 </body>
 <script>
