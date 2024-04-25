@@ -27,19 +27,17 @@ public class MyShareService {
     @Autowired
     BookDao bookDao;
 
-    public List<PageDTO> getReceivedTradeMsg(String loggedInUserEmail) {
+    public List<MsgDTO> getReceivedTradeMsg(String loggedInUserEmail) {
         log.info("getReceivedTradeMsg()");
-        List<MsgDTO> receivedTradeMsg = tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
-        return MainUtil.setPaging(receivedTradeMsg, 5);
+         return tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
     }
 
-    public List<PageDTO> getSentTradeMsg(String loggedInUserEmail) {
+    public List<MsgDTO> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsge()");
-        List<MsgDTO> sentTradeMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        return MainUtil.setPaging(sentTradeMsg, 5);
+        return tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
     }
 
-    public List<PageDTO> getRegisterList(String loggedInUserEmail) {
+    public List<Object> getRegisterList(String loggedInUserEmail) {
         log.info("getRegiester()");
         List<BookTradeDTO> registerList = bookTradeDao.getBookTradeByEmail(loggedInUserEmail);
         List<Object> rList = new ArrayList<>();
@@ -58,6 +56,6 @@ public class MyShareService {
         }
         log.info("rList {}", rList);
 
-        return MainUtil.setPaging(rList, 5);
+        return rList;
     }
 }
