@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <body>
     <!-- haeder -->
-    <div th:fragment="header(addmin)" class="haeder-bar">
+
+    <div th:fragment="header" class="haeder-bar">
         <div id="haederContent">
             <div id="haederLeftContent">
-                <th:block th:if="${addmin == null}">
-                    <div>
-                        <img src=".//images/noimage.png">
-                        <p>Unknown</p>
-                    </div>
-                </th:block>
+                <div sec:authentication="principal.username"></div>
+                <div sec:authentication="principal.authorities"></div>
                 <!-- <th:block th:unless="${manager == null}">
                     <div>
                         <img src="/">
@@ -20,8 +18,8 @@
                 </th:block> -->
             </div>
 
-            <div id="headerCenterContent" onclick="goaddMinLogin()">
-                <img src=".//images/newFullLogo.png">
+            <div id="headerCenterContent">
+                <img th:src="@{/images/newFullLogo.png}">
                 <div id="haederLogoText">
                     <h2>BOOKREP</h2>
                     <span>READ,SHARE</span>
@@ -49,7 +47,7 @@
     <!-- footer -->
     <div th:fragment="footer" class="footer-bar">
         <div id="footerContent">
-            <img src=".//images/newFullLogo.png">
+            <img th:src="@{/images/newFullLogo.png}">
             <a href="">이용약관,</a>
             <a href="">개인정보 처리방침,</a>
             <a href="">대표정보</a>
