@@ -6,8 +6,6 @@ import com.rep.book.bookrepboot.dao.TradeMsgDao;
 import com.rep.book.bookrepboot.dto.BookDTO;
 import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import com.rep.book.bookrepboot.dto.MsgDTO;
-import com.rep.book.bookrepboot.dto.PageDTO;
-import com.rep.book.bookrepboot.util.MainUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,21 +25,24 @@ public class MyShareService {
     @Autowired
     BookDao bookDao;
     @Autowired
-    TradeMsgService tradeMsgService;
+    TradeService tradeService;
 
+    // 받은 교환 메시지 가져오는 메서드
     public List<Object> getReceivedTradeMsg(String loggedInUserEmail) {
         log.info("getReceivedTradeMsg()");
          List<MsgDTO> receivedMsg =  tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
 
-         return tradeMsgService.addBookInfo(receivedMsg);
+         return tradeService.addBookInfo(receivedMsg);
     }
 
+    // 보낸 교환 메시지 가져오는 메소드
     public List<Object> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsge()");
         List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        return tradeMsgService.addBookInfo(sentMsg);
+        return tradeService.addBookInfo(sentMsg);
     }
 
+    // 교환 등록한 데이터들 가져오는 메서드
     public List<Object> getRegisterList(String loggedInUserEmail) {
         log.info("getRegiester()");
         List<BookTradeDTO> registerList = bookTradeDao.getBookTradeByEmail(loggedInUserEmail);

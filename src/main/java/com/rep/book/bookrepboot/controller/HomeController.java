@@ -63,5 +63,17 @@ public class HomeController {
 		String imageAjax = feedService.getUserImage(email);
 		return imageAjax;
 	}
+
+	@GetMapping("privacy-policy")
+	public String showPrivacyPolicy(){
+		log.info("showPrivacyPolicy()");
+		return "th/privacyPolicy";
+	}
+
+	@GetMapping("terms")
+	public String showTerms(){
+		log.info("showTerms");
+		return "th/terms";
+	}
 }
 
