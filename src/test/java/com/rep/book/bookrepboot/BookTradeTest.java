@@ -15,7 +15,7 @@ import java.util.List;
 @SpringBootTest
 public class BookTradeTest {
     @Autowired
-    BookTradeService bookTradeService;
+    private BookTradeService bookTradeService;
 
     @Test
     public void saveTradeResisterTest() {
@@ -30,10 +30,10 @@ public class BookTradeTest {
     }
 
     @Test
-    public void getBookByDBTest(){
+    public void getOwnBookByDBTest(){
         String testEmail = "xodlsdldy@naver.com";
         String keyword = null;
-        List<BookDTO> bookList = bookTradeService.getBookByDB(testEmail, keyword);
+        List<BookDTO> bookList = bookTradeService.getUnTradeBookByDB(testEmail, keyword);
 
         System.out.println(bookList);
     }

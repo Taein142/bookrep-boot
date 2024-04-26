@@ -6,8 +6,6 @@ import com.rep.book.bookrepboot.dao.TradeMsgDao;
 import com.rep.book.bookrepboot.dto.BookDTO;
 import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import com.rep.book.bookrepboot.dto.MsgDTO;
-import com.rep.book.bookrepboot.dto.PageDTO;
-import com.rep.book.bookrepboot.util.MainUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,20 +24,26 @@ public class MyShareService {
     TradeMsgDao tradeMsgDao;
     @Autowired
     BookDao bookDao;
+    @Autowired
+    TradeService tradeService;
 
-    public List<PageDTO> getReceivedTradeMsg(String loggedInUserEmail) {
+    // 받은 교환 메시지 가져오는 메서드
+    public List<Object> getReceivedTradeMsg(String loggedInUserEmail) {
         log.info("getReceivedTradeMsg()");
-        List<MsgDTO> receivedTradeMsg = tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
-        return MainUtil.setPaging(receivedTradeMsg, 5);
+         List<MsgDTO> receivedMsg =  tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
+
+         return tradeService.addBookInfo(receivedMsg);
     }
 
-    public List<PageDTO> getSentTradeMsg(String loggedInUserEmail) {
+    // 보낸 교환 메시지 가져오는 메소드
+    public List<Object> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsge()");
-        List<MsgDTO> sentTradeMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        return MainUtil.setPaging(sentTradeMsg, 5);
+        List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
+        return tradeService.addBookInfo(sentMsg);
     }
 
-    public List<PageDTO> getRegisterList(String loggedInUserEmail) {
+    // 교환 등록한 데이터들 가져오는 메서드
+    public List<Object> getRegisterList(String loggedInUserEmail) {
         log.info("getRegiester()");
         List<BookTradeDTO> registerList = bookTradeDao.getBookTradeByEmail(loggedInUserEmail);
         List<Object> rList = new ArrayList<>();
@@ -58,6 +62,6 @@ public class MyShareService {
         }
         log.info("rList {}", rList);
 
-        return MainUtil.setPaging(rList, 5);
+        return rList;
     }
 }

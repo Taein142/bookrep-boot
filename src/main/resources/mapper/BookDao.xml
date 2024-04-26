@@ -45,6 +45,18 @@
 		<if test="keyword != null and keyword != ''">
 			AND b.book_name LIKE CONCAT('%', #{keyword}, '%')
 		</if>
+		AND NOT EXISTS(
+		    SELECT 1
+		    FROM book_trade bt
+		    WHERE bt.book_isbn = b.book_isbn
+		    AND bt.user_email = #{email}
+		)
+		AND NOT EXISTS(
+		    SELECT 1
+		    FROM msg m
+		    WHERE m.sent_book_isbn = b.book_isbn
+		    AND m.sent_user_email = #{email}
+		)
 		ORDER BY book_name ASC;
 	</select>
 </mapper>

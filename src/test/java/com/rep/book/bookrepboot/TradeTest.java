@@ -1,17 +1,27 @@
 package com.rep.book.bookrepboot;
 
 import com.rep.book.bookrepboot.dto.MsgDTO;
-import com.rep.book.bookrepboot.service.TradeMsgService;
+import com.rep.book.bookrepboot.dto.PageDTO;
+import com.rep.book.bookrepboot.service.TradeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
+import java.util.List;
+
 @SpringBootTest
-public class TradeMsgTest {
+public class TradeTest {
     @Autowired
-    TradeMsgService tradeMsgService;
+    private TradeService tradeService;
+
+    @Test
+    public void getTradeListByEmailTest(){
+        String testEmail = "test01@naver.com";
+        List<PageDTO> testList = tradeService.getTradeListByEmail(testEmail);
+        System.out.println(testList);
+    }
 
     @Test
     public void sendTradeMsgTest(){
@@ -22,14 +32,14 @@ public class TradeMsgTest {
         test.setReceived_user_email("test01@naver.com");
         test.setReceived_book_isbn("9788965795223");
         RedirectAttributes rttr = new RedirectAttributesModelMap();
-        tradeMsgService.sendTradeMsg(test, rttr);
+        tradeService.saveTradeMsg(test, rttr);
         System.out.println(rttr.getFlashAttributes());
     }
 
     @Test
     public void getMsgByIdTest(){
         Long testId = 1L;
-        MsgDTO test = tradeMsgService.getMsgByID(testId);
+        MsgDTO test = tradeService.getMsgByID(testId);
         System.out.println(test);
     }
 
@@ -37,8 +47,7 @@ public class TradeMsgTest {
     public void updateTradeMsgStatusTest(){
         Long testId = 4L;
         String testEmail = "test01@naver.com";
-        boolean testResult = tradeMsgService.updateTradeMsgStatus(testId, testEmail,1);
+        boolean testResult = tradeService.updateTradeMsgStatus(testId, testEmail,1);
         System.out.println(testResult);
     }
-
 }
