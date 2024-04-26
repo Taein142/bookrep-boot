@@ -92,12 +92,12 @@ public class UserSecurityConfig {
                                 logout
                                         .logoutUrl("/user/sign-out")
                 )
-                .userDetailsService(customUserDetailsService)
-                .rememberMe(
-                        (remember) -> remember
-                                .userDetailsService(customUserDetailsService)
-                                .alwaysRemember(true)
-                );
+                .userDetailsService(customUserDetailsService);
+//                .rememberMe(
+//                        (remember) -> remember
+//                                .userDetailsService(customUserDetailsService)
+//                                .alwaysRemember(true)
+//                );
         return security.build();
     }
 
@@ -136,12 +136,46 @@ public class UserSecurityConfig {
                                 logout
                                         .logoutUrl("/admin/sign-out")
                 )
-                .userDetailsService(customUserDetailsService)
-                .rememberMe(
-                        (remember) -> remember
-                                .userDetailsService(customUserDetailsService)
-                                .alwaysRemember(true)
+                .userDetailsService(customUserDetailsService);
+//                .rememberMe(
+//                        (remember) -> remember
+//                                .userDetailsService(customUserDetailsService)
+//                                .alwaysRemember(true)
+//                );
+        return security.build();
+    }
+
+    @Bean
+    @Order(3)
+    public SecurityFilterChain superAdminSecurityFilterChain(HttpSecurity security) throws Exception {
+        security
+                .securityMatcher("/super-admin/**")
+                .csrf(
+                        AbstractHttpConfigurer::disable
+                )
+                .authorizeHttpRequests(
+                        (authorizeHttpRequests) ->
+                                authorizeHttpRequests
+                                        .anyRequest().hasRole("SUPER_ADMIN")
                 );
+
+        return security.build();
+    }
+
+    @Bean
+    @Order(4)
+    public SecurityFilterChain driverSecurityFilterChain(HttpSecurity security) throws Exception {
+        security
+                .securityMatcher("/driver/**")
+                .csrf(
+                        AbstractHttpConfigurer::disable
+                )
+                .authorizeHttpRequests(
+                        (authorizeHttpRequests) ->
+                                authorizeHttpRequests
+                                        .anyRequest().hasAnyRole("DRIVER", "SUPER_ADMIN")
+                );
+
         return security.build();
     }
 
@@ -152,7 +186,7 @@ public class UserSecurityConfig {
      * @throws Exception
      */
     @Bean
-    @Order(3)
+    @Order(5)
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity security) throws Exception {
 
         security
@@ -165,6 +199,8 @@ public class UserSecurityConfig {
                                 .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                                 .requestMatchers("/user/**").denyAll()
                                 .requestMatchers("/admin/**").denyAll()
+                                .requestMatchers("/super-admin/**").denyAll()
+                                .requestMatchers("/driver/**").denyAll()
                                 .requestMatchers("/error").permitAll()
                                 .anyRequest().permitAll()
                 );

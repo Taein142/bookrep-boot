@@ -17,9 +17,9 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
     private static final Map<String, String> ROLE_URL_MAP = new HashMap<>() {{
         put("ROLE_USER", "/user/home");
-        put("ROLE_ADMIN", "/admin/admin-index");
-        put("ROLE_DRIVER", "/admin/admin");
-        put("ROLE_SUPER_ADMIN", "/admin/super-admin-index");
+        put("ROLE_ADMIN", "/admin/index");
+        put("ROLE_DRIVER", "/driver/index");
+        put("ROLE_SUPER_ADMIN", "/super-admin/index");
     }};
 
     @Override
