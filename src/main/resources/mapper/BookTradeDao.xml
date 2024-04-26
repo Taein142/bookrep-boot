@@ -11,7 +11,6 @@
         SELECT *
         FROM book_trade bt, book b
         WHERE bt.book_isbn = b.book_isbn
-
         <if test="keyword != null and keyword != ''">
             AND b.book_name LIKE CONCAT('%', #{keyword}, '%')
         </if>
