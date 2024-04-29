@@ -19,143 +19,141 @@ section {
 
 /* --------------------------- */
 
-/* haeder-bar */
-.haeder-bar {
+
+
+
+
+
+/*customerHeader,adminHeader*/
+#headerContent{
+    position: fixed; /* 헤더를 화면에 고정시킴 */
+    top: 0; /* 화면 상단에 고정시킴 */
+    z-index: 1000;
     width: 100%;
-    margin: 0;
-    background-color: rgba(200, 200, 200, 0.8);
+    padding: 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(186,182,182,0.7);
+    border-bottom: black 1px solid;
+}
+#headerLeftContent {
+    display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
+    align-items: center; /* 요소들을 수직으로 아래로 정렬 */
+    flex-direction: column; /*세로 정렬*/
 }
 
-#haederContent {
+#headerCenterContent{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-#haederLeftContent {
+#customerImage img {
+    height: 50px;
+}
+#headerCenterContent img{
+    width: 65px;
+    height: 65px;
+
+}
+#headerLogoText{
+    text-align: center;
+    margin-left: 10px;
+}
+#headerLogoText h2 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* 텍스트 그림자 효과 */
+}
+#headerLogoText span{
+    font-size: smaller;
+    font-weight: bold; /* 폰트를 두껍게 설정 */
+    display: inline-block;
+}
+
+#headerRightContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#searchForm {
     display: flex;
     align-items: center;
 }
 
-#haederLeftContent div {
-    display: flex;
-    align-items: center;
-}
-
-#haederLeftContent p {
-    margin: 0px;
-}
-
-#haederLeftContent img {
-    height: 60px;
-    /* 높이를 60px로 지정 */
-    width: auto;
-    /* 너비는 자동으로 조정하여 비율 유지 */
-    border-radius: 50%;
-    /* 원형 모양으로 만들기 */
-    object-fit: cover;
-    /* 이미지 비율 유지 */
-    margin: 5px;
-}
-
-
-#headerCenterContent {
-    display: flex;
-    align-items: center;
-}
-
-#haederLogoText h2 {
-    color: rgb(255, 255, 255);
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    /* 그림자 효과 적용 */
-}
-
-#headerCenterContent img {
-    width: auto;
-    /* 이미지의 너비를 100px로 설정 */
-    height: 60px;
-    /* 이미지의 높이를 자동으로 조정하여 비율을 유지 */
-    margin: 5px;
-}
-
-
-#UnLogout {
-    margin: 5px;
-    padding: 8px 12px;
-    background-color: #55555579;
-    color: #fff;
+#keywordInput {
+    margin-right: 8px;
+    height: 24px;
+    border-radius: 100px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: rgba(255,255,255,0.31);
     border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    outline: none;
+    /* 입력 텍스트를 우측부터 써지게 설정 */
+    direction: rtl;
+    /* 입력 텍스트를 우측에 정렬 */
+    text-align: right;
 }
 
-#Logout {
-    margin: 5px;
-    padding: 8px 12px;
-    background-color: #555555;
-    color: #fff;
+
+#searchForm img {
+    height: 20px;
+    margin-right: 30px;
+}
+
+#headerRightContent-LogButtonBox button{
+    height: 35px;
+    width: 70px;
+    background-color: black;
+    color: white;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
+    font-weight: bold;
 }
+#headerRightContent-LogButtonBox button:hover {
+    opacity: 0.5;
+}
+/*------------------------------*/
 
-/* footer-bar */
+
+
+
+
+/*footer*/
 .footer-bar {
-    width: 100%;
-    background-color: rgba(200, 200, 200, 0.8);
-    position: fixed;
-    /* 변경 */
     bottom: 0;
-    left: 0;
-    /* 추가 */
-    z-index: 999;
-    /* 추가 */
+    width: 100%;
+    height: 40px;
+    background-color: rgba(186,182,182,0.7);
+    border-top: 1px solid black;
+    padding: 10px 0;
 }
 
 #footerContent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#footerContent a {
-    color: #000000;
-    text-decoration: none;
-    margin-right: 5px;
+    text-align: center;
 }
 
 #footerContent img {
-    width: auto;
-    height: 60px;
-    margin: 5px;
+    height: 30px; /* 로고 이미지 높이 조정 */
+    margin-right: 10px; /* 로고와 링크 사이의 간격 조정 */
 }
 
-/* ---(추가) 해더 우측 검색 버튼--- */
-#haederRightContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#footerContent img{
+    height: 20px;
+    margin-right: 10px;
 }
 
-#haederRightContent_searchImg {
-    width: 20px;
-    width: 20px;
-    cursor: pointer;
-    margin-left: 3px;
+#footerContent a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black; /* 텍스트 색상을 검은색으로 설정 */
+    margin-right: 10px;
+    font-weight: bolder;
 }
+/*------------------------------*/
 
-#haederRightContent_input{
-    border: #000000 solid;
-    border-radius: 4px;
-}
-
-#searchForm_div{
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-/* --- --- */
 
 
 /* Share House */
@@ -200,8 +198,18 @@ section {
 
 
 /* myShare,shareHouse*/
+#myShareBox{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
-
+#myShare-tradeList-content,#myShare-receiveTradeRequestList-content,#myShare-makeTradeRequestList-content{
+    background-color: white;
+    width: 600px;
+    height: 700px;
+    border: black solid 2px;
+}
 /* ----------------------------------------- */
 
 
@@ -295,125 +303,6 @@ section {
 
 
 
-/* myTradeApplication,myTradeRegistration */
-
-#myTradeApplication_content,
-#myTradeRegistration_content {
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#myTradeApplication_content_00,
-#myTradeApplication_content_03,
-#myTradeRegistration_content_00,
-#myTradeRegistration_content_03 {
-    border: 2px solid black;
-    height: 690px;
-    width: 520px;
-    padding: 25px;
-    font-size: large;
-    background-color: #ffffffb2;
-}
-
-#myTradeApplication_content_01,
-#myTradeApplication_content_04,
-#myTradeRegistration_content_01,
-#myTradeRegistration_content_04 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#myTradeApplication_content_01_detailBox,
-#myTradeApplication_content_04_detailBox,
-#myTradeRegistration_content_01_detailBox,
-#myTradeRegistration_content_04_detailBox {
-    margin-left: 20px;
-    width: 300px;
-    height: 290px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#myTradeApplication_content_02,
-#myTradeApplication_content_05,
-#myTradeRegistration_content_02,
-#myTradeRegistration_content_05 {
-    margin-top: 20px;
-}
-
-#myTradeApplication_content_01_imgBox img,
-#myTradeApplication_content_04_imgBox img,
-#myTradeRegistration_content_01_imgBox img,
-#myTradeRegistration_content_04_imgBox img {
-    width: auto;
-    height: 290px;
-}
-
-#blankSpace {
-    min-width: 100px;
-    height: auto;
-}
-
-#myTradeApplication_fullContent_button,
-#myTradeRegistration_fullContent_button {
-    margin: 10px;
-    margin-bottom: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#myTradeApplication_fullContent_button button,
-#myTradeRegistration_fullContent_button button {
-    height: 35px;
-    width: 110px;
-    font-size: 1.2em;
-    color: rgb(255, 255, 255);
-    background-color: rgb(126, 165, 108);
-    border: 0px;
-    border-radius: 5px;
-    margin: 5px;
-}
-
-#myTradeApplication_content_03:hover,
-#myTradeRegistration_content_03:hover {
-    background-color: rgba(175, 175, 175, 0.5);
-    /* 반투명한 회색 배경을 지정합니다. */
-}
-
-#myTradeApplication_content_03:hover img,
-#myTradeRegistration_content_03:hover img {
-    filter: brightness(70%);
-    /* 이미지의 밝기를 줄여 반투명하게 만듭니다. */
-}
-
-.hover-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    /* 초기에는 보이지 않도록 설정합니다. */
-}
-.hover-overlay img{
-    width: 130px;
-    height: 130px;
-}
-
-#myTradeApplication_content_03:hover .hover-overlay,
-#myTradeRegistration_content_03:hover .hover-overlay {
-    opacity: 1;
-    /* 호버 효과가 발생했을 때 보이도록 설정합니다. */
-}
-
-#myTradeApplication_content_03,
-#myTradeRegistration_content_03 {
-    position: relative;
-    /* 부모 요소에 상대적 위치를 설정합니다. */
-}
+/*  */
 
 /* --------------------------------------- */
