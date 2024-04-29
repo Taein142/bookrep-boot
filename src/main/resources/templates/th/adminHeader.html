@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<body>
+<!-- header -->
+<div th:fragment="header(user)" class="header-bar">
+    <div id="headerContent">
+        <div id="headerLeftContent">
+            <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
+            <span th:text="${userName}"></span>
+        </div>
+
+        <div id="headerCenterContent" onclick="gocustomerHome()">
+            <img src="../images/newFullLogo.png">
+            <div id="headerLogoText">
+                <h2>BOOKREP</h2>
+                <span>READ,SHARE</span>
+            </div>
+        </div>
+
+        <div id="headerRightContent">
+            <th:block th:if="${userEmail == null}">
+                <button id="login">Login</button>
+            </th:block>
+            <th:block th:unless="${userEmail == null}">
+                <button id="Logout">Logout</button>
+            </th:block>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        function gocustomerHome() {
+            location.href = "/user/home";
+        }
+
+        let logggggggggggemail = [[${userEmail}]];
+        console.log(logggggggggggemail);
+
+        let customerImage = document.getElementById("customerImage");
+        $.ajax({
+            url : '/user/get-image',
+            type : 'post',
+            data : {
+                email : logggggggggggemail
+            },
+            success : function(imageAjax) { //컨트롤러에서 넘어온 cnt값을 받는다
+                console.log(imageAjax);
+                let imagePath = '../resources/images/' + imageAjax;
+                customerImage.innerHTML = '<img src="' + imagePath + '" alt="">';
+            },
+            error : function() {
+                alert("에러입니다");
+            }
+        });
+    </Script>
+</div>
+
+</body>
+
+</html>

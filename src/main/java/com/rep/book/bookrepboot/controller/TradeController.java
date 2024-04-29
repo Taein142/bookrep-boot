@@ -35,7 +35,7 @@ public class TradeController {
         model.addAttribute("user", loggedInUserEmail);
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("userName", userName);
-        return "th/myTradeIndex";
+        return "th/myTradeStatus";
     }
 
     @PostMapping("user/send-trade-msg")

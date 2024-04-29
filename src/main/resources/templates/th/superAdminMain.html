@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <th:block th:insert="~{th/fragments::header}" />
+        <th:block th:insert="~{fragments::header(${session.manager})}" />
     </header>
     <section>
         <div id="container2">
