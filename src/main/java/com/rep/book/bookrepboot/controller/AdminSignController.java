@@ -19,7 +19,7 @@ public class AdminSignController {
 
     @GetMapping("admin/admin-sign-in")
     public String showAdminSignIn(){
-        //log.info("showAdminSignIn");
+
 
         return "th/adminSignIn";
     }
