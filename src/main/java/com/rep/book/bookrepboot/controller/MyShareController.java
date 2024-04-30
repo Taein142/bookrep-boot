@@ -32,7 +32,7 @@ public class MyShareController {
         model.addAttribute("tradeList", registerList); // 내 교환 등록 리스트
         model.addAttribute("tradeApplicationList", sentMessages); // 교환 신청한 책 리스트
         model.addAttribute("tradeRegistrationList", receivedMessages); // 교환 신청받은 책 리스트
-        model.addAttribute("user",loggedInUserEmail); //로그인 한 유저 이메일
+        model.addAttribute("userEmail",loggedInUserEmail); //로그인 한 유저 이메일
         model.addAttribute("userName", userName); // 로그인 한 유저 이름
 
         return "th/myShare";
