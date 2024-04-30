@@ -17,51 +17,56 @@
 <section>
     <div id="userManagementBox">
         <div id="userManagement_SerchBox">
-            <form action="/search" method="get">
-                <input type="text" id="userManagement_input">
-                <img th:src="/images/search.png">
+            <form action="/admin/main-user-management" method="get">
+                <input type="text" id="userManagement_input" name="keyword" class="form-control">
+                <img th:src="@{/images/search.png}" alt="">
             </form>
         </div>
-        <div id="listArea">
-            <th:block th:each="user:${userList}">
-
-                <div id="UB">
-                    <form action="/delete" method="get" id="UB_form">
-                        <div id="listArea_content" class="listAreaContent" user-Id="${user.id}" data-detail="${user.detail}">
-                            <input type="hidden" th:value="${user.id}">
-                            <input type="hidden" th:value="${user.name}">
-                            <input type="hidden" th:value="${user.email}">
-                            <div id="userManagement_listArea_contentView">
-                                <span>user-ID: <span th:text="${user.id}"></span></span>
-                                <span>user-NAME: <span th:text="${user.name}"></span></span>
-                                <span>user-EMAIL: <span th:text="${user.email}"></span></span>
+        <div th:unless="${userList}">
+            <p>해당 유저가 존재하지 않습니다</p>
+        </div>
+        <th:block th:if="${userList}">
+            <th:block th:each="object : ${userList}">
+                <div id="listArea">
+                    <div id="UB">
+                        <div id="UB_form">
+                            <div id="listArea_content" class="listAreaContent">
+                                <div id="userManagement_listArea_contentView">
+                                    <th:block th:each="user : ${object.objectList}">
+                                        <div class="moveFeed" th:user-id="${user.email}">
+                                            <span>user-NAME: <span th:text="${user.name}"></span></span>
+                                            <span>user-EMAIL: <span th:text="${user.email}"></span></span>
+                                        </div>
+                                        <div id="userManagement_listArea_contentDel">
+                                            <button class="deleteBtn" th:onclick="deleteUser([[${user.email}]])">삭제
+                                            </button>
+                                        </div>
+                                    </th:block>
+                                </div>
                             </div>
                         </div>
-                        <div id="userManagement_listArea_contentDel">
-                            <button>삭제</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </th:block>
-        </div>
+        </th:block>
         <div id="paging_area">
-            <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+ '&pageNum=1'}"
+            <a th:href="@{'?pageNum=1'+${keyword != null ? '&keyword=' + keyword : ''}}"
                class="page-link">|◀</a>
             <th:block th:if="${currentPageNum > 3}">
-                <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''} + '&pageNum=' + ${currentPageNum - 3}}"
+                <a th:href="@{'&pageNum=' + ${currentPageNum - 3}+${keyword != null ? '&keyword=' + keyword : ''}}"
                    class="page-link">이전</a>
             </th:block>
             <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
-                <th:block th:if="${pageNum >= 1 && pageNum <= tradeListSize}">
-                    <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+'&pageNum=' + ${pageNum}}"
+                <th:block th:if="${pageNum >= 1 && pageNum <= listMaxSize}">
+                    <a th:href="@{'&pageNum=' + ${pageNum}+${keyword != null ? '&keyword=' + keyword : ''}}"
                        th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
                 </th:block>
             </th:block>
-            <th:block th:if="${currentPageNum + 2 < tradeListSize}">
-                <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''}+'&pageNum=' + ${currentPageNum + 3}}"
+            <th:block th:if="${currentPageNum + 2 < listMaxSize}">
+                <a th:href="@{'&pageNum=' + ${currentPageNum + 3}+${keyword != null ? '&keyword=' + keyword : ''}}"
                    class="page-link">다음</a>
             </th:block>
-            <a th:href="@{${keyword != null ? '&keyword=' + keyword : ''} + '&pageNum=' + ${tradeListSize}}"
+            <a th:href="@{'?pageNum=' + ${listMaxSize}+ ${keyword != null ? '&keyword=' + keyword : ''}}"
                class="page-link">▶|</a>
         </div>
     </div>
@@ -72,13 +77,36 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var listAreaContents = document.querySelectorAll('.listAreaContent');
-        listAreaContents.forEach(function (listAreaContent) {
-            listAreaContent.addEventListener('click', function () {
-                var id = this.getAttribute('user-Id');
-                window.location.href = '/usermypage?id=' + encodeURIComponent(id)
+        var listAreaContents = document.querySelectorAll('.moveFeed');
+        listAreaContents.forEach(function (moveFeed) {
+            moveFeed.addEventListener('click', function () {
+                var email = this.getAttribute('user-id');
+                window.location.href = '/user/feed/' + email;
+            });
         });
     });
-</script>
 
+    function deleteUser(userEmail) {
+        console.log(userEmail);
+
+        $.ajax({
+            url: '/admin/user-delete',
+            method: 'POST',
+            data: {userEmail: userEmail},
+            success: function (response) {
+                if (response === "ok") {
+                    console.log(response);
+                    document.location.reload(true);
+
+                    alert('삭제되었습니다.');
+                } else {
+                    alert('삭제에 실패했습니다.');
+                }
+            },
+            error: function () {
+                alert('서버와의 통신 중 문제가 발생했습니다.');
+            }
+        });
+    }
+</script>
 </html>

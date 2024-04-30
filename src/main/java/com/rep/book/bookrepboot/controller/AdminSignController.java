@@ -39,6 +39,11 @@ public class AdminSignController {
         AdminDTO adminDTO = new AdminDTO(null, password, role);
         adminDao.adminUp(adminDTO);
 
-        return "redirect:/admin-sign-in";
+        return "redirect:/admin/admin-sign-in";
+    }
+
+    @GetMapping("admin/index")
+    public String adminMain(){
+        return "th/adminMain";
     }
 }
