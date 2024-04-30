@@ -26,7 +26,7 @@ public class TradeController {
     @Autowired
     private FeedService feedService;
 
-    @GetMapping("user/my-trade-index")
+    @GetMapping("user/my-trade-status")
     public String showTradeIndex(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
@@ -35,7 +35,7 @@ public class TradeController {
         model.addAttribute("user", loggedInUserEmail);
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("userName", userName);
-        return "th/myTradeIndex";
+        return "myTradeStatus";
     }
 
     @PostMapping("user/send-trade-msg")
