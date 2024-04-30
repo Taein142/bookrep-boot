@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
 
 <mapper namespace="com.rep.book.bookrepboot.dao.UserDao">
 	<resultMap id="UserDTO" type="com.rep.book.bookrepboot.dto.UserDTO">
@@ -14,11 +13,13 @@
 		<result property="detail" column="user_detail"/>
 	</resultMap>
 	
-	
 	<select id="getUserList" parameterType="String" resultMap="UserDTO">
 		SELECT *
-		FROM user 
-		WHERE user_name LIKE "%${keyword}%"  OR user_email LIKE "%${keyword}%" 
+		FROM user
+		<if test="(keyword != null and keyword != '')">
+			WHERE user_name LIKE "%${keyword}%"  OR user_email LIKE "%${keyword}%"
+		</if>
+		ORDER BY user_name
 	</select>
 	<select id="signIn" parameterType="java.util.Map" resultType="int">
 		SELECT count(*) FROM user 
