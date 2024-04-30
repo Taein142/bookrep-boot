@@ -6,191 +6,199 @@
     <link rel="stylesheet" th:href="@{/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <title>MyShare</title>
+    <title>myShare</title>
 </head>
 
 <body>
 <header>
-    <th:block th:insert="~{th/fragments::header(${session.customer})}"></th:block>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
 </header>
 
 <section>
+    <aside>
+        <ul>
+            <li><a href="#myShare-tradeList">내 교환 등록 리스트</a></li>
+            <li><a href="#myShare-receiveTradeRequestList">교환 신청 받은 책 리스트</a></li>
+            <li><a href="#myShare-makeTradeRequestList">교환 신청한 책 리스트</a></li>
+        </ul>
+    </aside>
+
     <div id="myShareBox">
         <!--내 교환 등록 리스트-->
-        <div id="myshare-tradeList">
-            <div>
+        <div id="myShare-tradeList">
+            <div id="myShare-tradeList-title">
                 <h1>내 교환 등록 리스트</h1>
             </div>
-            <div id="myshare-tradeList-content">
-                <th:blcok th:each="trade:${tradeList}">
-                    <div id="myshare-tradeList-content-imgbox">
-                        <th:block th:if="${trade.img}!=null">
-                            <img th:src="@{${trade.img}}">
-                        </th:block>
-                        <th:block th:unless="${trade.img}!=null">
-                            <img th:src="@{/images/no_book.img}">
-                        </th:block>
-                    </div>
-                    <div id="myshare-tradeList-content-infobox">
-                        <div>
-                            <th:blcok th:if="${trade.name}!=null">
-                                <p>도서명: <span th:text="${trade.name}"></span></p>
-                            </th:blcok>
-                            <th:blcok th:unless="${trade.name}!=null">
-                                <p>도서명: Unknown</p>
-                            </th:blcok>
+            <div id="myShare-tradeList-contents">
+                <div id="myShare-tradeList-content">
+                    <th:blcok th:each="trade:${tradeList}">
+                        <div id="myShare-tradeList-content-imgbox">
+                            <th:block th:if="${trade.book.img}!=null">
+                                <img th:src="@{${trade.book.img}}" alt="">
+                            </th:block>
+                            <th:block th:unless="${trade.book.img}!=null">
+                                <img th:src="@{/images/noBook.jpg}" alt="">
+                            </th:block>
                         </div>
-                        <div>
-                            <th:blcok th:if="${trade.author}!=null">
-                                <p>작가: <span th:text="${trade.author}"></span></p>
-                            </th:blcok>
-                            <th:blcok th:unless="${trade.author}!=null">
-                                <p>작가: Unknown</p>
-                            </th:blcok>
+                        <div id="myShare-tradeList-content-infobox">
+                            <div>
+                                <th:blcok th:if="${trade.book.name}!=null">
+                                    <p>도서명: <span th:text="${trade.book.name}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${trade.book.name}!=null">
+                                    <p>도서명: Unknown</p>
+                                </th:blcok>
+                            </div>
+                            <div>
+                                <th:blcok th:if="${trade.book.author}!=null">
+                                    <p>작가: <span th:text="${trade.book.author}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${trade.book.author}!=null">
+                                    <p>작가: Unknown</p>
+                                </th:blcok>
+                            </div>
+                            <div>
+                                <th:blcok th:if="${trade.book.publisher}!=null">
+                                    <p>출판사: <span th:text="${trade.book.publisher}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${trade.book.publisher}!=null">
+                                    <p>출판사: Unknown</p>
+                                </th:blcok>
+                            </div>
                         </div>
-                        <div>
-                            <th:blcok th:if="${trade.publisher}!=null">
-                                <p>출판사: <span th:text="${trade.publisher}"></span></p>
-                            </th:blcok>
-                            <th:blcok th:unless="${trade.publisher}!=null">
-                                <p>출판사: Unknown</p>
-                            </th:blcok>
-                        </div>
-                        <div>
-                            <th:blcok th:if="${trade.detail}!=null">
-                                <p>요약: <span th:text="${trade.detail}"></span></p>
-                            </th:blcok>
-                            <th:blcok th:unless="${trade.detail}!=null">
-                                <p>요약: Unknown</p>
-                            </th:blcok>
-                        </div>
-                    </div>
-                </th:blcok>
+                    </th:blcok>
+                </div>
             </div>
-            <div id="myshare-tradeList-pagingArea">
+            <div id="myShare-tradeList-pagingArea">
 
             </div>
         </div>
 
-        <!--교환신청 받은 책 리스트-->
-        <div id="myshare-tradeRegistrationList">
-            <div>
+        <div id="myShare-receiveTradeRequestList">
+            <div id="myShare-receiveTradeRequestList-title">
                 <h1>
                     교환 신청 받은 책 리스트
                 </h1>
             </div>
-            <th:block th:each="tradeRegistration:${tradeRegistrationList}">
-                <div>
-                    <th:block th:if="${tradeRegistration.img}!=null">
-                        <img th:src="@{${tradeRegistration.img}}">
-                    </th:block>
-                    <th:block th:unless="${tradeRegistration.img}!=null">
-                        <img src="@{/images/no_book.img}">
+            <div id="myShare-receiveTradeRequestList-contents">
+                <div id="myShare-receiveTradeRequestList-content">
+                    <th:block th:each="receiveTradeRequest:${receiveTradeRequestList}">
+                        <div>
+                            <th:block th:if="${receiveTradeRequest.img}!=null">
+                                <img th:src="@{${receiveTradeRequest.img}}">
+                            </th:block>
+                            <th:block th:unless="${receiveTradeRequest.img}!=null">
+                                <img src="@{/images/no_book.img}">
+                            </th:block>
+                        </div>
+                        <div>
+                            <div>
+                                <th:blcok th:if="${receiveTradeRequest.name}!=null">
+                                    <p>도서명: <span th:text="${receiveTradeRequest.name}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${receiveTradeRequest.name}!=null">
+                                    <p>도서명: Unknown</p>
+                                </th:blcok>
+                            </div>
+                            <div>
+                                <th:blcok th:if="${receiveTradeRequest.author}!=null">
+                                    <p>작가: <span th:text="${receiveTradeRequest.author}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${receiveTradeRequest.author}!=null">
+                                    <p>작가: Unknown</p>
+                                </th:blcok>
+                            </div>
+                            <div>
+                                <th:blcok th:if="${receiveTradeRequest.publisher}!=null">
+                                    <p>출판사: <span th:text="${receiveTradeRequest.publisher}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${receiveTradeRequest.publisher}!=null">
+                                    <p>출판사: Unknown</p>
+                                </th:blcok>
+                            </div>
+                        </div>
                     </th:block>
                 </div>
-                <div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.name}!=null">
-                            <p>도서명: <span th:text="${tradeRegistration.name}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.name}!=null">
-                            <p>도서명: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.author}!=null">
-                            <p>작가: <span th:text="${tradeRegistration.author}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.author}!=null">
-                            <p>작가: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.publisher}!=null">
-                            <p>출판사: <span th:text="${tradeRegistration.publisher}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.publisher}!=null">
-                            <p>출판사: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.detail}!=null">
-                            <p>요약: <span th:text="${tradeRegistration.detail}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.detail}!=null">
-                            <p>요약: Unknown</p>
-                        </th:blcok>
-                    </div>
-                </div>
-                <div id="myshare-tradeRegistrationList-pagingArea">
+            </div>
+            <div id="myShare-receiveTradeRequestList-pagingArea">
 
-                </div>
-            </th:block>
+            </div>
         </div>
 
         <!--교환 신청한 책 리스트-->
-        <div id="myshare-tradeApplicationList">
-            <div>
+        <div id="myShare-makeTradeRequestList">
+            <div id="myShare-makeTradeRequestList-title">
                 <h1>
                     교환 신청한 책 리스트
                 </h1>
             </div>
-            <th:block th:each="tradeApplication:${tradeApplicationList}">
-                <div>
-
-                    <th:block th:if="${tradeApplication.img}!=null">
-                        <img th:src="@{${tradeApplication.img}}">
-                    </th:block>
-                    <th:block th:unless="${tradeApplication.img}!=null">
-                        <img src="@{/images/no_book.img}">
+            <div id="myShare-makeTradeRequestList-contents">
+                <div id="myShare-makeTradeRequestList-content">
+                    <th:block th:each="makeTradeRequest:${makeTradeRequestList}">
+                        <div>
+                            <th:block th:if="${makeTradeRequest.img}!=null">
+                                <img th:src="@{${makeTradeRequest.img}}">
+                            </th:block>
+                            <th:block th:unless="${makeTradeRequest.img}!=null">
+                                <img src="@{/images/no_book.img}">
+                            </th:block>
+                        </div>
+                        <div>
+                            <div>
+                                <th:blcok th:if="${makeTradeRequest.name}!=null">
+                                    <p>도서명: <span th:text="${makeTradeRequest.name}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${makeTradeRequest.name}!=null">
+                                    <p>도서명: Unknown</p>
+                                </th:blcok>
+                            </div>
+                            <div>
+                                <th:blcok th:if="${makeTradeRequest.author}!=null">
+                                    <p>작가: <span th:text="${makeTradeRequest.author}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${makeTradeRequest.author}!=null">
+                                    <p>작가: Unknown</p>
+                                </th:blcok>
+                            </div>
+                            <div>
+                                <th:blcok th:if="${makeTradeRequest.publisher}!=null">
+                                    <p>출판사: <span th:text="${makeTradeRequest.publisher}"></span></p>
+                                </th:blcok>
+                                <th:blcok th:unless="${makeTradeRequest.publisher}!=null">
+                                    <p>출판사: Unknown</p>
+                                </th:blcok>
+                            </div>
+                        </div>
                     </th:block>
                 </div>
-                <div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.name}!=null">
-                            <p>도서명: <span th:text="${tradeRegistration.name}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.name}!=null">
-                            <p>도서명: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.author}!=null">
-                            <p>작가: <span th:text="${tradeRegistration.author}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.author}!=null">
-                            <p>작가: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.publisher}!=null">
-                            <p>출판사: <span th:text="${tradeRegistration.publisher}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.publisher}!=null">
-                            <p>출판사: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
-                        <th:blcok th:if="${tradeRegistration.detail}!=null">
-                            <p>요약: <span th:text="${tradeRegistration.detail}"></span></p>
-                        </th:blcok>
-                        <th:blcok th:unless="${tradeRegistration.detail}!=null">
-                            <p>요약: Unknown</p>
-                        </th:blcok>
-                    </div>
-                    <div>
+            </div>
+            <div id="myShare-makeTradeRequestList-pagingArea">
 
-                    </div>
-                </div>
-            </th:block>
+            </div>
         </div>
     </div>
 </section>
 <footer>
-    <th:block th:insert="~{th/fragments::footer}"></th:block>>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
 </footer>
 </body>
 <script>
+<!-- 사이드바 클릭시 실행되는 함수   -->
+    // 페이지가 로드될 때 실행되는 함수
+    window.onload = function() {
+        // 사이드바의 링크를 클릭할 때 실행되는 함수
+        document.querySelectorAll('aside a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault(); // 기본 이벤트(링크 이동)를 중지
+                const targetId = this.getAttribute('href'); // 클릭한 링크의 href 속성 값(목표 ID) 가져오기
+                const targetElement = document.querySelector(targetId); // 목표 ID에 해당하는 요소 찾기
+                if (targetElement) {
+                    // 목표 요소가 있는 경우에만 스크롤
+                    targetElement.scrollIntoView({ behavior: 'smooth' }); // 목표 요소로 스크롤
+                }
+            });
+        });
+    };
 
 </script>
 

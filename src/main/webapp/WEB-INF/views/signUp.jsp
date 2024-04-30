@@ -39,7 +39,7 @@
                            placeholder="email" onblur="checkId()" required style="width: 70px">
                     <span>@</span>
                     <input type="text" name="domain" id="domain" style="width: 70px" required><br>
-                    <select name="domainList" id="domainList" onblur="checkId()" onclick="toggleInput()">
+                    <select name="domainList" id="domainList" onblur="checkId()" onchange="toggleInput()">
                         <option value="naver.com">naver.com</option>
                         <option value="gmail.com">gmail.com</option>
                         <option value="daum.net">daum.net</option>
@@ -90,7 +90,7 @@
                 <p>
                 <div>
                     <div>
-                        <input type="checkbox" id="agreedToTerms" name="agreedToTerms" required disabled>
+                        <input type="checkbox" id="agreedToTerms" name="agreedToTerms" value="agree" required disabled>
                         <label for="agreedToTerms" class="agreed-label">[필수] 약관에 동의합니다.</label>
                     </div>
                     <div>
@@ -101,7 +101,7 @@
                 <p>
                 <div>
                     <div>
-                        <input type="checkbox" id="agreedToPrivacyPolicy" name="agreedToPrivacyPolicy" required disabled>
+                        <input type="checkbox" id="agreedToPrivacyPolicy" name="agreedToPrivacyPolicy" value="agree" required disabled>
                         <label for="agreedToPrivacyPolicy" class="agreed-label">[필수] 개인정보 처리 방침에 동의합니다.</label>
                     </div>
                     <div>
@@ -280,6 +280,15 @@
             domain.val(selection);
         }
     }
+
+    $(
+        function (){
+            let msg = "${msg}";
+            if (msg !== "" && msg !== null){
+                alert(msg);
+            }
+        }
+    );
 
 
 </script>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<body>
+<!-- header -->
+<div th:fragment="header(user)" class="header-bar">
+    <div id="headerContent">
+        <div id="headerLeftContent">
+            <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
+            <span th:text="${userName}"></span>
+        </div>
+
+        <div id="headerCenterContent" onclick="gocustomerHome()">
+            <img src="../images/newFullLogo.png">
+            <div id="headerLogoText">
+                <h2>BOOKREP</h2>
+                <span>READ,SHARE</span>
+            </div>
+        </div>
+
+        <div id="headerRightContent">
+            <div id="searchBox">
+                <div class="search-box">
+                    <form id="searchForm" action="/user/search" method="GET">
+                        <input id="keywordInput" type="text" name="keyword">
+                        <img id="searchImage" src="../images/search.png">
+                    </form>
+                </div>
+            </div>
+            <div id="headerRightContent-LogButtonBox">
+                <th:block th:if="${userEmail == null}">
+                    <button id="login" onclick="login()">Login</button>
+                </th:block>
+                <th:block th:unless="${userEmail == null}">
+                    <button id="Logout" onclick="logout()">Logout</button>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <script th:inline="javascript">
+        function gocustomerHome() {
+            location.href = "/user/home";
+        }
+
+        let logggggggggggemail = [[${userEmail}]];
+        console.log(logggggggggggemail);
+
+        let customerImage = document.getElementById("customerImage");
+        $.ajax({
+            url: '/user/get-image',
+            type: 'post',
+            data: {
+                email: logggggggggggemail
+            },
+            success: function (imageAjax) { //컨트롤러에서 넘어온 cnt값을 받는다
+                console.log(imageAjax);
+                let imagePath = '../resources/images/' + imageAjax;
+                customerImage.innerHTML = '<img src="' + imagePath + '" alt="">';
+            },
+            error: function () {
+                alert("에러입니다");
+            }
+        });
+
+        // 검색 이미지를 클릭했을 때 폼을 제출하는 함수
+        document.getElementById("searchImage").addEventListener("click", function () {
+            document.getElementById("searchForm").submit(); // 폼 제출
+        });
+
+        function login(){
+            location.href="/sign-in"
+        }
+
+        function logout(){
+            location.href = "/user/sign-out";
+        }
+    </Script>
+</div>
+
+</body>
+
+</html>
