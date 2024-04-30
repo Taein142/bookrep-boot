@@ -31,10 +31,12 @@
 			<div class="write-button">
 				<button onclick="moveToWrite()">글 쓰기</button>
 			</div>
+			<div class="write-button">
+				<button onclick="moveToShareHouse()">ShareHouse</button>
+			</div>
 
 			<div class="logo">
-				<img
-					src="<%=request.getContextPath()%>/resources/images/bookrepLogo.png"
+				<img src="<%=request.getContextPath()%>/resources/images/bookrepLogo.png"
 					alt="로고" onclick="moveToHome()">
 			</div>
 			<div class="buttons">
@@ -91,6 +93,10 @@
 	
 	const moveToWrite = () => {
 		location.href = "/user/write";
+	}
+
+	const moveToShareHouse = () => {
+		location.href = "/user/share-house";
 	}
 	
 </script>
