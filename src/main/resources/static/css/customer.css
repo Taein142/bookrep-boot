@@ -1,308 +1,365 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-body {
-    background-color: #D9D9D9;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
-
-section {
-    height: 100%;
-    margin-top: 100px;
-}
-
-/* --------------------------- */
-
-
-
-
-
-
-/*customerHeader,adminHeader*/
-#headerContent{
-    position: fixed; /* 헤더를 화면에 고정시킴 */
-    top: 0; /* 화면 상단에 고정시킴 */
-    z-index: 1000;
-    width: 100%;
-    padding: 10px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgba(186,182,182,0.7);
-    border-bottom: black 1px solid;
-}
-#headerLeftContent {
-    display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
-    align-items: center; /* 요소들을 수직으로 아래로 정렬 */
-    flex-direction: column; /*세로 정렬*/
-}
-
-#headerCenterContent{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#customerImage img {
-    height: 50px;
-}
-#headerCenterContent img{
-    width: 65px;
-    height: 65px;
-
-}
-#headerLogoText{
-    text-align: center;
-    margin-left: 10px;
-}
-#headerLogoText h2 {
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* 텍스트 그림자 효과 */
-}
-#headerLogoText span{
-    font-size: smaller;
-    font-weight: bold; /* 폰트를 두껍게 설정 */
-    display: inline-block;
-}
-
-#headerRightContent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#searchForm {
-    display: flex;
-    align-items: center;
-}
-
-#keywordInput {
-    margin-right: 8px;
-    height: 24px;
-    border-radius: 100px;
-    padding-right: 10px;
-    padding-left: 10px;
-    background-color: rgba(255,255,255,0.31);
-    border: none;
-    outline: none;
-    /* 입력 텍스트를 우측부터 써지게 설정 */
-    direction: rtl;
-    /* 입력 텍스트를 우측에 정렬 */
-    text-align: right;
-}
-
-
-#searchForm img {
-    height: 20px;
-    margin-right: 30px;
-}
-
-#headerRightContent-LogButtonBox button{
-    height: 35px;
-    width: 70px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-}
-#headerRightContent-LogButtonBox button:hover {
-    opacity: 0.5;
-}
-/*------------------------------*/
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+    body {
+        background-color: #D9D9D9;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    section {
+        height: 100%;
+        margin-top: 100px;
+    }
+
+    /* --------------------------- */
+
+
+
+
+
+
+    /*customerHeader,adminHeader*/
+    #headerContent{
+        position: fixed; /* 헤더를 화면 상단에 고정시킴 */
+        top: 0; /* 화면 상단에 고정시킴 */
+        z-index: 1000; /* 사이드바 위에 위치하도록 z-index 값 조정 */
+        width: 100%;
+        padding: 10px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(186,182,182,0.9);
+        border-bottom: black 1px solid;
+    }
+    #headerLeftContent {
+        display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
+        align-items: center; /* 요소들을 수직으로 아래로 정렬 */
+        flex-direction: column; /*세로 정렬*/
+    }
+
+    #headerCenterContent{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    #customerImage img {
+        height: 50px;
+    }
+    #headerCenterContent img{
+        width: 65px;
+        height: 65px;
+
+    }
+    #headerLogoText{
+        text-align: center;
+        margin-left: 10px;
+    }
+    #headerLogoText h2 {
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* 텍스트 그림자 효과 */
+    }
+    #headerLogoText span{
+        font-size: smaller;
+        font-weight: bold; /* 폰트를 두껍게 설정 */
+        display: inline-block;
+    }
+
+    #headerRightContent {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #searchForm {
+        display: flex;
+        align-items: center;
+    }
+
+    #keywordInput {
+        margin-right: 8px;
+        height: 24px;
+        border-radius: 100px;
+        padding-right: 10px;
+        padding-left: 10px;
+        background-color: rgba(255,255,255,0.31);
+        border: none;
+        outline: none;
+        /* 입력 텍스트를 우측부터 써지게 설정 */
+        direction: rtl;
+        /* 입력 텍스트를 우측에 정렬 */
+        text-align: right;
+    }
+
+
+    #searchForm img {
+        height: 20px;
+        margin-right: 30px;
+    }
+
+    #headerRightContent-LogButtonBox button{
+        height: 35px;
+        width: 70px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    #headerRightContent-LogButtonBox button:hover {
+        opacity: 0.5;
+    }
+    /*------------------------------*/
+
+
+
+
+
+    /*footer*/
+    .footer-bar {
+        bottom: 0;
+        width: 100%;
+        height: 40px;
+        background-color: rgb(186,182,182);
+        border-top: 1px solid black;
+        padding: 10px 0;
+    }
+
+    #footerContent {
+        text-align: center;
+    }
+
+    #footerContent img {
+        height: 30px; /* 로고 이미지 높이 조정 */
+        margin-right: 10px; /* 로고와 링크 사이의 간격 조정 */
+    }
+
+    #footerContent img{
+        height: 20px;
+        margin-right: 10px;
+    }
+
+    #footerContent a {
+        text-decoration: none; /* 밑줄 제거 */
+        color: black; /* 텍스트 색상을 검은색으로 설정 */
+        margin-right: 10px;
+        font-weight: bolder;
+    }
+    /*------------------------------*/
+
+
+
+    /* Share House */
+    #shareHouse_content {
+        display: flex;
+        justify-content: center;
+    }
+
+    #shareList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+        background-color: #ffffffb2;
+    }
+
+    #tradeRegistration {
+        margin-top: 20px;
+        margin-bottom: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    #tradeRegistration button {
+        height: 35px;
+        width: 110px;
+        font-size: 1.2em;
+        color: rgb(255, 255, 255);
+        background-color: rgb(126, 165, 108);
+        border: 0px;
+        border-radius: 5px;
+
+    }
+
+    /* --------------------------------------------------------- */
+
+
+
+
 
 
 
+    /* myShare*/
+    aside {
+        position: fixed;
+        top: 90px;
+        left: 10px;
+        width: 200px;
+        background-color: black;
+        border-right: 2px solid white;
+        z-index: 1;
+        border-radius: 5px;
+    }
+
+    aside ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    aside li {
+        padding: 10px 0;
+    }
+
+    aside a {
+        display: block;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+
+    aside a:hover {
+        background-color: #333;
+    }
+
+    #myShareBox {
+        display: flex;
+        align-items: flex-start; /* 내부 요소에 맞게 상단 정렬 */
+        flex-direction: column;
+        min-height: 100vh; /* 최소 높이를 화면 높이로 설정 */
+    }
+
+    #myShare-tradeList-title,#myShare-receiveTradeRequestList-title,#myShare-makeTradeRequestList-title{
+        margin-bottom: 30px;
+    }
+    #myShare-tradeList,#myShare-receiveTradeRequestList,#myShare-makeTradeRequestList{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        border-bottom: black solid 2px;
+    }
+
+    #myShare-tradeList-contents,#myShare-receiveTradeRequestList-contents,#myShare-makeTradeRequestList-contents{
+        background-color: white;
+        width: 600px;
+        height: 700px;
+        border: black solid 2px;
+    }
+    #myShare-tradeList-content,#myShare-receiveTradeRequestList-content,#myShare-makeTradeRequestList-content{
+        border-bottom: black 1px solid;
+        /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
+    }
 
+    #myShare-tradeList-content-imgbox{
+    /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
+    }
 
-/*footer*/
-.footer-bar {
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    background-color: rgba(186,182,182,0.7);
-    border-top: 1px solid black;
-    padding: 10px 0;
-}
+    /* ----------------------------------------- */
 
-#footerContent {
-    text-align: center;
-}
 
-#footerContent img {
-    height: 30px; /* 로고 이미지 높이 조정 */
-    margin-right: 10px; /* 로고와 링크 사이의 간격 조정 */
-}
 
-#footerContent img{
-    height: 20px;
-    margin-right: 10px;
-}
 
-#footerContent a {
-    text-decoration: none; /* 밑줄 제거 */
-    color: black; /* 텍스트 색상을 검은색으로 설정 */
-    margin-right: 10px;
-    font-weight: bolder;
-}
-/*------------------------------*/
 
 
 
-/* Share House */
-#shareHouse_content {
-    display: flex;
-    justify-content: center;
-}
+    /* tradeRegistration */
+    #tradeRegistration {
+        margin-top: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-#shareList {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    background-color: #ffffffb2;
-}
+    #tradeRegistration img {
+        height: 690px;
+        width: 520px;
+    }
 
-#tradeRegistration {
-    margin-top: 20px;
-    margin-bottom: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
+    /* -------------------------------------------- */
 
-#tradeRegistration button {
-    height: 35px;
-    width: 110px;
-    font-size: 1.2em;
-    color: rgb(255, 255, 255);
-    background-color: rgb(126, 165, 108);
-    border: 0px;
-    border-radius: 5px;
 
-}
 
-/* --------------------------------------------------------- */
 
 
 
+    /* tradeApplication */
+    #tradeApplication_fullContents {
+        margin-top: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+    #tradeApplication_Contents_00 {
+        border: 2px solid black;
+        margin-right: 50px;
+        height: 690px;
+        width: 520px;
+        padding: 25px;
+        font-size: large;
+    }
 
+    #tradeApplication_contents_01 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
+    #tradeApplication_contents_01 img {
+        height: 290px;
+    }
 
-/* myShare,shareHouse*/
-#myShareBox{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
+    #tradeApplication_contents_detailBox1 {
+        margin-left: 20px;
+        width: 300px;
+        height: 290px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
-#myShare-tradeList-content,#myShare-receiveTradeRequestList-content,#myShare-makeTradeRequestList-content{
-    background-color: white;
-    width: 600px;
-    height: 700px;
-    border: black solid 2px;
-}
-/* ----------------------------------------- */
+    #tradeApplication_contents_detailBox1 div {
+        padding: 5px;
+    }
 
+    #tradeApplication_contents_detailBox1_writer {
+        border-bottom: 2px solid black;
+    }
 
 
+    #tradeApplication_contents_02 {
+        margin-top: 20px;
+    }
 
+    #tradeApplication_BookSelectLink {
+        margin-left: 50px;
+    }
 
+    #tradeApplication_BookSelectLink img {
+        height: 690px;
+        width: 520px;
+    }
 
+    /* ------------------------------------- */
 
-/* tradeRegistration */
-#tradeRegistration {
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-#tradeRegistration img {
-    height: 690px;
-    width: 520px;
-}
 
-/* -------------------------------------------- */
 
 
 
+    /*  */
 
-
-
-/* tradeApplication */
-#tradeApplication_fullContents {
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#tradeApplication_Contents_00 {
-    border: 2px solid black;
-    margin-right: 50px;
-    height: 690px;
-    width: 520px;
-    padding: 25px;
-    font-size: large;
-}
-
-#tradeApplication_contents_01 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#tradeApplication_contents_01 img {
-    height: 290px;
-}
-
-#tradeApplication_contents_detailBox1 {
-    margin-left: 20px;
-    width: 300px;
-    height: 290px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#tradeApplication_contents_detailBox1 div {
-    padding: 5px;
-}
-
-#tradeApplication_contents_detailBox1_writer {
-    border-bottom: 2px solid black;
-}
-
-
-#tradeApplication_contents_02 {
-    margin-top: 20px;
-}
-
-#tradeApplication_BookSelectLink {
-    margin-left: 50px;
-}
-
-#tradeApplication_BookSelectLink img {
-    height: 690px;
-    width: 520px;
-}
-
-/* ------------------------------------- */
-
-
-
-
-
-
-/*  */
-
-/* --------------------------------------- */
+    /* --------------------------------------- */
