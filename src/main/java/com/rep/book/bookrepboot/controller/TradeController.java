@@ -68,23 +68,21 @@ public class TradeController {
         return tradeService.updateTradeMsgStatus(msgId, loggedEmail, 3);
     }
 
-    @GetMapping("user/msg-detail") // 프론트에서 /user/msg-detail?id={msg.msg_id}
+    @GetMapping("user/msg-detail")
     public String showMsgDetail(@RequestParam("id") Long msgId, Model model) {
         String email = SecurityUtil.getCurrentUserEmail();
 
         MsgDTO msgDTO = tradeService.getMsgByID(msgId);
-        String userName = feedService.getNameByEmail(email);
 
         model.addAttribute("msg", msgDTO);
-        model.addAttribute("user", email);
-        model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", email);
 
         if (msgDTO.getSent_user_email().equals(email)) {
-            return "th/myTradeApplication"; // 신청 한 사람(취소 기능 있는 페이지)
+            return "th/makeTradeRequest"; // 신청 한 사람(취소 기능 있는 페이지)
         } else if (msgDTO.getReceived_user_email().equals(email)) {
-            return "th/myTradeRegistration"; // 신청 받은 사람(수락, 거절 기능 있는 페이지)
+            return "th/receiveTradeRequest"; // 신청 받은 사람(수락, 거절 기능 있는 페이지)
         } else {
-            return "th/shareHouse";
+            return "redirect:/user/share-house";
         }
     }
 }

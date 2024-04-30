@@ -7,10 +7,11 @@
         (user_email, book_isbn, book_quantity)
         VALUES (#{user_email}, #{book_isbn}, #{book_quantity})
     </insert>
-    <select id="getBookTradeByKeyword" parameterType="String" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
+    <select id="getBookTradeByKeyword" parameterType="Map" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
         SELECT *
         FROM book_trade bt, book b
         WHERE bt.book_isbn = b.book_isbn
+          AND user_email!=#{email}
         <if test="keyword != null and keyword != ''">
             AND b.book_name LIKE CONCAT('%', #{keyword}, '%')
         </if>
@@ -28,8 +29,4 @@
         WHERE #{loggedInUserEmail} = user_email
         ORDER BY book_trade_id DESC
     </select>
-    <delete id="bookDeleteBookTrade" parameterType="Long">
-        DELETE FROM book_trade
-        WHERE book_trade_id = #{bookTradeId}
-    </delete>
 </mapper>

@@ -38,16 +38,6 @@ public class SignController {
 		return "signIn";
 	}
 
-	// 로그인 로직
-//	@PostMapping("sign-in-proc")
-//	public String signIn(HttpSession session, @RequestParam String username, @RequestParam String password) {
-//		log.info("email:{}, pw:{}", username, password);
-//
-//		String view = signService.signIn(session, username, password);
-//		log.info(view);
-//		return view;
-//	}
-
 	// 로그아웃 로직
 	@GetMapping("sign-out")
 	public String signOut(HttpSession session) {

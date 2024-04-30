@@ -5,6 +5,7 @@ import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import com.rep.book.bookrepboot.dto.PageDTO;
 import com.rep.book.bookrepboot.service.BookService;
 import com.rep.book.bookrepboot.service.BookTradeService;
+import com.rep.book.bookrepboot.service.FeedService;
 import com.rep.book.bookrepboot.util.MainUtil;
 import com.rep.book.bookrepboot.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,8 @@ public class BookTradeController {
     private BookTradeService bookTradeService;
     @Autowired
     private BookService bookService;
+    @Autowired
+    private FeedService feedService;
 
     @GetMapping("user/book-select") // 교환 등록 및 신청시 책 선택 페이지
     public String bookSelect(@RequestParam(value = "keyword", required = false) String keyword,
@@ -37,15 +40,21 @@ public class BookTradeController {
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail(); // 시큐리티에서 현재 로그인 한 사람 가져옴.
         List<BookDTO> bookList = bookTradeService.getUnTradeBookByDB(loggedInUserEmail, keyword);
         List<PageDTO> bookPageList = MainUtil.setPaging(bookList,6);
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
 
         pageNum = Math.min(pageNum, bookPageList.size());
 
-        model.addAttribute("bookList", bookPageList.get(pageNum - 1));
+        if (bookList.size()>0){
+            model.addAttribute("bookList", bookPageList.get(pageNum-1));
+        } else {
+            model.addAttribute("bookList", null);
+        }
         model.addAttribute("keyword", keyword);
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("checkNum", checkNum);
         model.addAttribute("id", id);
         model.addAttribute("bookListSize", bookPageList.size());
+        model.addAttribute("userName", userName);
 
         return "th/bookSelect";
     }
@@ -69,9 +78,15 @@ public class BookTradeController {
 
     @GetMapping("user/trade-resister") //교환 책 등록 페이지
     public String showTradeResister(@ModelAttribute("bookTrade") BookTradeDTO bookTradeDTO, Model model){
-        String email = SecurityUtil.getCurrentUserEmail();
-        model.addAttribute("userEmail", email);
-        log.info(email);
+        log.info("showTradeResister()");
+
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
+
+        model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", loggedInUserEmail);
+
+        log.info(loggedInUserEmail);
         return "th/tradeRegistration";
     }
 
@@ -97,6 +112,11 @@ public class BookTradeController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("tradeListSize", getTradeListByKeyword.size());
 
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
+        model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", loggedInUserEmail);
+
         return "th/shareHouse";
     }
 
@@ -108,13 +128,19 @@ public class BookTradeController {
         BookTradeDTO firstTradeInfo = bookTradeService.getInfoById(id);
         model.addAttribute("firstTrade",firstTradeInfo);
         log.info("firstTradeInfo {}", firstTradeInfo);
+
         // 가져온 book_trade 정보를 참고하여 책의 정보를 가져옴.
         BookDTO firstBook = bookService.getBookByIsbn(firstTradeInfo.getBook_isbn());
         model.addAttribute("firstBook", firstBook);
         log.info("firstBook {}", firstBook);
         model.addAttribute("id",id);
-        String email = SecurityUtil.getCurrentUserEmail();
-        model.addAttribute("userEmail", email);
+
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
+
+        model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", loggedInUserEmail);
+
         return "th/tradeApplication";
     }
 }

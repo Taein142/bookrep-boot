@@ -12,9 +12,7 @@ import com.rep.book.bookrepboot.dto.BookDTO;
 import com.rep.book.bookrepboot.dto.UserDTO;
 @Mapper
 public interface UserDao {
-	@Select("SELECT count(*) FROM user")
-	int getUserCnt();
-	
+
 	List<UserDTO> getUserList(String keyword);
 	
 	int signIn(Map<String, String> map);
@@ -34,7 +32,6 @@ public interface UserDao {
 	void resign(String email);
 
 	String getNameByEmail(String userEmail);
-
 
 	UserDTO findUserByEmail(String username);
 
