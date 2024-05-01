@@ -21,4 +21,9 @@ public interface ReportDao {
 
 	List<ReportDTO> getReportByIsbn(String isbn);
 
+	List<ReportDTO> getReportByTitle(String keyword);
+
+	List<ReportDTO> getReportByBookName(String keyword);
+
+	List<ReportDTO> getReportByUserEmail(String keyword);
 }
