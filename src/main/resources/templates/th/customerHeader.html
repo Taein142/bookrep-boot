@@ -7,8 +7,19 @@
 <div th:fragment="header(user)" class="header-bar">
     <div id="headerContent">
         <div id="headerLeftContent">
-            <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
-            <span th:text="${userName}"></span>
+            <div id="customerImageAndName">
+                <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
+                <span th:text="${userName}"></span>
+            </div>
+            <div>
+                <a href="#"><button>Write a book report</button> </a>
+            </div>
+            <div>
+                <a href="#"><button>My Share</button></a>
+            </div>
+            <div>
+                <a href="#"><button>Share House</button></a>
+            </div>
         </div>
 
         <div id="headerCenterContent" onclick="gocustomerHome()">
