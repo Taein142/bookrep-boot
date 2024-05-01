@@ -27,7 +27,6 @@
 	<delete id="deleteReportByReportId" parameterType="java.lang.Long">
 		DELETE FROM report WHERE report_id = ${id}
 	</delete>
-	
 	<update id="applyReportUpdate" parameterType="com.rep.book.bookrepboot.dto.ReportDTO">
 		UPDATE report 
 		SET report_title = #{title}, report_content = #{content} 
@@ -40,5 +39,24 @@
 	</select>
 	<select id="getReportByIsbn" parameterType="java.lang.String" resultMap="ReportDTO">
 		SELECT * FROM report WHERE report_book_isbn = #{isbn} ORDER BY report_time DESC
+	</select>
+	<select id="getReportByTitle" parameterType="String" resultMap="ReportDTO">
+		SELECT * FROM report
+		<if test="keyword != null and keyword != ''">
+			WHERE report_title LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY report_id desc
+	</select>
+	<select id="getReportByBookName" parameterType="java.lang.String" resultMap="ReportDTO">
+		SELECT r.* FROM report r, book b
+		WHERE r.report_book_isbn = b.book_isbn
+			AND b.book_name LIKE CONCAT('%', #{keyword}, '%')
+		ORDER BY r.report_id DESC
+	</select>
+	<select id="getReportByUserEmail" parameterType="java.lang.String" resultMap="ReportDTO">
+		SELECT r.* FROM report r, user u
+		WHERE r.report_user_email = u.user_email
+			AND r.report_user_email  LIKE CONCAT('%', #{keyword}, '%')
+		ORDER BY r.report_id DESC
 	</select>
 </mapper>

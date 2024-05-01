@@ -59,4 +59,9 @@
 		)
 		ORDER BY book_name ASC;
 	</select>
+	<select id="getBookNameByIsbn" parameterType="String" resultType="String">
+		SELECT book_name
+		FROM book
+		WHERE book_isbn = #{bookIsbn}
+	</select>
 </mapper>
