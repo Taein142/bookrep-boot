@@ -52,11 +52,32 @@ section {
     background-color: rgba(186, 182, 182, 0.9);
     border-bottom: black 1px solid;
 }
+#headerLeftContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-#headerLeftContent {
+#headerLeftContent button{
+    margin:3px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+}
+
+#headerLeftContent button:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+ }
+
+#customerImageAndName {
     display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
     align-items: center; /* 요소들을 수직으로 아래로 정렬 */
     flex-direction: column; /*세로 정렬*/
+    margin-right: 10px;
 }
 
 #headerCenterContent {
@@ -281,7 +302,7 @@ aside {
     top: 90px;
     left: 10px;
     width: 200px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.65);
     border-right: 2px solid white;
     z-index: 1;
     border-radius: 5px;
@@ -314,6 +335,26 @@ aside a:hover {
     align-items: flex-start; /* 내부 요소에 맞게 상단 정렬 */
     flex-direction: column;
     min-height: 100vh; /* 최소 높이를 화면 높이로 설정 */
+}
+#MyShareLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: dotted black 1px;
+    margin-bottom: 20px;
+}
+#MyShareLogo div{
+    margin-bottom: 20px;
+    margin: 10px;
+}
+#MyShareLogo img{
+    height: 110px;
+    width: auto;
+}
+#MyShareLogo h1{
+    font-size: xxx-large;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 #myShare-tradeList-title, #myShare-receiveTradeRequestList-title, #myShare-makeTradeRequestList-title {
