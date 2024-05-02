@@ -46,4 +46,7 @@ public class AdminSignController {
     public String adminMain(){
         return "th/adminMain";
     }
+
+    @GetMapping("driver/index")
+    public String driverMain(){ return "th/driverMain";}
 }

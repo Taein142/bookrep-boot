@@ -16,20 +16,20 @@
 </header>
 <section>
     <div id="BookReportManagementBox">
-        <div id="bookReportManagement_SerchBox">
+        <div id="bookReportManagement_SearchBox">
             <form action="/admin/main-report-management" method="get">
                 <select name="option" id="searchOption">
                     <option value="title">제목</option>
                     <option value="book">도서</option>
                     <option value="user">유저</option>
                 </select>
-                <input type="text" id="bookReportManagement_input">
+                <input type="text" id="bookReportManagement_input" name="keyword">
                 <img th:src="@{/images/search.png}" alt="">
             </form>
         </div>
-        <div id="listArea">
-            <div th:if="${reportList ==  null or #lists.isEmpty(reportList)}">해당 독후감이 존재하지 않습니다.</div>
-            <th:block th:if="${reportList}">
+        <div th:if="${reportList ==  null or #lists.isEmpty(reportList)}">해당 독후감이 존재하지 않습니다.</div>
+        <th:block th:if="${reportList}">
+            <div id="listArea">
                 <th:block th:each="pageDTO:${reportList}">
                     <div id="BRB">
                         <th:block th:each="map:${pageDTO.objectList}">
@@ -38,7 +38,8 @@
                                     <span>id: <span th:text="${map.report.id}"></span></span>
                                     <span>작성자: <span th:text="${map.report.userEmail}"></span></span>
                                     <span>제목: <span th:text="${map.report.title}"></span></span>
-                                    <span>도서명: <span th:text="${#strings.length(map.bookName) > 8 ? #strings.substring(map.bookName, 0, 8) + '..' : map.bookName}"></span></span>
+                                    <span>도서명: <span
+                                            th:text="${#strings.length(map.bookName) > 8 ? #strings.substring(map.bookName, 0, 8) + '..' : map.bookName}"></span></span>
                                     <span> 작성시간: <span th:text="${map.report.time}"></span></span>
                                 </div>
                             </div>
@@ -48,28 +49,29 @@
                         </th:block>
                     </div>
                 </th:block>
-            </th:block>
-        </div>
-        <div id="paging_area">
-            <a th:href="@{'?pageNum=1'+ ${option != null ? '&option=' + keyword : ''} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-               class="page-link">|◀</a>
-            <th:block th:if="${currentPageNum > 3}">
-                <a th:href="@{'?pageNum=' + ${currentPageNum - 3} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-                   class="page-link">이전</a>
-            </th:block>
-            <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
-                <th:block th:if="${pageNum >= 1 && pageNum <= listMaxSize}">
-                    <a th:href="@{'?pageNum=' + ${pageNum} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-                       th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+            </div>
+            <div id="paging_area">
+                <a th:href="@{'?pageNum=1'+ ${option != null ? '&option=' + keyword : ''} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                   class="page-link">|◀</a>
+                <th:block th:if="${currentPageNum > 3}">
+                    <a th:href="@{'?pageNum=' + ${currentPageNum - 3} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                       class="page-link">이전</a>
                 </th:block>
-            </th:block>
-            <th:block th:if="${currentPageNum + 2 < listMaxSize}">
-                <a th:href="@{'?pageNum=' + ${currentPageNum + 3} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-                   class="page-link">다음</a>
-            </th:block>
-            <a th:href="@{'?pageNum=' + ${listMaxSize} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
-               class="page-link">▶|</a>
-        </div>
+                <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                    <th:block th:if="${pageNum >= 1 && pageNum <= listMaxSize}">
+                        <a th:href="@{'?pageNum=' + ${pageNum} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                           th:text="${pageNum}"
+                           th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                    </th:block>
+                </th:block>
+                <th:block th:if="${currentPageNum + 2 < listMaxSize}">
+                    <a th:href="@{'?pageNum=' + ${currentPageNum + 3} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                       class="page-link">다음</a>
+                </th:block>
+                <a th:href="@{'?pageNum=' + ${listMaxSize} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                   class="page-link">▶|</a>
+            </div>
+        </th:block>
     </div>
 </section>
 <footer>
