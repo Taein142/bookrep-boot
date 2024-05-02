@@ -27,10 +27,10 @@ public class TradeTest {
     public void sendTradeMsgTest(){
         MsgDTO test = new MsgDTO();
         test.setBook_trade_id(15L);
-        test.setSent_user_email("test02@naver.com");
-        test.setSent_book_isbn("9781506292380");
-        test.setReceived_user_email("test01@naver.com");
-        test.setReceived_book_isbn("9788965795223");
+        test.setSent_user_email("xodlsdldy@naver.com");
+        test.setSent_book_isbn("9788957269244");
+        test.setReceived_user_email("test02@naver.com");
+        test.setReceived_book_isbn("9788998047238");
         RedirectAttributes rttr = new RedirectAttributesModelMap();
         tradeService.saveTradeMsg(test, rttr);
         System.out.println(rttr.getFlashAttributes());

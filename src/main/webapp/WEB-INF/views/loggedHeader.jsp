@@ -32,7 +32,10 @@
 				<button onclick="moveToWrite()">글 쓰기</button>
 			</div>
 			<div class="write-button">
-				<button onclick="moveToShareHouse()">ShareHouse</button>
+				<button onclick="moveToMyShare()">My Share</button>
+			</div>
+			<div class="write-button">
+				<button onclick="moveToShareHouse()">Share House</button>
 			</div>
 
 			<div class="logo">
@@ -97,6 +100,10 @@
 
 	const moveToShareHouse = () => {
 		location.href = "/user/share-house";
+	}
+
+	const moveToMyShare = () => {
+		location.href = "/user/my-share";
 	}
 	
 </script>

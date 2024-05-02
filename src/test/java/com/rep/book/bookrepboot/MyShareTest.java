@@ -6,6 +6,8 @@ import com.rep.book.bookrepboot.service.MyShareService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import java.util.List;
 
@@ -16,14 +18,14 @@ public class MyShareTest {
 
     @Test
     public void getReceivedTradeMsgTest(){
-        String testEmail = "test01@naver.com";
+        String testEmail = "test02@naver.com";
         List<Object> testList = myShareService.getReceivedTradeMsg(testEmail);
         System.out.println(testList);
     }
 
     @Test
     public void getSentTradeMsgTest(){
-        String testEmail = "test01@naver.com";
+        String testEmail = "test02@naver.com";
         List<Object> testList = myShareService.getSentTradeMsg(testEmail);
         System.out.println(testList);
     }
@@ -33,5 +35,13 @@ public class MyShareTest {
         String testEmail = "xodlsdldy@naver.com";
         List<Object> testList = myShareService.getRegisterList(testEmail);
         System.out.println(testList);
+    }
+
+    @Test
+    public void deleteTradeRegistrationTest(){
+        Long testId = 22L;
+        RedirectAttributes rttr = new RedirectAttributesModelMap();
+        String result = myShareService.deleteTradeRegistration(testId, rttr);
+        System.out.println(result);
     }
 }

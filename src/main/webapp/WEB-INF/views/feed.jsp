@@ -67,6 +67,14 @@
                         </c:when>
                     </c:choose>
                 </div>
+                <div style="margin-left: 30px;">
+                    <c:choose>
+                        <c:when test="${isCurrentUser}">
+                            <a href="${pageContext.request.contextPath}/user/my-trade-status"
+                               style="color: #333333; text-decoration: none;">교환상태</a>
+                        </c:when>
+                    </c:choose>
+                </div>
             </div>
 
             <br>

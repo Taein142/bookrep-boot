@@ -26,19 +26,6 @@ public class TradeController {
     @Autowired
     private FeedService feedService;
 
-    @GetMapping("user/my-trade-status")
-    public String showTradeIndex(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
-        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
-        List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
-        String userName = feedService.getNameByEmail(loggedInUserEmail);
-        model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
-        model.addAttribute("user", loggedInUserEmail);
-        model.addAttribute("currentPageNum", pageNum);
-        model.addAttribute("userName", userName);
-        
-        return "th/myTradeStatus";
-    }
-
     @PostMapping("user/send-trade-msg")
     public String sendTradeMsg(MsgDTO msgDTO, RedirectAttributes rttr) {
         log.info("sendTradeMsg()");
@@ -70,19 +57,34 @@ public class TradeController {
 
     @GetMapping("user/msg-detail")
     public String showMsgDetail(@RequestParam("id") Long msgId, Model model) {
-        String email = SecurityUtil.getCurrentUserEmail();
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
+        model.addAttribute("userName", userName);
 
         MsgDTO msgDTO = tradeService.getMsgByID(msgId);
 
         model.addAttribute("msg", msgDTO);
-        model.addAttribute("userEmail", email);
+        model.addAttribute("userEmail", loggedInUserEmail);
 
-        if (msgDTO.getSent_user_email().equals(email)) {
+        if (msgDTO.getSent_user_email().equals(loggedInUserEmail)) {
             return "th/makeTradeRequest"; // 신청 한 사람(취소 기능 있는 페이지)
-        } else if (msgDTO.getReceived_user_email().equals(email)) {
+        } else if (msgDTO.getReceived_user_email().equals(loggedInUserEmail)) {
             return "th/receiveTradeRequest"; // 신청 받은 사람(수락, 거절 기능 있는 페이지)
         } else {
             return "redirect:/user/share-house";
         }
+    }
+
+    @GetMapping("user/my-trade-status") // my-share에 합쳐지는 중
+    public String showTradeIndex(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
+        model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
+        model.addAttribute("user", loggedInUserEmail);
+        model.addAttribute("currentPageNum", pageNum);
+        model.addAttribute("userName", userName);
+
+        return "th/myTradeStatus";
     }
 }
