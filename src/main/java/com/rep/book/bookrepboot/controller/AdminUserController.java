@@ -29,7 +29,12 @@ public class AdminUserController {
         log.info("showUserManagement()");
         List<UserDTO> userList = searchService.getUserByString(keyword);
         List<PageDTO> userPagingList = MainUtil.setPaging(userList, 10);
-        model.addAttribute("userList", userPagingList.get(pageNum-1));
+
+        if (userPagingList.size() > 0){
+            model.addAttribute("userList", userPagingList.get(pageNum-1));
+        } else {
+            model.addAttribute("userList", null);
+        }
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("listMaxSize", userPagingList.size());
 

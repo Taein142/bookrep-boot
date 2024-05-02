@@ -16,13 +16,13 @@
 </header>
 <section>
     <div id="userManagementBox">
-        <div id="userManagement_SerchBox">
+        <div id="userManagement_SearchBox">
             <form action="/admin/main-user-management" method="get">
                 <input type="text" id="userManagement_input" name="keyword" class="form-control">
                 <img th:src="@{/images/search.png}" alt="">
             </form>
         </div>
-        <div th:if="${userList== null or #lists.isEmpty(bookList)}">
+        <div th:if="${userList== null or #lists.isEmpty(userList)}">
             <p>해당 유저가 존재하지 않습니다</p>
         </div>
         <th:block th:if="${userList}">
@@ -48,7 +48,6 @@
                     </div>
                 </div>
             </th:block>
-        </th:block>
         <div id="paging_area">
             <a th:href="@{'?pageNum=1'+${keyword != null ? '&keyword=' + keyword : ''}}"
                class="page-link">|◀</a>
@@ -69,6 +68,7 @@
             <a th:href="@{'?pageNum=' + ${listMaxSize}+ ${keyword != null ? '&keyword=' + keyword : ''}}"
                class="page-link">▶|</a>
         </div>
+        </th:block>
     </div>
 </section>
 <footer>

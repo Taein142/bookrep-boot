@@ -21,14 +21,18 @@ public class AdminReportController {
 
     @GetMapping("admin/main-report-management")
     public String showReportManagement(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-                                       @RequestParam(value = "option", defaultValue = "제목") String option,
+                                       @RequestParam(value = "option", defaultValue = "title") String option,
                                        @RequestParam(value = "keyword", required = false) String keyword,
                                        Model model){
         log.info("showReportManagement()");
         List<PageDTO> reportList = adminReportService.getReportByKeyword(option, keyword);
         log.info("reportList{}", reportList);
 
-        model.addAttribute("reportList",reportList.get(pageNum-1));
+        if (reportList.size()>0){
+            model.addAttribute("reportList",reportList.get(pageNum-1));
+        } else {
+            model.addAttribute("reportList", null);
+        }
         model.addAttribute("listMaxSize",reportList.size());
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("keyword", keyword);
