@@ -64,7 +64,7 @@ public class TradeService {
         try{
             tradeMsgDao.setTradeMsg(msgDTO);
             msg = "신청 메시지 전송 완료";
-            view = "redirect:my-trade";
+            view = "redirect:my-share";
         }catch (Exception e){
             e.printStackTrace();
             msg = "신청 메시지 전송 실패";
@@ -121,23 +121,35 @@ public class TradeService {
     }
 
     // 책 정보를 조합하여 리턴하는 메서드
-    public List<Object> addBookInfo(List<MsgDTO> msglist){
+    public List<Object> addBookInfo(List<MsgDTO> msglist, int checkNum){
         List<Object> mList = new ArrayList<>();
 
-        try{
-            for (MsgDTO msgDTO : msglist) {
-                Map<String, Object> map = new HashMap<>();
-                String receivedIsbn = msgDTO.getReceived_book_isbn();
-                String sentIsbn = msgDTO.getSent_book_isbn();
-                BookDTO receivedBook = bookDao.getBookByIsbn(receivedIsbn);
-                BookDTO sentBook = bookDao.getBookByIsbn(sentIsbn);
-                map.put("msg", msgDTO);
-                map.put("receivedBook", receivedBook);
-                map.put("sentBook", sentBook);
-                mList.add(map);
+        if(checkNum == 1){
+           try{
+               for (MsgDTO msgDTO : msglist) {
+                   Map<String, Object> map = new HashMap<>();
+                   BookDTO receivedBook = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
+                   map.put("msgId", msgDTO.getMsg_id());
+                   map.put("receivedBook", receivedBook);
+                   mList.add(map);
+               }
+           }catch (Exception e){
+               e.printStackTrace();
+           }
+        } else if (checkNum == 2) {
+            try{
+                for (MsgDTO msgDTO : msglist) {
+                    Map<String, Object> map = new HashMap<>();
+                    BookDTO sentBook = bookDao.getBookByIsbn(msgDTO.getSent_book_isbn());
+                    map.put("msgId", msgDTO.getMsg_id());
+                    map.put("sentBook", sentBook);
+                    mList.add(map);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            mList = null;
         }
         return mList;
     }
