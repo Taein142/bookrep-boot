@@ -16,7 +16,7 @@ public class AdminReportTest {
     @Test
     public void getReportByKeywordTest(){
         String testKeyword = "";
-        String testOption = "제목";
+        String testOption = "user";
         List<PageDTO> testList = adminReportService.getReportByKeyword(testOption,testKeyword);
         System.out.println(testList);
 
