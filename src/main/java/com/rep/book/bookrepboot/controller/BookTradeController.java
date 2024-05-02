@@ -31,10 +31,11 @@ public class BookTradeController {
     private FeedService feedService;
 
     @GetMapping("user/book-select") // 교환 등록 및 신청시 책 선택 페이지
-    public String bookSelect(@RequestParam(value = "keyword", required = false) String keyword,
+    public String bookSelect(@RequestParam(value = "checkNum") int checkNum,
+                             @RequestParam(value = "keyword", required = false) String keyword,
                              @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                              @RequestParam(value = "id", required = false) Long id,
-                             int checkNum, Model model) {
+                             Model model) {
         log.info("bookSelect");
 
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail(); // 시큐리티에서 현재 로그인 한 사람 가져옴.
