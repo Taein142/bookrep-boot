@@ -27,4 +27,10 @@ public interface BookDao {
 	List<BookDTO> getOwnBookByKeyword(Map<String, String> map);
 
 	String getBookNameByIsbn(String bookIsbn);
+
+	List<BookDTO> getBookByAuthor(String keyword);
+
+	List<BookDTO> getBookByPublisher(String keyword);
+
+	List<BookDTO> getBookByName(String keyword);
 }

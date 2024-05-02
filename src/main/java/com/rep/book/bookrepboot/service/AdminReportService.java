@@ -29,9 +29,9 @@ public class AdminReportService {
         if (option == null || option.isEmpty()){
 
         } else {
-            if (option.equals("유저")) {
+            if (option.equals("user")) {
                 reportList = reportDao.getReportByUserEmail(keyword);
-            } else if (option.equals("도서")) {
+            } else if (option.equals("book")) {
                 reportList = reportDao.getReportByBookName(keyword);
             } else {
                 reportList = reportDao.getReportByTitle(keyword);
