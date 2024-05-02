@@ -36,7 +36,7 @@
                 </form>
             </div>
 
-            <div id="tradeRegistrationButtonBox">
+            <div id="shareHouse_tradeRegistrationButtonBox">
                 <a th:href="@{/user/trade-resister}">
                     <button>교환 등록</button>
                 </a>
@@ -54,12 +54,12 @@
                         <div id="shareHouse_tradeRegistrationList_contents">
                             <th:block th:if="${trade.pageNum == currentPageNum}">
                                 <th:block th:each="object:${trade.objectList}">
-                                    <div id="shareList" onclick="goTradeApplication(this)"
+                                    <div id="shareHouse_tradeRegistrationList_contents_shareList" onclick="goTradeApplication(this)"
                                          th:attr="data-id=${object.bookTrade.book_trade_id}">
-                                        <div>
+                                        <div id="shareHouse_tradeRegistrationList_contents_shareList_imgBox">
                                             <img th:src="${object.book.image}" alt="bo_book">
                                         </div>
-                                        <div>
+                                        <div id="shareHouse_tradeRegistrationList_contents_shareList_info">
                                             <p th:text="'신청자: ' + ${object.bookTrade.user_email}"></p>
                                             <p th:text="'도서명: '+${object.book.name}"></p>
                                             <p th:text="'저자: '+${object.book.author}"></p>

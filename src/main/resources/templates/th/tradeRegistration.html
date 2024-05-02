@@ -3,53 +3,102 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{static/css/customer.css}">
+    <link rel="stylesheet" th:href="@{/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>tradeRegistration</title>
 </head>
 <body>
-<header></header>
+<header>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+</header>
 <section>
-    <form action="/user/book-select" method="get">
-        <input type="text" id="searchKeyword" name="keyword" class="form-control">
-        <input type="hidden" name="checkNum" value="1">
-        <button type="submit" class="btn btn-info">책 검색</button>
-    </form> <br><hr>
 
-    <h2>교환 등록</h2>
-    <div th:text="${userEmail} + '님'"></div>
-    <div id="tradeRegistration">
-        <th:block th:if="${book != null}">
-            <img th:src="${book.image}" alt="No Image" style="width: 150px; height: 200px;">
-        </th:block>
-        <th:block th:unless="${book != null}">
-            <img src="../images/no_book.jpg" alt="noBook" style="height: 250px; width: 200px;">
-        </th:block>
+    <div id="tradeRegistrationLogo">
+        <div>
+            <img src="../images/newFullLogo.png " alt="Logo">
+        </div>
+        <div>
+            <h1>교환 등록</h1>
+        </div>
     </div>
 
-    <form class="form-resister" action="/user/save-resister" method="post" accept-charset="UTF-8">
-        <div>
-            <input type="text" name="user_email" th:value="${userEmail}" required readonly placeholder="email">
-        </div>
-        <div>
-            <input type="text" name="book_isbn"
-                   th:value="${book != null ? book.isbn : ''}"
-                   required readonly placeholder="isbn">
-        </div>
-        <div>
-            <input type="text" name="book_quantity" th:value="1" required placeholder="수량">
-        </div>
-        <div>
-            <input type="submit" class="btn-write" value="등록" required>
-        </div>
-    </form>
+    <div id="tradeRegistration_fullContent">
+        <th:blcok th:if="${book} == null">
+            <div id="tradeRegistration_dummyContent_hoverStyleBox">
+                <div id="tradeRegistration_dummyContent">
+                    <div id="tradeRegistration_dummyContent_top">
+                        <img th:src="@{/images/no_book.jpg}" alt="">
+                    </div>
+                    <div id="tradeRegistration_dummyContent_middle">
+                        <p>작성자:<span th:text="${userEmail}"></span></p>
+                        <p>책이름 : Unknown</p>
+                        <p>저자 : Unknown</p>
+                    </div>
+                    <div id="tradeRegistration_dummyContent_bottom">
+                        <p>book_isbn : Unknown</p>
+                    </div>
+                </div>
+                <a th:href="@{/user/book-select(checkNum=${1})}">
+                    <div id="addimgBox">
+                        <div id="addimgBox_itemStyle">
+                            <img th:src="@{/images/add.png}" id="addimg">
+                            <p id="addimgBox_itemStyle_p">교환할 책을 선택해 주세요.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div id="tradeRegistration_dummyContent_quantityAndButton">
+                <div>
+                    <span>수량:&nbsp;<input type="number" name="book_quantity" th:value="0" readonly>&nbsp;권</span>
+                </div>
+                <div>
+                    <button disabled>등록</button>
+                </div>
+            </div>
+
+        </th:blcok>
+
+        <th:blcok th:unless="${book} == null">
+            <form class="form-resister" action="/user/save-resister" method="post" accept-charset="UTF-8">
+                <div id="tradeRegistration_Content">
+                    <div id="tradeRegistration_Content_top">
+                        <img th:src="${book.image}" alt="">
+                    </div>
+                    <div id="tradeRegistration_Content_middle">
+                        <input type="text" name="user_email" th:value="${userEmail}" required readonly
+                               placeholder="email">
+                        <input th:type="text" th:value="${book.name}" placeholder="책이름">
+                        <input th:type="text" th:value="${book.author}" placeholder="저자">
+                    </div>
+                    <div id="tradeRegistration_Content_bottom">
+                        <input type="text" name="book_isbn"
+                               th:value="${book != null ? book.isbn : ''}"
+                               required readonly placeholder="isbn">
+                    </div>
+                </div>
+                <div id="tradeRegistration_Content_quantityAndButton">
+                    <div>
+                        <span>수량:&nbsp;<input type="number" name="book_quantity" th:value="1" required>&nbsp;권</span>
+                    </div>
+                    <div>
+                        <button>등록</button>
+                    </div>
+                </div>
+            </form>
+        </th:blcok>
+    </div>
 </section>
-<footer></footer>
+<footer>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
+</footer>
 <script th:inline="javascript">
     let lg = [[${userEmail}]];
     console.log("lg: ", lg);
 
+    function goToBookSelectPage() {
+        location.href = "/user/book-select";
+    }
 
 </script>
 </body>
