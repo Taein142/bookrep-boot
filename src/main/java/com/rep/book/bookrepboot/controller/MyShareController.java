@@ -7,7 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -30,11 +31,18 @@ public class MyShareController {
         String userName = feedService.getNameByEmail(loggedInUserEmail); // 로그인 중인 유저의 이름 가져옴
 
         model.addAttribute("tradeList", registerList); // 내 교환 등록 리스트
-        model.addAttribute("tradeApplicationList", sentMessages); // 교환 신청한 책 리스트
-        model.addAttribute("tradeRegistrationList", receivedMessages); // 교환 신청받은 책 리스트
+        model.addAttribute("makeTradeRequestList", sentMessages); // 교환 신청한 책 리스트
+        model.addAttribute("receiveTradeRequestList", receivedMessages); // 교환 신청받은 책 리스트
         model.addAttribute("userEmail",loggedInUserEmail); //로그인 한 유저 이메일
         model.addAttribute("userName", userName); // 로그인 한 유저 이름
 
         return "th/myShare";
+    }
+
+    @PostMapping("/delete-trade-registration")
+    public String deleteTradeRegistration(@RequestParam(value = "TRId") Long id, RedirectAttributes rttr){
+        log.info("deleteTradeRegistration()");
+
+        return myShareService.deleteTradeRegistration(id, rttr);
     }
 }
