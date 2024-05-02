@@ -11,14 +11,18 @@
                 <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
                 <span th:text="${userName}"></span>
             </div>
+            <th:blcok th:if="${user != null}">
+                <div>
+                    <button id="wbr" onclick="wbr()">글 쓰기</button>
+                </div>
+            </th:blcok>
+            <th:blcok th:if="${user != null}">
+                <div>
+                   <button id="myshare" onclick="myshare()">My Share</button>
+                </div>
+            </th:blcok>
             <div>
-                <a href="#"><button>Write a book report</button> </a>
-            </div>
-            <div>
-                <a href="#"><button>My Share</button></a>
-            </div>
-            <div>
-                <a href="#"><button>Share House</button></a>
+                <button id="sharehouse" onclick="sharehouse()">Share House</button>
             </div>
         </div>
 
@@ -85,6 +89,16 @@
 
         function logout(){
             location.href = "/user/sign-out";
+        }
+
+        function sharehouse(){
+            location.href="/user/share-house";
+        }
+        function myshare(){
+            location.href="/user/my-share";
+        }
+        function wbr(){
+            location.href="/user/write";
         }
     </Script>
 </div>

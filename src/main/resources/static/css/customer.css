@@ -16,8 +16,11 @@ section {
     height: 100%;
     margin-top: 100px;
 }
-
 /* --------------------------- */
+
+
+
+
 
 /*paging*/
 #paging_area {
@@ -36,6 +39,10 @@ section {
     text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 /*-----------------------------*/
+
+
+
+
 
 
 /*customerHeader,adminHeader*/
@@ -162,8 +169,10 @@ section {
 #headerRightContent-LogButtonBox button:hover {
     opacity: 0.5;
 }
-
 /*------------------------------*/
+
+
+
 
 
 /*footer*/
@@ -196,8 +205,11 @@ section {
     margin-right: 10px;
     font-weight: bolder;
 }
-
 /*------------------------------*/
+
+
+
+
 
 
 /* shareHouse */
@@ -270,7 +282,7 @@ section {
     outline: none; /* 포커스시 외곽선 제거 */
 }
 
-#tradeRegistrationButtonBox button{
+#shareHouse_tradeRegistrationButtonBox button{
     border: none;
     border-radius: 5px;
     background-color: #76b173;
@@ -278,7 +290,7 @@ section {
     height: 33px;
     width: 90px;
 }
-#tradeRegistrationButtonBox button:hover{
+#shareHouse_tradeRegistrationButtonBox button:hover{
     background-color: rgba(118, 177, 115, 0.73);
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);;
 }
@@ -289,11 +301,186 @@ section {
     height: 700px;
     border: black solid 2px;
 }
-#shareHouse_tradeRegistrationList_contents{
-    border-bottom: black solid 1px;
+#shareHouse_tradeRegistrationList_contents_shareList{
+    width: 600px;
+    height: 140px;
+    border-bottom: black 1px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#shareHouse_tradeRegistrationList_contents_shareList_imgBox{
+    padding: 5px;
+    width: 20%;
+    height: 140px;
+    border-right: rgba(0, 0, 0, 0.7) 1px dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#shareHouse_tradeRegistrationList_contents_shareList_imgBox img{
+    height: 100px;
+}
+#shareHouse_tradeRegistrationList_contents_shareList_info{
+    width: 80%;
+    height: 100%;
+    padding: 5px;
 }
 
-/* --------------------------------------------------------- */
+
+
+/* -------------------------------------------- */
+
+
+
+
+
+
+/*tradeRegistration*/
+#tradeRegistrationLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: dotted black 1px;
+    margin-bottom: 60px;
+}
+#tradeRegistrationLogo div{
+    margin-bottom: 20px;
+    margin: 10px;
+}
+#tradeRegistrationLogo img{
+    height: 110px;
+    width: auto;
+}
+#tradeRegistrationLogo h1{
+    font-size: xxx-large;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+#tradeRegistration_fullContent{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+#tradeRegistration_dummyContent_hoverStyleBox {
+    position: relative; /* 상대위치 지정 */
+}
+
+#tradeRegistration_dummyContent_hoverStyleBox:hover #tradeRegistration_dummyContent{
+    filter: blur(5px); /* 마우스를 올릴 때 블러 처리 */
+}
+
+
+#tradeRegistration_dummyContent_hoverStyleBox #addimgBox {
+    display: none; /* Initially hide the addimgBox */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#addimgBox_itemStyle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+#tradeRegistration_dummyContent_hoverStyleBox:hover #addimgBox{
+    display: block; /* 부모 요소에 호버될 때 이미지 표시 */
+}
+
+#addimg{
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+}
+#addimgBox_itemStyle_p{
+    color: black;
+    font-weight: bold;
+}
+
+
+#tradeRegistration_dummyContent,#tradeRegistration_Content{
+    height: 800px;
+    width: 650px;
+    border: black 2px solid;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+#tradeRegistration_dummyContent_top,#tradeRegistration_Content_top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    border-bottom: black 1px dashed;
+    padding: 20px;
+}
+
+#tradeRegistration_dummyContent_top img,#tradeRegistration_Content_top img{
+    height: 350px;
+}
+#tradeRegistration_Content_middle,#tradeRegistration_dummyContent_middle{
+    padding: 20px;
+    height: 45%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: black 1px dashed;
+}
+
+
+
+#tradeRegistration_dummyContent_bottom,#tradeRegistration_Content_bottom{
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tradeRegistration_dummyContent_quantityAndButton,#tradeRegistration_Content_quantityAndButton{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+#tradeRegistration_dummyContent_quantityAndButton span,#tradeRegistration_Content_quantityAndButton span{
+    font-weight: bold;
+}
+#tradeRegistration_dummyContent_quantityAndButton input,#tradeRegistration_Content_quantityAndButton input{
+    width: 20%;
+    height: 25px;
+    border: black 2px solid;
+    border-radius: 5px;
+}
+
+#tradeRegistration_dummyContent_quantityAndButton button,#tradeRegistration_Content_quantityAndButton button{
+    border: none;
+    border-radius: 5px;
+    background-color: #76b173;
+    color: white;
+    height: 33px;
+    width: 90px;
+}
+
+#tradeRegistration_dummyContent_quantityAndButton button:hover,#tradeRegistration_Content_quantityAndButton button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*-----------------------------------------------*/
+
+
+
+
 
 
 /* myShare*/
@@ -391,83 +578,3 @@ aside a:hover {
 /* ----------------------------------------- */
 
 
-/* tradeRegistration */
-#tradeRegistration {
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#tradeRegistration img {
-    height: 690px;
-    width: 520px;
-}
-
-/* -------------------------------------------- */
-
-
-/* tradeApplication */
-#tradeApplication_fullContents {
-    margin-top: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#tradeApplication_Contents_00 {
-    border: 2px solid black;
-    margin-right: 50px;
-    height: 690px;
-    width: 520px;
-    padding: 25px;
-    font-size: large;
-}
-
-#tradeApplication_contents_01 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#tradeApplication_contents_01 img {
-    height: 290px;
-}
-
-#tradeApplication_contents_detailBox1 {
-    margin-left: 20px;
-    width: 300px;
-    height: 290px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-#tradeApplication_contents_detailBox1 div {
-    padding: 5px;
-}
-
-#tradeApplication_contents_detailBox1_writer {
-    border-bottom: 2px solid black;
-}
-
-
-#tradeApplication_contents_02 {
-    margin-top: 20px;
-}
-
-#tradeApplication_BookSelectLink {
-    margin-left: 50px;
-}
-
-#tradeApplication_BookSelectLink img {
-    height: 690px;
-    width: 520px;
-}
-
-/* ------------------------------------- */
-
-
-/*  */
-
-/* --------------------------------------- */
