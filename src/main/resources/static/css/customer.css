@@ -566,11 +566,44 @@ aside a:hover {
 
 #myShare-tradeList-content, #myShare-receiveTradeRequestList-content, #myShare-makeTradeRequestList-content {
     border-bottom: black 1px solid;
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
 }
 
 #myShare-tradeList-content-imgbox {
+    width: 16%;
+    border-right: black 1px dashed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
+}
+#myShare-tradeList-content-infobox{
+    width: 74%;
+    padding: 10px;
+    border-right: black 1px dashed;
+}
+
+#myShare-tradeList-content-delButtonBox{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#myShare-tradeList-content-delButtonBox button{
+    padding: 5px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 4px;
+
+}
+#myShare-tradeList-content-delButtonBox button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ----------------------------------------- */
@@ -677,8 +710,5 @@ aside a:hover {
     width: 100px;
     height: 100px;
 }
-
-
-
 /*-------------------------------------------*/
 
