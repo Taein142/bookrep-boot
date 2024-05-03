@@ -1,80 +1,94 @@
-<!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" th:href="@{static/css/customer.css}">
-    <title>책 선택</title>
-</head>
-<body>
-<header></header>
-<section>
-    <h2>책 검색</h2>
-
-    <form action="/user/book-select" method="get">
-        <div class="form-group">
-            <input type="text" id="keyword" name="keyword" class="form-control">
-            <input type="hidden" name="checkNum" th:value="${checkNum}">
-            <button type="submit" class="btn btn-info">검색</button>
-        </div>
-    </form>
-    <br>
-    <hr>
-    <br>
-    <th:block th:if="${bookList == null or #lists.isEmpty(bookList)}">
-        <p>등록할 수 있는 책이 존재하지 않습니다.</p>
-    </th:block>
-    <th:block th:if="${bookList!=null}">
-        <div th:each="object:${bookList}">
-            <div th:if="${object.pageNum == currentPageNum}">
-                <div th:each="book:${object.objectList}">
-                    <img th:src="${book.image}" alt="">
-                    <p th:text="${book.name}"></p>
-                    <p th:text="${book.publisher}"></p>
-                    <form th:action="@{/user/apply-book-select}" method="get">
-                        <input type="hidden" name="name" th:value="${book.name}">
-                        <input type="hidden" name="author" th:value="${book.author}">
-                        <input type="hidden" name="publisher" th:value="${book.publisher}">
-                        <input type="hidden" name="isbn" th:value="${book.isbn}">
-                        <input type="hidden" name="image" th:value="${book.image}">
-                        <input type="hidden" name="checkNum" th:value="${checkNum}">
-                        <input th:if="${id!=null}" type="hidden" name="id" th:value="${id}">
-                        <input class="select-btn" type="submit" value="선택">
-                    </form>
+    <!DOCTYPE html>
+    <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" th:href="@{/css/customer.css}">
+        <title>책 선택</title>
+    </head>
+    <body>
+    <header>
+        <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+    </header>
+    <section>
+        <div id="bookSelect-searchBox">
+            <form action="/user/book-select" method="get">
+                <div class="form-group" id="bookSelect-searchForm">
+                    <input type="text" id="keyword" name="keyword" class="form-control" placeholder="책 검색">
+                    <input type="hidden" name="checkNum" th:value="${checkNum}">
+                    <button type="submit" class="btn btn-info"><img th:src="@{/images/search.png}"></button>
                 </div>
-            </div>
+            </form>
         </div>
-    </th:block>
-        <a th:href="@{'?checkNum=' + ${checkNum} +  (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=1'}"
-           class="page-link">|◀</a>
-        <th:block th:if="${currentPageNum > 3}">
-            <a th:href="@{'?checkNum=' + ${checkNum} +  (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${currentPageNum - 3}}"
-               class="page-link">이전</a>
-        </th:block>
-        <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
-            <th:block th:if="${pageNum >= 1 && pageNum <= bookListSize}">
-                <a th:href="@{'?checkNum='+${checkNum}+ (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${pageNum}}"
-                   th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
-            </th:block>
-        </th:block>
-        <th:block th:if="${currentPageNum + 2 < bookListSize}">
-            <a th:href="@{'?checkNum=' +${checkNum} + (${id != null ? '&id=' + id : ''}) + (${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${currentPageNum + 3}}"
-               class="page-link">다음</a>
-        </th:block>
-        <a th:href="@{'?checkNum=' + ${checkNum} + (${id != null ? '&id=' + id : ''}) + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${bookListSize}}"
-           class="page-link">▶|</a>
-</section>
-<footer></footer>
-<script th:inline="javascript">
-    let currentPageNum = [[${currentPageNum}]];
-    console.log("currentPageNum: ", currentPageNum);
 
-    window.onload = function () {
-        // 현재 URL에서 파라미터 값 가져오기
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get('id');
-    }
-</script>
-</body>
-</html>
+        <div id="bookSelect-bookList">
+            <th:block th:if="${bookList == null or #lists.isEmpty(bookList)}">
+                <p>등록할 수 있는 책이 존재하지 않습니다.</p>
+            </th:block>
+            <th:block th:if="${bookList!=null}">
+                <th:block th:each="object:${bookList}">
+                    <th:block th:if="${object.pageNum == currentPageNum}">
+                        <th:block th:each="book:${object.objectList}">
+                            <div id="bookSelect-bookList-bookInfoForm">
+                                <div id="bookSelect-bookList-bookInfoForm-sample">
+                                    <img th:src="${book.image}" alt="">
+                                    <p th:text="${book.name}"></p>
+                                    <p th:text="${book.publisher}"></p>
+                                </div>
+                                <div id="bookSelect-bookList-bookInfoForm-hiddenAndButton">
+                                    <form th:action="@{/user/apply-book-select}" method="get">
+                                        <input type="hidden" name="name" th:value="${book.name}">
+                                        <input type="hidden" name="author" th:value="${book.author}">
+                                        <input type="hidden" name="publisher" th:value="${book.publisher}">
+                                        <input type="hidden" name="isbn" th:value="${book.isbn}">
+                                        <input type="hidden" name="image" th:value="${book.image}">
+                                        <input type="hidden" name="checkNum" th:value="${checkNum}">
+                                        <input th:if="${id!=null}" type="hidden" name="id" th:value="${id}">
+                                        <button><img th:src="@{/images/add.png}" alt="add" id="addimg"></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </th:block>
+                    </th:block>
+                </th:block>
+            </th:block>
+        </div>
+
+        <div id="paging_area">
+            <a th:href="@{'?checkNum=' + ${checkNum} +  (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=1'}"
+               class="page-link">|◀</a>
+            <th:block th:if="${currentPageNum > 3}">
+                <a th:href="@{'?checkNum=' + ${checkNum} +  (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${currentPageNum - 3}}"
+                   class="page-link">이전</a>
+            </th:block>
+            <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                <th:block th:if="${pageNum >= 1 && pageNum <= bookListSize}">
+                    <a th:href="@{'?checkNum='+${checkNum}+ (${id != null ? '&id=' + id : ''}) +(${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${pageNum}}"
+                       th:text="${pageNum}" th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                </th:block>
+            </th:block>
+            <th:block th:if="${currentPageNum + 2 < bookListSize}">
+                <a th:href="@{'?checkNum=' +${checkNum} + (${id != null ? '&id=' + id : ''}) + (${keyword != null ? '&keyword=' + keyword : ''})+'&pageNum=' + ${currentPageNum + 3}}"
+                   class="page-link">다음</a>
+            </th:block>
+            <a th:href="@{'?checkNum=' + ${checkNum} + (${id != null ? '&id=' + id : ''}) + (${keyword != null ? '&keyword=' + keyword : ''}) + '&pageNum=' + ${bookListSize}}"
+               class="page-link">▶|</a>
+        </div>
+    </section>
+    <footer>
+        <th:blcok th:insert="~{th/footer}"></th:blcok>
+    </footer>
+    <script th:inline="javascript">
+        let currentPageNum = [[${currentPageNum}]];
+        console.log("currentPageNum: ", currentPageNum);
+
+        window.onload = function () {
+            // 현재 URL에서 파라미터 값 가져오기
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+        }
+
+    </script>
+    </body>
+    </html>
