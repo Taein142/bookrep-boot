@@ -61,8 +61,8 @@
                                         </div>
                                         <div id="shareHouse_tradeRegistrationList_contents_shareList_info">
                                             <p th:text="'신청자: ' + ${object.bookTrade.user_email}"></p>
-                                            <p th:text="'도서명: '+${object.book.name}"></p>
-                                            <p th:text="'저자: '+${object.book.author}"></p>
+                                            <p th:text="'도서명: '+${#strings.length(object.book.name) > 30 ? #strings.substring(object.book.name, 0, 30) + '...' : object.book.name}"></p>
+                                            <p th:text="'저자: '+${#strings.length(object.book.author) > 30 ? #strings.substring(object.book.author, 0, 30) + '...' : object.book.author}"></p>
                                             <p th:text="'출판사: '+${object.book.publisher}"></p>
                                             <p th:text="'수량: '+${object.bookTrade.book_quantity} + '권'"></p>
                                             <p th:hidden="${object.bookTrade.book_trade_id}"></p>
@@ -110,8 +110,6 @@
         console.log(id);
         location.href = "/user/trade-application?id=" + id;
     }
-
-
 
 </script>
 </html>

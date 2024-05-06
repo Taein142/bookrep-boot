@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -50,6 +47,8 @@ public class BookTradeController {
         } else {
             model.addAttribute("bookList", null);
         }
+
+        model.addAttribute("userEmail", loggedInUserEmail);
         model.addAttribute("keyword", keyword);
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("checkNum", checkNum);
@@ -125,7 +124,7 @@ public class BookTradeController {
     public String showTradeApplication(@RequestParam("id") Long id, Model model){
         log.info("showTradeApplication()");
 
-        // id참조하여 book_trade에서 데이터 가져옴.
+        // id를 참조하여 book_trade 에서 데이터 가져옴.
         BookTradeDTO firstTradeInfo = bookTradeService.getInfoById(id);
         model.addAttribute("firstTrade",firstTradeInfo);
         log.info("firstTradeInfo {}", firstTradeInfo);

@@ -40,8 +40,7 @@ public class MyShareTest {
     @Test
     public void deleteTradeRegistrationTest(){
         Long testId = 22L;
-        RedirectAttributes rttr = new RedirectAttributesModelMap();
-        String result = myShareService.deleteTradeRegistration(testId, rttr);
+        boolean result = myShareService.deleteTradeRegistration(testId);
         System.out.println(result);
     }
 }

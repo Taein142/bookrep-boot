@@ -39,10 +39,10 @@ public class MyShareController {
         return "th/myShare";
     }
 
-    @PostMapping("/delete-trade-registration")
-    public String deleteTradeRegistration(@RequestParam(value = "TRId") Long id, RedirectAttributes rttr){
-        log.info("deleteTradeRegistration()");
+    @PostMapping("/delete-book-trade")
+    public boolean deleteBookTrade(@RequestParam(value = "id") Long id){
+        log.info("deleteBookTrade()");
 
-        return myShareService.deleteTradeRegistration(id, rttr);
+        return myShareService.deleteTradeRegistration(id);
     }
 }

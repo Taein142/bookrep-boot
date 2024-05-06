@@ -4,39 +4,73 @@
     <meta charset="UTF-8">
 
     <title>Trade Status</title>
+    <link rel="stylesheet" th:href="@{/css/customer.css}">
 </head>
 <body>
-    <h2>교환 상태 페이지 입니다.</h2>
+<header>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+</header>
 
-    <h3>유저가 자신의 교환 배송상태를 보기 위한 페이지 입니다.</h3>
-    <h3>trade 테이블을 참고합니다.</h3>
-    <h3>교환 승낙이 이루허진 이후의 데이터들을 다룹니다.</h3>
-    <h3>교환 신청 혹은 교환 등록만 한 상태라면 myShare 로 가주세요</h3>
-    <h3>페이징 되어 있으며, map 으로 책 정보도 같이 넘겨놓았습니다.</h3>
-    <h3>넘긴 데이터에서 2번~3번 더 들어가서 꺼내야 됩니다.</h3>
-    <h3>trade_status 는 다음과 같습니다.</h3>
-    <h4>교환신청 완료: 0, 배차가 완료: 1, 배송중: 2, 배송완료: 3</h4>
-    <h3>trade_status 는 int 데이터이므로 각각의 코드에 맞게 if문 등으로 하여 데이터를 표현해주세요</h3>
-    <h3>책 정보도 꺼내왔습니다.</h3>
-    <h3>거래 정보 없을 경우 출력할 내용도 만들어주세요</h3>
-    <h4>ex) "???"님의 거래 내용이 없습니다.</h4>
-    <hr>
-    <h3>나머지 페이지들도 파이팅!</h3>
-    <hr>
-    <h3>아래는 예시입니다.</h3>
-    <hr>
-    <div th:text="'현재 로그인중이 유저 이메일: ' + ${user}"></div>
-    <div th:text="'사용자 이름: '+${userName}"></div>
-    <th:block th:each="pageDTO : ${tradeList}">
-        <th:block th:each="tradeMap : ${pageDTO.objectList}">
-            <div th:text="'거래 상태: '+${tradeMap.tradeInfo.trade_status}"></div> <!--스크립트에서 바꿔도 되고 여기서 바꿔도 됨-->
-            <div th:text="'거래 정보: ' + ${tradeMap.tradeInfo.fir_user_email} + ' <-> ' + ${tradeMap.tradeInfo.sec_user_email}"></div>
-            <img th:src="${tradeMap.firstBook.image}" alt="">
-            <div th:text="'첫 번째 책: ' + ${tradeMap.firstBook.name} + ' (' + ${tradeMap.firstBook.author} + ')'"></div>
-            <img th:src="${tradeMap.secondBook.image}" alt="">
-            <div th:text="'두 번째 책: ' + ${tradeMap.secondBook.name} + ' (' + ${tradeMap.secondBook.author} + ')'"></div>
-        </th:block>
-        <div th:text="'현재 페이지: ' + ${currentPageNum}"></div>
+<br><br><br><br><br>
+<div th:text="'사용자 이름: '+${userName}"></div>
+<br>
+<th:block th:each="pageDTO : ${tradeList}">
+    <th:block th:each="tradeMap : ${pageDTO.objectList}">
+        <div th:switch="${tradeMap.tradeInfo.trade_status}">
+            <p th:case="0" th:text="'교환신청이 완료되었습니다.'"></p>
+            <p th:case="1" th:text="'배차가 완료되었습니다.'"></p>
+            <p th:case="2" th:text="'배송중 입니다.'"></p>
+            <p th:case="3" th:text="'배송이 완료되었습니다.'">.</p>
+            <p th:case="*" th:text="'오류가 발생했습니다. 관리자에게 문의해주세요.'"></p>
+        </div>
+        <div th:text="'거래 정보: ' + ${tradeMap.tradeInfo.fir_user_email} + ' <-> ' + ${tradeMap.tradeInfo.sec_user_email}"></div>
+        <br>
+        <div>
+            <div>
+                <div>첫 번째 책 정보</div>
+                <div>
+                    <div><img th:src="${tradeMap.firstBook.image}" alt=""></div>
+                    <div>
+                        <div th:text="'도서: ' + ${tradeMap.firstBook.name}"/>
+                        <div th:text="': ' + ${tradeMap.firstBook.author}"/>
+                        <div th:text="'출판사: ' + ${tradeMap.firstBook.publisher}"/>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>두 번째 책 정보</div>
+                <div>
+                    <div>
+                        <img th:src="${tradeMap.secondBook.image}" alt=""></div>
+                    <div>
+                        <div th:text="'도서: ' + ${tradeMap.secondBook.name}"/>
+                        <div th:text="'저자: ' + ${tradeMap.secondBook.author}"/>
+                        <div th:text="'출판사: ' + ${tradeMap.secondBook.publisher}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </th:block>
+</th:block>
+<div id="paging_area">
+    <a th:href="@{'?pageNum=1'}" class="page-link">|◀</a>
+    <th:block th:if="${currentPageNum > 3}">
+        <a th:href="@{'?pageNum=' + ${currentPageNum - 3}}" class="page-link">이전</a>
+    </th:block>
+    <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+        <th:block th:if="${pageNum >= 1 && pageNum <= listMaxSize}">
+            <a th:href="@{'?pageNum=' + ${pageNum}}" th:text="${pageNum}"
+               th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+        </th:block>
+    </th:block>
+    <th:block th:if="${currentPageNum + 2 < listMaxSize}">
+        <a th:href="@{'?pageNum=' + ${currentPageNum + 3}}" class="page-link">다음</a>
+    </th:block>
+    <a th:href="@{'?pageNum=' + ${listMaxSize}}" class="page-link">▶|</a>
+</div>
+
+<footer>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
+</footer>
 </body>
 </html>

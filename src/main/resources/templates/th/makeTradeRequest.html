@@ -5,82 +5,91 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>makeTradeRequest</title>
 </head>
-<!--메시지 (취소있는거)-->
+<!--교환 메시지 (보낸 사람 입장 - 취소있는거)-->
 <body>
-    <header></header>
-    <section>
-        <div id="">
-            <div id="">
-                <div>
-                    <div id="">
-                        <div id="">
-                            <div id="">
-                                <img src=".//images/image.png">
-                            </div>
-                            <div id="">
-                                <div>
-                                    작성자:예시입니다.
-                                </div>
-                                <div>
-                                    책이름:예시입니다.
-                                </div>
-                                <div>
-                                    저자:예시입니다.
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div id="">
-                                책요약: 예시입니다.
-                            </div>
-                        </div>
+<header>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+</header>
+<section>
+    <div>
+        <div>
+            <th:block th:with="book=${msgInfo.receivedBook}">
+                <div id="RTR-receivedBookInfo">
+                    <div id="RTR-RB-image">
+                        <img th:src="${book.image}" alt="">
+                    </div>
+                    <div id="RTR-RB-details">
+                        <div th:text="'이메일: : '+${msgInfo.msgDTO.received_user_email}"/>
+                        <div th:text="'도서명: '+${#strings.length(book.name) > 30 ? #strings.substring(book.name, 0, 30) + '...' : book.name}"></div>
+                        <div th:text="'저자명: '+${#strings.length(book.author) > 30 ? #strings.substring(book.author, 0, 30) + '...' : book.author}"></div>
+                        <div th:text="'출판사: '+${book.publisher}"/>
                     </div>
                 </div>
-
-                <div id="blankSpace">
-                </div>
-
-                <div>
-                    <div id="">
-                        <div id="">
-                            <div id="">
-                                <img src=".//images/image.png">
-                            </div>
-                            <div id="">
-                                <div>
-                                    작성자:예시입니다.
-                                </div>
-                                <div>
-                                    책이름:예시입니다.
-                                </div>
-                                <div>
-                                    저자:예시입니다.
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div id="">
-                                책요약: 예시입니다.
-                            </div>
-                        </div>
-                        <div>
-                            <img src="./images/add.png" alt="파일 추가">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="">
-                <button>수락</button>
-                <button>거절</button>
-            </div>
+            </th:block>
         </div>
-    </section>
-    <footer></footer>
-</body>
-<script>
 
+        <div id="blankSpace"></div>
+
+        <div>
+            <th:block th:with="book=${msgInfo.sentBook}">
+                <div id="RTR-sentBookInfo">
+                    <div id="RTR-SB-image">
+                        <img th:src="${book.image}" alt="">
+                    </div>
+                    <div id="RTR-SB-details">
+                        <div th:text="'이메일: : '+${msgInfo.msgDTO.sent_user_email}"/>
+                        <div th:text="'도서 명: '+${book.name}"/>
+                        <div th:text="'저자 명: '+${book.author}"/>
+                        <div th:text="'출판사: '+${book.publisher}"/>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+
+    <div id="RTR-btn">
+        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==0">
+            <button th:onclick="cancel('[[${msgInfo.msgDTO.msg_id}]]')">취소</button>
+        </th:blcok>
+        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==1">
+            <div>교환이 수락되었습니다.</div>
+        </th:blcok>
+        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==2">
+            <div> 교환이 거절되었습니다.</div>
+        </th:blcok>
+        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
+            <div> 교환이 취소되었습니다.</div>
+        </th:blcok>
+    </div>
+</section>
+<footer>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
+</footer>
+</body>
+<script th:inline="javascript">
+    const cancel = (msgId) => {
+        console.log("cancel - msgId: ", msgId);
+
+        $.ajax({
+            url: '/user/cancel-msg',
+            method: 'POST',
+            data: {msgId: msgId},
+            success: function (response) {
+                if (response) {
+                    console.log(response);
+                    document.location.reload(true);
+                    alert('교환을 취소 하셨습니다.');
+                } else {
+                    alert('알 수 없는 오류로 교환이 취소되지 않았습니다.');
+                }
+            },
+            error: function () {
+                alert('서버와의 통신 중 문제가 발생했습니다.');
+            }
+        });
+    }
 </script>
 </html>

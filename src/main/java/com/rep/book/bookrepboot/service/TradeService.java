@@ -42,13 +42,13 @@ public class TradeService {
         log.info("getTradeListByEmail()");
         List<TradeDTO> tradeDTOList = tradeDao.getTradeListByEmail(email);
         List<Object> tradeList = new ArrayList<>();
-        for (int i = 0; i < tradeDTOList.size(); i++) {
+        for (TradeDTO tradeDTO : tradeDTOList) {
             Map<String, Object> map = new HashMap<>();
-            map.put("tradeInfo", tradeDTOList.get(i));
-            BookDTO firstBook = bookDao.getBookByIsbn(tradeDTOList.get(i).getFir_book_isbn());
-            BookDTO secondBook = bookDao.getBookByIsbn(tradeDTOList.get(i).getSec_book_isbn());
-            map.put("firstBook",firstBook);
-            map.put("secondBook",secondBook);
+            map.put("tradeInfo", tradeDTO);
+            BookDTO firstBook = bookDao.getBookByIsbn(tradeDTO.getFir_book_isbn());
+            BookDTO secondBook = bookDao.getBookByIsbn(tradeDTO.getSec_book_isbn());
+            map.put("firstBook", firstBook);
+            map.put("secondBook", secondBook);
             tradeList.add(map);
         }
         log.info("tradeList {}", tradeList);
@@ -61,11 +61,11 @@ public class TradeService {
         String msg = null;
         String view = null;
 
-        try{
+        try {
             tradeMsgDao.setTradeMsg(msgDTO);
             msg = "신청 메시지 전송 완료";
             view = "redirect:my-share";
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             msg = "신청 메시지 전송 실패";
             view = "redirect:share-house";
@@ -93,7 +93,7 @@ public class TradeService {
         MsgDTO msgDTO = tradeMsgDao.getMsgById(msgId);
         boolean result = false;
 
-        if (msgDTO != null && msgDTO.getReceived_user_email().equals(userEmail)) {
+        if (msgDTO != null && (msgDTO.getReceived_user_email().equals(userEmail) || msgDTO.getSent_user_email().equals(userEmail))) {
             try {
                 Map<String, Object> map = new HashMap<>();
                 map.put("msgId", msgId);
@@ -101,7 +101,7 @@ public class TradeService {
                 result = tradeMsgDao.updateMsgStatus(map);
                 log.info("update msg_status");
 
-                if (status == 1){ // 승낙하였다면 trade 테이블에 정보 저장
+                if (status == 1) { // 승낙하였다면 trade 테이블에 정보 저장
                     TradeDTO tradeDTO = new TradeDTO();
                     tradeDTO.setFir_user_email(msgDTO.getSent_user_email());
                     tradeDTO.setSec_user_email(msgDTO.getReceived_user_email());
@@ -120,24 +120,25 @@ public class TradeService {
         return result;
     }
 
-    // 책 정보를 조합하여 리턴하는 메서드
-    public List<Object> addBookInfo(List<MsgDTO> msglist, int checkNum){
+    // 책 정보를 조합하여 리턴하는 메서드(리스트)
+    public List<Object> addBookInfoList(List<MsgDTO> msglist, int checkNum) {
+        log.info("addBookInfoList()");
         List<Object> mList = new ArrayList<>();
 
-        if(checkNum == 1){
-           try{
-               for (MsgDTO msgDTO : msglist) {
-                   Map<String, Object> map = new HashMap<>();
-                   BookDTO receivedBook = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
-                   map.put("msgId", msgDTO.getMsg_id());
-                   map.put("receivedBook", receivedBook);
-                   mList.add(map);
-               }
-           }catch (Exception e){
-               e.printStackTrace();
-           }
+        if (checkNum == 1) {
+            try {
+                for (MsgDTO msgDTO : msglist) {
+                    Map<String, Object> map = new HashMap<>();
+                    BookDTO receivedBook = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
+                    map.put("msgId", msgDTO.getMsg_id());
+                    map.put("receivedBook", receivedBook);
+                    mList.add(map);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else if (checkNum == 2) {
-            try{
+            try {
                 for (MsgDTO msgDTO : msglist) {
                     Map<String, Object> map = new HashMap<>();
                     BookDTO sentBook = bookDao.getBookByIsbn(msgDTO.getSent_book_isbn());
@@ -145,12 +146,31 @@ public class TradeService {
                     map.put("sentBook", sentBook);
                     mList.add(map);
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             mList = null;
         }
         return mList;
+    }
+
+    // 책 정보를 조합하여 리턴하는 메서드(dto)
+    public Map<String, Object> addBookInfo(MsgDTO msgDTO) {
+        log.info("addBookInfo");
+        Map<String, Object> resultMap = new HashMap<>();
+
+        try {
+            BookDTO sentBook = bookDao.getBookByIsbn(msgDTO.getSent_book_isbn());
+            BookDTO receivedBook = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
+            resultMap.put("msgDTO", msgDTO);
+            resultMap.put("sentBook", sentBook);
+            resultMap.put("receivedBook", receivedBook);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultMap;
     }
 }
