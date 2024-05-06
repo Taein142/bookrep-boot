@@ -22,6 +22,7 @@
 					<sec:authorize access="isAuthenticated()">
 						<sec:authentication property="principal" var="principal"/>
 						<a href="/user/feed/${principal.username}" id="userImage"></a>
+						<span>${name}</span>
 					</sec:authorize>
 					<sec:authorize>
 						<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
@@ -38,9 +39,12 @@
 				<button onclick="moveToShareHouse()">Share House</button>
 			</div>
 
-			<div class="logo">
-				<img src="<%=request.getContextPath()%>/resources/images/bookrepLogo.png"
+			<div class="logo" id="headerCenterContent">
+				<img src="<%=request.getContextPath()%>/resources/images/newFullLogo.png"
 					alt="로고" onclick="moveToHome()">
+				<div id="headerLogoText">
+					<h2>BOOKREP</h2>
+				</div>
 			</div>
 			<div class="buttons">
 				<div class="search-box">

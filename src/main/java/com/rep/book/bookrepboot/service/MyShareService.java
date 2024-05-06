@@ -33,14 +33,14 @@ public class MyShareService {
         log.info("getReceivedTradeMsg()");
          List<MsgDTO> receivedMsg = tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
 
-         return tradeService.addBookInfo(receivedMsg ,1);
+         return tradeService.addBookInfoList(receivedMsg ,1);
     }
 
     // 보낸 교환 메시지 가져오는 메소드
     public List<Object> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsg()");
         List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        return tradeService.addBookInfo(sentMsg,2);
+        return tradeService.addBookInfoList(sentMsg,2);
     }
 
     // 교환 등록한 데이터들 가져오는 메서드
@@ -66,19 +66,19 @@ public class MyShareService {
         return rList;
     }
 
-    public String deleteTradeRegistration(Long id, RedirectAttributes rttr) {
+    public boolean deleteTradeRegistration(Long id) {
         log.info("deleteTradeRegistration - service");
-        String msg = null;
+        boolean result = false;
 
         try{
             bookTradeDao.deleteTradeRegistration(id);
-            msg = "삭제되었습니다.";
+            log.info("삭제 성공");
+            result = true;
         } catch (Exception e){
             e.printStackTrace();
             log.info("삭제 실패");
-            msg = "교환 진행중 / 진행한 책은 삭제할 수 없습니다.";
         }
-        rttr.addFlashAttribute("msg", msg);
-        return "redirect:/user/share-house";
+
+        return result;
     }
 }

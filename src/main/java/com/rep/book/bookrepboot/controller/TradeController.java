@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -59,12 +60,12 @@ public class TradeController {
     public String showMsgDetail(@RequestParam("id") Long msgId, Model model) {
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         String userName = feedService.getNameByEmail(loggedInUserEmail);
-        model.addAttribute("userName", userName);
-
         MsgDTO msgDTO = tradeService.getMsgByID(msgId);
+        Map<String, Object> msgInfo = tradeService.addBookInfo(msgDTO);
 
-        model.addAttribute("msg", msgDTO);
+        model.addAttribute("userName", userName);
         model.addAttribute("userEmail", loggedInUserEmail);
+        model.addAttribute("msgInfo", msgInfo);
 
         if (msgDTO.getSent_user_email().equals(loggedInUserEmail)) {
             return "th/makeTradeRequest"; // 신청 한 사람(취소 기능 있는 페이지)
@@ -75,15 +76,17 @@ public class TradeController {
         }
     }
 
-    @GetMapping("user/my-trade-status") // my-share에 합쳐지는 중
-    public String showTradeIndex(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
+    @GetMapping("user/my-trade-status")
+    public String showTradeStatus(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
         String userName = feedService.getNameByEmail(loggedInUserEmail);
+
         model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
-        model.addAttribute("user", loggedInUserEmail);
+        model.addAttribute("userEmail", loggedInUserEmail);
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("userName", userName);
+        model.addAttribute("listMaxSize", tradeIndextList.size());
 
         return "th/myTradeStatus";
     }

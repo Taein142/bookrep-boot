@@ -9,11 +9,11 @@ body {
 header {
 	position: sticky;
 	top: 0;
-	z-index: 10;
+	z-index: 1000;
 }
 
 .header {
-	background-color: #918981;
+	background-color: rgba(186, 182, 182, 0.9);
 	color: #fff;
 	padding: 10px 20px;
 	display: flex;
@@ -28,8 +28,22 @@ header {
 }
 
 .header .logo img {
-	width: 40px;
+	width: 65px;
+	height: 65px;
 	padding-left: 20px;
+	margin-right: 10px;
+}
+#headerCenterContent{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.header .log #headerLogoText{
+	text-align: center;
+	margin-left: 10px;
+}
+#headerLogoText{
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .header .profile, .header .buttons, .header .write-button {
@@ -40,7 +54,19 @@ header {
 .header .profile img {
 	width: 40px;
 	border-radius: 50%;
+	margin-right: 5px;
+}
+
+.profile {
+	display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
+	align-items: center; /* 요소들을 수직으로 아래로 정렬 */
+	flex-direction: column; /*세로 정렬*/
 	margin-right: 10px;
+	color: black ;
+	font-size: 15px; solid-color: black
+}
+.profile span{
+	margin-right: 1px;
 }
 
 .header .buttons {
@@ -51,7 +77,7 @@ header {
 .header .buttons button {
 	margin-left: 1px;
 	padding: 8px 12px;
-	background-color: #555;
+	background-color: black;
 	color: #fff;
 	border: none;
 	cursor: pointer;
@@ -68,20 +94,10 @@ header {
 	border-radius: 5px;
 }
 
-.mainLogo {
-	text-align: center;
-}
-
-.mainLogo img {
-	width: 750px;
-	height: 750px;
-	padding-top: 50px;
-}
-
 .write-button button {
 	margin-left: 10px;
 	padding: 8px 12px;
-	background-color: #555;
+	background-color: black;
 	color: #fff;
 	border: none;
 	cursor: pointer;
