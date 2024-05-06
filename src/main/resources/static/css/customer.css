@@ -26,6 +26,9 @@ section {
 #paging_area {
     margin-top: 5px; /* 원하는 여백 설정 */
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #paging_area a {
@@ -327,8 +330,6 @@ section {
     padding: 5px;
 }
 
-
-
 /* -------------------------------------------- */
 
 
@@ -402,7 +403,6 @@ section {
     font-weight: bold;
 }
 
-
 #tradeRegistration_dummyContent,#tradeRegistration_Content{
     height: 800px;
     width: 650px;
@@ -413,8 +413,6 @@ section {
     flex-direction: column;
     justify-content: space-between;
 }
-
-
 
 #tradeRegistration_dummyContent_top,#tradeRegistration_Content_top{
     display: flex;
@@ -568,13 +566,149 @@ aside a:hover {
 
 #myShare-tradeList-content, #myShare-receiveTradeRequestList-content, #myShare-makeTradeRequestList-content {
     border-bottom: black 1px solid;
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
 }
 
 #myShare-tradeList-content-imgbox {
+    width: 16%;
+    border-right: black 1px dashed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
+}
+#myShare-tradeList-content-infobox{
+    width: 74%;
+    padding: 10px;
+    border-right: black 1px dashed;
+}
+
+#myShare-tradeList-content-delButtonBox{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#myShare-tradeList-content-delButtonBox button{
+    padding: 5px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 4px;
+
+}
+#myShare-tradeList-content-delButtonBox button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ----------------------------------------- */
 
+
+
+
+
+
+/*bookSelect*/
+#bookSelect-searchBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: black dotted 1px;
+
+}
+
+#bookSelect-searchForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255,0.5);
+    border: black solid 1px;
+    border-radius: 100px;
+    width: 200px;
+    height: 30px;
+    margin-bottom: 30px;
+}
+#bookSelect-searchForm input{
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+}
+
+#bookSelect-searchForm button{
+    background-color: transparent;
+    border: none;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bookSelect-searchForm img{
+    width: auto;
+    height: 20px;
+}
+
+#bookSelect-searchForm img:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#bookSelect-bookList-bookInfoForm{
+    position: relative;
+}
+#bookSelect-bookList-bookInfoForm:hover #bookSelect-bookList-bookInfoForm-sample{
+    filter: blur(2px); /* 마우스를 올릴 때 블러 처리 */
+}
+#bookSelect-bookList-bookInfoForm:hover #bookSelect-bookList-bookInfoForm-hiddenAndButton{
+    display: block;
+}
+#bookSelect-bookList-bookInfoForm-hiddenAndButton{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#bookSelect-bookList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    height: 640px;
+    width: 100%;
+    padding: 100px;
+    border-bottom: black dotted 1px;
+}
+
+#bookSelect-bookList-bookInfoForm-sample{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+#bookSelect-bookList-bookInfoForm-sample img{
+    height: 400px;
+}
+
+#bookSelect-bookList-bookInfoForm-hiddenAndButton button{
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+#bookSelect-bookList-bookInfoForm-hiddenAndButton button #addimg{
+    width: 100px;
+    height: 100px;
+}
+/*-------------------------------------------*/
 

@@ -37,7 +37,7 @@ public class BookTradeController {
 
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail(); // 시큐리티에서 현재 로그인 한 사람 가져옴.
         List<BookDTO> bookList = bookTradeService.getUnTradeBookByDB(loggedInUserEmail, keyword);
-        List<PageDTO> bookPageList = MainUtil.setPaging(bookList,6);
+        List<PageDTO> bookPageList = MainUtil.setPaging(bookList,3);
         String userName = feedService.getNameByEmail(loggedInUserEmail);
 
         pageNum = Math.min(pageNum, bookPageList.size());
