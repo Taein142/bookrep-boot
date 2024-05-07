@@ -449,12 +449,10 @@ section {
 #tradeRegistration_dummyContent_quantityAndButton,#tradeRegistration_Content_quantityAndButton{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 10px;
 }
-#tradeRegistration_dummyContent_quantityAndButton span,#tradeRegistration_Content_quantityAndButton span{
-    font-weight: bold;
-}
+
 #tradeRegistration_dummyContent_quantityAndButton input,#tradeRegistration_Content_quantityAndButton input{
     width: 20%;
     height: 25px;
@@ -712,3 +710,10 @@ aside a:hover {
 }
 /*-------------------------------------------*/
 
+
+
+
+
+/*makeTradeRequest*/
+
+/*--------------------------------------------*/

@@ -50,13 +50,12 @@
             </div>
             <div id="tradeRegistration_dummyContent_quantityAndButton">
                 <div>
-                    <span>수량:&nbsp;<input type="number" name="book_quantity" th:value="0" readonly>&nbsp;권</span>
+                    <input type="hidden" name="book_quantity" th:value="0" readonly>&nbsp;
                 </div>
                 <div>
                     <button disabled>등록</button>
                 </div>
             </div>
-
         </th:blcok>
 
         <th:blcok th:unless="${book} == null">
@@ -79,7 +78,7 @@
                 </div>
                 <div id="tradeRegistration_Content_quantityAndButton">
                     <div>
-                        <span>수량:&nbsp;<input type="number" name="book_quantity" th:value="1" required>&nbsp;권</span>
+                       <input type="hidden" name="book_quantity" th:value="1" required>
                     </div>
                     <div>
                         <button>등록</button>
