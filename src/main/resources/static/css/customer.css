@@ -714,6 +714,76 @@ aside a:hover {
 
 
 
-/*makeTradeRequest*/
-
+/*receiveTradeRequest*/
+#RTR-full{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+#blankSpace{
+    width: 100px;
+    height: auto;
+}
+#RTR-full-myInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#RTR-receivedBookInfo,#RTR-sentBookInfo{
+    margin-top: 50px;
+    height: 750px;
+    width: 550px;
+    border: black 2px solid;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#RTR-RB-image,#RTR-SB-image{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: black solid 1px;
+}
+#RTR-RB-image img,#RTR-SB-image img{
+    height: 90%;
+    width: auto;
+}
+#RTR-RB-details,#RTR-SB-details{
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#RTR-RB-details div,#RTR-SB-details div{
+    font-size: large;
+    font-weight: bolder;
+}
+#RTR-btn-buttonBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px;
+}
+#RTR-btn-buttonBox button{
+    width: 90px;
+    height: 30px;
+    background-color: #76b173;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+#RTR-btn-buttonBox button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 /*--------------------------------------------*/
