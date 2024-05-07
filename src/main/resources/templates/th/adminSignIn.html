@@ -9,10 +9,21 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <section>
-        <div id="container1">
-            <div id="loginLogo">
-                <img th:src="@{/images/newFullLogo.png}">
+<section>
+    <div id="container1">
+        <div id="loginLogo">
+            <img th:src="@{/images/newFullLogo.png}">
+        </div>
+        <div id="loginContent">
+            <div id="loginContent-form">
+                <div id="loginText">Login</div>
+                <form action="/admin/admin-sign-in-proc" method="post">
+                    <input type="text" name="username" id="email" autocomplete="off" placeholder="Email" required><br>
+                    <input type="password" name="password" id="password" autocomplete="off" placeholder="Password"
+                           required><br>
+                    <button>Login</button>
+                </form>
+                <h5>or</h5>
             </div>
             <div id="loginContent">
                 <div id="loginContent-form">
@@ -25,9 +36,9 @@
                     </form>
                 </div>
             </div>
-
         </div>
-    </section>
+    </div>
+</section>
 </body>
 
 </html>

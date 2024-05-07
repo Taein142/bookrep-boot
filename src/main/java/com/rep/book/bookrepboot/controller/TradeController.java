@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -25,18 +26,6 @@ public class TradeController {
     private TradeService tradeService;
     @Autowired
     private FeedService feedService;
-
-    @GetMapping("user/my-trade-index")
-    public String showTradeIndex(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
-        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
-        List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
-        String userName = feedService.getNameByEmail(loggedInUserEmail);
-        model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
-        model.addAttribute("user", loggedInUserEmail);
-        model.addAttribute("currentPageNum", pageNum);
-        model.addAttribute("userName", userName);
-        return "th/myTradeStatus";
-    }
 
     @PostMapping("user/send-trade-msg")
     public String sendTradeMsg(MsgDTO msgDTO, RedirectAttributes rttr) {
@@ -67,23 +56,38 @@ public class TradeController {
         return tradeService.updateTradeMsgStatus(msgId, loggedEmail, 3);
     }
 
-    @GetMapping("user/msg-detail") // 프론트에서 /user/msg-detail?id={msg.msg_id}
+    @GetMapping("user/msg-detail")
     public String showMsgDetail(@RequestParam("id") Long msgId, Model model) {
-        String email = SecurityUtil.getCurrentUserEmail();
-
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
         MsgDTO msgDTO = tradeService.getMsgByID(msgId);
-        String userName = feedService.getNameByEmail(email);
+        Map<String, Object> msgInfo = tradeService.addBookInfo(msgDTO);
 
-        model.addAttribute("msg", msgDTO);
-        model.addAttribute("user", email);
         model.addAttribute("userName", userName);
+        model.addAttribute("userEmail", loggedInUserEmail);
+        model.addAttribute("msgInfo", msgInfo);
 
-        if (msgDTO.getSent_user_email().equals(email)) {
-            return "th/myTradeApplication"; // 신청 한 사람(취소 기능 있는 페이지)
-        } else if (msgDTO.getReceived_user_email().equals(email)) {
-            return "th/myTradeRegistration"; // 신청 받은 사람(수락, 거절 기능 있는 페이지)
+        if (msgDTO.getSent_user_email().equals(loggedInUserEmail)) {
+            return "th/makeTradeRequest"; // 신청 한 사람(취소 기능 있는 페이지)
+        } else if (msgDTO.getReceived_user_email().equals(loggedInUserEmail)) {
+            return "th/receiveTradeRequest"; // 신청 받은 사람(수락, 거절 기능 있는 페이지)
         } else {
-            return "th/shareHouse";
+            return "redirect:/user/share-house";
         }
+    }
+
+    @GetMapping("user/my-trade-status")
+    public String showTradeStatus(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model){
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
+        String userName = feedService.getNameByEmail(loggedInUserEmail);
+
+        model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
+        model.addAttribute("userEmail", loggedInUserEmail);
+        model.addAttribute("currentPageNum", pageNum);
+        model.addAttribute("userName", userName);
+        model.addAttribute("listMaxSize", tradeIndextList.size());
+
+        return "th/myTradeStatus";
     }
 }

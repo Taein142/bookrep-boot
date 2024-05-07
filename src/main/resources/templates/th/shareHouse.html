@@ -10,7 +10,10 @@
 </head>
 
 <body>
-<header></header>
+<header>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+</header>
+
 <section>
     <div id="shareHouseLogo">
         <div>
@@ -20,71 +23,83 @@
             <h1>Share House</h1>
         </div>
     </div>
-    <h2>책 검색</h2>
 
-    <form action="/user/share-house" method="get">
-        <div class="form-group">
-            <input type="text" id="keyword" name="keyword" class="form-control">
-            <button type="submit" class="btn btn-info">검색</button>
+    <div id="shareHouse_contents">
+        <div id="shareHouse_contents_top">
+
+            <div id="bookSearch">
+                <form action="/user/share-house" method="get">
+                    <div class="form-group">
+                        <input type="text" id="keyword" name="keyword" class="form-control" placeholder="책 검색">
+                        <img id="bookSearchImage" src="../images/search.png">
+                    </div>
+                </form>
+            </div>
+
+            <div id="shareHouse_tradeRegistrationButtonBox">
+                <a th:href="@{/user/trade-resister}">
+                    <button>교환 등록</button>
+                </a>
+            </div>
+
         </div>
-    </form>
-    <br>
-    <hr>
-    <div id="tradeRegistration">
-        <a th:href="@{/user/trade-resister}">
-            <button>교환 등록</button>
-        </a>
-    </div>
-    <div id="shareHouse_content">
-        <th:block th:if="${tradeList.isEmpty}">
-            <div>교환 목록이 존재하지 않습니다.</div>
-        </th:block>
-        <th:block th:unless="${tradeList.isEmpty}">
-            <th:block th:each="trade:${tradeList}">
-                <th:block th:if="${trade.pageNum == currentPageNum}">
-                    <th:block th:each="object:${trade.objectList}">
-                        <div id="shareList" onclick="goTradeApplication(this)" th:attr="data-id=${object.bookTrade.book_trade_id}">
-                            <div>
-                                <img th:src="${object.book.image}" alt="bo_book">
-                            </div>
-                            <div>
-                                <p th:text="'신청자: ' + ${object.bookTrade.user_email}"></p>
-                                <p th:text="'도서명: '+${object.book.name}"></p>
-                                <p th:text="'저자: '+${object.book.author}"></p>
-                                <p th:text="'출판사: '+${object.book.publisher}"></p>
-                                <p th:text="'수량: '+${object.bookTrade.book_quantity} + '권'"></p>
-                                <p th:hidden="${object.bookTrade.book_trade_id}"></p>
-                            </div>
+
+        <div id="shareHouse_tradeRegistrationList_contentBox">
+                <th:block th:if="${tradeList.isEmpty}">
+                    <div>교환 목록이 존재하지 않습니다.</div>
+                </th:block>
+
+                <th:block th:unless="${tradeList.isEmpty}">
+                    <th:block th:each="trade:${tradeList}">
+                        <div id="shareHouse_tradeRegistrationList_contents">
+                            <th:block th:if="${trade.pageNum == currentPageNum}">
+                                <th:block th:each="object:${trade.objectList}">
+                                    <div id="shareHouse_tradeRegistrationList_contents_shareList" onclick="goTradeApplication(this)"
+                                         th:attr="data-id=${object.bookTrade.book_trade_id}">
+                                        <div id="shareHouse_tradeRegistrationList_contents_shareList_imgBox">
+                                            <img th:src="${object.book.image}" alt="bo_book">
+                                        </div>
+                                        <div id="shareHouse_tradeRegistrationList_contents_shareList_info">
+                                            <p th:text="'신청자: ' + ${object.bookTrade.user_email}"></p>
+                                            <p th:text="'도서명: '+${#strings.length(object.book.name) > 30 ? #strings.substring(object.book.name, 0, 30) + '...' : object.book.name}"></p>
+                                            <p th:text="'저자: '+${#strings.length(object.book.author) > 30 ? #strings.substring(object.book.author, 0, 30) + '...' : object.book.author}"></p>
+                                            <p th:text="'출판사: '+${object.book.publisher}"></p>
+                                            <p th:text="'수량: '+${object.bookTrade.book_quantity} + '권'"></p>
+                                            <p th:hidden="${object.bookTrade.book_trade_id}"></p>
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </th:block>
                         </div>
                     </th:block>
                 </th:block>
+        </div>
+        <div id="paging_area">
+            <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''}+ '&pageNum=1'}"
+               class="page-link">|◀</a>
+            <th:block th:if="${currentPageNum > 3}">
+                <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''} + '&pageNum=' + ${currentPageNum - 3}}"
+                   class="page-link">이전</a>
             </th:block>
-        </th:block>
-    </div>
-    <div id="paging_area">
-        <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''}+ '&pageNum=1'}"
-           class="page-link">|◀</a>
-        <th:block th:if="${currentPageNum > 3}">
-            <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''} + '&pageNum=' + ${currentPageNum - 3}}"
-               class="page-link">이전</a>
-        </th:block>
-        <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
-            <th:block th:if="${pageNum >= 1 && pageNum <= tradeListSize}">
-                <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''}+'&pageNum=' + ${pageNum}}"
-                   th:text="${pageNum}"
-                   th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+            <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                <th:block th:if="${pageNum >= 1 && pageNum <= tradeListSize}">
+                    <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''}+'&pageNum=' + ${pageNum}}"
+                       th:text="${pageNum}"
+                       th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                </th:block>
             </th:block>
-        </th:block>
-        <th:block th:if="${currentPageNum + 2 < tradeListSize}">
-            <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''}+'&pageNum=' + ${currentPageNum + 3}}"
-               class="page-link">다음</a>
-        </th:block>
-        <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''} + '&pageNum=' + ${tradeListSize}}"
-           class="page-link">▶|</a>
+            <th:block th:if="${currentPageNum + 2 < tradeListSize}">
+                <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''}+'&pageNum=' + ${currentPageNum + 3}}"
+                   class="page-link">다음</a>
+            </th:block>
+            <a th:href="@{'?'+${keyword != null ? 'keyword=' + keyword : ''} + '&pageNum=' + ${tradeListSize}}"
+               class="page-link">▶|</a>
+        </div>
     </div>
-
 </section>
-<footer></footer>
+<footer>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
+</footer>
 </body>
 <script th:inline="javascript">
     let currentPageNum = [[${currentPageNum}]];

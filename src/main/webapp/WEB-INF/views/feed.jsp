@@ -30,10 +30,6 @@
 <input type="hidden" value="${isFollowing}" id="isFollowing">
 <input type="hidden" value="${userEmail}" id="currentEmail">
 <div id="total-body">
-    <!--
-     세션 연결 후 확인해 볼것.
-     유저정보들(팔로워 팔로잉, 북마크, 유저정보수정,
-   -->
 
     <div class="user-info">
         <div class="user-image-container">
@@ -55,12 +51,32 @@
                         </button>
                     </c:otherwise>
                 </c:choose>
-                <a href="/user/bookmark/${userEmail}"> <img class="bookmark-image"
-                                                       class="top-line-margin" alt="bookmark"
-                                                       src="<%=request.getContextPath()%>/resources/images/bookmark_icon_black.png"
-                                                       style="width: 30px; height: 30px;"></a>
+                <a href="/user/bookmark/${userEmail}">
+                    <img class="bookmark-image"
+                         class="top-line-margin" alt="bookmark"
+                         src="<%=request.getContextPath()%>/resources/images/bookmark_icon_black.png"
+                         style="width: 30px; height: 30px;"></a>
             </div>
-            <div class="user-name">${name}</div>
+            <div style="display: flex; align-items: center; margin-top: 10px;">
+                <div class="user-name">${name}</div>
+                <div style="margin-left: 10px;">
+                    <c:choose>
+                        <c:when test="${isCurrentUser}">
+                            <a href="${pageContext.request.contextPath}/user/my-share"
+                               style="color: #333333; text-decoration: none;">myShare</a>
+                        </c:when>
+                    </c:choose>
+                </div>
+                <div style="margin-left: 30px;">
+                    <c:choose>
+                        <c:when test="${isCurrentUser}">
+                            <a href="${pageContext.request.contextPath}/user/my-trade-status"
+                               style="color: #333333; text-decoration: none;">교환상태</a>
+                        </c:when>
+                    </c:choose>
+                </div>
+            </div>
+
             <br>
             <div class="bottom-line">
                 <div class="bottom-line-margin">

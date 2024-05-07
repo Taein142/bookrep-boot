@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book management</title>
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<header>
+
+</header>
+<section>
+    <div id="LibraryManagementBox">
+        <div id="libraryManagement_SearchBox">
+            <form action="/admin/main-book-management" method="get">
+                <select name="option" id="searchOption">
+                    <option value="name">제목</option>
+                    <option value="author">저자</option>
+                    <option value="publisher">출판사</option>
+                </select>
+                <input type="text" id="libraryManagement_input" name="keyword">
+                <img th:src="@{/images/search.png}" alt="">
+            </form>
+        </div>
+        <div id="listArea">
+            <div th:if="${bookList== null or #lists.isEmpty(bookList)}">
+                <p>해당 책이 존재하지 않습니다</p>
+            </div>
+            <th:blcok th:unless="${bookList== null or #lists.isEmpty(bookList)}">
+                <div id="LB" th:each="object : ${bookList}">
+                    <th:blcok th:each="book : ${object.objectList}">
+                        <div id="listArea_content" class="listAreaContent" th:data-isbn="${book.isbn}">
+                            <div id="libraryManagement_listArea_contentView">
+                                <span th:text="${bookStat.index + 1} + '. '"></span>
+                                <span>도서명: <span th:text="${book.name}"></span></span>
+                                <span>작가: <span th:text="${book.author}"></span></span>
+                                <span>출판사: <span th:text="${book.publisher}"></span></span>
+                            </div>
+                            <br>
+                        </div>
+                    </th:blcok>
+                </div>
+                <div id="paging_area">
+                    <a th:href="@{'?pageNum=1'+ ${option != null ? '&option=' + keyword : ''} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                       class="page-link">|◀</a>
+                    <th:block th:if="${currentPageNum > 3}">
+                        <a th:href="@{'?pageNum=' + ${currentPageNum - 3} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                           class="page-link">이전</a>
+                    </th:block>
+                    <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                        <th:block th:if="${pageNum >= 1 && pageNum <= listMaxSize}">
+                            <a th:href="@{'?pageNum=' + ${pageNum} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                               th:text="${pageNum}"
+                               th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                        </th:block>
+                    </th:block>
+                    <th:block th:if="${currentPageNum + 2 < listMaxSize}">
+                        <a th:href="@{'?pageNum=' + ${currentPageNum + 3} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                           class="page-link">다음</a>
+                    </th:block>
+                    <a th:href="@{'?pageNum=' + ${listMaxSize} + ${option != null ? '&option=' + keyword : ''} + ${keyword != null ? '&keyword=' + keyword : ''}}"
+                       class="page-link">▶|</a>
+                </div>
+            </th:blcok>
+        </div>
+    </div>
+</section>
+<footer>
+
+</footer>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var listAreaContents = document.querySelectorAll('.listAreaContent');
+        listAreaContents.forEach(function (listAreaContent) {
+            listAreaContent.addEventListener('click', function () {
+                var isbn = this.getAttribute('data-isbn');
+                window.location.href = '/user/book-detail?isbn=' + encodeURIComponent(isbn);
+            });
+        });
+    });
+</script>
+
+</html>

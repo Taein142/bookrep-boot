@@ -16,8 +16,32 @@ section {
     height: 100%;
     margin-top: 100px;
 }
-
 /* --------------------------- */
+
+
+
+
+
+/*paging*/
+#paging_area {
+    margin-top: 5px; /* 원하는 여백 설정 */
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#paging_area a {
+    color: black; /* 버튼의 기능을 하는 문자들의 색상을 파란색으로 변경 */
+    text-decoration: none; /* 밑줄 제거 */
+    margin: 0 5px; /* 링크 사이의 간격 조정 */
+}
+
+#paging_area a:hover {
+    color: rgba(0,0,0,0.66);
+    text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+/*-----------------------------*/
 
 
 
@@ -25,26 +49,48 @@ section {
 
 
 /*customerHeader,adminHeader*/
-#headerContent{
-    position: fixed; /* 헤더를 화면에 고정시킴 */
+#headerContent {
+    position: fixed; /* 헤더를 화면 상단에 고정시킴 */
     top: 0; /* 화면 상단에 고정시킴 */
-    z-index: 1000;
+    z-index: 1000; /* 사이드바 위에 위치하도록 z-index 값 조정 */
     width: 100%;
     padding: 10px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(186,182,182,0.7);
+    background-color: rgba(186, 182, 182, 0.9);
     border-bottom: black 1px solid;
 }
-#headerLeftContent {
+#headerLeftContent{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#headerLeftContent button{
+    margin:3px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    color: white;
+    background-color: black;
+    font-weight: bold;
+}
+
+#headerLeftContent button:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+ }
+
+#customerImageAndName {
     display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
     align-items: center; /* 요소들을 수직으로 아래로 정렬 */
     flex-direction: column; /*세로 정렬*/
+    margin-right: 10px;
 }
 
-#headerCenterContent{
+#headerCenterContent {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,20 +99,24 @@ section {
 #customerImage img {
     height: 50px;
 }
-#headerCenterContent img{
+
+#headerCenterContent img {
     width: 65px;
     height: 65px;
 
 }
-#headerLogoText{
+
+#headerLogoText {
     text-align: center;
     margin-left: 10px;
 }
+
 #headerLogoText h2 {
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* 텍스트 그림자 효과 */
 }
-#headerLogoText span{
+
+#headerLogoText span {
     font-size: smaller;
     font-weight: bold; /* 폰트를 두껍게 설정 */
     display: inline-block;
@@ -82,6 +132,11 @@ section {
     display: flex;
     align-items: center;
 }
+#searchImage:hover{
+    border-radius: 100px;
+    filter: brightness(100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
 #keywordInput {
     margin-right: 8px;
@@ -89,7 +144,7 @@ section {
     border-radius: 100px;
     padding-right: 10px;
     padding-left: 10px;
-    background-color: rgba(255,255,255,0.31);
+    background-color: rgba(255, 255, 255, 0.31);
     border: none;
     outline: none;
     /* 입력 텍스트를 우측부터 써지게 설정 */
@@ -104,7 +159,7 @@ section {
     margin-right: 30px;
 }
 
-#headerRightContent-LogButtonBox button{
+#headerRightContent-LogButtonBox button {
     height: 35px;
     width: 70px;
     background-color: black;
@@ -113,6 +168,7 @@ section {
     border-radius: 5px;
     font-weight: bold;
 }
+
 #headerRightContent-LogButtonBox button:hover {
     opacity: 0.5;
 }
@@ -127,7 +183,7 @@ section {
     bottom: 0;
     width: 100%;
     height: 40px;
-    background-color: rgba(186,182,182,0.7);
+    background-color: rgb(186, 182, 182);
     border-top: 1px solid black;
     padding: 10px 0;
 }
@@ -141,7 +197,7 @@ section {
     margin-right: 10px; /* 로고와 링크 사이의 간격 조정 */
 }
 
-#footerContent img{
+#footerContent img {
     height: 20px;
     margin-right: 10px;
 }
@@ -156,79 +212,122 @@ section {
 
 
 
-/* Share House */
-#shareHouse_content {
+
+
+
+/* shareHouse */
+#shareHouseLogo{
     display: flex;
+    align-items: center;
     justify-content: center;
+    border-bottom: dotted black 1px;
+}
+#shareHouseLogo div{
+    margin-bottom: 20px;
+    margin: 10px;
 }
 
-#shareList {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    background-color: #ffffffb2;
+#shareHouseLogo img{
+    height: 110px;
+    width: auto;
+}
+#shareHouseLogo h1{
+    font-size: xxx-large;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-#tradeRegistration {
-    margin-top: 20px;
-    margin-bottom: 3px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-#tradeRegistration button {
-    height: 35px;
-    width: 110px;
-    font-size: 1.2em;
-    color: rgb(255, 255, 255);
-    background-color: rgb(126, 165, 108);
-    border: 0px;
-    border-radius: 5px;
-
-}
-
-/* --------------------------------------------------------- */
-
-
-
-
-
-
-
-/* myShare,shareHouse*/
-#myShareBox{
+#shareHouse_contents{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     flex-direction: column;
 }
 
-#myShare-tradeList-content,#myShare-receiveTradeRequestList-content,#myShare-makeTradeRequestList-content{
+#shareHouse_contents_top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+#bookSearch{
+    border: none;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255,0.5);
+    height: 33px;
+}
+
+.form-group{
+    margin-top:7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.form-group img{
+    height: 20px;
+    width: auto;
+    border-radius: 100px;
+}
+#bookSearchImage:hover {
+    filter: brightness(100%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-group input{
+    border:none;
+    background-color: transparent;
+}
+.form-group input:focus {
+    outline: none; /* 포커스시 외곽선 제거 */
+}
+
+#shareHouse_tradeRegistrationButtonBox button{
+    border: none;
+    border-radius: 5px;
+    background-color: #76b173;
+    color: white;
+    height: 33px;
+    width: 90px;
+}
+#shareHouse_tradeRegistrationButtonBox button:hover{
+    background-color: rgba(118, 177, 115, 0.73);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);;
+}
+
+#shareHouse_tradeRegistrationList_contentBox{
     background-color: white;
     width: 600px;
     height: 700px;
     border: black solid 2px;
 }
-/* ----------------------------------------- */
-
-
-
-
-
-
-
-/* tradeRegistration */
-#tradeRegistration {
-    margin-top: 200px;
+#shareHouse_tradeRegistrationList_contents_shareList{
+    width: 600px;
+    height: 140px;
+    border-bottom: black 1px solid;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
-
-#tradeRegistration img {
-    height: 690px;
-    width: 520px;
+#shareHouse_tradeRegistrationList_contents_shareList_imgBox{
+    padding: 5px;
+    width: 20%;
+    height: 140px;
+    border-right: rgba(0, 0, 0, 0.7) 1px dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#shareHouse_tradeRegistrationList_contents_shareList_imgBox img{
+    height: 100px;
+}
+#shareHouse_tradeRegistrationList_contents_shareList_info{
+    width: 80%;
+    height: 100%;
+    padding: 5px;
 }
 
 /* -------------------------------------------- */
@@ -238,71 +337,378 @@ section {
 
 
 
-/* tradeApplication */
-#tradeApplication_fullContents {
-    margin-top: 200px;
+/*tradeRegistration*/
+#tradeRegistrationLogo{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: dotted black 1px;
+    margin-bottom: 60px;
+}
+#tradeRegistrationLogo div{
+    margin-bottom: 20px;
+    margin: 10px;
+}
+#tradeRegistrationLogo img{
+    height: 110px;
+    width: auto;
+}
+#tradeRegistrationLogo h1{
+    font-size: xxx-large;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+#tradeRegistration_fullContent{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
 }
 
-#tradeApplication_Contents_00 {
-    border: 2px solid black;
-    margin-right: 50px;
-    height: 690px;
-    width: 520px;
-    padding: 25px;
-    font-size: large;
+#tradeRegistration_dummyContent_hoverStyleBox {
+    position: relative; /* 상대위치 지정 */
 }
 
-#tradeApplication_contents_01 {
+#tradeRegistration_dummyContent_hoverStyleBox:hover #tradeRegistration_dummyContent{
+    filter: blur(5px); /* 마우스를 올릴 때 블러 처리 */
+}
+
+
+#tradeRegistration_dummyContent_hoverStyleBox #addimgBox {
+    display: none; /* Initially hide the addimgBox */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#addimgBox_itemStyle{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: column;
 }
 
-#tradeApplication_contents_01 img {
-    height: 290px;
+#tradeRegistration_dummyContent_hoverStyleBox:hover #addimgBox{
+    display: block; /* 부모 요소에 호버될 때 이미지 표시 */
 }
 
-#tradeApplication_contents_detailBox1 {
-    margin-left: 20px;
-    width: 300px;
-    height: 290px;
+#addimg{
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+}
+#addimgBox_itemStyle_p{
+    color: black;
+    font-weight: bold;
+}
+
+#tradeRegistration_dummyContent,#tradeRegistration_Content{
+    height: 800px;
+    width: 650px;
+    border: black 2px solid;
+    background-color: white;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: space-between;
 }
 
-#tradeApplication_contents_detailBox1 div {
+#tradeRegistration_dummyContent_top,#tradeRegistration_Content_top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    border-bottom: black 1px dashed;
+    padding: 20px;
+}
+
+#tradeRegistration_dummyContent_top img,#tradeRegistration_Content_top img{
+    height: 350px;
+}
+#tradeRegistration_Content_middle,#tradeRegistration_dummyContent_middle{
+    padding: 20px;
+    height: 45%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: black 1px dashed;
+}
+
+
+
+#tradeRegistration_dummyContent_bottom,#tradeRegistration_Content_bottom{
+    height: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tradeRegistration_dummyContent_quantityAndButton,#tradeRegistration_Content_quantityAndButton{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+#tradeRegistration_dummyContent_quantityAndButton span,#tradeRegistration_Content_quantityAndButton span{
+    font-weight: bold;
+}
+#tradeRegistration_dummyContent_quantityAndButton input,#tradeRegistration_Content_quantityAndButton input{
+    width: 20%;
+    height: 25px;
+    border: black 2px solid;
+    border-radius: 5px;
+}
+
+#tradeRegistration_dummyContent_quantityAndButton button,#tradeRegistration_Content_quantityAndButton button{
+    border: none;
+    border-radius: 5px;
+    background-color: #76b173;
+    color: white;
+    height: 33px;
+    width: 90px;
+}
+
+#tradeRegistration_dummyContent_quantityAndButton button:hover,#tradeRegistration_Content_quantityAndButton button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*-----------------------------------------------*/
+
+
+
+
+
+
+/* myShare*/
+aside {
+    position: fixed;
+    top: 90px;
+    left: 10px;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.65);
+    border-right: 2px solid white;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+aside li {
+    padding: 10px 0;
+}
+
+aside a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+aside a:hover {
+    background-color: #333;
+}
+
+#myShareBox {
+    display: flex;
+    align-items: flex-start; /* 내부 요소에 맞게 상단 정렬 */
+    flex-direction: column;
+    min-height: 100vh; /* 최소 높이를 화면 높이로 설정 */
+}
+#MyShareLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: dotted black 1px;
+    margin-bottom: 20px;
+}
+#MyShareLogo div{
+    margin-bottom: 20px;
+    margin: 10px;
+}
+#MyShareLogo img{
+    height: 110px;
+    width: auto;
+}
+#MyShareLogo h1{
+    font-size: xxx-large;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+#myShare-tradeList-title, #myShare-receiveTradeRequestList-title, #myShare-makeTradeRequestList-title {
+    margin-bottom: 30px;
+}
+
+#myShare-tradeList, #myShare-receiveTradeRequestList, #myShare-makeTradeRequestList {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border-bottom: black solid 2px;
+}
+
+#myShare-tradeList-contents, #myShare-receiveTradeRequestList-contents, #myShare-makeTradeRequestList-contents {
+    background-color: white;
+    width: 600px;
+    height: 700px;
+    border: black solid 2px;
+}
+
+#myShare-tradeList-content, #myShare-receiveTradeRequestList-content, #myShare-makeTradeRequestList-content {
+    border-bottom: black 1px solid;
+    height: 140px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
+}
+
+#myShare-tradeList-content-imgbox {
+    width: 16%;
+    border-right: black 1px dashed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*  교환등록(share house의 교환등록 페이지)완성 되면 확인하면서 서식 작성할 것   */
+}
+#myShare-tradeList-content-infobox{
+    width: 74%;
+    padding: 10px;
+    border-right: black 1px dashed;
+}
+
+#myShare-tradeList-content-delButtonBox{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#myShare-tradeList-content-delButtonBox button{
     padding: 5px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 4px;
+
+}
+#myShare-tradeList-content-delButtonBox button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#tradeApplication_contents_detailBox1_writer {
-    border-bottom: 2px solid black;
+/* ----------------------------------------- */
+
+
+
+
+
+
+/*bookSelect*/
+#bookSelect-searchBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: black dotted 1px;
+
 }
 
-
-#tradeApplication_contents_02 {
-    margin-top: 20px;
+#bookSelect-searchForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255,0.5);
+    border: black solid 1px;
+    border-radius: 100px;
+    width: 200px;
+    height: 30px;
+    margin-bottom: 30px;
+}
+#bookSelect-searchForm input{
+    width: 100%;
+    height: 100%;
+    margin: 10px;
 }
 
-#tradeApplication_BookSelectLink {
-    margin-left: 50px;
+#bookSelect-searchForm button{
+    background-color: transparent;
+    border: none;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#tradeApplication_BookSelectLink img {
-    height: 690px;
-    width: 520px;
+#bookSelect-searchForm img{
+    width: auto;
+    height: 20px;
 }
 
-/* ------------------------------------- */
+#bookSelect-searchForm img:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
+#bookSelect-bookList-bookInfoForm{
+    position: relative;
+}
+#bookSelect-bookList-bookInfoForm:hover #bookSelect-bookList-bookInfoForm-sample{
+    filter: blur(2px); /* 마우스를 올릴 때 블러 처리 */
+}
+#bookSelect-bookList-bookInfoForm:hover #bookSelect-bookList-bookInfoForm-hiddenAndButton{
+    display: block;
+}
+#bookSelect-bookList-bookInfoForm-hiddenAndButton{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+#bookSelect-bookList{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    height: 640px;
+    width: 100%;
+    padding: 100px;
+    border-bottom: black dotted 1px;
+}
 
+#bookSelect-bookList-bookInfoForm-sample{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+#bookSelect-bookList-bookInfoForm-sample img{
+    height: 400px;
+}
 
+#bookSelect-bookList-bookInfoForm-hiddenAndButton button{
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+#bookSelect-bookList-bookInfoForm-hiddenAndButton button #addimg{
+    width: 100px;
+    height: 100px;
+}
+/*-------------------------------------------*/
 
-
-/*  */
-
-/* --------------------------------------- */

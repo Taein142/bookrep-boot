@@ -4,16 +4,17 @@ import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface BookTradeDao {
     void registerTrade(BookTradeDTO bookTradeDTO);
 
-    List<BookTradeDTO> getBookTradeByKeyword(String keyword);
+    List<BookTradeDTO> getBookTradeByKeyword(Map<String, String> map);
 
     BookTradeDTO getInfoById(Long id);
 
     List<BookTradeDTO> getBookTradeByEmail(String loggedInUserEmail);
 
-    boolean bookDeleteBookTrade(Long bookTradeId);
+    void deleteTradeRegistration(Long id);
 }

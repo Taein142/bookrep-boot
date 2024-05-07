@@ -59,4 +59,29 @@
 		)
 		ORDER BY book_name ASC;
 	</select>
+	<select id="getBookNameByIsbn" parameterType="String" resultType="String">
+		SELECT book_name
+		FROM book
+		WHERE book_isbn = #{bookIsbn}
+	</select>
+	<select id="getBookByAuthor" parameterType="String" resultMap="BookDTO">
+		SELECT *
+		FROM book
+		WHERE book_author LIKE CONCAT('%', #{keyword}, '%')
+		ORDER BY book_name
+	</select>
+	<select id="getBookByPublisher" parameterType="String" resultMap="BookDTO">
+		SELECT *
+		FROM book
+		WHERE book_publisher LIKE CONCAT('%', #{keyword}, '%')
+		ORDER BY book_name
+	</select>
+	<select id="getBookByName" parameterType="String" resultMap="BookDTO">
+		SELECT *
+		FROM book
+		<if test="(keyword != null and keyword != '')">
+			WHERE book_name LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY book_name
+	</select>
 </mapper>

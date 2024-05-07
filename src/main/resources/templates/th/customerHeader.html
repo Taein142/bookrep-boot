@@ -7,16 +7,28 @@
 <div th:fragment="header(user)" class="header-bar">
     <div id="headerContent">
         <div id="headerLeftContent">
-            <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
-            <span th:text="${userName}"></span>
+            <div id="customerImageAndName">
+                <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
+                <span th:text="${userName}"></span>
+            </div>
+            <th:blcok th:if="${user != null}">
+                <div>
+                    <button id="wbr" onclick="wbr()">글 쓰기</button>
+                </div>
+            </th:blcok>
+            <th:blcok th:if="${user != null}">
+                <div>
+                   <button id="myshare" onclick="myshare()">My Share</button>
+                </div>
+            </th:blcok>
+            <div>
+                <button id="sharehouse" onclick="sharehouse()">Share House</button>
+            </div>
         </div>
 
         <div id="headerCenterContent" onclick="gocustomerHome()">
             <img src="../images/newFullLogo.png">
-            <div id="headerLogoText">
-                <h2>BOOKREP</h2>
-                <span>READ,SHARE</span>
-            </div>
+                <h5>BOOKREP</h5>
         </div>
 
         <div id="headerRightContent">
@@ -74,6 +86,16 @@
 
         function logout(){
             location.href = "/user/sign-out";
+        }
+
+        function sharehouse(){
+            location.href="/user/share-house";
+        }
+        function myshare(){
+            location.href="/user/my-share";
+        }
+        function wbr(){
+            location.href="/user/write";
         }
     </Script>
 </div>

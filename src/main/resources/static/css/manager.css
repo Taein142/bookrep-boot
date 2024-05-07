@@ -414,9 +414,9 @@ section {
     align-items: center;
 }
 
-#bookReportManagement_SerchBox,
-#libraryManagement_SerchBox,
-#userManagement_SerchBox{
+#bookReportManagement_SearchBox,
+#libraryManagement_SearchBox,
+#userManagement_SearchBox{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -426,9 +426,9 @@ section {
     padding: 5px;
 }
 
-#bookReportManagement_SerchBox img,
-#libraryManagement_SerchBox img,
-#userManagement_SerchBox img{
+#bookReportManagement_SearchBox img,
+#libraryManagement_SearchBox img,
+#userManagement_SearchBox img{
     height: 20px;
     margin-right: 10px;
     vertical-align: middle; /* 이미지를 수직으로 가운데 정렬 */

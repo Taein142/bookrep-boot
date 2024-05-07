@@ -8,6 +8,7 @@ import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import com.rep.book.bookrepboot.dto.MsgDTO;
 import com.rep.book.bookrepboot.dto.PageDTO;
 import com.rep.book.bookrepboot.util.MainUtil;
+import com.rep.book.bookrepboot.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,7 +69,11 @@ public class BookTradeService {
     // 키워드에 따른 트레이드 리스트를 가져옴
     public List<PageDTO> getTradeListByKeyword(String keyword) {
         log.info("getAllTrade()");
-        List<BookTradeDTO> allBookTradeList = bookTradeDao.getBookTradeByKeyword(keyword);
+        String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
+        Map<String, String> map2 = new HashMap<>();
+        map2.put("email", loggedInUserEmail);
+        map2.put("keyword", keyword);
+        List<BookTradeDTO> allBookTradeList = bookTradeDao.getBookTradeByKeyword(map2);
         List<Long> ongoingTradeIDs = tradeMsgDao.getTradingID();
         List<Object> SHlist = new ArrayList<>();
 
