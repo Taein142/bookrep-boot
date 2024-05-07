@@ -17,9 +17,8 @@ public class AdminSignController {
     @Autowired
     private AdminDao adminDao;
 
-    @GetMapping("admin/admin-sign-in")
+    @GetMapping("admin/sign-in")
     public String showAdminSignIn(){
-
 
         return "th/adminSignIn";
     }
@@ -39,11 +38,12 @@ public class AdminSignController {
         AdminDTO adminDTO = new AdminDTO(null, password, role);
         adminDao.adminUp(adminDTO);
 
-        return "redirect:/admin/admin-sign-in";
+        return "redirect:/admin/sign-in";
     }
 
     @GetMapping("admin/index")
     public String adminMain(){
+      
         return "th/adminMain";
     }
 

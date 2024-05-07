@@ -32,7 +32,7 @@ public class BookTradeController {
                              @RequestParam(value = "keyword", required = false) String keyword,
                              @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                              @RequestParam(value = "id", required = false) Long id,
-                             Model model) {
+                             @RequestParam(required = false) Integer checkNum, Model model) {
         log.info("bookSelect");
 
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail(); // 시큐리티에서 현재 로그인 한 사람 가져옴.

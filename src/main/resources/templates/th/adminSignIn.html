@@ -6,11 +6,7 @@
     <title>로그인</title>
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script th:inline="javascript">
-        const manager = [[${ session.manager }]];
-
-    </script>
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
 <section>
@@ -29,11 +25,18 @@
                 </form>
                 <h5>or</h5>
             </div>
-            <div id="sign-upBox">
-                <p>Don't have an account?</p><a href="/signsign" id="managerSignup">Sign up</a>
+            <div id="loginContent">
+                <div id="loginContent-form">
+                    <div id="loginText">Login</div>
+                    <form action="/admin/sign-in-proc" method="post">
+                        <input type="text" name="username" id="email" autocomplete="off" placeholder="Email" required><br>
+                        <input type="password" name="password" id="password" autocomplete="off" placeholder="Password"
+                            required><br>
+                        <button>Login</button>
+                    </form>
+                </div>
             </div>
         </div>
-
     </div>
 </section>
 </body>
