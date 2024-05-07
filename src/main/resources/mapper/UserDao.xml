@@ -60,4 +60,7 @@
 	<select id="findUserByEmail" resultMap="UserDTO" parameterType="java.lang.String">
 		SELECT * FROM user WHERE user_email = #{username}
 	</select>
+    <select id="getUserToSuperAdmin" resultMap="UserDTO">
+		select * from user;
+	</select>
 </mapper>

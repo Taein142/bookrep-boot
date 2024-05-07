@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity(debug = false)
 @Slf4j
 public class UserSecurityConfig {
 
@@ -62,10 +62,9 @@ public class UserSecurityConfig {
      * @throws Exception
      */
     @Bean
-    @Order(1)
+    @Order(2)
     public SecurityFilterChain userSecurityFilterChain(HttpSecurity security) throws Exception {
         log.info("user-securityFilterChain");
-        //csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // csrf 토큰을 쿠키에 저장
         security
                 .securityMatcher("/user/**")
                 .csrf(
@@ -93,11 +92,6 @@ public class UserSecurityConfig {
                                         .logoutUrl("/user/sign-out")
                 )
                 .userDetailsService(customUserDetailsService);
-//                .rememberMe(
-//                        (remember) -> remember
-//                                .userDetailsService(customUserDetailsService)
-//                                .alwaysRemember(true)
-//                );
         return security.build();
     }
 
@@ -108,10 +102,9 @@ public class UserSecurityConfig {
      * @throws Exception
      */
     @Bean
-    @Order(2)
+    @Order(1)
     public SecurityFilterChain adminSecurityFilterChain(HttpSecurity security) throws Exception {
         log.info("admin-securityFilterChain");
-        //csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) // csrf 토큰을 쿠키에 저장
         security
                 .securityMatcher("/admin/**")
                 .csrf(
@@ -125,10 +118,10 @@ public class UserSecurityConfig {
                 .formLogin( // 로그인 설정
                         (formLogin) ->
                                 formLogin
-                                        .loginPage("/admin/admin-sign-in").permitAll() // 로그인 페이지
-                                        .loginProcessingUrl("/admin/admin-sign-in-proc").permitAll() // 로그인 처리 페이지
+                                        .loginPage("/admin/sign-in").permitAll() // 로그인 페이지
+                                        .loginProcessingUrl("/admin/sign-in-proc").permitAll() // 로그인 처리 페이지
                                         .successHandler(new CustomSuccessHandler()).permitAll() // 로그인 성공시 이동 페이지
-                                        .failureUrl("/admin/admin-sign-in").permitAll()
+                                        .failureUrl("/admin/sign-in").permitAll()
                         // 로그인 실패시 이동 페이지
                 )
                 .logout(
@@ -137,11 +130,6 @@ public class UserSecurityConfig {
                                         .logoutUrl("/admin/sign-out")
                 )
                 .userDetailsService(customUserDetailsService);
-//                .rememberMe(
-//                        (remember) -> remember
-//                                .userDetailsService(customUserDetailsService)
-//                                .alwaysRemember(true)
-//                );
         return security.build();
     }
 

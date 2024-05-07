@@ -7,21 +7,6 @@
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script th:inline="javascript">
-        const manager = [[${ session.manager }]];
-
-        // $(function () {
-        //     if (manager != null) { //로그인을 한 경우
-        //         if (manger == superManager) {
-        //             location.href = "/superManagerMain";
-        //         } else {
-        //             location.href = "/mangerMain";
-        //         }
-        //     } else {		 //로그인 안한 경우
-        //         location.href = "/managerLogin";
-        //     }
-        // })
-    </script>
 </head>
 <body>
     <section>
@@ -32,17 +17,12 @@
             <div id="loginContent">
                 <div id="loginContent-form">
                     <div id="loginText">Login</div>
-                    <form action="/admin/admin-sign-in-proc" method="post">
+                    <form action="/admin/sign-in-proc" method="post">
                         <input type="text" name="username" id="email" autocomplete="off" placeholder="Email" required><br>
                         <input type="password" name="password" id="password" autocomplete="off" placeholder="Password"
                             required><br>
                         <button>Login</button>
                     </form>
-                    <h5>or</h5>
-                    <a href="/mangerFindPassword" id="managerFindPassword">Find Password</a>
-                </div>
-                <div id="sign-upBox">
-                    <p>Don't have an account?</p><a href=" /managerSignup" id="managerSignup">Sign up</a>
                 </div>
             </div>
 
