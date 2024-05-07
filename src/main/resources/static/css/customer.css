@@ -105,6 +105,13 @@ section {
     height: 65px;
 
 }
+#headerCenterContent h5{
+    font-weight: bolder;
+    font-size: larger;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    color: white;
+    margin-left: 5px;
+}
 
 #headerLogoText {
     text-align: center;
@@ -714,8 +721,9 @@ aside a:hover {
 
 
 
-/*receiveTradeRequest*/
-#RTR-full{
+/*receiveTradeRequest,makeTradeRequest*/
+#RTR-full,
+#MTR-full{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -726,12 +734,16 @@ aside a:hover {
     width: 100px;
     height: auto;
 }
-#RTR-full-myInfo{
+#RTR-full-myInfo,
+#MTR-full-myInfo{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-#RTR-receivedBookInfo,#RTR-sentBookInfo{
+#RTR-receivedBookInfo,
+#RTR-sentBookInfo,
+#MTR-receivedBookInfo,
+#MTR-sentBookInfo{
     margin-top: 50px;
     height: 750px;
     width: 550px;
@@ -742,7 +754,10 @@ aside a:hover {
     flex-direction: column;
     justify-content: space-between;
 }
-#RTR-RB-image,#RTR-SB-image{
+#RTR-RB-image,
+#RTR-SB-image,
+#MTR-RB-image,
+#MTR-SB-image{
     height: 50%;
     width: 100%;
     display: flex;
@@ -750,11 +765,17 @@ aside a:hover {
     align-items: center;
     border-bottom: black solid 1px;
 }
-#RTR-RB-image img,#RTR-SB-image img{
+#RTR-RB-image img,
+#RTR-SB-image img,
+#MTR-RB-image img,
+#MTR-SB-image img{
     height: 90%;
     width: auto;
 }
-#RTR-RB-details,#RTR-SB-details{
+#RTR-RB-details,
+#RTR-SB-details,
+#MTR-RB-details,
+#MTR-SB-details{
     height: 50%;
     width: 100%;
     padding: 20px;
@@ -763,18 +784,23 @@ aside a:hover {
     flex-direction: column;
     justify-content: space-between;
 }
-#RTR-RB-details div,#RTR-SB-details div{
+#RTR-RB-details div,
+#RTR-SB-details div,
+#MTR-RB-details div,
+#MTR-SB-details div{
     font-size: large;
     font-weight: bolder;
 }
-#RTR-btn-buttonBox{
+#RTR-btn-buttonBox,
+#MTR-btn-buttonBox{
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
     margin: 20px;
 }
-#RTR-btn-buttonBox button{
+#RTR-btn-buttonBox button,
+#MTR-btn-buttonBox button{
     width: 90px;
     height: 30px;
     background-color: #76b173;
@@ -783,7 +809,9 @@ aside a:hover {
     color: white;
     font-weight: bold;
 }
-#RTR-btn-buttonBox button:hover{
+#RTR-btn-buttonBox button:hover,
+#MTR-btn-buttonBox button:hover{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 /*--------------------------------------------*/
+
