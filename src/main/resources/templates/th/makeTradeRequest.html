@@ -14,56 +14,61 @@
     <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
 </header>
 <section>
-    <div>
-        <div>
-            <th:block th:with="book=${msgInfo.receivedBook}">
-                <div id="RTR-receivedBookInfo">
-                    <div id="RTR-RB-image">
-                        <img th:src="${book.image}" alt="">
+    <div id="MTR-full">
+        <div id="MTR-full-myInfo">
+            <div>
+                <th:block th:with="book=${msgInfo.receivedBook}">
+                    <div id="MTR-receivedBookInfo">
+                        <div id="MTR-RB-image">
+                            <img th:src="${book.image}" alt="">
+                        </div>
+                        <div id="MTR-RB-details">
+                            <div th:text="'이메일: : '+${msgInfo.msgDTO.received_user_email}"/>
+                            <div th:text="'도서명: '+${#strings.length(book.name) > 30 ? #strings.substring(book.name, 0, 30) + '...' : book.name}"></div>
+                            <div th:text="'저자명: '+${#strings.length(book.author) > 30 ? #strings.substring(book.author, 0, 30) + '...' : book.author}"></div>
+                            <div th:text="'출판사: '+${book.publisher}"/>
+                        </div>
                     </div>
-                    <div id="RTR-RB-details">
-                        <div th:text="'이메일: : '+${msgInfo.msgDTO.received_user_email}"/>
-                        <div th:text="'도서명: '+${#strings.length(book.name) > 30 ? #strings.substring(book.name, 0, 30) + '...' : book.name}"></div>
-                        <div th:text="'저자명: '+${#strings.length(book.author) > 30 ? #strings.substring(book.author, 0, 30) + '...' : book.author}"></div>
-                        <div th:text="'출판사: '+${book.publisher}"/>
+                </th:block>
+            </div>
+
+            <div id="blankSpace"></div>
+
+            <div>
+                <th:block th:with="book=${msgInfo.sentBook}">
+                    <div id="MTR-sentBookInfo">
+                        <div id="MTR-SB-image">
+                            <img th:src="${book.image}" alt="">
+                        </div>
+                        <div id="MTR-SB-details">
+                            <div th:text="'이메일: : '+${msgInfo.msgDTO.sent_user_email}"/>
+                            <div th:text="'도서 명: '+${book.name}"/>
+                            <div th:text="'저자 명: '+${book.author}"/>
+                            <div th:text="'출판사: '+${book.publisher}"/>
+                        </div>
                     </div>
-                </div>
-            </th:block>
+                </th:block>
+            </div>
         </div>
 
-        <div id="blankSpace"></div>
-
-        <div>
-            <th:block th:with="book=${msgInfo.sentBook}">
-                <div id="RTR-sentBookInfo">
-                    <div id="RTR-SB-image">
-                        <img th:src="${book.image}" alt="">
-                    </div>
-                    <div id="RTR-SB-details">
-                        <div th:text="'이메일: : '+${msgInfo.msgDTO.sent_user_email}"/>
-                        <div th:text="'도서 명: '+${book.name}"/>
-                        <div th:text="'저자 명: '+${book.author}"/>
-                        <div th:text="'출판사: '+${book.publisher}"/>
-                    </div>
+        <div id="MTR-btn">
+            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==0">
+                <div id="MTR-btn-buttonBox">
+                    <button th:onclick="cancel('[[${msgInfo.msgDTO.msg_id}]]')">취소</button>
                 </div>
-            </th:block>
+            </th:blcok>
+            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==1">
+                <div>교환이 수락되었습니다.</div>
+            </th:blcok>
+            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==2">
+                <div> 교환이 거절되었습니다.</div>
+            </th:blcok>
+            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
+                <div> 교환이 취소되었습니다.</div>
+            </th:blcok>
         </div>
     </div>
 
-    <div id="RTR-btn">
-        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==0">
-            <button th:onclick="cancel('[[${msgInfo.msgDTO.msg_id}]]')">취소</button>
-        </th:blcok>
-        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==1">
-            <div>교환이 수락되었습니다.</div>
-        </th:blcok>
-        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==2">
-            <div> 교환이 거절되었습니다.</div>
-        </th:blcok>
-        <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
-            <div> 교환이 취소되었습니다.</div>
-        </th:blcok>
-    </div>
 </section>
 <footer>
     <th:blcok th:insert="~{th/footer}"></th:blcok>
