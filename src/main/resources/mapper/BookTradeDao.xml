@@ -27,10 +27,16 @@
         SELECT *
         FROM book_trade
         WHERE #{loggedInUserEmail} = user_email
+            AND book_quantity = 1
         ORDER BY book_trade_id DESC
     </select>
     <delete id="deleteTradeRegistration" parameterType="Long">
         DELETE FROM book_trade
         WHERE book_trade_id = #{id}
     </delete>
+    <update id="updateBookTradeStatus" parameterType="Long">
+        UPDATE book_trade
+        SET book_quantity = 2
+        WHERE book_trade_id = #{bookTradeId}
+    </update>
 </mapper>

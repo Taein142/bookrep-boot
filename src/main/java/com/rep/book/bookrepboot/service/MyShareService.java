@@ -33,14 +33,14 @@ public class MyShareService {
         log.info("getReceivedTradeMsg()");
          List<MsgDTO> receivedMsg = tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
 
-         return tradeService.addBookInfoList(receivedMsg ,1);
+         return tradeService.addBookInfoList(receivedMsg);
     }
 
     // 보낸 교환 메시지 가져오는 메소드
     public List<Object> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsg()");
         List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        return tradeService.addBookInfoList(sentMsg,2);
+        return tradeService.addBookInfoList(sentMsg);
     }
 
     // 교환 등록한 데이터들 가져오는 메서드

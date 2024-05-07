@@ -66,7 +66,7 @@
                                 </div>
                             </div>
                             <div id="myShare-tradeList-content-delButtonBox">
-                                <button id="myShare-tradeList-content-delButton" onclick="/#">삭 제</button>
+                                <button id="myShare-tradeList-content-delButton" th:onclick="deleteBookTrade('[[${trade.bookTrade.book_trade_id}]]')">삭 제</button>
                             </div>
                         </div>
                     </th:blcok>
@@ -91,13 +91,13 @@
                     <th:block th:each="receiveTradeRequest : ${receiveTradeRequestList}">
                         <div id="myShare-receiveTradeRequestList-content" class="move-to-msg" th:msg-id="${receiveTradeRequest.msgId}">
                             <div>
-                                <img th:src="${receiveTradeRequest.receivedBook != null ? receiveTradeRequest.receivedBook.image : '/images/noBook.jpg'}"
+                                <img th:src="${receiveTradeRequest.book != null ? receiveTradeRequest.book.image : '/images/noBook.jpg'}"
                                      alt="" style="height: 120px; width: 80px;">
                             </div>
                             <div>
-                                <p>도서명: <span th:text="${receiveTradeRequest.receivedBook.name}"></span></p>
-                                <p>작가: <span th:text="${receiveTradeRequest.receivedBook.author}"></span></p>
-                                <p>출판사: <span th:text="${receiveTradeRequest.receivedBook.publisher}"></span></p>
+                                <p>도서명: <span th:text="${receiveTradeRequest.book.name}"></span></p>
+                                <p>작가: <span th:text="${receiveTradeRequest.book.author}"></span></p>
+                                <p>출판사: <span th:text="${receiveTradeRequest.book.publisher}"></span></p>
                             </div>
                         </div>
                     </th:block>
@@ -123,18 +123,18 @@
                     <th:block th:each="makeTradeRequest:${makeTradeRequestList}">
                         <div id="myShare-makeTradeRequestList-content" class="move-to-msg" th:msg-id="${makeTradeRequest.msgId}">
                             <div>
-                                <img th:src="${makeTradeRequest.sentBook != null ? makeTradeRequest.sentBook.image : '/images/noBook.jpg'}"
+                                <img th:src="${makeTradeRequest.book != null ? makeTradeRequest.book.image : '/images/noBook.jpg'}"
                                      alt="" style="height: 120px; width: 80px;">
                             </div>
                             <div>
                                 <div>
-                                    <p>도서명: <span th:text="${makeTradeRequest.sentBook.name}"></span></p>
+                                    <p>도서명: <span th:text="${makeTradeRequest.book.name}"></span></p>
                                 </div>
                                 <div>
-                                    <p>작가: <span th:text="${makeTradeRequest.sentBook.author}"></span></p>
+                                    <p>작가: <span th:text="${makeTradeRequest.book.author}"></span></p>
                                 </div>
                                 <div>
-                                    <p>출판사: <span th:text="${makeTradeRequest.sentBook.publisher}"></span></p>
+                                    <p>출판사: <span th:text="${makeTradeRequest.book.publisher}"></span></p>
                                 </div>
                             </div>
                         </div>
@@ -192,11 +192,11 @@
             data: {id:id},
             success: function (response) {
                 if (response){
-                    consolde.log(response);
+                    console.log(response);
                     document.location.reload(true);
-                    alert('해당 항목이 삭제되었습니다.')
-                }else {
-                    alert('해당 항목이 삭제되지 않았습니다. 교환이 진행되고 있다면 삭제할 수 없습니다.')
+                    alert('해당 항목이 삭제되었습니다.');
+                } else {
+                    alert('해당 항목이 삭제되지 않았습니다. 교환이 진행되고 있다면 삭제할 수 없습니다.');
                 }
             },
             error: function(){
