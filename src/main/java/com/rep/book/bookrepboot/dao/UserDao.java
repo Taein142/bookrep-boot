@@ -38,4 +38,8 @@ public interface UserDao {
 	void pwdChangeProc(Map<String, String> map);
 
     List<UserDTO> getUserToSuperAdmin();
+
+	List<UserDTO> getUserListByEmail(String keyword);
+
+	List<UserDTO> getUserListByName(String keyword);
 }

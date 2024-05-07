@@ -64,4 +64,18 @@
     <select id="getUserToSuperAdmin" resultMap="UserDTO">
 		select * from user;
 	</select>
+	<select id="getUserListByEmail" parameterType="String" resultMap="UserDTO">
+		SELECT * FROM user
+		<if test="(keyword != null and keyword != '')">
+			WHERE user_email LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY user_email
+	</select>
+	<select id="getUserListByName" parameterType="String" resultMap="UserDTO">
+		SELECT * FROM user
+		<if test="(keyword != null and keyword != '')">
+			WHERE user_name LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY user_name
+	</select>
 </mapper>
