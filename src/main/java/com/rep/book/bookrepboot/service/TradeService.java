@@ -4,11 +4,7 @@ package com.rep.book.bookrepboot.service;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.rep.book.bookrepboot.dao.BookDao;
-import com.rep.book.bookrepboot.dao.BookTradeDao;
-import com.rep.book.bookrepboot.dao.TradeDao;
-import com.rep.book.bookrepboot.dao.TradeMsgDao;
-import com.rep.book.bookrepboot.dao.UserDao;
+import com.rep.book.bookrepboot.dao.*;
 import com.rep.book.bookrepboot.dto.*;
 import com.rep.book.bookrepboot.util.KakaoApiUtil;
 import com.rep.book.bookrepboot.util.MainUtil;
@@ -43,7 +39,8 @@ public class TradeService {
     private TransactionDefinition definition;
     @Autowired
     private BookTradeDao bookTradeDao;
-
+    @Autowired
+    private PathDao pathDao;
     @Autowired
     private UserDao userDao;
 
@@ -272,7 +269,7 @@ public class TradeService {
             pathDTO.setTotal_distance(totalDistance);
             pathDTO.setTotal_duration(totalDuration);
 
-            tradeDao.insertPath(pathDTO);
+            pathDao.insertPath(pathDTO);
         }
         for (TradeDTO tradeDTO : tradeList) {
             tradeDTO.setTrade_status(1);

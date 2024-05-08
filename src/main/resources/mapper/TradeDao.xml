@@ -13,11 +13,6 @@
         (startNodeId, endNodeId, distanceMeter, durationSecond, tollFare, taxiFare, fuelPrice, pathJson, regDt, modDt)
         VALUES (#{startNodeId}, #{endNodeId}, #{distanceMeter}, #{durationSecond}, #{tollFare}, #{taxiFare}, #{fuelPrice}, #{pathJson}, #{regDt}, #{modDt})
     </insert>
-    <insert id="insertPath">
-        INSERT `path`
-        (trade_json, path_json, total_distance, total_duration)
-        VALUES (#{trade_json}, #{path_json}, ${total_distance}, ${total_duration})
-    </insert>
     <update id="updateTrade">
         UPDATE trade
         SET trade_status = 1

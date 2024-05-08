@@ -3,4 +3,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.rep.book.bookrepboot.dao.PathDao">
 
+    <insert id="insertPath" parameterType="com.rep.book.bookrepboot.dto.PathDTO">
+        INSERT `path`
+            (trade_json, path_json, total_distance, total_duration)
+        VALUES (#{trade_json}, #{path_json}, ${total_distance}, ${total_duration})
+    </insert>
+    <update id="matchDriver" parameterType="com.rep.book.bookrepboot.dto.PathDTO">
+        UPDATE `path`
+        SET deliver_admin_id = #{driver_admin_id}
+        WHERE path_id = #{path_id}
+    </update>
+    <select id="getPathToSuperAdmin" resultType="com.rep.book.bookrepboot.dto.PathDTO">
+        SELECT * FROM `path`
+    </select>
+    <select id="getPathDetail" resultType="com.rep.book.bookrepboot.dto.PathDTO" parameterType="java.lang.Long">
+        SELECT * FROM `path` WHERE path_id = #{pathId}
+    </select>
+
 </mapper>
