@@ -2,6 +2,7 @@ package com.rep.book.bookrepboot.dao;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -33,9 +34,13 @@ public interface UserDao {
 
 	String getNameByEmail(String userEmail);
 
-	UserDTO findUserByEmail(String username);
+	Optional<UserDTO> findUserByEmail(String username);
 
 	void pwdChangeProc(Map<String, String> map);
 
     List<UserDTO> getUserToSuperAdmin();
+
+    UserDTO getFirstUser(String firUserEmail);
+
+	UserDTO getSecondUser(String secUserEmail);
 }

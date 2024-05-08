@@ -64,4 +64,10 @@
     <select id="getUserToSuperAdmin" resultMap="UserDTO">
 		select * from user;
 	</select>
+    <select id="getFirstUser" resultMap="UserDTO" parameterType="java.lang.String">
+		SELECT * FROM user WHERE user_email = #{firUserEmail}
+	</select>
+	<select id="getSecondUser" resultMap="UserDTO" parameterType="java.lang.String">
+		SELECT * FROM user WHERE user_email = #{secUserEmail}
+	</select>
 </mapper>
