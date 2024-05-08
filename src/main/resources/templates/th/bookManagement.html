@@ -31,14 +31,14 @@
             <div th:if="${bookList== null or #lists.isEmpty(bookList)}">
                 <p>해당 책이 존재하지 않습니다</p>
             </div>
-            <th:blcok th:unless="${bookList== null or #lists.isEmpty(bookList)}">
+            <th:blcok th:unless="${bookList == null or #lists.isEmpty(bookList)}">
                 <div id="LB" th:each="object : ${bookList}">
                     <th:blcok th:each="book : ${object.objectList}">
                         <div id="listArea_content" class="listAreaContent" th:data-isbn="${book.isbn}">
                             <div id="libraryManagement_listArea_contentView">
-                                <span th:text="${bookStat.index + 1} + '. '"></span>
-                                <span>도서명: <span th:text="${book.name}"></span></span>
-                                <span>작가: <span th:text="${book.author}"></span></span>
+                                <span th:text="${bookStat.index + 1} + '.  '"></span>
+                                <span>도서명: <span th:text="${#strings.length(book.name) > 20 ? #strings.substring(book.name, 0 , 20) + '...' : book.name}"></span></span>
+                                <span>작가: <span th:text="${#strings.length(book.author)> 10 ? #strings.substring(book.author, 0 , 10) + '...' : book.author}"></span></span>
                                 <span>출판사: <span th:text="${book.publisher}"></span></span>
                             </div>
                             <br>
