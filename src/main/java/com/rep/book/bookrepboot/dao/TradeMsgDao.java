@@ -19,4 +19,6 @@ public interface TradeMsgDao {
     boolean updateMsgStatus(Map<String, Object> map);
 
     List<Long> getTradingID();
+
+    List<MsgDTO> getInProgressMsg(String loggedInUserEmail);
 }

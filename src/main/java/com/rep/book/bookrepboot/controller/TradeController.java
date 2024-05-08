@@ -81,8 +81,13 @@ public class TradeController {
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         List<PageDTO> tradeIndextList = tradeService.getTradeListByEmail(loggedInUserEmail);
         String userName = feedService.getNameByEmail(loggedInUserEmail);
+        log.info("tradeIndextList {}", tradeIndextList);
 
-        model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
+        if (tradeIndextList.size() > 0){
+            model.addAttribute("tradeList" , tradeIndextList.get(pageNum-1));
+        } else {
+            model.addAttribute("tradeList" , null);
+        }
         model.addAttribute("userEmail", loggedInUserEmail);
         model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("userName", userName);

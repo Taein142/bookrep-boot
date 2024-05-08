@@ -11,6 +11,7 @@ import com.rep.book.bookrepboot.util.MainUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import scala.xml.include.sax.Main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class MyShareService {
         log.info("getReceivedTradeMsg()");
          List<MsgDTO> receivedMsg = tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
 
-         List<Object> receivedList = tradeService.addBookInfoList(receivedMsg);
+         List<Object> receivedList = tradeService.addBookInfoList(receivedMsg,1);
 
         return MainUtil.setPaging(receivedList,5);
     }
@@ -43,7 +44,7 @@ public class MyShareService {
     public List<PageDTO> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsg()");
         List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        List<Object> sentList =  tradeService.addBookInfoList(sentMsg);
+        List<Object> sentList =  tradeService.addBookInfoList(sentMsg,2);
         return MainUtil.setPaging(sentList, 5);
     }
 
@@ -84,5 +85,27 @@ public class MyShareService {
         }
 
         return result;
+    }
+
+    public List<PageDTO> getInProgressMsg(String loggedInUserEmail) {
+        log.info("getInProgressMsg()");
+        List<MsgDTO> msgList = tradeMsgDao.getInProgressMsg(loggedInUserEmail);
+        List<Object> mList = new ArrayList<>();
+
+        try{
+            for (MsgDTO msgDTO : msgList) {
+                Map<String, Object> map = new HashMap<>();
+                BookDTO receivedBook = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
+                BookDTO sentBook = bookDao.getBookByIsbn(msgDTO.getSent_book_isbn());
+                map.put("msgDTO", msgDTO);
+                map.put("receivedBook", receivedBook);
+                map.put("sentBook", sentBook);
+                mList.add(map);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return MainUtil.setPaging(mList, 5);
     }
 }
