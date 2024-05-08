@@ -37,21 +37,21 @@ public class TradeController {
     // 0: 메시지만 보낸 상태  1: 수락  2: 거절  3: 취소
     @PostMapping("user/accept-msg") // 수락 기능
     @ResponseBody
-    public boolean acceptTrade(@RequestParam("msgId") Long msgId) {
+    public boolean acceptTrade(@RequestParam("msgId") Long msgId) throws Exception {
         String loggedEmail = SecurityUtil.getCurrentUserEmail();
         return tradeService.updateTradeMsgStatus(msgId, loggedEmail, 1);
     }
 
     @PostMapping("user/reject-msg") // 거절 기능
     @ResponseBody
-    public boolean rejectTrade(@RequestParam("msgId") Long msgId) {
+    public boolean rejectTrade(@RequestParam("msgId") Long msgId) throws Exception {
         String loggedEmail = SecurityUtil.getCurrentUserEmail();
         return tradeService.updateTradeMsgStatus(msgId, loggedEmail, 2);
     }
 
     @PostMapping("user/cancel-msg") // 취소 기능
     @ResponseBody
-    public boolean cancelTrade(@RequestParam("msgId") Long msgId) {
+    public boolean cancelTrade(@RequestParam("msgId") Long msgId) throws Exception {
         String loggedEmail = SecurityUtil.getCurrentUserEmail();
         return tradeService.updateTradeMsgStatus(msgId, loggedEmail, 3);
     }

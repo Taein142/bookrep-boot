@@ -99,7 +99,7 @@ public class TradeService {
 
     // msg status 업테이트 메서드
     // 0: 메시지만 보낸 상태  1: 수락  2: 거절  3: 취소
-    public boolean updateTradeMsgStatus(Long msgId, String userEmail, int status) {
+    public boolean updateTradeMsgStatus(Long msgId, String userEmail, int status) throws Exception {
         log.info("updateTradeMsgStatus()");
         TransactionStatus transactionStatus = manager.getTransaction(definition);
 
@@ -122,16 +122,6 @@ public class TradeService {
                     tradeDTO.setSec_book_isbn(msgDTO.getReceived_book_isbn());
                     tradeDTO.setTrade_status(0);
                     tradeDao.setTrade(tradeDTO);
-
-                    try (AutoCloseableExecutorService executorService = new AutoCloseableExecutorService(10)) {
-                        executorService.getExecutorService().submit(() -> {
-                            try {
-                                packageTradesForDeliver(1);
-                            } catch (IOException | InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        });
-                    }
                 }
                 manager.commit(transactionStatus); // 상태 변경, trade 저장 둘 다 성공하면 진행되도록 함
             } catch (Exception e) {
@@ -139,6 +129,15 @@ public class TradeService {
                 manager.rollback(transactionStatus); // 둘 중 하나라도 안되면 롤백
                 result = false;
             }
+        }
+        try (AutoCloseableExecutorService executorService = new AutoCloseableExecutorService(10)) {
+            executorService.getExecutorService().submit(() -> {
+                try {
+                    packageTradesForDeliver(1);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
         }
         return result;
     }
