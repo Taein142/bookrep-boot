@@ -19,21 +19,21 @@ public class MyShareTest {
     @Test
     public void getReceivedTradeMsgTest(){
         String testEmail = "test02@naver.com";
-        List<Object> testList = myShareService.getReceivedTradeMsg(testEmail);
+        List<PageDTO> testList = myShareService.getReceivedTradeMsg(testEmail);
         System.out.println(testList);
     }
 
     @Test
     public void getSentTradeMsgTest(){
         String testEmail = "test02@naver.com";
-        List<Object> testList = myShareService.getSentTradeMsg(testEmail);
+        List<PageDTO> testList = myShareService.getSentTradeMsg(testEmail);
         System.out.println(testList);
     }
 
     @Test
     public void getRegisterListTest(){
         String testEmail = "xodlsdldy@naver.com";
-        List<Object> testList = myShareService.getRegisterList(testEmail);
+        List<PageDTO> testList = myShareService.getRegisterList(testEmail);
         System.out.println(testList);
     }
 

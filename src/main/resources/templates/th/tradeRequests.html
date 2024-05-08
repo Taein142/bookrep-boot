@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/customer.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>receivedRequests</title>
+</head>
+<body>
+<header>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+</header>
+<section>
+    <aside>
+        <ul>
+            <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
+            <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
+            <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
+            <li><a th:href="@{/user/my-trade-status}">교환 상태</a></li>
+        </ul>
+    </aside>
+    <div id="myShareBox">
+        <!--교환 신청한 책 리스트-->
+        <div id="myShare-makeTradeRequestList">
+            <div id="myShare-makeTradeRequestList-title">
+                <h1>
+                    교환 신청한 책 리스트
+                </h1>
+            </div>
+            <div id="myShare-makeTradeRequestList-contents">
+                <th:block th:if="${makeTradeRequestList == null || makeTradeRequestList.isEmpty()}">
+                    <div>교환 신청한 책이 없습니다.</div>
+                </th:block>
+                <th:block th:unless="${makeTradeRequestList == null || makeTradeRequestList.isEmpty()}">
+                    <th:block th:each="sentPage:${makeTradeRequestList}">
+                        <th:blcok th:if="${sentPage.pageNum == currentPageNum}">
+                            <th:blcok th:each="makeTradeRequest:${sentPage.objectList}">
+                                <div id="myShare-makeTradeRequestList-content" class="move-to-msg" th:msg-id="${makeTradeRequest.msgId}">
+                                    <div>
+                                        <img th:src="${makeTradeRequest.book != null ? makeTradeRequest.book.image : '/images/noBook.jpg'}"
+                                             alt="" style="height: 120px; width: 80px;">
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <p>도서명: <span th:text="${makeTradeRequest.book.name}"></span></p>
+                                        </div>
+                                        <div>
+                                            <p>작가: <span th:text="${makeTradeRequest.book.author}"></span></p>
+                                        </div>
+                                        <div>
+                                            <p>출판사: <span th:text="${makeTradeRequest.book.publisher}"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th:blcok>
+                        </th:blcok>
+                    </th:block>
+                </th:block>
+            </div>
+            <div id="myShare-makeTradeRequestList-pagingArea">
+                <a th:href="@{'?pageNum=1'}" class="page-link">|◀</a>
+                <th:block th:if="${currentPageNum > 3}">
+                    <a th:href="@{'?&pageNum=' + ${currentPageNum - 3}}" class="page-link">이전</a>
+                </th:block>
+                <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
+                    <th:block th:if="${pageNum >= 1 && pageNum <= makeTradeRequestList.size()}">
+                        <a th:href="@{'?pageNum=' + ${pageNum}}"
+                           th:text="${pageNum}"
+                           th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
+                    </th:block>
+                </th:block>
+                <th:block th:if="${currentPageNum + 2 < makeTradeRequestList.size()}">
+                    <a th:href="@{'?&pageNum=' + ${currentPageNum + 3}}"
+                       class="page-link">다음</a>
+                </th:block>
+                <a th:href="@{'?&pageNum=' + ${makeTradeRequestList.size()}}" class="page-link">▶|</a>
+            </div>
+        </div>
+    </div>
+</section>
+<footer>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
+</footer>
+</body>
+<script th:inline="javascript">
+
+</script>
+</html>

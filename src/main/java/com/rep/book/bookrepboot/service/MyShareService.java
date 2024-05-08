@@ -6,10 +6,11 @@ import com.rep.book.bookrepboot.dao.TradeMsgDao;
 import com.rep.book.bookrepboot.dto.BookDTO;
 import com.rep.book.bookrepboot.dto.BookTradeDTO;
 import com.rep.book.bookrepboot.dto.MsgDTO;
+import com.rep.book.bookrepboot.dto.PageDTO;
+import com.rep.book.bookrepboot.util.MainUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,22 +30,25 @@ public class MyShareService {
     TradeService tradeService;
 
     // 받은 교환 메시지 가져오는 메서드
-    public List<Object> getReceivedTradeMsg(String loggedInUserEmail) {
+    public List<PageDTO> getReceivedTradeMsg(String loggedInUserEmail) {
         log.info("getReceivedTradeMsg()");
          List<MsgDTO> receivedMsg = tradeMsgDao.getReceivedTradeMsg(loggedInUserEmail);
 
-         return tradeService.addBookInfoList(receivedMsg);
+         List<Object> receivedList = tradeService.addBookInfoList(receivedMsg);
+
+        return MainUtil.setPaging(receivedList,5);
     }
 
     // 보낸 교환 메시지 가져오는 메소드
-    public List<Object> getSentTradeMsg(String loggedInUserEmail) {
+    public List<PageDTO> getSentTradeMsg(String loggedInUserEmail) {
         log.info("getSentTradeMsg()");
         List<MsgDTO> sentMsg = tradeMsgDao.getSentTradeMsg(loggedInUserEmail);
-        return tradeService.addBookInfoList(sentMsg);
+        List<Object> sentList =  tradeService.addBookInfoList(sentMsg);
+        return MainUtil.setPaging(sentList, 5);
     }
 
     // 교환 등록한 데이터들 가져오는 메서드
-    public List<Object> getRegisterList(String loggedInUserEmail) {
+    public List<PageDTO> getRegisterList(String loggedInUserEmail) {
         log.info("getRegister()");
         List<BookTradeDTO> registerList = bookTradeDao.getBookTradeByEmail(loggedInUserEmail);
         List<Object> rList = new ArrayList<>();
@@ -63,7 +67,7 @@ public class MyShareService {
         }
         log.info("rList {}", rList);
 
-        return rList;
+        return MainUtil.setPaging(rList, 5);
     }
 
     public boolean deleteTradeRegistration(Long id) {
