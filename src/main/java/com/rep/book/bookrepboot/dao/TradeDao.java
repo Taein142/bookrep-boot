@@ -23,7 +23,5 @@ public interface TradeDao {
 
     void add(NodeCostDTO nodeCost);
 
-    void insertPath(PathDTO pathDTO);
-
     void updateTrade(TradeDTO tradeDTO);
 }
