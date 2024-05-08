@@ -50,7 +50,7 @@ public class SuperAdminController {
     }
 
     @PostMapping("super-admin/match-driver")
-    public String matchDriver(@RequestParam("path-id") Long pathId, @RequestParam("admin-id") String adminId){
+    public String matchDriver(@RequestParam("path-id") Long pathId, @RequestParam("admin-id") Long adminId){
         log.info("matchDriver()");
 
         superAdminService.matchDriver(pathId, adminId);

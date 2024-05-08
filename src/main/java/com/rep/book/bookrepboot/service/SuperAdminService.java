@@ -1,6 +1,7 @@
 package com.rep.book.bookrepboot.service;
 
 import com.google.gson.Gson;
+import com.rep.book.bookrepboot.dao.AdminDao;
 import com.rep.book.bookrepboot.dao.PathDao;
 import com.rep.book.bookrepboot.dao.UserDao;
 import com.rep.book.bookrepboot.dto.DeliveryDTO;
@@ -28,6 +29,9 @@ public class SuperAdminService {
     @Autowired
     private PathDao pathDao;
 
+    @Autowired
+    private AdminDao adminDao;
+
     public List<UserDTO> getUserToSuperAdmin() {
         log.info("getUserToSuperAdmin()");
 
@@ -40,14 +44,17 @@ public class SuperAdminService {
         return pathDao.getPathToSuperAdmin();
     }
 
-    public void matchDriver(Long pathId, String adminId) {
+    public void matchDriver(Long pathId, Long adminId) {
         log.info("matchDriver()");
 
         PathDTO pathDTO = new PathDTO();
         pathDTO.setPath_id(pathId);
         pathDTO.setDriver_admin_id(adminId);
 
+
         pathDao.matchDriver(pathDTO);
+
+        adminDao.appointDriver(adminId);
     }
 
     public void getPathDetail(Long pathId, Model model) {
