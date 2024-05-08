@@ -17,4 +17,6 @@ public interface BookTradeDao {
     List<BookTradeDTO> getBookTradeByEmail(String loggedInUserEmail);
 
     void deleteTradeRegistration(Long id);
+
+    void updateBookTradeStatus(Long bookTradeId);
 }

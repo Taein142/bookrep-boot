@@ -105,6 +105,13 @@ section {
     height: 65px;
 
 }
+#headerCenterContent h5{
+    font-weight: bolder;
+    font-size: larger;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    color: white;
+    margin-left: 5px;
+}
 
 #headerLogoText {
     text-align: center;
@@ -180,7 +187,7 @@ section {
 
 /*footer*/
 .footer-bar {
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     height: 40px;
     background-color: rgb(186, 182, 182);
@@ -449,12 +456,10 @@ section {
 #tradeRegistration_dummyContent_quantityAndButton,#tradeRegistration_Content_quantityAndButton{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 10px;
 }
-#tradeRegistration_dummyContent_quantityAndButton span,#tradeRegistration_Content_quantityAndButton span{
-    font-weight: bold;
-}
+
 #tradeRegistration_dummyContent_quantityAndButton input,#tradeRegistration_Content_quantityAndButton input{
     width: 20%;
     height: 25px;
@@ -712,3 +717,220 @@ aside a:hover {
 }
 /*-------------------------------------------*/
 
+
+
+
+
+/*receiveTradeRequest,makeTradeRequest*/
+#RTR-full,
+#MTR-full{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+#blankSpace{
+    width: 100px;
+    height: auto;
+}
+#RTR-full-myInfo,
+#MTR-full-myInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#RTR-receivedBookInfo,
+#RTR-sentBookInfo,
+#MTR-receivedBookInfo,
+#MTR-sentBookInfo{
+    margin-top: 50px;
+    height: 750px;
+    width: 550px;
+    border: black 2px solid;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#RTR-RB-image,
+#RTR-SB-image,
+#MTR-RB-image,
+#MTR-SB-image{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: black solid 1px;
+}
+#RTR-RB-image img,
+#RTR-SB-image img,
+#MTR-RB-image img,
+#MTR-SB-image img{
+    height: 90%;
+    width: auto;
+}
+#RTR-RB-details,
+#RTR-SB-details,
+#MTR-RB-details,
+#MTR-SB-details{
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#RTR-RB-details div,
+#RTR-SB-details div,
+#MTR-RB-details div,
+#MTR-SB-details div{
+    font-size: large;
+    font-weight: bolder;
+}
+#RTR-btn-buttonBox,
+#MTR-btn-buttonBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 20px;
+}
+#RTR-btn-buttonBox button,
+#MTR-btn-buttonBox button{
+    width: 90px;
+    height: 30px;
+    background-color: #76b173;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+#RTR-btn-buttonBox button:hover,
+#MTR-btn-buttonBox button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*--------------------------------------------*/
+
+
+
+
+
+/*tradeApplication*/
+#tradeApplication{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#tradeApplication button{
+    margin: 20px;
+}
+#tradeApplication_fullContents{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#tradeApplication_contents_01{
+    margin-top: 50px;
+    width: 450px;
+    height: 700px;
+    background-color: white;
+    border: black solid 2px;
+}
+#tradeApplication_contents_imgBox{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: black solid 1px;
+}
+#tradeApplication_contents_imgBox img{
+    height: 90%;
+    width: auto;
+}
+#tradeApplication_contents_detailBox1{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#tradeApplication-fullDummySelectContents{
+    margin-top: 50px;
+    height: 700px;
+    width: 450px;
+    border: solid black 2px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#tradeApplication-fullDummySelectContents-imgBox{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid black 1px;
+}
+#tradeApplication-fullDummySelectContents-imgBox img{
+    height: 90%;
+}
+#tradeApplication-fullDummySelectContents-bottom{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+#tradeApplication-fullDummySelectContents-bottom span{
+    font-size: larger;
+    font-weight: bold;
+    color: black;
+}
+#tradeApplication_BookSelectLink a{
+    text-decoration: none;
+}
+#tradeApplication_BookSelectLink-hover:hover{
+    position: relative;
+}
+#tradeApplication_BookSelectLink-hover:hover #addimg{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#tradeApplication_BookSelectLink-hover #addimg{
+    display: none;
+}
+#tradeApplication-fullDummySelectContents:hover{
+    filter: blur(5px); /* 마우스를 올릴 때 블러 처리 */
+}
+
+#submitSendTradeButton{
+    width: 90px;
+    height: 30px;
+    background-color: #76b173;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+#submitSendTradeButton:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*--------------------------------------------*/

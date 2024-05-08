@@ -38,9 +38,13 @@ public interface UserDao {
 
 	void pwdChangeProc(Map<String, String> map);
 
-    List<UserDTO> getUserToSuperAdmin();
+  List<UserDTO> getUserToSuperAdmin();
 
-    UserDTO getFirstUser(String firUserEmail);
+  UserDTO getFirstUser(String firUserEmail);
 
 	UserDTO getSecondUser(String secUserEmail);
+  
+	List<UserDTO> getUserListByEmail(String keyword);
+
+	List<UserDTO> getUserListByName(String keyword);
 }

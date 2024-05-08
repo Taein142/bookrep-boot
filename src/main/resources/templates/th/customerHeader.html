@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <body>
@@ -8,19 +9,16 @@
     <div id="headerContent">
         <div id="headerLeftContent">
             <div id="customerImageAndName">
-                <a th:href="'/user/feed/' + ${userEmail}" id="customerImage"></a>
-                <span th:text="${userName}"></span>
+                <a th:href="'/user/feed/' + ${#authentication.name}" id="customerImage"></a>
             </div>
-            <th:blcok th:if="${user != null}">
+            <th:block sec:authorize="isAuthenticated()">
                 <div>
                     <button id="wbr" onclick="wbr()">글 쓰기</button>
                 </div>
-            </th:blcok>
-            <th:blcok th:if="${user != null}">
                 <div>
-                   <button id="myshare" onclick="myshare()">My Share</button>
+                    <button id="myshare" onclick="myshare()">My Share</button>
                 </div>
-            </th:blcok>
+            </th:block>
             <div>
                 <button id="sharehouse" onclick="sharehouse()">Share House</button>
             </div>
@@ -28,7 +26,7 @@
 
         <div id="headerCenterContent" onclick="gocustomerHome()">
             <img src="../images/newFullLogo.png">
-                <h5>BOOKREP</h5>
+            <h5>BOOKREP</h5>
         </div>
 
         <div id="headerRightContent">
@@ -41,10 +39,10 @@
                 </div>
             </div>
             <div id="headerRightContent-LogButtonBox">
-                <th:block th:if="${userEmail == null}">
+                <th:block sec:authorize="isAnonymous()">
                     <button id="login" onclick="login()">Login</button>
                 </th:block>
-                <th:block th:unless="${userEmail == null}">
+                <th:block sec:authorize="isAuthenticated()">
                     <button id="Logout" onclick="logout()">Logout</button>
                 </th:block>
             </div>
@@ -55,7 +53,7 @@
             location.href = "/user/home";
         }
 
-        let logggggggggggemail = [[${userEmail}]];
+        let logggggggggggemail = [[${#authentication.name}]];
         console.log(logggggggggggemail);
 
         let customerImage = document.getElementById("customerImage");
@@ -80,22 +78,24 @@
             document.getElementById("searchForm").submit(); // 폼 제출
         });
 
-        function login(){
-            location.href="/sign-in"
+        function login() {
+            location.href = "/sign-in"
         }
 
-        function logout(){
+        function logout() {
             location.href = "/user/sign-out";
         }
 
-        function sharehouse(){
-            location.href="/user/share-house";
+        function sharehouse() {
+            location.href = "/user/share-house";
         }
-        function myshare(){
-            location.href="/user/my-share";
+
+        function myshare() {
+            location.href = "/user/my-share";
         }
-        function wbr(){
-            location.href="/user/write";
+
+        function wbr() {
+            location.href = "/user/write";
         }
     </Script>
 </div>

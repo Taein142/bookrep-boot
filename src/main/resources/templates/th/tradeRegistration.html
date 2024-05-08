@@ -42,7 +42,7 @@
                 <a th:href="@{/user/book-select(checkNum=${1})}">
                     <div id="addimgBox">
                         <div id="addimgBox_itemStyle">
-                            <img th:src="@{/images/add.png}" id="addimg">
+                            <img th:src="@{/images/add.png}" id="addimg" alt="">
                             <p id="addimgBox_itemStyle_p">교환할 책을 선택해 주세요.</p>
                         </div>
                     </div>
@@ -50,13 +50,12 @@
             </div>
             <div id="tradeRegistration_dummyContent_quantityAndButton">
                 <div>
-                    <span>수량:&nbsp;<input type="number" name="book_quantity" th:value="0" readonly>&nbsp;권</span>
+                    <input type="hidden" name="book_quantity" th:value="0" readonly>&nbsp;
                 </div>
                 <div>
                     <button disabled>등록</button>
                 </div>
             </div>
-
         </th:blcok>
 
         <th:blcok th:unless="${book} == null">
@@ -68,8 +67,8 @@
                     <div id="tradeRegistration_Content_middle">
                         <input type="text" name="user_email" th:value="${userEmail}" required readonly
                                placeholder="email">
-                        <input th:type="text" th:value="${book.name}" placeholder="책이름">
-                        <input th:type="text" th:value="${book.author}" placeholder="저자">
+                        <input th:type="text" th:value="${book.name}" placeholder="책이름" required readonly>
+                        <input th:type="text" th:value="${book.author}" placeholder="저자" required readonly>
                     </div>
                     <div id="tradeRegistration_Content_bottom">
                         <input type="text" name="book_isbn"
@@ -79,7 +78,7 @@
                 </div>
                 <div id="tradeRegistration_Content_quantityAndButton">
                     <div>
-                        <span>수량:&nbsp;<input type="number" name="book_quantity" th:value="1" required>&nbsp;권</span>
+                       <input type="hidden" name="book_quantity" th:value="1" required>
                     </div>
                     <div>
                         <button>등록</button>

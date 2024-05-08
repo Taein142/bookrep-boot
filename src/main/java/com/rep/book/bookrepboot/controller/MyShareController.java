@@ -39,7 +39,8 @@ public class MyShareController {
         return "th/myShare";
     }
 
-    @PostMapping("/delete-book-trade")
+    @PostMapping("user/delete-book-trade")
+    @ResponseBody
     public boolean deleteBookTrade(@RequestParam(value = "id") Long id){
         log.info("deleteBookTrade()");
 

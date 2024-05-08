@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.rep.book.bookrepboot.dao.BookDao;
+import com.rep.book.bookrepboot.dao.BookTradeDao;
 import com.rep.book.bookrepboot.dao.TradeDao;
 import com.rep.book.bookrepboot.dao.TradeMsgDao;
 import com.rep.book.bookrepboot.dao.UserDao;
@@ -40,6 +41,8 @@ public class TradeService {
     private PlatformTransactionManager manager;
     @Autowired
     private TransactionDefinition definition;
+    @Autowired
+    private BookTradeDao bookTradeDao;
 
     @Autowired
     private UserDao userDao;
@@ -73,6 +76,8 @@ public class TradeService {
             tradeMsgDao.setTradeMsg(msgDTO);
             msg = "신청 메시지 전송 완료";
             view = "redirect:my-share";
+            bookTradeDao.updateBookTradeStatus(msgDTO.getBook_trade_id());
+            log.info("bookTrade 상태 수정 완료");
         } catch (Exception e) {
             e.printStackTrace();
             msg = "신청 메시지 전송 실패";
@@ -345,37 +350,22 @@ public class TradeService {
     }
 
     // 책 정보를 조합하여 리턴하는 메서드(리스트)
-    public List<Object> addBookInfoList(List<MsgDTO> msglist, int checkNum) {
+    public List<Object> addBookInfoList(List<MsgDTO> msglist) {
         log.info("addBookInfoList()");
         List<Object> mList = new ArrayList<>();
 
-        if (checkNum == 1) {
-            try {
-                for (MsgDTO msgDTO : msglist) {
-                    Map<String, Object> map = new HashMap<>();
-                    BookDTO receivedBook = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
-                    map.put("msgId", msgDTO.getMsg_id());
-                    map.put("receivedBook", receivedBook);
-                    mList.add(map);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            for (MsgDTO msgDTO : msglist) {
+                Map<String, Object> map = new HashMap<>();
+                BookDTO book = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
+                map.put("msgId", msgDTO.getMsg_id());
+                map.put("book", book);
+                mList.add(map);
             }
-        } else if (checkNum == 2) {
-            try {
-                for (MsgDTO msgDTO : msglist) {
-                    Map<String, Object> map = new HashMap<>();
-                    BookDTO sentBook = bookDao.getBookByIsbn(msgDTO.getSent_book_isbn());
-                    map.put("msgId", msgDTO.getMsg_id());
-                    map.put("sentBook", sentBook);
-                    mList.add(map);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            mList = null;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return mList;
     }
 

@@ -69,5 +69,19 @@
 	</select>
 	<select id="getSecondUser" resultMap="UserDTO" parameterType="java.lang.String">
 		SELECT * FROM user WHERE user_email = #{secUserEmail}
+  </select>
+	<select id="getUserListByEmail" parameterType="String" resultMap="UserDTO">
+		SELECT * FROM user
+		<if test="(keyword != null and keyword != '')">
+			WHERE user_email LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY user_email
+	</select>
+	<select id="getUserListByName" parameterType="String" resultMap="UserDTO">
+		SELECT * FROM user
+		<if test="(keyword != null and keyword != '')">
+			WHERE user_name LIKE CONCAT('%', #{keyword}, '%')
+		</if>
+		ORDER BY user_name
 	</select>
 </mapper>

@@ -17,26 +17,27 @@ import java.util.List;
 @Slf4j
 public class AdminUserController {
     @Autowired
-    private SearchService searchService;
-    @Autowired
     private AdminUserService adminUserService;
 
     //유저 관리 페이지 (이름, 이메일)
     @GetMapping("admin/main-user-management")
-    public String showUserManagement(@RequestParam(value = "keyword", required = false) String keyword,
-                                     @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+    public String showUserManagement(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                     @RequestParam(value = "option", defaultValue = "email") String option,
+                                     @RequestParam(value = "keyword", required = false) String keyword,
                                      Model model){
         log.info("showUserManagement()");
-        List<UserDTO> userList = searchService.getUserByString(keyword);
-        List<PageDTO> userPagingList = MainUtil.setPaging(userList, 10);
+        List<PageDTO> userList = adminUserService.getUserByKeyword(option, keyword);
+        log.info("userList {}", userList);
 
-        if (userPagingList.size() > 0){
-            model.addAttribute("userList", userPagingList.get(pageNum-1));
+        if (userList.size() > 0){
+            model.addAttribute("userList", userList.get(pageNum-1));
         } else {
             model.addAttribute("userList", null);
         }
         model.addAttribute("currentPageNum", pageNum);
-        model.addAttribute("listMaxSize", userPagingList.size());
+        model.addAttribute("listMaxSize", userList.size());
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("option", option);
 
         return "th/userManagement";
     }
