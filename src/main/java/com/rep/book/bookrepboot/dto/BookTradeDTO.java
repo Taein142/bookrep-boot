@@ -19,7 +19,7 @@ public class BookTradeDTO {
     private String book_isbn;
 
     @NonNull
-    private Integer book_quantity;
+    private Integer book_trade_status;
 
 }
 

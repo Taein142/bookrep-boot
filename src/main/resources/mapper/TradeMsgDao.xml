@@ -12,12 +12,14 @@
         SELECT *
         FROM msg
         WHERE received_user_email = #{loggedInUserEmail}
+          AND msg_status = 0
         ORDER BY sent_datetime desc
     </select>
     <select id="getSentTradeMsg" parameterType="String" resultType="com.rep.book.bookrepboot.dto.MsgDTO">
         SELECT *
         FROM msg
         WHERE sent_user_email = #{loggedInUserEmail}
+            AND msg_status = 0
         ORDER BY sent_datetime desc
     </select>
     <select id="getMsgById" parameterType="Long" resultType="com.rep.book.bookrepboot.dto.MsgDTO">
@@ -33,5 +35,11 @@
     <select id="getTradingID" resultType="Long">
         SELECT book_trade_id
         FROM msg
+    </select>
+    <select id="getInProgressMsg" parameterType="String" resultType="com.rep.book.bookrepboot.dto.MsgDTO">
+        SELECT * FROM msg
+        WHERE (sent_user_email = #{loggedInUserEmail} or received_user_email = #{loggedInUserEmail})
+            AND msg_status != 0
+        ORDER BY msg_id DESC
     </select>
 </mapper>

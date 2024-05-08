@@ -4,8 +4,8 @@
 <mapper namespace="com.rep.book.bookrepboot.dao.BookTradeDao">
     <insert id="registerTrade" parameterType="com.rep.book.bookrepboot.dto.BookTradeDTO">
         INSERT book_trade
-        (user_email, book_isbn, book_quantity)
-        VALUES (#{user_email}, #{book_isbn}, #{book_quantity})
+        (user_email, book_isbn, book_trade_status)
+        VALUES (#{user_email}, #{book_isbn}, #{book_trade_status})
     </insert>
     <select id="getBookTradeByKeyword" parameterType="Map" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
         SELECT *
@@ -27,6 +27,7 @@
         SELECT *
         FROM book_trade
         WHERE #{loggedInUserEmail} = user_email
+            AND book_trade_status = 1
         ORDER BY book_trade_id DESC
     </select>
     <delete id="deleteTradeRegistration" parameterType="Long">
@@ -35,7 +36,7 @@
     </delete>
     <update id="updateBookTradeStatus" parameterType="Long">
         UPDATE book_trade
-        SET book_quantity = 2
+        SET book_trade_status = 2
         WHERE book_trade_id = #{bookTradeId}
     </update>
 </mapper>

@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+    <th:block th:insert="~{th/customerHeader::header(user)}"></th:block>
 </header>
 <section>
     <aside>
@@ -17,7 +17,8 @@
             <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
             <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
             <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-status}">교환 상태</a></li>
+            <li><a th:href="@{/user/my-trade-msgs}">교환 신청 목록</a></li>
+            <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>
         </ul>
     </aside>
     <div id="myShareBox">
@@ -34,8 +35,8 @@
                 </th:block>
                 <th:block th:unless="${makeTradeRequestList == null || makeTradeRequestList.isEmpty()}">
                     <th:block th:each="sentPage:${makeTradeRequestList}">
-                        <th:blcok th:if="${sentPage.pageNum == currentPageNum}">
-                            <th:blcok th:each="makeTradeRequest:${sentPage.objectList}">
+                        <th:block th:if="${sentPage.pageNum == currentPageNum}">
+                            <th:block th:each="makeTradeRequest:${sentPage.objectList}">
                                 <div id="myShare-makeTradeRequestList-content" class="move-to-msg" th:msg-id="${makeTradeRequest.msgId}">
                                     <div>
                                         <img th:src="${makeTradeRequest.book != null ? makeTradeRequest.book.image : '/images/noBook.jpg'}"
@@ -53,8 +54,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </th:blcok>
-                        </th:blcok>
+                            </th:block>
+                        </th:block>
                     </th:block>
                 </th:block>
             </div>
@@ -80,10 +81,18 @@
     </div>
 </section>
 <footer>
-    <th:blcok th:insert="~{th/footer}"></th:blcok>
+    <th:block th:insert="~{th/footer}"></th:block>
 </footer>
 </body>
 <script th:inline="javascript">
-
+    document.addEventListener('DOMContentLoaded', function () {
+        let listAreaContents = document.querySelectorAll('.move-to-msg');
+        listAreaContents.forEach(function (moveMsg) {
+            moveMsg.addEventListener('click', function () {
+                let msgId = this.getAttribute('msg-id');
+                window.location.href = '/user/msg-detail?id=' + encodeURIComponent(msgId);
+            });
+        });
+    });
 </script>
 </html>

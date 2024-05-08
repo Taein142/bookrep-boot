@@ -28,7 +28,8 @@
             <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
             <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
             <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-status}">교환 상태</a></li>
+            <li><a th:href="@{/user/my-trade-msgs}">교환 신청 목록</a></li>
+            <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>
         </ul>
     </aside>
 
@@ -75,12 +76,12 @@
                                         </div>
                                     </div>
                                     <div id="myShare-tradeList-content-delButtonBox">
-                                        <th:blcok th:if="${trade.bookTrade.book_quantity} == 1">
+                                        <th:blcok th:if="${trade.bookTrade.book_trade_status} == 1">
                                             <button id="myShare-tradeList-content-delButton"
                                                     th:onclick="deleteBookTrade('[[${trade.bookTrade.book_trade_id}]]')">삭 제
                                             </button>
                                         </th:blcok>
-                                        <th:blcok th:unless="${trade.bookTrade.book_quantity} == 1">
+                                        <th:blcok th:unless="${trade.bookTrade.book_trade_status} == 1">
                                             <div>진행 중</div>
                                         </th:blcok>
                                     </div>
