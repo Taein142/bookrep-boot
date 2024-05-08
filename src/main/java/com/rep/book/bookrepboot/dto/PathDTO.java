@@ -16,8 +16,9 @@ public class PathDTO {
     private String trade_json;
 
     @NonNull
-    private String user_json;
-
-    @NonNull
     private String path_json;
+
+    private int total_distance;
+
+    private int total_duration;
 }
