@@ -187,7 +187,7 @@ section {
 
 /*footer*/
 .footer-bar {
-    bottom: 0;
+    bottom: 0px;
     width: 100%;
     height: 40px;
     background-color: rgb(186, 182, 182);
@@ -815,3 +815,122 @@ aside a:hover {
 }
 /*--------------------------------------------*/
 
+
+
+
+
+/*tradeApplication*/
+#tradeApplication{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+#tradeApplication button{
+    margin: 20px;
+}
+#tradeApplication_fullContents{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#tradeApplication_contents_01{
+    margin-top: 50px;
+    width: 450px;
+    height: 700px;
+    background-color: white;
+    border: black solid 2px;
+}
+#tradeApplication_contents_imgBox{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: black solid 1px;
+}
+#tradeApplication_contents_imgBox img{
+    height: 90%;
+    width: auto;
+}
+#tradeApplication_contents_detailBox1{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#tradeApplication-fullDummySelectContents{
+    margin-top: 50px;
+    height: 700px;
+    width: 450px;
+    border: solid black 2px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#tradeApplication-fullDummySelectContents-imgBox{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid black 1px;
+}
+#tradeApplication-fullDummySelectContents-imgBox img{
+    height: 90%;
+}
+#tradeApplication-fullDummySelectContents-bottom{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+#tradeApplication-fullDummySelectContents-bottom span{
+    font-size: larger;
+    font-weight: bold;
+    color: black;
+}
+#tradeApplication_BookSelectLink a{
+    text-decoration: none;
+}
+#tradeApplication_BookSelectLink-hover:hover{
+    position: relative;
+}
+#tradeApplication_BookSelectLink-hover:hover #addimg{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#tradeApplication_BookSelectLink-hover #addimg{
+    display: none;
+}
+#tradeApplication-fullDummySelectContents:hover{
+    filter: blur(5px); /* 마우스를 올릴 때 블러 처리 */
+}
+
+#submitSendTradeButton{
+    width: 90px;
+    height: 30px;
+    background-color: #76b173;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+#submitSendTradeButton:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+/*--------------------------------------------*/

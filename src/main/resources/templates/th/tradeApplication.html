@@ -9,9 +9,11 @@
     <title>tradeApplication</title>
 </head>
 <body>
-<header></header>
+<header>
+    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+</header>
 <section>
-    <div>
+    <div id="tradeApplication">
         <div id="tradeApplication_fullContents">
             <div id="tradeApplication_Contents_00">
                 <div id="tradeApplication_contents_01">
@@ -19,7 +21,7 @@
                         <img th:src="${firstBook.getImage()}" alt="">
                     </div>
                     <div id="tradeApplication_contents_detailBox1">
-                        <div id="tradeApplication_contents_detailBox1_writer">
+                        <div>
                             <div th:text="${firstTrade.getUser_email()}"/>
                         </div>
                         <div>
@@ -33,15 +35,37 @@
                         </div>
                     </div>
                 </div>
-                <div id="tradeApplication_contents_02">
-                    <div id="tradeApplication_contents_detailBox2">
-                        책요약: 예시입니다.
-                    </div>
-                </div>
             </div>
+
+            <div id="blankSpace">
+            </div>
+
             <th:block th:if="${book == null}">
                 <div id="tradeApplication_BookSelectLink">
-                    <a th:href="@{/user/book-select(checkNum=2, id=${id})}"><img th:src="@{/images/exBookPluse.png}" alt=""></a>
+                    <a th:href="@{/user/book-select(checkNum=2, id=${id})}">
+                        <div id="tradeApplication_BookSelectLink-hover">
+                            <div id="tradeApplication-fullDummySelectContents">
+                                <div id="tradeApplication-fullDummySelectContents-imgBox">
+                                    <img th:src="@{/images/no_book.jpg}" alt="">
+                                </div>
+                                <div id="tradeApplication-fullDummySelectContents-bottom">
+                                    <div>
+                                        <span>이메일:Unknown</span>
+                                    </div>
+                                    <div>
+                                        <span>재목:Unknown</span>
+                                    </div>
+                                    <div>
+                                        <span>저자:Unknown</span>
+                                    </div>
+                                    <div>
+                                        <span>출판사:Unknown</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <img th:src="@{/images/add.png}" alt="" id="addimg">
+                        </div>
+                    </a>
                 </div>
             </th:block>
             <th:block th:unless="${book == null}">
@@ -64,7 +88,9 @@
         <button id="submitSendTradeButton">교환신청</button>
     </div>
 </section>
-<footer></footer>
+<footer>
+    <th:blcok th:insert="~{th/footer}"></th:blcok>
+</footer>
 <script th:inline="javascript">
     $('#submitSendTradeButton').on('click', function() {
         $('#sendTradeForm').submit();
