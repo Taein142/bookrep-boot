@@ -11,4 +11,6 @@ public interface AdminDao {
     Optional<AdminDTO> findUserByEmail(String username);
 
     void adminUp(AdminDTO adminDTO);
+
+    void appointDriver(Long adminId);
 }
