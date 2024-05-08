@@ -349,22 +349,37 @@ public class TradeService {
     }
 
     // 책 정보를 조합하여 리턴하는 메서드(리스트)
-    public List<Object> addBookInfoList(List<MsgDTO> msglist) {
+    public List<Object> addBookInfoList(List<MsgDTO> msglist, int checkNum) {
         log.info("addBookInfoList()");
         List<Object> mList = new ArrayList<>();
 
-        try {
-            for (MsgDTO msgDTO : msglist) {
-                Map<String, Object> map = new HashMap<>();
-                BookDTO book = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
-                map.put("msgId", msgDTO.getMsg_id());
-                map.put("book", book);
-                mList.add(map);
+        if (checkNum == 1) {
+            try {
+                for (MsgDTO msgDTO : msglist) {
+                    Map<String, Object> map = new HashMap<>();
+                    BookDTO book = bookDao.getBookByIsbn(msgDTO.getSent_book_isbn());
+                    map.put("msgId", msgDTO.getMsg_id());
+                    map.put("book", book);
+                    mList.add(map);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else if (checkNum == 2) {
+            try {
+                for (MsgDTO msgDTO : msglist) {
+                    Map<String, Object> map = new HashMap<>();
+                    BookDTO book = bookDao.getBookByIsbn(msgDTO.getReceived_book_isbn());
+                    map.put("msgId", msgDTO.getMsg_id());
+                    map.put("book", book);
+                    mList.add(map);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            mList = null;
         }
-
         return mList;
     }
 
