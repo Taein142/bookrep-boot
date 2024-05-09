@@ -3,6 +3,10 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>delivery header</title>
+</head>
 <body>
 <!-- header -->
 <div th:fragment="header(admin)" class="header-bar">
@@ -19,7 +23,7 @@
     </div>
     <script th:inline="javascript">
         function moveToAdminIndex() {
-            location.href = "/admin/index";
+            location.href = "/driver/index";
         }
 
         function signOut() {

@@ -25,7 +25,7 @@
         </div>
 
         <div id="headerCenterContent" onclick="gocustomerHome()">
-            <img src="../images/newFullLogo.png">
+            <img th:src="@{/images/newFullLogo.png}" alt="">
             <h5>BOOKREP</h5>
         </div>
 
@@ -34,7 +34,7 @@
                 <div class="search-box">
                     <form id="searchForm" action="/user/search" method="GET">
                         <input id="keywordInput" type="text" name="keyword">
-                        <img id="searchImage" src="../images/search.png">
+                        <img id="searchImage" th:src="@{/images/search.png}" alt="">
                     </form>
                 </div>
             </div>

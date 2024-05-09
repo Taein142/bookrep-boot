@@ -139,6 +139,7 @@ section {
     display: flex;
     align-items: center;
 }
+
 #searchImage:hover{
     border-radius: 100px;
     filter: brightness(100%);
@@ -184,7 +185,6 @@ section {
 
 
 
-
 /*footer*/
 .footer-bar {
     bottom: 0px;
@@ -216,8 +216,6 @@ section {
     font-weight: bolder;
 }
 /*------------------------------*/
-
-
 
 
 
@@ -338,7 +336,6 @@ section {
 }
 
 /* -------------------------------------------- */
-
 
 
 

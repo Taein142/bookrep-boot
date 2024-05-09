@@ -12,7 +12,7 @@ header {
 }
 
 .header {
-	background-color: #918981;
+	background-color: rgb(187, 184, 184);
 	color: #fff;
 	padding: 10px 20px;
 	display: flex;
@@ -48,7 +48,7 @@ header {
 .header .buttons button {
 	margin-left: 1px;
 	padding: 8px 12px;
-	background-color: #555;
+	background-color: #232323;
 	color: #fff;
 	border: none;
 	cursor: pointer;
