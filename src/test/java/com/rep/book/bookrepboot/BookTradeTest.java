@@ -22,7 +22,7 @@ public class BookTradeTest {
         BookTradeDTO bookTradeDTO = new BookTradeDTO();
         bookTradeDTO.setUser_email("xodlsdldy@naver.com");
         bookTradeDTO.setBook_isbn("9791169212298");
-        bookTradeDTO.setBook_quantity(1);
+        bookTradeDTO.setBook_trade_status(1);
 
         RedirectAttributes rttr = new RedirectAttributesModelMap();
         String view = bookTradeService.saveTradeRegister(bookTradeDTO, rttr);

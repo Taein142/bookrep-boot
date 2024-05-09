@@ -42,7 +42,7 @@
                                             <span>user-EMAIL: <span th:text="${user.email}"></span></span>
                                         </div>
                                         <div id="userManagement_listArea_contentDel">
-                                            <button class="deleteBtn" th:onclick="deleteUser('[[${user.email}]]')">삭제
+                                            <button class="deleteBtn" th:onclick="deleteUser([[${user.email}]])">삭제
                                             </button>
                                         </div>
                                     </th:block>

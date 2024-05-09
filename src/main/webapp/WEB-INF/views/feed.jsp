@@ -15,11 +15,19 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet"
           href="<%=request.getContextPath()%>/resources/css/page.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous">
+    </script>
+    <script>
+        $(function () {
+            let msg = "${msg}";
+            if (msg !== "" && msg !== null) {
+                alert(msg);
+            }
+        });
+    </script>
 </head>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous">
-</script>
 <body>
 <sec:authorize access="isAuthenticated()">
     <jsp:include page="loggedHeader.jsp"/>

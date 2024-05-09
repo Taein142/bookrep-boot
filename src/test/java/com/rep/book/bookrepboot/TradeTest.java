@@ -44,7 +44,7 @@ public class TradeTest {
     }
 
     @Test
-    public void updateTradeMsgStatusTest(){
+    public void updateTradeMsgStatusTest() throws Exception {
         Long testId = 4L;
         String testEmail = "test01@naver.com";
         boolean testResult = tradeService.updateTradeMsgStatus(testId, testEmail,1);
