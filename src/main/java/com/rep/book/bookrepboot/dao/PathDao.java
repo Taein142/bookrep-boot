@@ -16,4 +16,8 @@ public interface PathDao {
     void matchDriver(PathDTO pathDTO);
 
     PathDTO getPathDetail(Long pathId);
+
+    PathDTO getPathByAdminId(Long adminId);
+
+    void completeDelivery(Long pathId);
 }

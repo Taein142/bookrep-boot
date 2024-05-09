@@ -13,11 +13,17 @@
         SET deliver_admin_id = #{driver_admin_id}
         WHERE path_id = #{path_id}
     </update>
+    <delete id="completeDelivery" parameterType="java.lang.Long">
+        DELETE FROM `path` WHERE path_id = #{path_id}
+    </delete>
     <select id="getPathToSuperAdmin" resultType="com.rep.book.bookrepboot.dto.PathDTO">
         SELECT * FROM `path`
     </select>
     <select id="getPathDetail" resultType="com.rep.book.bookrepboot.dto.PathDTO" parameterType="java.lang.Long">
         SELECT * FROM `path` WHERE path_id = #{pathId}
+    </select>
+    <select id="getPathByAdminId" resultType="com.rep.book.bookrepboot.dto.PathDTO" parameterType="java.lang.Long">
+        SELECT * FROM `path` WHERE deliver_admin_id = #{adminId}
     </select>
 
 </mapper>

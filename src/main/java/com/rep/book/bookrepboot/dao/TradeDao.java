@@ -24,4 +24,6 @@ public interface TradeDao {
     void add(NodeCostDTO nodeCost);
 
     void updateTrade(TradeDTO tradeDTO);
+
+    void completeTrade(TradeDTO tradeDTO);
 }

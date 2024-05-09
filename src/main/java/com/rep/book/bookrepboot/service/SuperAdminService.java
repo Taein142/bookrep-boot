@@ -61,6 +61,15 @@ public class SuperAdminService {
         log.info("getPathDetail()");
 
         PathDTO pathDTO = pathDao.getPathDetail(pathId);
+        Map<String, DeliveryDTO> deliveryMap = packageDeliveryMap(pathDTO);
+
+        model.addAttribute("path", pathDTO);
+        model.addAttribute("deliveryMap", deliveryMap);
+    }
+
+    public Map<String, DeliveryDTO> packageDeliveryMap(PathDTO pathDTO){
+        log.info("packageDeliveryMap()");
+
         List<TradeDTO> tradeList = new Gson().fromJson(pathDTO.getTrade_json(), List.class);
         Map<String, DeliveryDTO> deliveryMap = new HashMap<>();
 
@@ -71,8 +80,7 @@ public class SuperAdminService {
             }
         }
 
-        model.addAttribute("path", pathDTO);
-        model.addAttribute("deliveryMap", deliveryMap);
+        return deliveryMap;
     }
 
     private DeliveryDTO createDeliveryDTO(String userEmail, double x, double y, String isbn) {
