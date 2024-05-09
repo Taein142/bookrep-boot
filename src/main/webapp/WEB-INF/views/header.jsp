@@ -15,7 +15,7 @@
 <header>
     <div class="header">
         <div class="logo">
-            <img src="../resources/images/bookrepLogo.png" alt="로고"
+            <img src="../resources/images/newFullLogo.png" alt="로고"
                  onclick="return moveToHome()">
         </div>
         <div class="buttons">

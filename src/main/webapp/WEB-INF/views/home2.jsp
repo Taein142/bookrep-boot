@@ -88,6 +88,7 @@
 			<a href="?pageNum=${sessionItems.size()}" class="page-link">▶|</a>
 		</div>
 	</c:if>
+	<jsp:include page="footer.jsp"/>
 </body>
 <script type="text/javascript">
 function moveToReportDetail(reportId) {

@@ -18,5 +18,6 @@
 	<input type="text" name="keyword">
 	<input type="submit">
 </form>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
