@@ -80,7 +80,7 @@ public class SignController {
 
 		if (agreedToTerms == null || agreedToPrivacyPolicy == null ||
 				!agreedToTerms.equals("agree") || !agreedToPrivacyPolicy.equals("agree")) {
-			rttr.addFlashAttribute("msg", "약관에 동의해주세요.");
+			rttr.addFlashAttribute("msg", "메일인증해주세요");
 			return "redirect:/sign-up";
 		}
 
@@ -119,12 +119,30 @@ public class SignController {
 	}
 	
 	@PostMapping("user/update")
-	public String modify(@RequestPart List<MultipartFile> files, UserDTO userDTO, HttpSession session) throws Exception {
+	public String modify(@RequestPart List<MultipartFile> files,
+						 @RequestParam("email") String email,
+						 @RequestParam("name") String name,
+						 @RequestParam("password") String password,
+						 @RequestParam("address") String address,
+						 @RequestParam("detail") String detail,
+						 @RequestParam("mailConfirm") String mailConfirm,
+						 HttpSession session, RedirectAttributes rttr) throws Exception {
 		log.info("modify()");
-		
-		signService.modify(files, userDTO, session);
-		
-		return "redirect:/";
+
+		if (mailConfirm == null || !mailConfirm.equals("true")) {
+			rttr.addFlashAttribute("msg", "약관에 동의해주세요.");
+			return "redirect:/user/update";
+		}
+
+		try {
+			signService.modify(files, email, name, password, address, detail, session);
+			rttr.addFlashAttribute("msg", "회원정보 수정이 완료되었습니다.");
+		} catch (Exception e){
+			rttr.addFlashAttribute("msg", "회원정보 수정이 실패하였습니다.");
+			return "redirect:/user/update";
+		}
+
+		return "redirect:/user/feed/" + email;
 	}
 	
 	@GetMapping("user/resign")

@@ -119,8 +119,17 @@ public class SignService {
 		return userDTO;
 	}
 
-	public void modify(List<MultipartFile> files, UserDTO userDTO, HttpSession session) throws Exception {
+	public void modify(List<MultipartFile> files, String email, String name, String password, String address, String detail, HttpSession session) throws Exception {
 		log.info("modify()");
+
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		password = bCryptPasswordEncoder.encode(password);
+		Map<String, Double> pointMap = getPointByAddress(address);
+		Double longitude = pointMap.get("longitude");
+		Double latitude = pointMap.get("latitude");
+
+		UserDTO userDTO = new UserDTO(email, password, name, null, longitude, latitude, detail);
+
 		String upFile = null;
 		if (files != null && !files.isEmpty()) {
 			upFile = files.get(0).getOriginalFilename();

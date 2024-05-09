@@ -123,7 +123,7 @@
     <fieldset>
         <div class="sign-up-link">
             <p>
-                이미 계정이 있나요? <a href="${pageContext.request.contextPath}/sign-in">로그인</a>
+                이미 계정이 있나요? <a href="${pageContext.request.contextPath}/user/sign-in">로그인</a>
             <p>
         </div>
     </fieldset>
