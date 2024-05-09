@@ -506,5 +506,125 @@ section {
     font-size: 16px;
     font-weight: bold;
 }
+/*----------------------------------------------*/
+
+
+
+
+
+/*deliveryManagement*/
+#deliveryManagement{
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#deliveryManagement-deliveryDetails_And_SaveButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 900px;
+}
+#deliveryManagement-deliveryDetails_And_SaveButton span{
+    background-color: rgba(118, 177, 115, 0.5);
+    padding: 10px;
+    border: none;
+    border-bottom: black dashed 1px;
+    border-radius: 5px;
+    color: white;
+}
+#deliveryManagement-pathInfo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#deliveryManagement-tradeInfo{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    background-color: rgba(255, 255, 255, 0.54);
+    border: black solid 2px;
+    padding: 5px;
+    width: 700px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+#deliveryManagement-tradeInfo-tradeIdBox{
+    width: 10%;
+    height: 100%;
+    border-right: black solid 1px;
+    padding: 10px;
+}
+#deliveryManagement-tradeInfo-firUser{
+    width: 35%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+}
+#deliveryManagement-tradeInfo-secUser{
+    width: 35%;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+}
+#deliveryManagement-tradeInfo-imgBox{
+    width: 20%;
+    height: 100%;
+}
+#deliveryManagement-tradeInfo-imgBox img{
+    padding: 5px;
+    width: 100%;
+    height: auto;
+}
+#admin-driverSelectBox{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: black solid 2px;
+
+}
+
+#deliveryManagement-outputBox{
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 20px;
+    width: 900px;
+    height: auto;
+}
+#deliveryManagement-saveButton button{
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 5px;
+}
+#deliveryManagement-saveButton button:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+#admin-driverSelectButton{
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    background-color: black;
+    border-radius: 5px;
+    border: black solid 2px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: white;
+}
+#admin-selectForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 /*----------------------------------------------*/
