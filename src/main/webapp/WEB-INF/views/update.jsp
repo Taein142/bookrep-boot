@@ -174,6 +174,7 @@
         </fieldset>
     </div>
 </div>
+<jsp:include page="footer.jsp"/>
 </body>
 <script>
     const password_check = () => {

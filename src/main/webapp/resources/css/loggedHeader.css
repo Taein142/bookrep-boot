@@ -62,7 +62,7 @@ header {
 	align-items: center; /* 요소들을 수직으로 아래로 정렬 */
 	flex-direction: column; /*세로 정렬*/
 	margin-right: 10px;
-	color: black ;
+	color: #232323 ;
 	font-size: 15px; solid-color: black
 }
 .profile span{
@@ -77,7 +77,7 @@ header {
 .header .buttons button {
 	margin-left: 1px;
 	padding: 8px 12px;
-	background-color: black;
+	background-color: #232323;
 	color: #fff;
 	border: none;
 	cursor: pointer;

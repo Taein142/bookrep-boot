@@ -63,7 +63,6 @@
                 class="page-link">다음</a>
     </c:if>
 </div>
-
-
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
