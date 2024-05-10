@@ -18,8 +18,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
     private static final Map<String, String> ROLE_URL_MAP = new HashMap<>() {{
         put("ROLE_USER", "/user/home");
         put("ROLE_ADMIN", "/admin/index");
-        put("ROLE_DRIVER", "/driver/index");
-        put("ROLE_SUPER_ADMIN", "/super-admin/index");
+        put("ROLE_DRIVER", "/admin/index");
+        put("ROLE_SUPER_ADMIN", "/admin/index");
     }};
 
     @Override
@@ -32,11 +32,8 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
                 .orElse("");
 
         if (!role.isEmpty()) {
-            log.warn("ROLE IS {}", role);
             response.sendRedirect(ROLE_URL_MAP.get(role));
-            if (role.equals("ROLE_SUPER_ADMIN")) {
-                log.warn("*****SUPER ADMIN LOGGED IN*****");
-            }
+            log.warn("***{} LOGGED IN***", role);
         } else {
             response.sendRedirect("/");
         }
