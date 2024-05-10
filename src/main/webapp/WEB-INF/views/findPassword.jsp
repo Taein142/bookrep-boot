@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 찾기</title>
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/findPassword.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -23,7 +25,7 @@
                 alert("정보를 입력하세요.");
                 return;
             }
-
+            spinOn();
             console.log(email);
 
             $.ajax({
@@ -35,14 +37,17 @@
                         alert("인증코드를 메일로 전송했습니다.");
                         $(".tbmg").show();
                         $("#sbtn").attr("disabled", true)// 전송버튼 비활성화
+                        spinOff();
                     }
                     else{
                         alert("메일 전송에 실패했습니다.");
+                        spinOff();
                     }
                 },
                 error: (err) => {
                     console.log(err);
                     alert("메일 전송에 실패했습니다.");
+                    spinOff();
                 }
             })
         })
@@ -90,7 +95,6 @@
 
             <img class="lock-img" alt="자물쇠로고"
                  src="resources/images/free-icon-padlock-747305.png">
-
             <h2>로그인에 문제가 있나요?</h2>
             가입 당시 입력한 이메일로 <br> 비밀번호를 변경할 수 있습니다.
 
@@ -134,6 +138,12 @@
         </div>
     </fieldset>
 </div>
+<div class="w-100 h-100 fixed-top justify-content-center align-items-center bg-opacity-10 bg-success" id="spin" style="display: none;">
+    <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Loading...</span>
+    </button>
+</div>
 <jsp:include page="footer.jsp"/>
 </body>
 <script>
@@ -152,13 +162,23 @@
             },
             // 성공 시 처리
             success: function (result) {
+                spinOff();
                 alert(result); // 컨트롤러에서 받은 결과 출력
             },
             // 에러 시 처리
             error: function () {
+                spinOff();
                 alert("에러가 발생했습니다.");
             }
         });
+    }
+
+    function spinOn() {
+        $("#spin").addClass("d-flex");
+    }
+
+    function spinOff() {
+        $("#spin").removeClass("d-flex");
     }
 </script>
 

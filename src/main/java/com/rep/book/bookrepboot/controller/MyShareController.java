@@ -30,32 +30,36 @@ public class MyShareController {
         model.addAttribute("tradeList", registerList); // 내 교환 등록 리스트
         model.addAttribute("userEmail", loggedInUserEmail); //로그인 한 유저 이메일
         model.addAttribute("currentPageNum", pageNum);
+        model.addAttribute("listMaxSize", registerList.size());
+
 
         return "th/myShare";
     }
 
     @GetMapping("user/received-requests")
-    public String showReceivedRequest(@RequestParam(value = "pageNum", defaultValue = "1") int receivePageNum, Model model) {
+    public String showReceivedRequest(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model) {
         log.info("showMyShare()");
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         List<PageDTO> receivedMessages = myShareService.getReceivedTradeMsg(loggedInUserEmail); // 받은 메시지 데이터 가져옴
 
         model.addAttribute("receiveTradeRequestList", receivedMessages); // 교환 신청받은 책 리스트
-        model.addAttribute("currentPageNum", receivePageNum);
+        model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("userEmail", loggedInUserEmail); //로그인 한 유저 이메일
+        model.addAttribute("listMaxSize", receivedMessages.size());
 
         return "th/receivedRequests";
     }
 
     @GetMapping("user/trade-requests")
-    public String showMakeTradeRequestList(@RequestParam(value = "pageNum", defaultValue = "1") int sentPageNum, Model model) {
+    public String showMakeTradeRequestList(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum, Model model) {
         log.info("showMakeTradeRequestList()");
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
         List<PageDTO> sentMessages = myShareService.getSentTradeMsg(loggedInUserEmail); // 보낸 메시지 데이터 가져옴
 
         model.addAttribute("makeTradeRequestList", sentMessages); // 교환 신청한 책 리스트
-        model.addAttribute("currentPageNum", sentPageNum);
+        model.addAttribute("currentPageNum", pageNum);
         model.addAttribute("userEmail", loggedInUserEmail); //로그인 한 유저 이메일
+        model.addAttribute("listMaxSize", sentMessages.size());
 
         return "th/tradeRequests";
     }

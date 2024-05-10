@@ -31,9 +31,7 @@
                     </div>
                 </th:block>
             </div>
-
             <div id="blankSpace"></div>
-
             <div>
                 <th:block th:with="book=${msgInfo.sentBook}">
                     <div id="MTR-sentBookInfo">
@@ -50,7 +48,6 @@
                 </th:block>
             </div>
         </div>
-
         <div id="MTR-btn">
             <th:blcok th:if="${msgInfo.msgDTO.msg_status}==0">
                 <div id="MTR-btn-buttonBox">
@@ -66,9 +63,11 @@
             <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
                 <div> 교환이 취소되었습니다.</div>
             </th:blcok>
+            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==4">
+                <div> 교환이 완료되었습니다.</div>
+            </th:blcok>
         </div>
     </div>
-
 </section>
 <footer>
     <th:blcok th:insert="~{th/footer}"></th:blcok>

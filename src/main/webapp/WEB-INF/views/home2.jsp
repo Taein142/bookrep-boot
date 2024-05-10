@@ -32,6 +32,12 @@
 		</c:otherwise>
 	</c:choose>
 
+	<c:if test="${empty sessionItems}">
+		<br><br><br><br><br><br><br><br>
+		<div style="text-align: center">팔로우한 유저가 없습니다.</div>
+		<br><br><br><br><br><br><br><br>
+	</c:if>
+
 	<!-- 현재 페이지 번호와 일치하는 독후감 등을 출력하는 부분 -->
 	<c:if test="${not empty sessionItems}">
 		<c:forEach var="page" items="${sessionItems}">
