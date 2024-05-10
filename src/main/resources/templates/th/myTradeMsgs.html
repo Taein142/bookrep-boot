@@ -17,50 +17,58 @@
             <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
             <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
             <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-msgs}">교환 신청 목록</a></li>
+            <li><a th:href="@{/user/my-trade-msgs}">교환 메시지 리스트</a></li>
             <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>
         </ul>
     </aside>
+    <br>
     <th:block th:unless="${msgList !=null or #lists.isEmpty(msgList)}">
         <div>교환 메시지가 존재하지 않습니다.</div>
     </th:block>
     <th:block th:if="${msgList != null or #lists.isEmpty(msgList)}">
         <th:block th:each="pageDTO : ${msgList}">
             <th:block th:each="tradeMap : ${pageDTO.objectList}">
-                <div th:text="'거래 정보: ' + ${tradeMap.msgDTO.received_user_email} + ' <-> ' + ${tradeMap.msgDTO.sent_user_email}"></div>
-                <br>
-                <div style="display: flex">
-                    <div>
-                        <div>교환 신청 받은 책 책 정보</div>
-                        <div>
-                            <div><img th:src="${tradeMap.receivedBook.image}" alt="" style="width: 200px; height: 300px;"></div>
+                <div class="myTradeStatus-book-background">
+                    <div th:text="'거래 유저: ' + ${tradeMap.msgDTO.received_user_email} + ' <-> ' + ${tradeMap.msgDTO.sent_user_email}"
+                         class="myTradeStatus-trade-user-email"></div>
+                    <br>
+                    <div class="myTradeStatus-book-info">
+                        <div class="myTradeStatus-book-info-detail">
+                            <div>교환 신청 받은 책 책 정보</div>
+                            <br>
                             <div>
-                                <div th:text="'저자: '+${#strings.length(tradeMap.receivedBook.name) > 30 ? #strings.substring(tradeMap.receivedBook.name, 0, 30) + '...' : tradeMap.receivedBook.name}"></div>
-                                <div th:text="'저자: '+${#strings.length(tradeMap.receivedBook.author) > 30 ? #strings.substring(tradeMap.receivedBook.author, 0, 30) + '...' : tradeMap.receivedBook.author}"></div>
-                                <div th:text="'출판사: ' + ${tradeMap.receivedBook.publisher}"></div>
+                                <div class="myTradeStatus-book-image"><img th:src="${tradeMap.receivedBook.image}" alt=""></div>
+                                <div><br>
+                                    <div th:text="'도서: '+${#strings.length(tradeMap.receivedBook.name) > 20 ? #strings.substring(tradeMap.receivedBook.name, 0, 20) + '...' : tradeMap.receivedBook.name}"></div>
+                                    <div th:text="'저자: '+${#strings.length(tradeMap.receivedBook.author) > 20 ? #strings.substring(tradeMap.receivedBook.author, 0, 20) + '...' : tradeMap.receivedBook.author}"></div>
+                                    <div th:text="'출판사: ' + ${tradeMap.receivedBook.publisher}"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="myTradeStatus-book-info-detail">
+                            <div>교환 신청한 책 정보</div>
+                            <br>
+                            <div>
+                                <div class="myTradeStatus-book-image">
+                                    <img th:src="${tradeMap.sentBook.image}" alt=""></div>
+                                <div><br>
+                                    <div th:text="'도서: '+${#strings.length(tradeMap.sentBook.name) > 20 ? #strings.substring(tradeMap.sentBook.name, 0, 20) + '...' : tradeMap.sentBook.name}"></div>
+                                    <div th:text="'저자: '+${#strings.length(tradeMap.sentBook.author) > 20 ? #strings.substring(tradeMap.sentBook.author, 0, 20) + '...' : tradeMap.sentBook.author}"></div>
+                                    <div th:text="'출판사: ' + ${tradeMap.sentBook.publisher}"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <div>교환 신청한 책 정보</div>
-                        <div>
-                            <div>
-                                <img th:src="${tradeMap.sentBook.image}" alt="" style="width: 200px; height: 300px;"></div>
-                            <div>
-                                <div th:text="'도서: ' + ${tradeMap.sentBook.name}"></div>
-                                <div th:text="'저자: ' + ${tradeMap.sentBook.author}"></div>
-                                <div th:text="'출판사: ' + ${tradeMap.sentBook.publisher}"></div>
-                            </div>
-                        </div>
+                    <br>
+                    <div th:switch="${tradeMap.msgDTO.msg_status}" class="myTradeStatus-trade-user-email">
+                        <p th:case="0" th:text="'교환 신청 중입니다.'"></p>
+                        <p th:case="1" th:text="'교환이 승낙되었습니다.'"></p>
+                        <p th:case="2" th:text="'교환이 거절되었습니다.'"></p>
+                        <p th:case="3" th:text="'교환이 취소되었습니다.'">.</p>
+                        <p th:case="4" th:text="'교환이 완료되었습니다.'">.</p>
+                        <p th:case="*" th:text="'오류가 발생했습니다. 관리자에게 문의해주세요.'"></p>
                     </div>
-                </div><br>
-                <div th:switch="${tradeMap.msgDTO.msg_status}">
-                    <p th:case="0" th:text="'교환 신청 중입니다.'"></p>
-                    <p th:case="1" th:text="'교환이 승낙되었습니다.'"></p>
-                    <p th:case="2" th:text="'교환이 걸절되었습니다.'"></p>
-                    <p th:case="3" th:text="'교환이 취소되었습니다.'">.</p>
-                    <p th:case="*" th:text="'오류가 발생했습니다. 관리자에게 문의해주세요.'"></p>
-                </div><br><br>
+                </div>
             </th:block>
         </th:block>
         <div id="paging_area">
@@ -79,7 +87,7 @@
             </th:block>
             <a th:href="@{'?pageNum=' + ${listMaxSize}}" class="page-link">▶|</a>
         </div>
-    </th:block>
+    </th:block><br>
 </section>
 <footer>
     <th:block th:insert="~{th/footer}"></th:block>
@@ -87,7 +95,6 @@
 
 </body>
 <script th:inline="javascript">
-
 
 </script>
 </html>

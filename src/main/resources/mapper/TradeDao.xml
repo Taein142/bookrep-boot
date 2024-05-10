@@ -20,7 +20,7 @@
     </update>
     <update id="completeTrade" parameterType="com.rep.book.bookrepboot.dto.TradeDTO">
         UPDATE trade
-        SET trade_status = 2
+        SET trade_status = 4
         WHERE trade_id = #{trade_id}
     </update>
     <select id="getTradeListByEmail" parameterType="String" resultType="com.rep.book.bookrepboot.dto.TradeDTO">
