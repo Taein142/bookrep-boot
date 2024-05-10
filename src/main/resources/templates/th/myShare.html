@@ -28,14 +28,13 @@
             <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
             <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
             <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-msgs}">교환 신청 목록</a></li>
-            <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>
+            <li><a th:href="@{/user/my-trade-msgs}">교환 메시지 리스트</a></li>
+            <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>>
         </ul>
     </aside>
-
     <div id="MyShareLogo">
         <div>
-            <img src="../images/newFullLogo.png " alt="Logo">
+            <img th:src="@{/images/newFullLogo.png}" alt="Logo">
         </div>
         <div>
             <h1>My Share</h1>
@@ -91,23 +90,23 @@
                     </th:blcok>
                 </th:block>
             </div>
-            <div id="myShare-tradeList-pagingArea">
+            <div id="paging_area">
                 <a th:href="@{'?pageNum=1'}" class="page-link">|◀</a>
                 <th:block th:if="${currentPageNum > 3}">
                     <a th:href="@{'?&pageNum=' + ${currentPageNum - 3}}" class="page-link">이전</a>
                 </th:block>
                 <th:block th:each="pageNum : ${#numbers.sequence(currentPageNum - 2, currentPageNum + 2)}">
-                    <th:block th:if="${pageNum >= 1 && pageNum <= tradeList.size()}">
+                    <th:block th:if="${pageNum >= 1 && pageNum <= listMaxSize}">
                         <a th:href="@{'?pageNum=' + ${pageNum}}"
                            th:text="${pageNum}"
                            th:class="${pageNum == currentPageNum ? 'current-page' : 'page-link'}"></a>
                     </th:block>
                 </th:block>
-                <th:block th:if="${currentPageNum + 2 < tradeList.size()}">
+                <th:block th:if="${currentPageNum + 2 < listMaxSize}">
                     <a th:href="@{'?&pageNum=' + ${currentPageNum + 3}}"
                        class="page-link">다음</a>
                 </th:block>
-                <a th:href="@{'?&pageNum=' + ${tradeList.size()}}" class="page-link">▶|</a>
+                <a th:href="@{'?&pageNum=' + ${listMaxSize}}" class="page-link">▶|</a>
             </div>
         </div>
     </div>
