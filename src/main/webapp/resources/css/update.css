@@ -2,62 +2,50 @@
 
 body {
 	background-color: #f5f5f5;
+	font-family: Arial, sans-serif; /* 추가: 기본 글꼴 지정 */
+	margin: 0; /* 추가: 바디 마진 제거 */
 }
 
-h1 {
+.update-frm {
+	margin: 0 auto; /* 추가: 중앙 정렬 */
+	max-width: 400px; /* 추가: 최대 너비 설정 */
+}
+
+.update-frm h2 {
 	text-align: center;
 }
 
 fieldset {
 	border-radius: 5px;
+	border: solid 1px #ddd; /* 추가: 테두리 스타일 및 색상 */
+	padding: 20px; /* 추가: 안쪽 여백 */
+	margin-bottom: 10px; /* 추가: 아래 여백 */
 }
 
 .btn-box button {
-	padding: 1% 13%;
+	padding: 10px 20px; /* 수정: 더 간단한 패딩 */
+	margin: 5px;
 	background-color: #918981;
-	border: solid 1px #918981;
+	border: none; /* 수정: 테두리 제거 */
 	border-radius: 5px;
-	font-size: 20px;
-	background-color: #918981;
-}
-
-.update-frm {
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 10px;
-}
-
-input {
-	width: 65%;
-}
- 
-
-.input1 {
-	margin-left: 12px;
-}
-
-.input2 {
-	margin-left: 32px;
-}
-
-.label1 {
-	padding: 0px 15px;
-}
-
-.label2 {
-	padding: 0px 15px;
-}
-
-.label3 {
-	padding: 0px 11px;
+	font-size: 16px; /* 수정: 폰트 크기 줄임 */
+	color: white; /* 추가: 글자색 지정 */
+	cursor: pointer; /* 추가: 커서 모양 변경 */
 }
 
 .enter-area label {
-	display: inline-block;
+	display: block; /* 수정: 블록 레벨 요소로 변경 */
 	margin-bottom: 5px;
-	text-align: left;
+	font-weight: bold; /* 추가: 라벨 텍스트 굵게 */
 }
 
 .real-out-line {
-	padding: 10% 37%
+	padding: 10%; /* 수정: 비율적 패딩 */
+}
+
+.out-line-box {
+	border: solid 1px black; /* 수정: 테두리 스타일 및 색상 */
+	max-width: 400px; /* 추가: 최대 너비 설정 */
+	margin: 0 auto; /* 추가: 중앙 정렬 */
+	padding: 10px; /* 추가: 안쪽 여백 */
 }

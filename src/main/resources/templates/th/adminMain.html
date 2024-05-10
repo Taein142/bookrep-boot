@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +9,22 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
-
 <body>
 <header>
     <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
 </header>
     <section>
         <div id="container2">
+            <th:block th:if="${#authorization.expression('hasRole(''SUPER_ADMIN'')')}">
+                <a href="/super-admin/delivery-manage"> <div id="mainDeliveryManagement"> 배송관리 </div> </a>
+            </th:block>
+            <th:block th:if="${#authorization.expression('hasAnyRole(''DRIVER'', ''SUPER_ADMIN'')')}">
+                <a href="/driver/delivery" sec:authorize="hasAnyRole('DRIVER', 'SUPER_ADMIN')"> <div id="mainDelivery"> 배송 </div> </a>
+            </th:block>
             <a href="/admin/main-report-management"> <div id="mainBookreportManagement"> 독후감 관리 </div> </a>
             <a href="/admin/main-book-management"> <div id="mainBookManagement"> 도서 관리 </div> </a>
             <a href="/admin/main-user-management"> <div id="mainUserManagement"> 유저 관리 </div> </a>
         </div>
     </section>
 </body>
-
-
 </html>
