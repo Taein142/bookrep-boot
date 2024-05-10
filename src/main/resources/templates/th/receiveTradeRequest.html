@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -31,9 +33,7 @@
                     </div>
                 </th:block>
             </div>
-
             <div id="blankSpace"></div>
-
             <div>
                 <th:block th:with="book=${msgInfo.sentBook}">
                     <div id="RTR-sentBookInfo">
@@ -50,7 +50,6 @@
                 </th:block>
             </div>
         </div>
-
         <div id="RTR-btn">
             <th:blcok th:if="${msgInfo.msgDTO.msg_status}==0">
                 <div id="RTR-btn-buttonBox">
@@ -67,7 +66,16 @@
             <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
                 <div> 교환이 취소되었습니다.</div>
             </th:blcok>
+            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==4">
+                <div> 교환이 완료되었습니다.</div>
+            </th:blcok>
         </div>
+    </div>
+    <div class="w-100 h-100 fixed-top justify-content-center align-items-center bg-opacity-10 bg-success" id="spin" style="display: none;">
+        <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+            <span role="status">Loading...</span>
+        </button>
     </div>
 </section>
 <footer>
@@ -77,6 +85,7 @@
 <script th:inline="javascript">
     const accept = (msgId) => {
         console.log("accept - msgId: ", msgId);
+        spinOn();
 
         $.ajax({
             url: '/user/accept-msg',
@@ -88,10 +97,12 @@
                     document.location.reload(true);
                     alert('교환을 수락하셨습니다.');
                 } else {
+                    spinOff();
                     alert('알 수 없는 오류로 교환이 수락되지 않았습니다.');
                 }
             },
             error: function () {
+                spinOff();
                 alert('서버와의 통신 중 문제가 발생했습니다.');
             }
         });
@@ -117,6 +128,14 @@
                 alert('서버와의 통신 중 문제가 발생했습니다.');
             }
         });
+    }
+
+    function spinOn() {
+        $("#spin").addClass("d-flex");
+    }
+
+    function spinOff() {
+        $("#spin").removeClass("d-flex");
     }
 </script>
 </html>
