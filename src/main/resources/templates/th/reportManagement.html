@@ -33,18 +33,20 @@
                 <th:block th:each="pageDTO:${reportList}">
                     <div id="BRB">
                         <th:block th:each="map:${pageDTO.objectList}">
-                            <div id="listArea_content" class="listAreaContent" th:data-id="${map.report.id}">
-                                <div id="bookReportManagement_listArea_contentView">
-                                    <span>id: <span th:text="${map.report.id}"></span></span>
-                                    <span>작성자: <span th:text="${map.report.userEmail}"></span></span>
-                                    <span>제목: <span th:text="${map.report.title}"></span></span>
-                                    <span>도서명: <span
-                                            th:text="${#strings.length(map.bookName) > 8 ? #strings.substring(map.bookName, 0, 8) + '..' : map.bookName}"></span></span>
-                                    <span> 작성시간: <span th:text="${map.report.time}"></span></span>
+                            <div class="public-manageList_content">
+                                <div id="listArea_content" class="listAreaContent" th:data-id="${map.report.id}">
+                                    <div id="bookReportManagement_listArea_contentView">
+                                        <span>id: <span th:text="${map.report.id}"></span></span>
+                                        <span>작성자: <span th:text="${map.report.userEmail}"></span></span>
+                                        <span>제목: <span th:text="${map.report.title}"></span></span>
+                                        <span>도서명: <span
+                                                th:text="${#strings.length(map.bookName) > 8 ? #strings.substring(map.bookName, 0, 8) + '..' : map.bookName}"></span></span>
+                                        <span> 작성시간: <span th:text="${map.report.time}"></span></span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="bookReportManagement_listArea_contentDel">
-                                <button th:onclick="deleteReport('[[${map.report.id}]]')">삭제</button>
+                                <div id="bookReportManagement_listArea_contentDel">
+                                    <button th:onclick="deleteReport('[[${map.report.id}]]')">삭제</button>
+                                </div>
                             </div>
                         </th:block>
                     </div>
