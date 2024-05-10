@@ -5,21 +5,33 @@
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <title>Title</title>
+    <title>Delivery Management</title>
 </head>
 <body>
 <section>
     <div id="deliveryManagement">
         <div id="deliveryManagement-deliveryDetails_And_SaveButton">
             <span>배송 관리</span>
-            <div id="deliveryManagement-saveButton">
-                <button onclick="goDeliveryDetail()">배송 상세 현황</button>
-            </div>
         </div>
         <div id="deliveryManagement-outputBox">
+<!--            <th:block th:each="path:${pathList}">-->
+<!--                full:-->
+<!--                <div th:text="${path}"></div>-->
+<!--                <br>-->
+<!--                path_id:-->
+<!--                <div th:text="${path.path_id}"></div>-->
+<!--                <br>-->
+<!--                trade_json:-->
+<!--                <div th:text="${path.trade_json}">-->
+
+<!--                </div>-->
+<!--                <br>-->
+<!--                <br>-->
+<!--            </th:block>-->
+
+
+
             <div id="output"></div>
-
-
             <!-- JSON 데이터가 표시될 영역 -->
             <script th:inline="javascript">
                 // JSON 데이터를 파싱하여 객체로 변환
@@ -30,36 +42,43 @@
                     data.forEach((element) => {
                         const container = document.createElement('div');
                         container.innerHTML = `
-<div id="deliveryManagement-pathInfo">
-    <div id="deliveryManagement-tradeInfo">
-        <div id="deliveryManagement-tradeInfo-tradeIdBox" style="display: flex; align-items:center; justify-content: center;" >
-            <div>Trade ID: ${JSON.parse(element.trade_json)[0].trade_id}</div>
+    <div id="deliveryManagement-pathInfo">
+        <div id="deliveryManagement-tradeInfo">
+            <div id="deliveryManagement-tradeInfo-pathIdAndDeliveryDetailButton">
+                <a href="@{'/super-admin/delivery-detail?path-id=' + ${element.path_id}}" id="deliveryManagement-tradeInfo-DeliveryDetailLink">
+                    <div>Path ID: ${element.path_id}</div>
+                </a>
+            </div>
+            <div id="deliveryManagement-tradeInfo-tradeIdBox">
+                <div>
+                    Trade ID: ${JSON.parse(element.trade_json)[0].trade_id}
+                </div>
+            </div>
+            <div id="deliveryManagement-tradeInfo-firUser" >
+                <div>First User Email: ${JSON.parse(element.trade_json)[0].fir_user_email}</div>
+                <div>First Book ISBN: ${JSON.parse(element.trade_json)[0].fir_book_isbn}</div>
+            </div>
+            <div id="deliveryManagement-tradeInfo-imgBox" >
+                <img src="../images/arrows.png" alt="">
+            </div>
+            <div id="deliveryManagement-tradeInfo-secUser" >
+                <div>Second User Email: ${JSON.parse(element.trade_json)[0].sec_user_email}</div>
+                <div>Second Book ISBN: ${JSON.parse(element.trade_json)[0].sec_book_isbn}</div>
+            </div>
         </div>
-        <div id="deliveryManagement-tradeInfo-firUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
-            <div>First User Email: ${JSON.parse(element.trade_json)[0].fir_user_email}</div>
-            <div>First Book ISBN: ${JSON.parse(element.trade_json)[0].fir_book_isbn}</div>
-        </div>
-        <div id="deliveryManagement-tradeInfo-imgBox" style="display: flex; align-items:center; justify-content: center;">
-            <img src="../images/arrows.png" alt="">
-        </div>
-        <div id="deliveryManagement-tradeInfo-secUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
-            <div>Second User Email: ${JSON.parse(element.trade_json)[0].sec_user_email}</div>
-            <div>Second Book ISBN: ${JSON.parse(element.trade_json)[0].sec_book_isbn}</div>
+        <div>
+            <form action="/super-admin/match-driver" method="post" id="admin-selectForm">
+                <input type="hidden" value="${element.path_id}" name="path-id">
+                <select name="admin-id" id="admin-driverSelectBox">
+                    <option value="3">김기사</option>
+                    <option value="4">최배달</option>
+                </select>
+                <input type="submit" value="저장" id="admin-driverSelectButton">
+            </form>
         </div>
     </div>
-    <div>
-        <form action="/super-admin/match-driver" method="post" id="admin-selectForm">
-            <input type="hidden" value="${element.path_id}" name="path-id">
-            <select name="admin-id" id="admin-driverSelectBox">
-                <option value="3">김기사</option>
-                <option value="4">최배달</option>
-            </select>
-            <input type="submit" value="저장" id="admin-driverSelectButton">
-        </form>
-    </div>
-</div>
 
-        `;
+            `;
                         document.getElementById('output').appendChild(container);
                     });
                 }
@@ -77,5 +96,6 @@
     const goDeliveryDetail = () => {
         location.href = "/super-admin/delivery-detail";
     }
+
 </script>
 </html>
