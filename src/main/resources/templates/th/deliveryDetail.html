@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>배송 상세 페이지</title>
+</head>
+<script th:inline="javascript">
+    const pathInfo = JSON.parse([[${path.path_json}]])
+    console.log(pathInfo);
+    const deliveryMap = new Map(Object.entries([[${deliveryMap}]]))
+    console.log(deliveryMap);
+</script>
+<body>
+<div>
+
+</div>
+<div id="map" style="width:80%;height:1000px;float: right" ></div>
+</body>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3018d8b0b46abd897e34e5cbd691ca18"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+        mapOption = {
+            center: new kakao.maps.LatLng(pathInfo[0].y, pathInfo[0].x), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };
+
+    // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    var positions = [];
+
+    for (let position of deliveryMap.values()){
+
+        positions.push({
+            title: position.userEmail,
+            latlng: new kakao.maps.LatLng(position.y, position.x),
+            content: '<div>' + position. +'</div>'
+        })
+    }
+
+    function getBookImage(isbn) {
+        $.ajax({
+            url:"/super-admin/get-book-image",
+            data: isbn,
+            dataType: 'text',
+            success: function (data){
+                return data;
+            }
+        })
+    }
+
+    var imageSrc = "/images/pngegg.png";
+
+    for (var i = 0; i < positions.length; i ++) {
+
+        // 마커 이미지의 이미지 크기 입니다
+        var imageSize = new kakao.maps.Size(35, 35);
+
+        // 마커 이미지를 생성합니다
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            map: map, // 마커를 표시할 지도
+            position: positions[i].latlng, // 마커를 표시할 위치
+            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            image : markerImage // 마커 이미지
+        });
+
+
+    }
+
+    drawPath(pathInfo);
+
+    var POLYLINE = null;
+
+    function drawPath(pathPointList) {
+        if (pathPointList.length > 0) {
+            // 선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+            var linePath = [];
+            for (var point of pathPointList) {
+                linePath.push(new kakao.maps.LatLng(point.y, point.x));
+            }
+
+            // 지도에 표시할 선을 생성합니다
+            POLYLINE = new kakao.maps.Polyline({
+                path: linePath, // 선을 구성하는 좌표배열 입니다
+                strokeWeight: 5, // 선의 두께 입니다
+                strokeColor: '#444444', // 선의 색깔입니다
+                strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                strokeStyle: 'solid' // 선의 스타일입니다
+            });
+            // 지도에 선을 표시합니다
+            POLYLINE.setMap(map);
+        }
+    }
+
+    // 지도에 선을 표시합니다
+    polyline.setMap(map);
+
+
+
+
+</script>
+</html>

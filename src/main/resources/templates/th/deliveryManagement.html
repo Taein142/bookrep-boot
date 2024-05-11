@@ -20,53 +20,6 @@
             <div id="output"></div>
 
 
-            <!-- JSON 데이터가 표시될 영역 -->
-            <script th:inline="javascript">
-                // JSON 데이터를 파싱하여 객체로 변환
-                const jsonData = [[${pathList}]]
-
-                // displayJsonData 함수를 수정하여 배열의 각 요소를 처리하도록 변경
-                function displayJsonData(data) {
-                    data.forEach((element) => {
-                        const container = document.createElement('div');
-                        container.innerHTML = `
-<div id="deliveryManagement-pathInfo">
-    <div id="deliveryManagement-tradeInfo">
-        <div id="deliveryManagement-tradeInfo-tradeIdBox" style="display: flex; align-items:center; justify-content: center;" >
-            <div>Trade ID: ${JSON.parse(element.trade_json)[0].trade_id}</div>
-        </div>
-        <div id="deliveryManagement-tradeInfo-firUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
-            <div>First User Email: ${JSON.parse(element.trade_json)[0].fir_user_email}</div>
-            <div>First Book ISBN: ${JSON.parse(element.trade_json)[0].fir_book_isbn}</div>
-        </div>
-        <div id="deliveryManagement-tradeInfo-imgBox" style="display: flex; align-items:center; justify-content: center;">
-            <img src="../images/arrows.png" alt="">
-        </div>
-        <div id="deliveryManagement-tradeInfo-secUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
-            <div>Second User Email: ${JSON.parse(element.trade_json)[0].sec_user_email}</div>
-            <div>Second Book ISBN: ${JSON.parse(element.trade_json)[0].sec_book_isbn}</div>
-        </div>
-    </div>
-    <div>
-        <form action="/super-admin/match-driver" method="post" id="admin-selectForm">
-            <input type="hidden" value="${element.path_id}" name="path-id">
-            <select name="admin-id" id="admin-driverSelectBox">
-                <option value="3">김기사</option>
-                <option value="4">최배달</option>
-            </select>
-            <input type="submit" value="저장" id="admin-driverSelectButton">
-        </form>
-    </div>
-</div>
-
-        `;
-                        document.getElementById('output').appendChild(container);
-                    });
-                }
-
-                // JSON 데이터를 화면에 표시
-                displayJsonData(jsonData);
-            </script>
         </div>
     </div>
 
@@ -77,5 +30,53 @@
     const goDeliveryDetail = () => {
         location.href = "/super-admin/delivery-detail";
     }
+    // JSON 데이터를 파싱하여 객체로 변환
+    const jsonData = [[${pathList}]];
+
+    // displayJsonData 함수를 수정하여 배열의 각 요소를 처리하도록 변경
+    function displayJsonData(data) {
+        data.forEach((element) => {
+            const trade = JSON.parse(element.trade_json);
+            console.log(trade);
+            if (trade.length > 0) {
+                const container = document.createElement('div');
+                container.innerHTML = `
+                                        <div id="deliveryManagement-pathInfo">
+                                            <div id="deliveryManagement-tradeInfo">
+                                                <div id="deliveryManagement-tradeInfo-tradeIdBox" style="display: flex; align-items:center; justify-content: center;" >
+                                                    <div>Trade ID: ${JSON.parse(element.trade_json)[0].trade_id.toString()}</div>
+                                                </div>
+                                                <div id="deliveryManagement-tradeInfo-firUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
+                                                    <div>First User Email: ${JSON.parse(element.trade_json)[0].fir_user_email.toString()}</div>
+                                                    <div>First Book ISBN: ${JSON.parse(element.trade_json)[0].fir_book_isbn.toString()}</div>
+                                                </div>
+                                                <div id="deliveryManagement-tradeInfo-imgBox" style="display: flex; align-items:center; justify-content: center;">
+                                                    <img src="../images/arrows.png" alt="">
+                                                </div>
+                                                <div id="deliveryManagement-tradeInfo-secUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
+                                                    <div>Second User Email: ${JSON.parse(element.trade_json)[0].sec_user_email.toString()}</div>
+                                                    <div>Second Book ISBN: ${JSON.parse(element.trade_json)[0].sec_book_isbn.toString()}</div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <form action="/super-admin/match-driver" method="post" id="admin-selectForm">
+                                                    <input type="hidden" value="${element.path_id.toString()}" name="path-id">
+                                                    <select name="admin-id" id="admin-driverSelectBox">
+                                                        <option value="3">김기사</option>
+                                                        <option value="4">최배달</option>
+                                                    </select>
+                                                    <input type="submit" value="저장" id="admin-driverSelectButton">
+                                                </form>
+                                            </div>
+                                        </div>
+
+                 `;
+                document.getElementById('output').appendChild(container);
+            }
+        });
+    }
+
+    // JSON 데이터를 화면에 표시
+    displayJsonData(jsonData);
 </script>
 </html>
