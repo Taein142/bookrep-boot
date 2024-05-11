@@ -9,7 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
-
 <body>
 <header>
     <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
@@ -36,12 +35,12 @@
                     <th:blcok th:each="book : ${object.objectList}">
                         <div id="listArea_content" class="listAreaContent" th:data-isbn="${book.isbn}">
                             <div id="libraryManagement_listArea_contentView">
-                                <span th:text="${bookStat.index + 1} + '.  '"></span>
-                                <span>도서명: <span th:text="${#strings.length(book.name) > 20 ? #strings.substring(book.name, 0 , 20) + '...' : book.name}"></span></span>
-                                <span>작가: <span th:text="${#strings.length(book.author)> 10 ? #strings.substring(book.author, 0 , 10) + '...' : book.author}"></span></span>
-                                <span>출판사: <span th:text="${book.publisher}"></span></span>
+                                <div><span th:text="${bookStat.index + 1} + '.  '"></span>
+                                    <span th:text="'도서명: '+${#strings.length(book.name) > 20 ? #strings.substring(book.name, 0 , 20) + '...' : book.name}"></span>
+                                </div>
+                                <div><span th:text="'작가: '+${#strings.length(book.author)> 10 ? #strings.substring(book.author, 0 , 10) + '...' : book.author}"></span></div>
+                                <div><span th:text="'출판사:'+${book.publisher}"></span></div>
                             </div>
-                            <br>
                         </div>
                     </th:blcok>
                 </div>

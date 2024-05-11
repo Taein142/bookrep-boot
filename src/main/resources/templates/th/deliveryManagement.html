@@ -5,26 +5,19 @@
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <title>Title</title>
+    <title>Delivery Management</title>
 </head>
 <body>
 <section>
     <div id="deliveryManagement">
         <div id="deliveryManagement-deliveryDetails_And_SaveButton">
             <span>배송 관리</span>
-            <div id="deliveryManagement-saveButton">
-                <button onclick="goDeliveryDetail()">배송 상세 현황</button>
-            </div>
         </div>
         <div id="deliveryManagement-outputBox">
             <div id="output"></div>
-
-
         </div>
     </div>
-
 </section>
-
 </body>
 <script th:inline="javascript">
     const goDeliveryDetail = () => {

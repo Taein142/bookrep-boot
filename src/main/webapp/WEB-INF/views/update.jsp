@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>회원정보 수정</title>
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/update.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
@@ -23,6 +25,7 @@
                     return;
                 }
 
+                spinOn();
                 console.log(email);
 
                 $.ajax({
@@ -31,16 +34,19 @@
                     data: {"email" : email},
                     success: (res) => {
                         if(res == "ok"){
+                            spinOff();
                             alert("인증코드를 메일로 전송했습니다.");
                             $(".tbmg").show();
                             $("#sbtn").attr("disabled", true);
                         }
                         else{
+                            spinOff();
                             alert("메일 전송에 실패했습니다.");
                         }
                     },
                     error: (err) => {
                         console.log(err);
+                        spinOff();
                         alert("에러 발생. 메일 전송에 실패했습니다.");
                     }
                 })
@@ -88,7 +94,8 @@
 <div class="real-out-line">
     <div class="out-line-box">
         <fieldset class="update-frm">
-            <h1>회원정보 수정</h1>
+            <h2>회원정보 수정</h2>
+            <br>
             <form id="userInfo" method="post" enctype="multipart/form-data">
                 <p>
                 <div class="enter-area">
@@ -122,16 +129,16 @@
                 </div>
                 <p>
                 <div class="enter-area">
-                    <label class="label2" for="name">이 름</label> <input class="input2" type="text" id="name" name="name" value="${user.name}">
+                    <label class="label2" for="name"> 이   름 </label> <input class="input2" type="text" id="name" name="name" value="${user.name}">
                 </div>
                 <p>
                 <div class="enter-area">
-                    <label class="label3" for="password">새 비 밀 번 호</label> <input class="input3" type="password" id="password" name="password" required
+                    <label class="label3" for="password"> 새 비 밀 번 호 </label> <input class="input3" type="password" id="password" name="password" required
                                                                                 placeholder="패스워드를 입력하세요">
                 </div>
                 <p>
                 <div class="enter-area">
-                    <label class="label4" for="password_re">비밀번호 확인</label> <input class="input4" type="password" id="password_re" name="password_re"
+                    <label class="label4" for="password_re"> 비밀번호 확인 </label> <input class="input4" type="password" id="password_re" name="password_re"
                                                                                    required placeholder="패스워드 확인" onblur="password_check()"> <br>
                     <span id="password_check"></span>
                 </div>
@@ -173,6 +180,12 @@
             <p>
         </fieldset>
     </div>
+</div>
+<div class="w-100 h-100 fixed-top justify-content-center align-items-center bg-opacity-10 bg-success" id="spin" style="display: none;">
+    <button class="btn btn-primary" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status">Loading...</span>
+    </button>
 </div>
 <jsp:include page="footer.jsp"/>
 </body>
@@ -273,5 +286,13 @@
             alert(msg);
         }
     });
+
+    function spinOn() {
+        $("#spin").addClass("d-flex");
+    }
+
+    function spinOff() {
+        $("#spin").removeClass("d-flex");
+    }
 </script>
 </html>

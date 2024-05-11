@@ -15,7 +15,7 @@ body {
 
 section {
     height: 100%;
-    margin-top: 200px;
+    margin-top: 100px;
 }
 
 /* fragments(header,footer) */
@@ -298,6 +298,11 @@ section {
     border-radius: 10px;
 }
 
+#container2 a {
+    text-decoration: none; /* 밑줄 없애기 */
+    color: white; /* 텍스트 색상을 흰색으로 설정 */
+}
+
 #container2 > div:hover {
     background-color: #8a8a8a;
 }
@@ -308,6 +313,7 @@ section {
 #mainBookreportManagement,
 #mainBookManagement,
 #mainUserManagement,
+#mainDeliveryManagement,
 #mainDelivery {
     font-size: 20px; /* 원하는 크기로 설정 */
     width: 150px;
@@ -430,20 +436,60 @@ section {
     /* 클릭 시 나타나는 태두리 제거 */
 }
 
+.public-manageList_content{
+    display: flex;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+#searchOption {
+    margin-top: 1px;
+    margin-left: 8px;
+    padding: 4px 6px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    appearance: none;
+}
+
+#searchOption option {
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+#searchOption::-ms-expand {
+    display: none;
+}
+#searchOption::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
 #BRB,
-#LB,
 #UB{
     border: black 2px solid;
     border-radius: 5px;
     width: 520px;
-    height: 690px;
+    height: 580px;
     background-color: #7e7d7d81;
 }
 
-#BRB_form,
-#LB_form,
+#LB{
+    border: black 2px solid;
+    border-radius: 5px;
+    width: 520px;
+    background-color: #7e7d7d81;
+}
+
 #UB_form{
-    display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 7px;
@@ -452,8 +498,7 @@ section {
 }
 
 #bookReportManagement_listArea_contentView,
-#libraryManagement_listArea_contentView
-#userManagement_listArea_contentView{
+.moveFeed{
     border-radius: 5px;
     background-color: rgb(65, 65, 65);
     color: white;
@@ -462,9 +507,21 @@ section {
     height: 35px;
     white-space: nowrap;
     overflow: hidden;
-    /* 넘치는 부분을 숨김 */
-    text-overflow: ellipsis;
-    /* 넘치는 부분에 생략 부호(...) 표시 */
+    text-overflow: ellipsis;/
+}
+
+#libraryManagement_listArea_contentView{
+    border-radius: 5px;
+    background-color: rgb(65, 65, 65);
+    color: white;
+    padding: 10px;
+    width: 480px;
+    white-space: nowrap;
+    margin: 15px;
+}
+
+#userManagement_listArea_contentView{
+    margin-top: 20px;
 }
 
 #bookReportManagement_listArea_contentDel,
@@ -520,6 +577,9 @@ section {
     justify-content: space-between;
 }
 
+#{
+}
+
 #deliveryManagement-tradeInfo{
     display: flex;
     align-items: center;
@@ -532,6 +592,36 @@ section {
     margin-bottom: 10px;
     border-radius: 5px;
 }
+#deliveryManagement-tradeInfo-pathIdAndDeliveryDetailButton{
+    width: 10%;
+    height: 100%;
+    border-right: black solid 1px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#deliveryManagement-tradeInfo-DeliveryDetailLink{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#deliveryManagement-tradeInfo-DeliveryDetailLink div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+#deliveryManagement-tradeInfo-DeliveryDetailLink div:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: white;
+}
+
 #deliveryManagement-tradeInfo-tradeIdBox{
     width: 10%;
     height: 100%;
@@ -539,13 +629,13 @@ section {
     padding: 10px;
 }
 #deliveryManagement-tradeInfo-firUser{
-    width: 35%;
+    width: 30%;
     height: 100%;
     padding: 10px;
     text-align: center;
 }
 #deliveryManagement-tradeInfo-secUser{
-    width: 35%;
+    width: 30%;
     height: 100%;
     padding: 10px;
     text-align: center;
@@ -567,7 +657,6 @@ section {
     margin-left: 10px;
     border-radius: 5px;
     border: black solid 2px;
-
 }
 
 #deliveryManagement-outputBox{
@@ -577,15 +666,7 @@ section {
     width: 900px;
     height: auto;
 }
-#deliveryManagement-saveButton button{
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border-radius: 5px;
-}
-#deliveryManagement-saveButton button:hover{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
+
 #admin-driverSelectButton{
     padding: 5px;
     height: 50px;
@@ -597,10 +678,34 @@ section {
     margin-bottom: 10px;
     color: white;
 }
+#admin-driverSelectButton:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 #admin-selectForm{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-/*----------------------------------------------*/
+
+/* --------------------------- */
+
+
+/*paging*/
+#paging_area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#paging_area a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.current-page {
+    font-weight: bold;
+    color: #007bff;
+}
+/*-----------------------------*/
+
