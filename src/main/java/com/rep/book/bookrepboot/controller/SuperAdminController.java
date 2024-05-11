@@ -1,5 +1,6 @@
 package com.rep.book.bookrepboot.controller;
 
+import com.google.gson.Gson;
 import com.rep.book.bookrepboot.dto.PathDTO;
 import com.rep.book.bookrepboot.dto.UserDTO;
 import com.rep.book.bookrepboot.service.SuperAdminService;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -42,9 +45,7 @@ public class SuperAdminController {
     public String deliveryManage(Model model){
         log.info("deliveryManage()");
 
-        List<PathDTO> pathList = superAdminService.getPathToSuperAdmin();
-
-        model.addAttribute("pathList", pathList);
+        superAdminService.getPathToSuperAdmin(model);
 
         return "th/deliveryManagement";
     }

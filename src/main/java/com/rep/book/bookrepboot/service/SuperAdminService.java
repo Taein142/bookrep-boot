@@ -1,6 +1,9 @@
 package com.rep.book.bookrepboot.service;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 import com.rep.book.bookrepboot.dao.AdminDao;
 import com.rep.book.bookrepboot.dao.PathDao;
 import com.rep.book.bookrepboot.dao.UserDao;
@@ -10,10 +13,12 @@ import com.rep.book.bookrepboot.dto.TradeDTO;
 import com.rep.book.bookrepboot.dto.UserDTO;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,10 +43,11 @@ public class SuperAdminService {
         return userDao.getUserToSuperAdmin();
     }
 
-    public List<PathDTO> getPathToSuperAdmin() {
+    public void getPathToSuperAdmin(Model model) {
         log.info("getPathToSuperAdmin()");
 
-        return pathDao.getPathToSuperAdmin();
+        List<PathDTO> pathList = pathDao.getPathToSuperAdmin();
+        model.addAttribute("pathList", pathList);
     }
 
     public void matchDriver(Long pathId, Long adminId) {
@@ -61,6 +67,7 @@ public class SuperAdminService {
         log.info("getPathDetail()");
 
         PathDTO pathDTO = pathDao.getPathDetail(pathId);
+        log.info(pathDTO.toString());
         Map<String, DeliveryDTO> deliveryMap = packageDeliveryMap(pathDTO);
 
         model.addAttribute("path", pathDTO);
@@ -70,7 +77,8 @@ public class SuperAdminService {
     public Map<String, DeliveryDTO> packageDeliveryMap(PathDTO pathDTO){
         log.info("packageDeliveryMap()");
 
-        List<TradeDTO> tradeList = new Gson().fromJson(pathDTO.getTrade_json(), List.class);
+        Type tradeListType = new TypeToken<List<TradeDTO>>(){}.getType();
+        List<TradeDTO> tradeList = new Gson().fromJson(pathDTO.getTrade_json(), tradeListType);
         Map<String, DeliveryDTO> deliveryMap = new HashMap<>();
 
         if (tradeList != null){
@@ -88,6 +96,8 @@ public class SuperAdminService {
         deliveryDTO.setUserEmail(userEmail);
         deliveryDTO.setX(x);
         deliveryDTO.setY(y);
+        deliveryDTO.setPickupList(new ArrayList<>());
+        deliveryDTO.setDeliveryList(new ArrayList<>());
         List<String> list = new ArrayList<>();
         list.add(isbn);
         return deliveryDTO;
