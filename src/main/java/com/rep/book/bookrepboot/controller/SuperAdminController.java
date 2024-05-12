@@ -47,6 +47,8 @@ public class SuperAdminController {
 
         superAdminService.getPathToSuperAdmin(model);
 
+        superAdminService.getAllAdminList(model);
+
         return "th/deliveryManagement";
     }
 
