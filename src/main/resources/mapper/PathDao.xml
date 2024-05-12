@@ -10,7 +10,7 @@
     </insert>
     <update id="matchDriver" parameterType="com.rep.book.bookrepboot.dto.PathDTO">
         UPDATE `path`
-        SET deliver_admin_id = #{driver_admin_id}
+        SET deliver_admin_id = #{deliver_admin_id}
         WHERE path_id = #{path_id}
     </update>
     <delete id="completeDelivery" parameterType="java.lang.Long">

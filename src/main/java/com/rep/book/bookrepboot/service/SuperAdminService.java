@@ -7,10 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import com.rep.book.bookrepboot.dao.AdminDao;
 import com.rep.book.bookrepboot.dao.PathDao;
 import com.rep.book.bookrepboot.dao.UserDao;
-import com.rep.book.bookrepboot.dto.DeliveryDTO;
-import com.rep.book.bookrepboot.dto.PathDTO;
-import com.rep.book.bookrepboot.dto.TradeDTO;
-import com.rep.book.bookrepboot.dto.UserDTO;
+import com.rep.book.bookrepboot.dto.*;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
@@ -55,7 +52,7 @@ public class SuperAdminService {
 
         PathDTO pathDTO = new PathDTO();
         pathDTO.setPath_id(pathId);
-        pathDTO.setDriver_admin_id(adminId);
+        pathDTO.setDeliver_admin_id(adminId);
 
 
         pathDao.matchDriver(pathDTO);
@@ -111,4 +108,14 @@ public class SuperAdminService {
         deliveryMap.put(userEmail, deliveryDTO);
     }
 
+    public void getAllAdminList(Model model) {
+        log.info("getAllAdminList()");
+
+        List<AdminDTO> adminList = adminDao.getAllAdminList();
+        List<Long> adminIdList = new ArrayList<>();
+        for (AdminDTO adminDTO : adminList){
+            adminIdList.add(adminDTO.getAdmin_id());
+        }
+        model.addAttribute("adminList", adminIdList);
+    }
 }

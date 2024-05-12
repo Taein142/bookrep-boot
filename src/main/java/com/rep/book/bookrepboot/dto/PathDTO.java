@@ -18,7 +18,7 @@ public class PathDTO {
     @NonNull
     private String path_json;
 
-    private Long driver_admin_id;
+    private Long deliver_admin_id;
 
     private int total_distance;
 

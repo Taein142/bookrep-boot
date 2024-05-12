@@ -12,4 +12,7 @@
     <select id="findUserByEmail" resultType="com.rep.book.bookrepboot.dto.AdminDTO" parameterType="java.lang.String">
         select * from admin where admin_id = #{username}
     </select>
+    <select id="getAllAdminList" resultType="com.rep.book.bookrepboot.dto.AdminDTO">
+        SELECT * FROM admin;
+    </select>
 </mapper>
