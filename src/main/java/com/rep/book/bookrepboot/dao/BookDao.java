@@ -24,7 +24,7 @@ public interface BookDao {
 
     List<BookDTO> getBookForTradeById(String userEmail);
 
-	List<BookDTO> getOwnBookByKeyword(Map<String, String> map);
+	List<Map<String, Object>> getOwnBookByKeyword(Map<String, String> map);
 
 	String getBookNameByIsbn(String bookIsbn);
 

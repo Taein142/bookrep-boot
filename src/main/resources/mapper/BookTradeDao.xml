@@ -4,8 +4,8 @@
 <mapper namespace="com.rep.book.bookrepboot.dao.BookTradeDao">
     <insert id="registerTrade" parameterType="com.rep.book.bookrepboot.dto.BookTradeDTO">
         INSERT book_trade
-        (user_email, book_isbn, book_trade_status)
-        VALUES (#{user_email}, #{book_isbn}, #{book_trade_status})
+        (user_email, book_isbn, book_trade_status, report_id)
+        VALUES (#{user_email}, #{book_isbn}, #{book_trade_status}, #{report_id})
     </insert>
     <select id="getBookTradeByKeyword" parameterType="Map" resultType="com.rep.book.bookrepboot.dto.BookTradeDTO">
         SELECT *
