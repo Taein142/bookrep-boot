@@ -41,7 +41,7 @@
 <body>
 <div class="footer-bar">
     <div id="footerContent">
-        <img src="../images/newFullLogo.png" alt="">
+        <img src="<%=request.getContextPath()%>/resources/images/newFullLogo.png" alt="">
         <a href="${pageContext.request.contextPath}/terms">이용약관</a>
         <a href="${pageContext.request.contextPath}/privacy-policy">개인정보 처리방침</a>
         <a href="#">대표정보</a>

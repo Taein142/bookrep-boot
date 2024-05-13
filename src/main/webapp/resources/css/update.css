@@ -45,7 +45,7 @@ fieldset {
 
 .out-line-box {
 	border: solid 1px black; /* 수정: 테두리 스타일 및 색상 */
-	max-width: 400px; /* 추가: 최대 너비 설정 */
+	max-width: 340px; /* 추가: 최대 너비 설정 */
 	margin: 0 auto; /* 추가: 중앙 정렬 */
 	padding: 10px; /* 추가: 안쪽 여백 */
 }

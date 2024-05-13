@@ -147,9 +147,10 @@
                 <p>
                 <div class="int-area">
                     <input type="text" name="postcode" id="sample4_postcode" placeholder="우편번호" readonly disabled>
-                    <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
                 </div>
-
+                <div class="int-area">
+                <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                </div>
                 <p>
                 <div class="int-area">
                     <input type="text" name="address" id="sample4_roadAddress" placeholder="도로명주소" readonly>

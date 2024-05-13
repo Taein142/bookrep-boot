@@ -26,10 +26,10 @@
     <aside>
         <ul>
             <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
-            <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
-            <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-msgs}">교환 메시지 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>>
+            <li><a th:href="@{/user/received-requests}">교환 신청 받은 책</a></li>
+            <li><a th:href="@{/user/trade-requests}">교환 신청한 책</a></li>
+            <li><a th:href="@{/user/my-trade-msgs}">결정된 교환 메시지</a></li>
+            <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>
         </ul>
     </aside>
     <div id="MyShareLogo">
@@ -59,7 +59,7 @@
                                         <img th:src="${trade.book != null ? trade.book.image : '/images/noBook.jpg'}" alt=""
                                              style="height: 120px; width: 80px;">
                                     </div>
-                                    <div id="myShare-tradeList-content-infobox">
+                                    <div id="myShare-tradeList-content-infobox" th:data-isbn="${trade.book.isbn}">
                                         <div>
                                             <p>도서명: <span th:text="${trade.book != null ? trade.book.name : 'Unknown'}"></span>
                                             </p>
@@ -138,6 +138,16 @@
             }
         });
     };
+
+    document.addEventListener('DOMContentLoaded', function(){
+        let listAreaContents = document.querySelectorAll('#myShare-tradeList-content-infobox');
+        listAreaContents.forEach(function(listAreaContent) {
+            listAreaContent.addEventListener('click', function () {
+                var isbn = this.getAttribute('data-isbn');
+                window.location.href = '/user/book-detail?isbn=' + encodeURIComponent(isbn);
+            });
+        });
+    });
 </script>
 
 </html>
