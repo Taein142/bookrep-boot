@@ -26,25 +26,26 @@
             <th:block th:if="${bookList == null or #lists.isEmpty(bookList)}">
                 <p>등록할 수 있는 책이 존재하지 않습니다.</p>
             </th:block>
-            <th:block th:if="${bookList!=null}">
-                <th:block th:each="object:${bookList}">
-                    <th:block th:if="${object.pageNum == currentPageNum}">
-                        <th:block th:each="book:${object.objectList}">
+            <th:block th:if="${bookList != null}">
+                <th:block th:each="bookMap : ${bookList}">
+                    <th:block th:if="${bookMap.pageNum == currentPageNum}">
+                        <th:block th:each="book : ${bookMap.objectList}">
                             <div id="bookSelect-bookList-bookInfoForm">
                                 <div id="bookSelect-bookList-bookInfoForm-sample">
-                                    <img th:src="${book.image}" alt="">
-                                    <p th:text="${book.name}"></p>
-                                    <p th:text="${book.publisher}"></p>
+                                    <img th:src="${book['book_image']}" alt="">
+                                    <p th:text="${book['book_name']}"></p>
+                                    <p th:text="${book['book_publisher']}"></p>
                                 </div>
                                 <div id="bookSelect-bookList-bookInfoForm-hiddenAndButton">
                                     <form th:action="@{/user/apply-book-select}" method="get">
-                                        <input type="hidden" name="name" th:value="${book.name}">
-                                        <input type="hidden" name="author" th:value="${book.author}">
-                                        <input type="hidden" name="publisher" th:value="${book.publisher}">
-                                        <input type="hidden" name="isbn" th:value="${book.isbn}">
-                                        <input type="hidden" name="image" th:value="${book.image}">
+                                        <input type="hidden" name="report_id" th:value="${book['report_id']}">
+                                        <input type="hidden" name="name" th:value="${book['book_name']}">
+                                        <input type="hidden" name="author" th:value="${book['book_author']}">
+                                        <input type="hidden" name="publisher" th:value="${book['book_publisher']}">
+                                        <input type="hidden" name="isbn" th:value="${book['book_isbn']}">
+                                        <input type="hidden" name="image" th:value="${book['book_image']}">
                                         <input type="hidden" name="checkNum" th:value="${checkNum}">
-                                        <input th:if="${id!=null}" type="hidden" name="id" th:value="${id}">
+                                        <input th:if="${id != null}" type="hidden" name="id" th:value="${id}">
                                         <button><img th:src="@{/images/add.png}" alt="add" id="addimg"></button>
                                     </form>
                                 </div>

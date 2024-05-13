@@ -21,5 +21,7 @@ public class BookTradeDTO {
     @NonNull
     private Integer book_trade_status;
 
+    private Long report_id;
+
 }
 

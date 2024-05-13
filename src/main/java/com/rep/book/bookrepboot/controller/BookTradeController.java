@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @Slf4j
@@ -36,7 +37,7 @@ public class BookTradeController {
         log.info("bookSelect");
 
         String loggedInUserEmail = SecurityUtil.getCurrentUserEmail(); // 시큐리티에서 현재 로그인 한 사람 가져옴.
-        List<BookDTO> bookList = bookTradeService.getUnTradeBookByDB(loggedInUserEmail, keyword);
+        List<Map<String, Object>> bookList = bookTradeService.getUnTradeBookByDB(loggedInUserEmail, keyword);
         List<PageDTO> bookPageList = MainUtil.setPaging(bookList,3);
         String userName = feedService.getNameByEmail(loggedInUserEmail);
 
@@ -62,10 +63,12 @@ public class BookTradeController {
     @GetMapping("user/apply-book-select") // 책 선택 적용
     public String applyBookSelect(@RequestParam("checkNum") int checkNum,
                                   @RequestParam(value = "id", required = false) Long id,
-                                  BookDTO bookDTO, RedirectAttributes rttr){
+                                  BookDTO bookDTO, Long report_id, RedirectAttributes rttr){
         log.info("applyBookSelect");
         rttr.addFlashAttribute("book", bookDTO);
+        rttr.addFlashAttribute("report_id", report_id);
         log.info("bookDTO {}", bookDTO);
+        log.info("report_id {}", report_id);
 
         if (checkNum == 1){ // 파라미터로 받은 checkNum에 따라 각각의 페이지로 리턴
             return "redirect:trade-resister";
@@ -93,7 +96,7 @@ public class BookTradeController {
     @PostMapping("user/save-resister") // 교환하고픈 책 등록
     public String saveTradeResister(BookTradeDTO bookTradeDTO, RedirectAttributes rttr){
         log.info("saveTradeResister");
-
+        log.info("bookTradeDTO {}", bookTradeDTO);
         String view = bookTradeService.saveTradeRegister(bookTradeDTO, rttr);
 
         return view;

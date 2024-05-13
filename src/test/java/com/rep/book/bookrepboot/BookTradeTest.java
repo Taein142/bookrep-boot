@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class BookTradeTest {
@@ -33,7 +34,7 @@ public class BookTradeTest {
     public void getOwnBookByDBTest(){
         String testEmail = "xodlsdldy@naver.com";
         String keyword = null;
-        List<BookDTO> bookList = bookTradeService.getUnTradeBookByDB(testEmail, keyword);
+        List<Map<String, Object>> bookList = bookTradeService.getUnTradeBookByDB(testEmail, keyword);
 
         System.out.println(bookList);
     }

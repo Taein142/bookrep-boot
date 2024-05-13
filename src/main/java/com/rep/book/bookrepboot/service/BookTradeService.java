@@ -12,6 +12,7 @@ import com.rep.book.bookrepboot.util.SecurityUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
@@ -30,9 +31,9 @@ public class BookTradeService {
     TradeMsgDao tradeMsgDao;
 
     // db에서 교환중이 아니며, 독후감을 작성하였던 책을 가져오는 메서드
-    public List<BookDTO> getUnTradeBookByDB(String loggedInUserEmail, String keyword) {
+    public List<Map<String, Object>> getUnTradeBookByDB(String loggedInUserEmail, String keyword) {
         log.info("getBookByDB()");
-        List<BookDTO> ownBookList = new ArrayList<>();
+        List<Map<String, Object>> ownBookList = new ArrayList<>();
         Map<String, String> map = new HashMap<>();
         map.put("email", loggedInUserEmail);
         map.put("keyword", keyword);
@@ -42,6 +43,7 @@ public class BookTradeService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return ownBookList;
     }
 

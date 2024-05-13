@@ -38,8 +38,8 @@
     <select id="getBookForTradeById" resultMap="BookDTO" parameterType="java.lang.String">
 		SELECT * FROM book WHERE book_author = #{userEmail}
 	</select>
-	<select id="getOwnBookByKeyword" parameterType="Map" resultMap="BookDTO">
-		SELECT *
+	<select id="getOwnBookByKeyword" parameterType="Map" resultType="java.util.Map">
+		SELECT b.*, r.report_id
 		FROM book b, report r
 		WHERE b.book_isbn = r.report_book_isbn AND r.report_user_email = #{email}
 		<if test="keyword != null and keyword != ''">
@@ -49,7 +49,7 @@
 		    SELECT 1
 		    FROM book_trade bt
 		    WHERE bt.book_isbn = b.book_isbn
-		    AND bt.user_email = #{email}
+		    AND bt.user_email = #{email} AND bt.report_id = r.report_id
 		)
 		AND NOT EXISTS(
 		    SELECT 1
