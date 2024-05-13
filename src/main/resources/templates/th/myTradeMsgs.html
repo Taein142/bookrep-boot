@@ -15,9 +15,9 @@
     <aside>
         <ul>
             <li><a th:href="@{/user/my-share}">내 교환 등록 리스트</a></li>
-            <li><a th:href="@{/user/received-requests}">교환 신청 받은 책 리스트</a></li>
-            <li><a th:href="@{/user/trade-requests}">교환 신청한 책 리스트</a></li>
-            <li><a th:href="@{/user/my-trade-msgs}">교환 메시지 리스트</a></li>
+            <li><a th:href="@{/user/received-requests}">교환 신청 받은 책</a></li>
+            <li><a th:href="@{/user/trade-requests}">교환 신청한 책</a></li>
+            <li><a th:href="@{/user/my-trade-msgs}">결정된 교환 메시지</a></li>
             <li><a th:href="@{/user/my-trade-status}">교환 배송 상태</a></li>
         </ul>
     </aside>
@@ -61,7 +61,7 @@
                     </div>
                     <br>
                     <div th:switch="${tradeMap.msgDTO.msg_status}" class="myTradeStatus-trade-user-email">
-                        <p th:case="0" th:text="'교환 신청 중입니다.'"></p>
+                        <a th:case="0" th:href="@{'/user/msg-detail?id='+ tradeMap.msgDTO.msg_id}">상세페이지로 이동</a>
                         <p th:case="1" th:text="'교환이 승낙되었습니다.'"></p>
                         <p th:case="2" th:text="'교환이 거절되었습니다.'"></p>
                         <p th:case="3" th:text="'교환이 취소되었습니다.'">.</p>
