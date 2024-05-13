@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/manager.css}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <title>배송 상세 페이지</title>
 </head>
 <script th:inline="javascript">
@@ -11,10 +14,72 @@
     console.log(deliveryMap);
 </script>
 <body>
-<div>
+<header>
+    <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
+</header>
+<section>
 
-</div>
-<div id="map" style="width:80%;height:1000px;float: right" ></div>
+
+    <div id="deliveryDetail">
+        <!--        <div id="pathInfo">-->
+        <!--            <th:block th:text="${path}" ></th:block>-->
+        <!--        </div>-->
+
+        <div id="deliveryDetail-sideBar">
+            <div id="deliveryDetail-sideBar-designatedAdmin">
+                <span><th:block th:text="${path.deliver_admin_id}"></th:block>님 의 금일 배송지</span>
+            </div>
+            <div id="deliveryDetail-sideBar-delInfo">
+                <div id="deliveryDetail-sideBar-delInfo-totalNumberOfAddresses">
+                    <span>3개</span><!--받아온 정보 들어갑니다.-->
+                    <span>경유지</span>
+                </div>
+                <div id="deliveryDetail-sideBar-delInfo-totalDeliveryDistance">
+                    <span>28.93Km</span><!--받아온 정보 들어갑니다.-->
+                    <span>이동거리</span>
+                </div>
+                <div id="deliveryDetail-sideBar-delInfo-totalDeliveryTime">
+                    <span>2시간 30분</span><!--받아온 정보 들어갑니다.-->
+                    <span>이동시간</span>
+                </div>
+            </div>
+            <div id="deliveryDetail-sideBar-delInfoDetailListText">배송 및 회수</div>
+            <div id="deliveryDetail-sideBar-delInfoDetailList">
+<!--                <th:block th:each="del:${delList}">-->
+
+<!--                </th:block>-->
+
+<!--                반복문으로 감싸야합니다. -->
+                <div id="deliveryDetail-sideBar-delInfoDetailList-Detail">
+                    <div id="deliveryDetail-sideBar-delInfoDetailList-Detail-number">N</div><!--받아온 정보 들어갑니다.-->
+                    <div id="deliveryDetail-sideBar-delInfoDetailList-Detail-info">
+                        <div>
+                            <div>주소</div>
+                            <span>인천시 어쩌구</span><!--받아온 정보 들어갑니다.-->
+                        </div>
+                        <div>
+                            <div>이메일</div>
+                            <span>어쩌구@naver.com</span><!--받아온 정보 들어갑니다.-->
+                        </div>
+                        <div>
+                            <div>책 재목</div>
+                            <span>책 타이틀 어쩌구</span><!--받아온 정보 들어갑니다.-->
+                        </div>
+                        <div>
+                            <div>TrnNum</div>
+                            <span>1234567890</span><!--받아온 정보 들어갑니다.-->
+                        </div>
+                        <div>
+                            <div>전화</div>
+                            <span>010-1001-1001</span><!--받아온 정보 들어갑니다.-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="map" class="deliveryDetail-map" style="width:80%;height:850px;float: right"></div>
+    </div>
+</section>
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3018d8b0b46abd897e34e5cbd691ca18"></script>
 <script>
@@ -29,7 +94,7 @@
 
     var positions = [];
 
-    for (let position of deliveryMap.values()){
+    for (let position of deliveryMap.values()) {
 
         positions.push({
             title: position.userEmail,
@@ -40,10 +105,10 @@
 
     function getBookImage(isbn) {
         $.ajax({
-            url:"/super-admin/get-book-image",
+            url: "/super-admin/get-book-image",
             data: isbn,
             dataType: 'text',
-            success: function (data){
+            success: function (data) {
                 return data;
             }
         })
@@ -51,7 +116,7 @@
 
     var imageSrc = "/images/map-marker.svg";
 
-    for (var i = 0; i < positions.length; i ++) {
+    for (var i = 0; i < positions.length; i++) {
 
         // 마커 이미지의 이미지 크기 입니다
         var imageSize = new kakao.maps.Size(35, 35);
@@ -63,8 +128,8 @@
         var marker = new kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
             position: positions[i].latlng, // 마커를 표시할 위치
-            title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-            image : markerImage // 마커 이미지
+            title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+            image: markerImage // 마커 이미지
         });
 
 
@@ -97,8 +162,6 @@
 
     // 지도에 선을 표시합니다
     polyline.setMap(map);
-
-
 
 
 </script>
