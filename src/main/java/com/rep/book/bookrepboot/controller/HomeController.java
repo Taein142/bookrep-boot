@@ -75,5 +75,8 @@ public class HomeController {
 		log.info("showTerms");
 		return "th/terms";
 	}
+
+	@GetMapping("contact-us")
+	public String showContactUs(){ return "th/contactUs"; }
 }
 

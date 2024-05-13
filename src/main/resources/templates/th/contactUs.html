@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>문의 안내</title>
+    <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
+        <link rel="stylesheet" th:href="@{/css/customer.css}">
+    </th:block>
+    <th:block th:else th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
+        <link rel="stylesheet" th:href="@{/css/manager.css}">
+    </th:block>
+    <th:blcok th:else>
+        <link rel="stylesheet" th:href="@{/css/customer.css}">
+    </th:blcok>
+    <style>
+        .contactUs-body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .contactUs-div {
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body class="contactUs-body">
+<header>
+    <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
+        <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+    </th:block>
+    <th:block th:else th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
+        <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
+    </th:block>
+    <th:blcok>
+        <th:blcok th:insert="~{th/notLoggedInHeader}"></th:blcok>
+    </th:blcok>
+</header>
+<section><br>
+    <div class="contactUs-div">파이널 프로젝트로 만들었기에</div>
+    <div class="contactUs-div">실질적인 운영은 하지 않고 있습니다.</div>
+    <div class="contactUs-div">서버 업로드는 서버 업로드는 1년만 이루어지며 종료될 예정입니다.</div>
+    <div class="contactUs-div">따라서 개인정보 처리방침의 내용과</div>
+    <div class="contactUs-div">약관의 내용은 참고용으로만 제공됩니다.</div>
+    <div class="contactUs-div">실제로 광고를 받고있지 않아 수익창출도 하고 있습니다.</div>
+    <div class="contactUs-div">서비스 운영을 하고 있지 않기에</div>
+    <div class="contactUs-div">문의를 받는 이메일 등이 존재하지 않습니다.</div>
+    <div class="contactUs-div">만약 프로젝트에 대한 의견을 제시하고 싶으시다면</div>
+    <div class="contactUs-div">독후감 작성을 활용해주세요</div>
+</section>
+<br>
+<footer>
+    <th:block th:insert="~{th/footer}"></th:block>
+</footer>
+</body>
+</html>

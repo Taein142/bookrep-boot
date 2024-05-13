@@ -94,7 +94,7 @@
                         <label for="agreedToTerms" class="agreed-label">[필수] 약관에 동의합니다.</label>
                     </div>
                     <div>
-                        <input type="button" id="terms" value="내용보기" onclick="openWindow('/terms', 'agreedToTerms')"/>
+                        <input type="button" id="terms" value="내용보기" onclick="openWindow('/sign-in-terms', 'agreedToTerms')"/>
                     </div>
                 </div>
 
@@ -105,7 +105,7 @@
                         <label for="agreedToPrivacyPolicy" class="agreed-label">[필수] 개인정보 처리 방침에 동의합니다.</label>
                     </div>
                     <div>
-                        <input type="button" id="privacyPolicy" value="내용보기" onclick="openWindow('/privacy-policy', 'agreedToPrivacyPolicy')"/>
+                        <input type="button" id="privacyPolicy" value="내용보기" onclick="openWindow('/sign-in-privacy-policy', 'agreedToPrivacyPolicy')"/>
                     </div>
                 </div>
 

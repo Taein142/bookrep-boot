@@ -170,7 +170,17 @@ public class SignController {
 
 		return signService.pwdChangeProc(password, session, rttr);
 	}
-	
-	
+
+	@GetMapping("sign-in-terms")
+	public String showSigInInTerms(){
+		log.info("showTerms");
+		return "th/signInTerms";
+	}
+
+	@GetMapping("sign-in-privacy-policy")
+	public String showSignInPrivacyPolicy(){
+		log.info("showPrivacyPolicy()");
+		return "th/signInPrivacyPolicy";
+	}
 	
 }
