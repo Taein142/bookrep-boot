@@ -898,6 +898,15 @@ aside a:hover {
     background-color: white;
     border: black solid 2px;
 }
+
+#tradeApplication_contents_02{
+    margin-top: 50px;
+    width: 450px;
+    height: 700px;
+    background-color: white;
+    border: black solid 2px;
+}
+
 #tradeApplication_contents_imgBox{
     height: 50%;
     width: 100%;
@@ -910,7 +919,31 @@ aside a:hover {
     height: 90%;
     width: auto;
 }
+#tradeApplication_contents_imgBox2{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: black solid 1px;
+}
+#tradeApplication_contents_imgBox2 img{
+    height: 90%;
+    width: auto;
+}
 #tradeApplication_contents_detailBox1{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: larger;
+    font-weight: bold;
+}
+
+#tradeApplication_contents_detailBox2{
     height: 50%;
     width: 100%;
     display: flex;

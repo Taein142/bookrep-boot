@@ -11,7 +11,8 @@
 <body>
 <header>
     <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
-</header>알수없음
+</header>
+알수없음
 <section>
     <div id="tradeApplication">
         <div id="tradeApplication_fullContents">
@@ -70,18 +71,30 @@
             </th:block>
             <th:block th:unless="${book == null}">
                 <form action="/user/send-trade-msg" method="post" id="sendTradeForm">
-                    <div th:if="${book != null}">
-                        <img th:src="${book.image}" alt="" style="width: 150px; height: 200px;">
+                    <div id="tradeApplication_contents_02">
+                        <div th:if="${book != null}" id="tradeApplication_contents_imgBox2">
+                            <img th:src="${book.image}" alt="" style="width: 150px; height: 200px;">
+                        </div>
+                        <input type="hidden" name="book_trade_id" th:value="${firstTrade.getBook_trade_id()}">
+                        <input type="hidden" name="received_user_email" th:value="${firstTrade.getUser_email()}">
+                        <input type="hidden" name="sent_user_email" th:value="${userEmail}">
+                        <input type="hidden" name="received_book_isbn" th:value="${firstTrade.getBook_isbn()}">
+                        <input type="hidden" name="sent_book_isbn" th:value="${book != null ? book.isbn : ''}">
+                        <div id="tradeApplication_contents_detailBox2">
+                            <div>
+                                <div th:text="${userEmail}"/>
+                            </div>
+                            <div>
+                                <div th:text="${book != null ? '도서명: ' + book.name : ''}"/>
+                            </div>
+                            <div>
+                                <div th:text="${book != null ? '저자 : ' + book.author : ''}"/>
+                            </div>
+                            <div>
+                                <div th:text="${book != null ? '출판사: ' + book.publisher : ''}"/>
+                            </div>
+                        </div>
                     </div>
-                    <input type="hidden" name="book_trade_id" th:value="${firstTrade.getBook_trade_id()}">
-                    <input type="hidden" name="received_user_email" th:value="${firstTrade.getUser_email()}">
-                    <input type="hidden" name="sent_user_email" th:value="${userEmail}">
-                    <input type="hidden" name="received_book_isbn" th:value="${firstTrade.getBook_isbn()}">
-                    <input type="hidden" name="sent_book_isbn" th:value="${book != null ? book.isbn : ''}">
-                    <div th:text="${userEmail}"/>
-                    <div th:text="${book != null ? '도서명: ' + book.name : ''}"/>
-                    <div th:text="${book != null ? '저자 : ' + book.author : ''}"/>
-                    <div th:text="${book != null ? '출판사: ' + book.publisher : ''}"/>
                 </form>
             </th:block>
         </div>
@@ -92,7 +105,7 @@
     <th:blcok th:insert="~{th/footer}"></th:blcok>
 </footer>
 <script th:inline="javascript">
-    $('#submitSendTradeButton').on('click', function() {
+    $('#submitSendTradeButton').on('click', function () {
         $('#sendTradeForm').submit();
     });
 </script>
