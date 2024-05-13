@@ -7,30 +7,34 @@
     <title>Main</title>
     <link rel="stylesheet" th:href="@{/css/manager.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
 <header>
     <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
 </header>
-    <section>
-        <div id="container2">
-            <th:block th:if="${#authorization.expression('hasRole(''SUPER_ADMIN'')')}">
-                <a href="/super-admin/delivery-manage"> <div id="mainDeliveryManagement"> 배송관리 </div> </a>
-            </th:block>
-            <th:block th:if="${#authorization.expression('hasAnyRole(''DRIVER'', ''SUPER_ADMIN'')')}">
-                <a href="/driver/delivery" sec:authorize="hasAnyRole('DRIVER', 'SUPER_ADMIN')"> <div id="mainDelivery"> 배송 </div> </a>
-            </th:block>
-            <th:block th:if="${#authorization.expression('hasAnyRole(''ADMIN'', ''SUPER_ADMIN'')')}">
-                <a href="/admin/main-report-management" sec:authorize="hasAnyRole('ADMIN', 'SUPER_ADMIN')"> <div id="mainBookreportManagement"> 독후감 관리 </div> </a>
-            </th:block>
-            <th:block th:if="${#authorization.expression('hasAnyRole(''ADMIN'', ''SUPER_ADMIN'')')}">
-                <a href="/admin/main-book-management" sec:authorize="hasAnyRole('ADMIN', 'SUPER_ADMIN')"> <div id="mainBookManagement"> 도서 관리 </div> </a>
-            </th:block>
-            <th:block th:if="${#authorization.expression('hasAnyRole(''ADMIN'', ''SUPER_ADMIN'')')}">
-                <a href="/admin/main-user-management" sec:authorize="hasAnyRole('ADMIN', 'SUPER_ADMIN')"> <div id="mainUserManagement"> 유저 관리 </div> </a>
-            </th:block>
-        </div>
-    </section>
+<section>
+    <div id="container2">
+        <th:block th:if="${#authorization.expression('hasRole(''SUPER_ADMIN'')')}">
+            <a href="/super-admin/delivery-manage">
+                <div id="mainDeliveryManagement">배송관리</div>
+            </a>
+        </th:block>
+        <th:block th:if="${#authorization.expression('hasRole(''DRIVER'')')}">
+            <a href="/driver/delivery" sec:authorize="hasAnyRole('DRIVER')">
+                <div id="mainDelivery">배송</div>
+            </a>
+        </th:block>
+        <a href="/admin/main-report-management">
+            <div id="mainBookreportManagement">독후감 관리</div>
+        </a>
+        <a href="/admin/main-book-management">
+            <div id="mainBookManagement">도서 관리</div>
+        </a>
+        <a href="/admin/main-user-management">
+            <div id="mainUserManagement">유저 관리</div>
+        </a>
+    </div>
+</section>
 </body>
 </html>

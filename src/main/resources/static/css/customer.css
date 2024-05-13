@@ -181,6 +181,69 @@ section {
 
 
 
+/*notLoggedInHeader*/
+#NLH-headerCenterContent {
+    position: fixed; /* 헤더를 화면 상단에 고정시킴 */
+    top: 0; /* 화면 상단에 고정시킴 */
+    z-index: 1000; /* 사이드바 위에 위치하도록 z-index 값 조정 */
+    width: 100%;
+    padding: 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 중앙 정렬로 변경 */
+    background-color: rgba(186, 182, 182, 0.9);
+    border-bottom: black 1px solid;
+}
+
+#NLH-image-contents {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%); /* 가운데 정렬을 위해 추가 */
+}
+
+#NLH-headerCenterContent img {
+    width: 65px;
+    height: 65px;
+}
+
+#NLH-headerCenterContent h5 {
+    font-weight: bolder;
+    font-size: larger;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    color: white;
+    margin-left: 5px;
+}
+
+#NLH-headerRightContent-LogButtonBox {
+    position: absolute;
+    right: 0;
+    top: 50%; /* 중앙으로 이동 */
+    transform: translateY(-50%); /* 중앙 정렬 */
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+#NLH-headerRightContent-LogButtonBox button {
+    height: 35px;
+    width: 70px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#NLH-headerRightContent-LogButtonBox button:hover {
+    opacity: 0.5;
+}
+
+
+/*----------------------------------*/
 
 /*footer*/
 .footer-bar {

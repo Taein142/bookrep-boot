@@ -44,7 +44,7 @@
         <img src="<%=request.getContextPath()%>/resources/images/newFullLogo.png" alt="">
         <a href="${pageContext.request.contextPath}/terms">이용약관</a>
         <a href="${pageContext.request.contextPath}/privacy-policy">개인정보 처리방침</a>
-        <a href="#">대표정보</a>
+        <a href="${pageContext.request.contextPath}/contact-us">문의안내</a>
     </div>
 </div>
 </body>

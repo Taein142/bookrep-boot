@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<body>
+<div id="NLH-headerCenterContent">
+    <div id="NLH-image-contents" onclick="moveToHome()">
+        <img th:src="@{/images/newFullLogo.png}" alt="">
+        <h5>BOOKREP</h5>
+    </div>
+    <div id="NLH-contents">
+        <div id="NLH-headerRightContent-LogButtonBox">
+            <th:block sec:authorize="isAnonymous()">
+                <button id="login" onclick="login()">Login</button>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <button id="Logout" onclick="logout()">Logout</button>
+            </th:block>
+        </div>
+    </div>
+</div>
+</body>
+<script th:inline="javascript">
+    function moveToHome() {
+        location.href = "/";
+    }
+
+    function login() {
+        location.href = "/user/sign-in"
+    }
+
+    function logout() {
+        location.href = "/user/sign-out";
+    }
+</script>
+</html>
