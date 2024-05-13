@@ -36,7 +36,7 @@ section {
     height: 80px;
     display: flex;
     align-items: center;
-    background-color: rgba(186, 182, 182, 0.9);
+    background-color: rgba(186, 182, 182, 0.7);
     border-bottom: black 1px solid;
 }
 
@@ -732,11 +732,12 @@ section {
 }
 #deliveryDetail-sideBar{
     height: 100%;
-    width: 19.85%;
+    width: 20%;
     top: 0;
     left: 0;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 15px;
+    margin-right: 1px;
 }
 #deliveryDetail-sideBar-designatedAdmin{
     display: flex;
@@ -787,7 +788,7 @@ section {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     margin-bottom: 2px;
-    height: 20%;
+    height: 12%;
     width: 100%;
     padding: 5px;
     display: flex;
