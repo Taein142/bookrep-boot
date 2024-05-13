@@ -189,7 +189,6 @@
     var isFollowing = JSON.parse(document.getElementById("isFollowing").value);
     console.log(isFollowing);
     var button = document.getElementById("followBtn");
-    console.log(button.innerText);
     var follower = document.getElementById("follower");
     var followerCount = parseInt(follower.innerText);
     console.log(typeof followerCount === 'number');

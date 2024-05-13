@@ -15,10 +15,13 @@ header {
 .header {
 	background-color: rgba(186, 182, 182, 0.9);
 	color: #fff;
-	padding: 10px 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	height: 80px;
+	border-bottom: black 1px solid;
 }
 
 .header .logo {
@@ -31,7 +34,6 @@ header {
 	width: 65px;
 	height: 65px;
 	padding-left: 20px;
-	margin-right: 10px;
 }
 #headerCenterContent{
 	display: flex;
@@ -52,16 +54,22 @@ header {
 }
 
 .header .profile img {
-	width: 40px;
+	height: 50px;
 	border-radius: 50%;
-	margin-right: 5px;
+}
+
+#headerCenterContent h5{
+	font-weight: bolder;
+	font-size: larger;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+	color: white;
+	margin-left: 5px;
 }
 
 .profile {
 	display: flex; /* 요소들을 플렉스 박스로 설정하여 정렬 */
 	align-items: center; /* 요소들을 수직으로 아래로 정렬 */
 	flex-direction: column; /*세로 정렬*/
-	margin-right: 10px;
 	color: #232323 ;
 	font-size: 15px; solid-color: black
 }
@@ -75,13 +83,14 @@ header {
 }
 
 .header .buttons button {
-	margin-left: 1px;
-	padding: 8px 12px;
-	background-color: #232323;
-	color: #fff;
+	margin: 3px;
+	height: 35px;
 	border: none;
-	cursor: pointer;
 	border-radius: 5px;
+	padding: 8px 12px;
+	color: white;
+	background-color: black;
+	font-weight: bold;
 }
 
 .header .search-box {
@@ -92,11 +101,12 @@ header {
 	padding: 8px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
+	margin-right: 5px;
 }
 
 .write-button button {
 	margin-left: 10px;
-	padding: 8px 12px;
+	padding: 7px;
 	background-color: black;
 	color: #fff;
 	border: none;
