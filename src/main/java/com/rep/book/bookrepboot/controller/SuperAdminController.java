@@ -53,10 +53,11 @@ public class SuperAdminController {
     }
 
     @PostMapping("super-admin/match-driver")
-    public String matchDriver(@RequestParam("path-id") Long pathId, @RequestParam("admin-id") Long adminId){
+    public String matchDriver(@RequestParam("path-id") Long pathId, @RequestParam("admin-id") Long adminId, @RequestParam("current-admin") Long currentAdminId){
         log.info("matchDriver()");
 
         superAdminService.matchDriver(pathId, adminId);
+        superAdminService.rollbackToAdmin(currentAdminId);
         return "redirect:/super-admin/delivery-manage";
     }
 

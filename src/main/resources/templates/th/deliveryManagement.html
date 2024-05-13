@@ -8,6 +8,9 @@
     <title>Delivery Management</title>
 </head>
 <body>
+<header>
+    <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
+</header>
 <section>
     <div id="deliveryManagement">
         <div id="deliveryManagement-deliveryDetails_And_SaveButton">
@@ -57,10 +60,12 @@
                                                     <input type="hidden" value="${element.path_id}" name="path-id">
                                                     <select name="admin-id" class="admin-driverSelectBox" id="admin-driverSelectBox${cnt}">
                                                     </select>
+                                                    <input type="hidden" value="${element.deliver_admin_id}" name="current-admin">
                                                     <input type="submit" value="저장" id="admin-driverSelectButton">
                                                 </form>
                                             </div>
                                         </div>
+                                        <div id="dropdown${cnt}"/>
 
 
 
@@ -79,10 +84,50 @@
                         adminSelect.appendChild(option);
                     }
                 )
+                displayTradeTable(trade, cnt);
+                container.setAttribute("cnt", cnt.toString());
+                container.addEventListener("click", () => {
+                    let current = Number(container.getAttribute("cnt"));
+                    const tbl = document.getElementById("table" + current);
+                    if (tbl.hidden === true){
+                        tbl.hidden = false;
+                    }else {
+                        tbl.hidden = true;
+                    }
+                });
                 cnt++;
             }
         });
     }
+
+    function displayTradeTable(trade, cnt) {
+        let table = document.createElement("table");
+
+        let headerRow = document.createElement("tr");
+        ["거래 번호", "", "책1", "책2", "유저1", "유저2"].forEach((columnName) =>{
+            let headerCell = document.createElement("th");
+            headerCell.textContent = columnName;
+            headerRow.appendChild(headerCell);
+        });
+        table.appendChild(headerRow);
+        trade.forEach((tradeItem) => {
+            tradeItem.trade_status = "";
+                let row = document.createElement("tr");
+
+                for (let key in tradeItem){
+                    let cell = document.createElement("td");
+                    cell.textContent = tradeItem[key];
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+        );
+        table.hidden = true;
+        table.id = "table" + cnt;
+        document.getElementById("dropdown" + cnt).appendChild(table);
+
+    }
+
 
     // JSON 데이터를 화면에 표시
     displayJsonData(jsonData);

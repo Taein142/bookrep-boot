@@ -16,4 +16,6 @@ public interface AdminDao {
     void appointDriver(Long adminId);
 
     List<AdminDTO> getAllAdminList();
+
+    void rollbackToAdmin(Long currentAdminId);
 }

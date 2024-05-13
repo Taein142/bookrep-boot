@@ -21,9 +21,18 @@ public class DriverController {
     public String showDelivery(Model model){
         log.info("showDelivery()");
 
-        driverService.showDelivery(model);
+        driverService.getDeliveryAmount(model);
 
         return "th/delivery";
+    }
+
+    @GetMapping("driver/delivery-detail")
+    public String deliveryDetail(@RequestParam("path-id") Long pathId, Model model){
+        log.info("deliveryDetail()");
+
+        driverService.showDelivery(model, pathId);
+
+        return "th/deliveryDetail";
     }
 
     @PostMapping("driver/complete-delivery")
