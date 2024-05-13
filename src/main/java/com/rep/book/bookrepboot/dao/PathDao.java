@@ -17,7 +17,8 @@ public interface PathDao {
 
     PathDTO getPathDetail(Long pathId);
 
-    PathDTO getPathByAdminId(Long adminId);
+    List<PathDTO> getPathByAdminId(Long adminId);
 
     void completeDelivery(Long pathId);
+
 }

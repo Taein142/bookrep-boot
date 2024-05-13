@@ -8,11 +8,14 @@
     <update id="appointDriver" parameterType="java.lang.Long">
         update admin set admin_role = 'DRIVER' where admin_id = ${adminId}
     </update>
+    <update id="rollbackToAdmin" parameterType="java.lang.Long">
+        update admin set admin_role = 'ADMIN' where admin_id = ${currentAdminId}
+    </update>
 
     <select id="findUserByEmail" resultType="com.rep.book.bookrepboot.dto.AdminDTO" parameterType="java.lang.String">
         select * from admin where admin_id = #{username}
     </select>
     <select id="getAllAdminList" resultType="com.rep.book.bookrepboot.dto.AdminDTO">
-        SELECT * FROM admin;
+        SELECT * FROM admin WHERE admin_role = 'ADMIN' OR admin_role = 'DRIVER';
     </select>
 </mapper>

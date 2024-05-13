@@ -29,13 +29,13 @@ public class DriverService {
     @Autowired
     private SuperAdminService superAdminService;
 
-    public void showDelivery(Model model) {
+    public void showDelivery(Model model, Long pathId) {
         log.info("showDelivery()");
 
         Long adminId = Long.parseLong(Objects.requireNonNull(SecurityUtil.getCurrentUserEmail()));
         log.info("adminId: {}", adminId);
 
-        PathDTO pathDTO = pathDao.getPathByAdminId(adminId);
+        PathDTO pathDTO = pathDao.getPathDetail(adminId);
         Map<String, DeliveryDTO> deliveryMap = superAdminService.packageDeliveryMap(pathDTO);
 
         model.addAttribute("path", pathDTO);
@@ -53,4 +53,13 @@ public class DriverService {
         }
     }
 
+    public void getDeliveryAmount(Model model) {
+        log.info("getDeliveryAmount()");
+
+        Long adminId = Long.parseLong(Objects.requireNonNull(SecurityUtil.getCurrentUserEmail()));
+        log.info("adminId: {}", adminId);
+
+        List<PathDTO> pathList = pathDao.getPathByAdminId(adminId);
+        model.addAttribute("pathList", pathList);
+    }
 }
