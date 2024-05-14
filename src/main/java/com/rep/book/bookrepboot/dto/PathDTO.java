@@ -23,4 +23,7 @@ public class PathDTO {
     private int total_distance;
 
     private int total_duration;
+
+    @NonNull
+    private String sequence_json;
 }

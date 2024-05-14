@@ -47,10 +47,11 @@ public class VrpService {
    * @param deliveryLocationId 배송위치ID
    * @return
    */
-  public Shipment.Builder addShipement(String shipmentId, String pickupLocationId, String deliveryLocationId) {
+  public Shipment.Builder addShipement(String shipmentId, String pickupLocationId, String deliveryLocationId, String isbn) {
     Shipment.Builder shipmentBuilder = Shipment.Builder.newInstance(shipmentId);
     shipmentBuilder.setPickupLocation(Location.Builder.newInstance().setId(pickupLocationId).build());//
     shipmentBuilder.setDeliveryLocation(Location.Builder.newInstance().setId(deliveryLocationId).build());//
+    shipmentBuilder.setUserData(isbn);
     shipmentBuilderMap.put(shipmentId, shipmentBuilder);
     return shipmentBuilder;
   }
