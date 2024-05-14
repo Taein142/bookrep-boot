@@ -142,26 +142,46 @@ section {
     filter: brightness(100%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+#searchBox{
+    margin-right: 5px;
+}
 
-#keywordInput {
-    margin-right: 8px;
+.search-box{
+
     height: 24px;
+    width: 100%;
     border-radius: 100px;
-    padding-right: 10px;
+    padding-right: 2px;
     padding-left: 10px;
     background-color: rgba(255, 255, 255, 0.31);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#keywordInput {
+    background-color: transparent;
     border: none;
     outline: none;
     /* 입력 텍스트를 우측부터 써지게 설정 */
     direction: rtl;
     /* 입력 텍스트를 우측에 정렬 */
     text-align: right;
+    margin-right: 8px;
 }
 
-
+#searchForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 #searchForm img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 20px;
-    margin-right: 30px;
 }
 
 #headerRightContent-LogButtonBox button {
@@ -682,7 +702,6 @@ aside a:hover {
     justify-content: center;
     width: 100%;
     border-bottom: black dotted 1px;
-
 }
 
 #bookSelect-searchForm{

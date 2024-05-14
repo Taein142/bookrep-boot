@@ -144,6 +144,7 @@ section {
     width: 800px;
     height: 424px;
     margin: 0 auto;
+    margin-top: 150px;
     display: flex;
 }
 
@@ -329,7 +330,10 @@ section {
     padding: 10px;
     border-bottom: white solid 1px;
     border-top: white solid 1px;
+    pointer-events: none; /* 요소의 이벤트 처리를 비활성화하여 호버 효과를 제거 */
+    user-select: none; /* 사용자 선택 비활성화 */
 }
+
 
 #mainAuthorization,
 #mainDeliveryStatus,
@@ -346,6 +350,16 @@ section {
     background-color: #000000;
     border-radius: 5px;
     padding: 8px 0;
+}
+#mainAuthorization:hover,
+#mainDeliveryStatus:hover,
+#mainOrderManagement:hover,
+#mainBookreportManagement:hover,
+#mainBookManagement:hover,
+#mainUserManagement:hover,
+#mainDeliveryManagement:hover,
+#mainDelivery:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 /* ---------------------------------------------- */
