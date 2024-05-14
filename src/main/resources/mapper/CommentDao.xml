@@ -14,8 +14,15 @@
 	<select id="getCommentByReportId" parameterType="java.lang.Long" resultMap="CommentDTO">
 		SELECT * FROM comment WHERE comment_report_id = ${id} ORDER BY comment_time DESC 
 	</select>
-	
 	<insert id="setComment" parameterType="com.rep.book.bookrepboot.dto.CommentDTO">
 		INSERT comment (comment_user_email, comment_report_id, comment_content) VALUES (#{userEmail}, ${reportId}, #{content})
 	</insert>
+	<update id="updateComment" parameterType="Map">
+		UPDATE comment
+		SET comment_content = #{comment}
+		WHERE comment_id = #{id}
+	</update>
+	<delete id="deleteCommentById" parameterType="Long">
+		DELETE FROM comment WHERE comment_id = #{id}
+	</delete>
 </mapper>

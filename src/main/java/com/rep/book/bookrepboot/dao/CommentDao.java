@@ -1,6 +1,7 @@
 package com.rep.book.bookrepboot.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.rep.book.bookrepboot.dto.CommentDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,4 +13,7 @@ public interface CommentDao {
 
 	void setComment(CommentDTO commentDTO);
 
+    void updateComment(Map<String, Object> map);
+
+	void deleteCommentById(Long id);
 }

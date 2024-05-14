@@ -28,14 +28,14 @@ public class ReportRController {
 	private ReportRService reportRService; 
 	
 	@GetMapping("user/report-detail")
-	public String showReportDetail(@RequestParam("id") Long id, HttpSession session,Model model) {
+	public String showReportDetail(@RequestParam("id") Long id, Model model) {
 		log.info("showReportDetail()");
 		
 		String loggedInUserEmail = SecurityUtil.getCurrentUserEmail();
 		
 		ReportDTO reportDTO = reportRService.getReportDetailByReportId(id);
 		List<CommentDTO> commentList = reportRService.getCommentByReportId(id);
-		List<PageDTO> pageList = MainUtil.setPaging(commentList, 6);
+		List<PageDTO> pageList = MainUtil.setPaging(commentList, 5);
 		Integer likeValue = reportRService.getLikeValueByReportId(id);
 		Integer isLike = reportRService.isLike(loggedInUserEmail, id);
 		
@@ -48,6 +48,7 @@ public class ReportRController {
 		model.addAttribute("commentList", pageList);
 		model.addAttribute("likeValue", likeValue);
 		model.addAttribute("isLike", isLikeBool);
+		model.addAttribute("loggedInUserEmail", loggedInUserEmail);
 		
 		
 		return "reportDetail";
@@ -74,12 +75,5 @@ public class ReportRController {
 		
 		return "redirect:report-detail?id=" + id;
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

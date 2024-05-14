@@ -18,13 +18,14 @@
 	font-size: 30px;
 }
 
-.r_user, .r_date {
+.r_user,
+.r_date {
 	font-size: 15px;
 }
 
 .r_user {
 	margin-top: 1%;
-	margin-bottom: 1%
+	margin-bottom: 1%;
 }
 
 #report-body {
@@ -33,26 +34,19 @@
 	color: white;
 }
 
-.r_content {
-	background-color: #7F7F7F;
-}
-
+.r_content,
 .comment {
-	background-color: #696969;
-}
-
-.comment a {
-	color: white;
-}
-
-.r_content, .comment {
+	background-color: #7F7F7F;
 	width: 80%;
 	height: 600px;
 	max-height: 1000px;
 	overflow-y: auto;
-	margin-left: 3%;
-	margin-right: 3%;
+	margin: 3% auto;
 	padding: 3%;
+}
+
+.comment a {
+	color: white;
 }
 
 .comment form {
@@ -69,6 +63,7 @@
 }
 
 .comment button[type="submit"] {
+	margin-left: 5px;
 	border-radius: 5px;
 	padding: 10px;
 	cursor: pointer;
@@ -76,37 +71,42 @@
 	white-space: nowrap;
 }
 
-#report-bottom {
-	display: flex;
-	justify-content: space-around;
-}
-
-#report_bottom_left {
-	width: 350px; display : flex;
-	align-items: center;
-	display: flex;
-	position: relative;
-	left: 35px;
-}
-
+#report_bottom_left,
 #report_bottom_right {
-	position: relative;
-	left: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.r_like img {
-	width: 80px;
-	heigth: 80px;
-}
-
-/* Delete와 Update 버튼 스타일링 */
-.delete-btn, .update-btn {
+.delete-btn,
+.update-btn {
 	background-color: #fff;
 	color: #000;
 	padding: 8px 16px;
 	border: 1px solid #000;
 	border-radius: 5px;
 	cursor: pointer;
+}
+
+.c_body{
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.comment_btn{
+	margin: 5px 5px 0 5px;
+}
+
+.comment_delete_btn,
+.comment_update_btn {
+	background-color: #fff;
+	color: #000;
+	padding: 5px 10px;
+	border: 1px solid #bebebe;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 11px;
 }
 
 .r_like {
@@ -130,11 +130,6 @@
 	font-weight: bold;
 }
 
-.delete-btn:hover, .update-btn:hover {
-	background-color: #000;
-	color: #fff;
-}
-
 .c_top {
 	display: flex;
 	justify-content: space-between;
@@ -147,16 +142,19 @@
 
 .c_top a {
 	font-size: 15px;
+	margin-top: 12px;
+	margin-bottom: 12px;
 }
 
 .c_content {
 	margin: 5px;
+	max-width: 68%;
 }
 
 .separator {
-	height: 1px; /* 선의 높이를 설정 */
-	width: 100%; /* 선이 가로로 꽉 차도록 설정 */
-	background-color: #ccc; /* 선의 색상을 지정 */
-	margin: 10px 0; /* 원하는 간격 설정 */
-	border: none; /* 테두리 제거 */
+	height: 1px;
+	width: 100%;
+	background-color: #ccc;
+	margin: 10px 0;
+	border: none;
 }

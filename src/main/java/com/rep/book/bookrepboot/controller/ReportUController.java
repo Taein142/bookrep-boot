@@ -44,6 +44,16 @@ public class ReportUController {
 	    
 	    return "redirect:/user/report-detail?id=" + reportDTO.getId();
 	}
+
+	@PostMapping("user/comment-update")
+	public String updateComment(@RequestParam(value = "id") Long id,
+								@RequestParam("comment") String comment,
+								@RequestParam(value = "report_id") Long report_id){
+
+		reportUService.updateComment(id, comment);
+
+		return "redirect:/user/report-detail?id=" + report_id;
+	}
 	
 	
 	
