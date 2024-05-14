@@ -1,5 +1,6 @@
 package com.rep.book.bookrepboot.service;
 
+import com.rep.book.bookrepboot.dao.CommentDao;
 import com.rep.book.bookrepboot.util.SecurityUtil;
 import jakarta.servlet.http.HttpSession;
 
@@ -12,12 +13,17 @@ import com.rep.book.bookrepboot.dto.ReportDTO;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @Slf4j
 public class ReportUService {
 	
 	@Autowired
 	private ReportDao reportDao;
+	@Autowired
+	private CommentDao commentDao;
 
 	public String isOwner(HttpSession session, ReportDTO reportDTO, Model model) {
 		log.info("isOwner()");
@@ -40,4 +46,13 @@ public class ReportUService {
 		reportDao.applyReportUpdate(reportDTO);
 	}
 
+    public void updateComment(Long id, String comment) {
+		log.info("updateComment()");
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("comment", comment);
+
+		commentDao.updateComment(map);
+    }
 }
