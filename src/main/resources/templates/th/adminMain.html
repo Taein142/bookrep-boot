@@ -14,26 +14,37 @@
     <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
 </header>
 <section>
-    <div id="container2">
-        <th:block th:if="${#authorization.expression('hasRole(''SUPER_ADMIN'')')}">
-            <a href="/super-admin/delivery-manage">
-                <div id="mainDeliveryManagement">배송관리</div>
+    <div id="adminMain">
+        <div id="adminMain-img">
+            <img th:src="@{/images/newFullLogo.png}">
+        </div>
+        <div id="container2">
+            <div id="container2-managementPageFont">
+                ADMIN
+                <br>
+                관리 페이지
+            </div>
+
+            <th:block th:if="${#authorization.expression('hasRole(''SUPER_ADMIN'')')}">
+                <a href="/super-admin/delivery-manage">
+                    <div id="mainDeliveryManagement">배송관리</div>
+                </a>
+            </th:block>
+            <th:block th:if="${#authorization.expression('hasRole(''DRIVER'')')}">
+                <a href="/driver/delivery" sec:authorize="hasAnyRole('DRIVER')">
+                    <div id="mainDelivery">배송</div>
+                </a>
+            </th:block>
+            <a href="/admin/main-report-management">
+                <div id="mainBookreportManagement">독후감 관리</div>
             </a>
-        </th:block>
-        <th:block th:if="${#authorization.expression('hasRole(''DRIVER'')')}">
-            <a href="/driver/delivery" sec:authorize="hasAnyRole('DRIVER')">
-                <div id="mainDelivery">배송</div>
+            <a href="/admin/main-book-management">
+                <div id="mainBookManagement">도서 관리</div>
             </a>
-        </th:block>
-        <a href="/admin/main-report-management">
-            <div id="mainBookreportManagement">독후감 관리</div>
-        </a>
-        <a href="/admin/main-book-management">
-            <div id="mainBookManagement">도서 관리</div>
-        </a>
-        <a href="/admin/main-user-management">
-            <div id="mainUserManagement">유저 관리</div>
-        </a>
+            <a href="/admin/main-user-management">
+                <div id="mainUserManagement">유저 관리</div>
+            </a>
+        </div>
     </div>
 </section>
 </body>
