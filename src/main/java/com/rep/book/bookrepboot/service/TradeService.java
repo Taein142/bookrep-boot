@@ -179,8 +179,8 @@ public class TradeService {
 
             String shipmentNameFir = firstNode.getEmail() + "_" + secondNode.getEmail();
             String shipmentNameSec = secondNode.getEmail() + "_" + firstNode.getEmail();
-            vrpService.addShipement(shipmentNameFir, firstNode.getEmail(), secondNode.getEmail());
-            vrpService.addShipement(shipmentNameSec, secondNode.getEmail(), firstNode.getEmail());
+            vrpService.addShipement(shipmentNameFir, firstNode.getEmail(), secondNode.getEmail(), trade.getFir_book_isbn());
+            vrpService.addShipement(shipmentNameSec, secondNode.getEmail(), firstNode.getEmail(), trade.getSec_book_isbn());
 
             nodeMap.put(firstNode.getEmail(), firstNode);
             nodeMap.put(secondNode.getEmail(), secondNode);
@@ -236,6 +236,12 @@ public class TradeService {
             }
             System.out.println(vrpVehicleRoute);
         }
+        List<String> sequenceList = new ArrayList<>();
+        for (NodeDTO nodeDTO : vrpNodeList){
+            sequenceList.add(nodeDTO.getEmail());
+        }
+        log.info(sequenceList.toString());
+        String sequenceJson = new Gson().toJson(sequenceList);
         int totalDistance = 0; // 총 거리를 담을 변수
         int totalDuration = 0; // 총 소요시간을 담을 변수
         List<KakaoApiUtil.Point> totalPathPointList = new ArrayList<>();
@@ -268,7 +274,8 @@ public class TradeService {
             pathDTO.setPath_json(totalJson);
             pathDTO.setTotal_distance(totalDistance);
             pathDTO.setTotal_duration(totalDuration);
-
+            pathDTO.setSequence_json(sequenceJson);
+            log.info(pathDTO.toString());
             pathDao.insertPath(pathDTO);
         }
         for (TradeDTO tradeDTO : tradeList) {

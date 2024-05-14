@@ -5,8 +5,8 @@
 
     <insert id="insertPath" parameterType="com.rep.book.bookrepboot.dto.PathDTO">
         INSERT `path`
-            (trade_json, path_json, total_distance, total_duration)
-        VALUES (#{trade_json}, #{path_json}, ${total_distance}, ${total_duration})
+            (trade_json, path_json, total_distance, total_duration, sequence_json)
+        VALUES (#{trade_json}, #{path_json}, ${total_distance}, ${total_duration}, #{sequence_json})
     </insert>
     <update id="matchDriver" parameterType="com.rep.book.bookrepboot.dto.PathDTO">
         UPDATE `path`
