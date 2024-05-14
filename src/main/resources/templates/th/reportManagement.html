@@ -17,14 +17,14 @@
 <section>
     <div id="BookReportManagementBox">
         <div id="bookReportManagement_SearchBox">
-            <form action="/admin/main-report-management" method="get">
+            <form action="/admin/main-report-management" method="get" id="searchForm">
                 <select name="option" id="searchOption">
                     <option value="title">제목</option>
                     <option value="book">도서</option>
                     <option value="user">유저</option>
                 </select>
                 <input type="text" id="bookReportManagement_input" name="keyword">
-                <img th:src="@{/images/search.png}" alt="">
+                <img id="searchImg" th:src="@{/images/search.png}" alt="">
             </form>
         </div>
         <div th:if="${reportList ==  null or #lists.isEmpty(reportList)}">해당 독후감이 존재하지 않습니다.</div>
@@ -113,6 +113,17 @@
             }
         });
     }
+
+    //검색창 의 검색이미지 클릭시 submit기능 하도록 해놓은 함수입니다.
+    document.addEventListener('DOMContentLoaded', function () {
+        // 이미지 요소를 찾습니다.
+        let searchImg = document.getElementById('searchImg');
+        // 클릭 이벤트를 추가합니다.
+        searchImg.addEventListener('click', function () {
+            // 폼을 제출합니다.
+            document.getElementById('searchForm').submit();
+        });
+    });
 </script>
 
 </html>
