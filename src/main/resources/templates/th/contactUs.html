@@ -9,9 +9,9 @@
     <th:block th:else th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
         <link rel="stylesheet" th:href="@{/css/manager.css}">
     </th:block>
-    <th:blcok th:else>
+    <th:block th:else th:unless="${#authorization.expression('hasAnyRole(''USER'',''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
         <link rel="stylesheet" th:href="@{/css/customer.css}">
-    </th:blcok>
+    </th:block>
     <style>
         .contactUs-body {
             font-family: Arial, sans-serif;
@@ -32,17 +32,17 @@
 <body class="contactUs-body">
 <header>
     <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
-        <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+        <th:block th:insert="~{th/customerHeader::header(user)}"></th:block>
     </th:block>
     <th:block th:else th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
-        <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
+        <th:block th:insert="~{th/adminHeader::header(admin)}"></th:block>
     </th:block>
-    <th:blcok>
-        <th:blcok th:insert="~{th/notLoggedInHeader}"></th:blcok>
-    </th:blcok>
+    <th:block th:else th:unless="${#authorization.expression('hasAnyRole(''USER'',''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
+        <th:block th:insert="~{th/notLoggedInHeader}"></th:block>
+    </th:block>
 </header>
 <section><br>
-    <div class="contactUs-div">파이널 프로젝트로 만들었기에</div>
+    <div class="contactUs-div">파이널 프로젝트를 위해 만들었기에</div>
     <div class="contactUs-div">실질적인 운영은 하지 않고 있습니다.</div>
     <div class="contactUs-div">서버 업로드는 서버 업로드는 1년만 이루어지며 종료될 예정입니다.</div>
     <div class="contactUs-div">따라서 개인정보 처리방침의 내용과</div>
