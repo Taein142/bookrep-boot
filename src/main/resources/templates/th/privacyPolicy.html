@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <title>개인정보 처리방침</title>
     <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
-        <link rel="stylesheet" th:href="@{/css/customer.css}">
+        <th:block th:insert="~{th/customerHeader::header(user)}"></th:block>
     </th:block>
     <th:block th:else th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
-        <link rel="stylesheet" th:href="@{/css/manager.css}">
+        <th:block th:insert="~{th/adminHeader::header(admin)}"></th:block>
     </th:block>
-    <th:blcok th:else>
-        <link rel="stylesheet" th:href="@{/css/customer.css}">
-    </th:blcok>
+    <th:block th:else th:unless="${#authorization.expression('hasAnyRole(''USER'',''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
+        <th:block th:insert="~{th/notLoggedInHeader}"></th:block>
+    </th:block>
 </head>
 <body>
 <header>
     <th:block th:if="${#authorization.expression('hasRole(''USER'')')}">
-        <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+        <th:block th:insert="~{th/customerHeader::header(user)}"></th:block>
     </th:block>
     <th:block th:else th:if="${#authorization.expression('hasAnyRole(''ADMIN'',''DRIVER'', ''SUPER_ADMIN'')')}">
-        <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
+        <th:block th:insert="~{th/adminHeader::header(admin)}"></th:block>
     </th:block>
-    <th:blcok>
-        <th:blcok th:insert="~{th/notLoggedInHeader}"></th:blcok>
-    </th:blcok>
+    <th:block>
+        <th:block th:insert="~{th/notLoggedInHeader}"></th:block>
+    </th:block>
 </header>
 <section>
 <h1>개인정보처리방침</h1><br>

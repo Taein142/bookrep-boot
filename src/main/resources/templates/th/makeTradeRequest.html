@@ -11,7 +11,7 @@
 <!--교환 메시지 (보낸 사람 입장 - 취소있는거)-->
 <body>
 <header>
-    <th:blcok th:insert="~{th/customerHeader::header(user)}"></th:blcok>
+    <th:block th:insert="~{th/customerHeader::header(user)}"></th:block>
 </header>
 <section>
     <div id="MTR-full">
@@ -49,28 +49,30 @@
             </div>
         </div>
         <div id="MTR-btn">
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==0">
+            <th:block th:if="${msgInfo.msgDTO.msg_status}==0">
                 <div id="MTR-btn-buttonBox">
                     <button th:onclick="cancel('[[${msgInfo.msgDTO.msg_id}]]')">취소</button>
                 </div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==1">
-                <div>교환이 수락되었습니다.</div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==2">
-                <div> 교환이 거절되었습니다.</div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
-                <div> 교환이 취소되었습니다.</div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==4">
-                <div> 교환이 완료되었습니다.</div>
-            </th:blcok>
+            </th:block>
+            <div style="margin: 20px;">
+                <th:block th:if="${msgInfo.msgDTO.msg_status}==1">
+                    <div>교환이 수락되었습니다.</div>
+                </th:block>
+                <th:block th:if="${msgInfo.msgDTO.msg_status}==2">
+                    <div> 교환이 거절되었습니다.</div>
+                </th:block>
+                <th:block th:if="${msgInfo.msgDTO.msg_status}==3">
+                    <div> 교환이 취소되었습니다.</div>
+                </th:block>
+                <th:block th:if="${msgInfo.msgDTO.msg_status}==4">
+                    <div> 교환이 완료되었습니다.</div>
+                </th:block>
+            </div>
         </div>
     </div>
 </section>
 <footer>
-    <th:blcok th:insert="~{th/footer}"></th:blcok>
+    <th:block th:insert="~{th/footer}"></th:block>
 </footer>
 </body>
 <script th:inline="javascript">

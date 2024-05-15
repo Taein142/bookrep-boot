@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://getbootstrap.com/docs/5.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://getbootstrap.com/docs/5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/css/customer.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -57,18 +59,20 @@
                     <button th:onclick="reject('[[${msgInfo.msgDTO.msg_id}]]')">거절</button>
                 </div>
             </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==1">
-                <div>교환이 수락되었습니다.</div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==2">
-                <div> 교환이 거절되었습니다.</div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
-                <div> 교환이 취소되었습니다.</div>
-            </th:blcok>
-            <th:blcok th:if="${msgInfo.msgDTO.msg_status}==4">
-                <div> 교환이 완료되었습니다.</div>
-            </th:blcok>
+            <div style="margin: 20px">
+                <th:blcok th:if="${msgInfo.msgDTO.msg_status}==1">
+                    <div>교환이 수락되었습니다.</div>
+                </th:blcok>
+                <th:blcok th:if="${msgInfo.msgDTO.msg_status}==2">
+                    <div> 교환이 거절되었습니다.</div>
+                </th:blcok>
+                <th:blcok th:if="${msgInfo.msgDTO.msg_status}==3">
+                    <div> 교환이 취소되었습니다.</div>
+                </th:blcok>
+                <th:blcok th:if="${msgInfo.msgDTO.msg_status}==4">
+                    <div> 교환이 완료되었습니다.</div>
+                </th:blcok>
+            </div>
         </div>
     </div>
     <div class="w-100 h-100 fixed-top justify-content-center align-items-center bg-opacity-10 bg-success" id="spin" style="display: none;">
