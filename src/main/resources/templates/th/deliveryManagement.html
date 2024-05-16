@@ -83,7 +83,8 @@
                         }
                         adminSelect.appendChild(option);
                     }
-                )
+                );
+
                 displayTradeTable(trade, cnt);
                 container.setAttribute("cnt", cnt.toString());
                 container.addEventListener("click", () => {
@@ -102,6 +103,7 @@
 
     function displayTradeTable(trade, cnt) {
         let table = document.createElement("table");
+        table.classList.add("dropdown-table");
 
         let headerRow = document.createElement("tr");
         ["거래 번호","유저1", "유저2", "책1", "책2"].forEach((columnName) =>{

@@ -619,9 +619,6 @@ section {
     justify-content: space-between;
 }
 
-#{
-}
-
 #deliveryManagement-tradeInfo{
     display: flex;
     align-items: center;
@@ -732,8 +729,45 @@ section {
 
 /* --------------------------- */
 
+/* 드롭다운 테이블 스타일 */
+.dropdown-table {
+    width: 96%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin: 3px 10px 30px 10px;
+}
+
+/* 드롭다운 테이블 헤더 스타일 */
+.dropdown-table th {
+    background-color: #ddd;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* 드롭다운 테이블 셀 스타일 */
+.dropdown-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* 드롭다운 테이블 짝수 행 배경색 변경 */
+.dropdown-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* 드롭다운 테이블 홀수행 스타일 */
+.dropdown-table tr:nth-child(odd) {
+    background-color: #e6e6e6;
+}
 
 
+
+
+
+
+/*----------------------------*/
 
 
 /*paging*/
