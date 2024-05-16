@@ -17,5 +17,5 @@ public interface AdminDao {
 
     List<AdminDTO> getAllAdminList();
 
-    void rollbackToAdmin(Long currentAdminId);
+    void rollbackToAdmin(String currentAdminId);
 }

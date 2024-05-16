@@ -8,7 +8,7 @@
     <update id="appointDriver" parameterType="java.lang.Long">
         update admin set admin_role = 'DRIVER' where admin_id = ${adminId}
     </update>
-    <update id="rollbackToAdmin" parameterType="java.lang.Long">
+    <update id="rollbackToAdmin" parameterType="java.lang.String">
         update admin set admin_role = 'ADMIN' where admin_id = ${currentAdminId}
     </update>
 
