@@ -16,9 +16,6 @@ body {
 section {
     height: 100%;
     margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* fragments(header,footer) */
@@ -762,10 +759,9 @@ section {
 
 
 /*delivery Detail*/
-/*정보 확인용 입니다. 끝나면 지우면 됩니다.*/
 #pathInfo{
-    color: white;
-    background-color: rgba(0, 0, 0, 0.47);
+    color: black;
+    background-color: white;
 }
 
 /*여기서 부터 Delivery detail 의 side bar 부분입니다.*/
@@ -880,7 +876,6 @@ section {
     color: white;
     margin-left: 5px;
 }
-
 
 /*여기서 부터 delivery Detail 의 map 부분입니다.*/
 .deliveryDetail-map{

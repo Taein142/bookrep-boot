@@ -8,10 +8,21 @@
     <title>배송 상세 페이지</title>
 </head>
 <script th:inline="javascript">
+
+
+
     const pathInfo = JSON.parse([[${path.path_json}]])
     console.log(pathInfo);
     const deliveryMap = new Map(Object.entries([[${deliveryMap}]]))
     console.log(deliveryMap);
+
+    // const trade = JSON.parse([[${path.trade_json}]]);
+    // const totalDistance = path.path_json;// 전체이동거리(미터)
+    // const totalDuration = path.total_duration;// 전체이동시간(초)
+    // $("#totalVisit").text(trade.length + "곳");
+    // $("#totalDistance").text((totalDistance / 1000).toFixed(2) + "km");
+    // $("#totalDuration").text(secondsToHoursMinutes(totalDuration));
+
 </script>
 <body>
 <header>
@@ -21,25 +32,32 @@
 
 
     <div id="deliveryDetail">
-        <!--        <div id="pathInfo">-->
-        <!--            <th:block th:text="${path}" ></th:block>-->
-        <!--        </div>-->
+                <div id="pathInfo">
+<!--                    <th:block th:text="${path}"></th:block>-->
+                </div>
 
         <div id="deliveryDetail-sideBar">
             <div id="deliveryDetail-sideBar-designatedAdmin">
-                <span><th:block th:text="${path.deliver_admin_id}"></th:block>님 의 금일 배송지</span>
+                <span><th:block th:text="${path.deliver_admin_id}"></th:block><br>금일 배송지</span>
             </div>
             <div id="deliveryDetail-sideBar-delInfo">
                 <div id="deliveryDetail-sideBar-delInfo-totalNumberOfAddresses">
-                    <span>3개</span><!--받아온 정보 들어갑니다.-->
+                    <div id="totalVisit"></div><!--받아온 정보 들어갑니다.-->
                     <span>경유지</span>
                 </div>
                 <div id="deliveryDetail-sideBar-delInfo-totalDeliveryDistance">
-                    <span>28.93Km</span><!--받아온 정보 들어갑니다.-->
+<!--                    <span th:text="${#numbers.formatDecimal((path.total_distance) / 1000, 1)} + ' km'"></span>-->
+<!--                    &lt;!&ndash;받아온 정보 들어갑니다.&ndash;&gt;-->
+<!--                    <span th:text="${#numbers.formatDecimal((path.total_distance) / 1000, 1)} + ' km'"></span>-->
+<!--                    <th:block th:text="${#numbers.formatDecimal(path.total_distance,3,1,'COMMA')}"></th:block>-->
+<!--                    <div>총 거리 : ${((path.total_distance)/1000).toFixed(2)}km</div>-->
+<!--                    <div>총 소요시간 : ${((element.total_duration)/3600).toFixed(2)}시간</div>-->
+                    <div id="totalDistance"></div>
                     <span>이동거리</span>
                 </div>
                 <div id="deliveryDetail-sideBar-delInfo-totalDeliveryTime">
-                    <span>2시간 30분</span><!--받아온 정보 들어갑니다.-->
+                    <div id="#totalDuration"></div>
+<!--                    <span><th:block th:text="${path.total_duration}"></th:block>></span>&lt;!&ndash;받아온 정보 들어갑니다.&ndash;&gt;-->
                     <span>이동시간</span>
                 </div>
             </div>
@@ -154,6 +172,8 @@
 
     // 지도에 선을 표시합니다
     polyline.setMap(map);
+
+
 
 
 </script>
