@@ -86,7 +86,7 @@
             success: function (response) {
                 if (response) {
                     console.log(response);
-                    document.location.reload(true);
+                    location.href="/user/my-trade-msgs"
                     alert('교환을 취소 하셨습니다.');
                 } else {
                     alert('알 수 없는 오류로 교환이 취소되지 않았습니다.');
