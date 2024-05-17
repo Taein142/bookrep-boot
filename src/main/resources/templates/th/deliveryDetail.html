@@ -8,91 +8,107 @@
     <title>배송 상세 페이지</title>
 </head>
 <script th:inline="javascript">
-
-
-
-    const pathInfo = JSON.parse([[${path.path_json}]])
+    const pathInfo = JSON.parse([[${path.path_json}]]);
     console.log(pathInfo);
     const deliveryMap = new Map(Object.entries([[${deliveryMap}]]))
     console.log(deliveryMap);
 
-    // const trade = JSON.parse([[${path.trade_json}]]);
-    // const totalDistance = path.path_json;// 전체이동거리(미터)
-    // const totalDuration = path.total_duration;// 전체이동시간(초)
-    // $("#totalVisit").text(trade.length + "곳");
-    // $("#totalDistance").text((totalDistance / 1000).toFixed(2) + "km");
-    // $("#totalDuration").text(secondsToHoursMinutes(totalDuration));
+
+    function secondsToHoursMinutes(seconds) {
+        // 시간으로 변환
+        const hours = Math.floor(seconds / 3600);
+        // 남은 분 계산
+        const minutes = Math.floor((seconds % 3600) / 60);
+        // 시간과 분을 "00" 형식으로 변환. 시간이 0일 경우, 시간 표시 생략
+        const formattedHours = hours > 0 ? hours.toString().padStart(2, '0') + "시간" : '';
+        const formattedMinutes = minutes.toString().padStart(2, '0') + "분";
+        console.log(formattedHours + '' + formattedMinutes);
+        return formattedHours + '' + formattedMinutes;
+    }
+
+
+
+    $(function () {
+        const trade = JSON.parse([[${path.trade_json}]]);
+        const totalDistance = [[${path.total_distance}]];
+        const totalDuration = [[${path.total_duration}]];
+        $("#totalVisit").text(trade.length + "곳");
+        $("#totalDistance").text((totalDistance / 1000).toFixed(2) + "km");
+        $("#totalDuration").text(secondsToHoursMinutes(totalDuration));
+
+        const tradeSequenceJson = JSON.parse([[${path.sequence_json}]]);
+        // 이메일 정보에 따라 데이터를 동적으로 출력
+        let cnt = 1;
+        deliveryMap.forEach((value, key) => {
+            const container = `
+            <div id="deliveryDetail-sideBar-delInfoDetailList-Detail">
+                <div id="deliveryDetail-sideBar-delInfoDetailList-Detail-number">
+                    ${cnt}
+                </div>
+                <div id="deliveryDetail-sideBar-delInfoDetailList-Detail-info">
+                    <div>
+                        <div>배송</div>
+                        <span style="border-bottom: rgba(0,0,0,0.5) dotted 1px">${value.deliveryList?.length ? value.deliveryList.join(', ') : '없음'}</span>
+                    </div>
+                    <div>
+                        <div>회수</div>
+                        <span style="border-bottom: rgba(0,0,0,0.5) dotted 1px">${value.pickupList?.length ? value.pickupList.join(', ') : '없음'}</span>
+                    </div>
+                    <div>
+                        <div>이메일</div>
+                        <span>${value.userEmail}</span>
+                    </div>
+                </div>
+            </div>
+            `;
+            $("#output").append(container);
+            cnt++;
+        });
+    });
 
 </script>
 <body>
 <header>
-    <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
+    <th:block th:insert="~{th/adminHeader::header(admin)}"></th:block>
 </header>
 <section>
-
-
     <div id="deliveryDetail">
-                <div id="pathInfo">
-<!--                    <th:block th:text="${path}"></th:block>-->
-                </div>
-
         <div id="deliveryDetail-sideBar">
             <div id="deliveryDetail-sideBar-designatedAdmin">
                 <span><th:block th:text="${path.deliver_admin_id}"></th:block><br>금일 배송지</span>
             </div>
+
             <div id="deliveryDetail-sideBar-delInfo">
                 <div id="deliveryDetail-sideBar-delInfo-totalNumberOfAddresses">
                     <div id="totalVisit"></div><!--받아온 정보 들어갑니다.-->
                     <span>경유지</span>
                 </div>
                 <div id="deliveryDetail-sideBar-delInfo-totalDeliveryDistance">
-<!--                    <span th:text="${#numbers.formatDecimal((path.total_distance) / 1000, 1)} + ' km'"></span>-->
-<!--                    &lt;!&ndash;받아온 정보 들어갑니다.&ndash;&gt;-->
-<!--                    <span th:text="${#numbers.formatDecimal((path.total_distance) / 1000, 1)} + ' km'"></span>-->
-<!--                    <th:block th:text="${#numbers.formatDecimal(path.total_distance,3,1,'COMMA')}"></th:block>-->
-<!--                    <div>총 거리 : ${((path.total_distance)/1000).toFixed(2)}km</div>-->
-<!--                    <div>총 소요시간 : ${((element.total_duration)/3600).toFixed(2)}시간</div>-->
                     <div id="totalDistance"></div>
                     <span>이동거리</span>
                 </div>
                 <div id="deliveryDetail-sideBar-delInfo-totalDeliveryTime">
-                    <div id="#totalDuration"></div>
-<!--                    <span><th:block th:text="${path.total_duration}"></th:block>></span>&lt;!&ndash;받아온 정보 들어갑니다.&ndash;&gt;-->
+                    <div id="totalDuration"></div>
                     <span>이동시간</span>
                 </div>
             </div>
             <div id="deliveryDetail-sideBar-delInfoDetailListText">배송 및 회수</div>
             <div id="deliveryDetail-sideBar-delInfoDetailList">
-<!--                <th:block th:each="del:${delList}">-->
+                    <div id="output">
 
-<!--                </th:block>-->
-
-<!--                반복문으로 감싸야합니다. -->
-                <div id="deliveryDetail-sideBar-delInfoDetailList-Detail">
-                    <div id="deliveryDetail-sideBar-delInfoDetailList-Detail-number">N</div><!--받아온 정보 들어갑니다.-->
-                    <div id="deliveryDetail-sideBar-delInfoDetailList-Detail-info">
-                        <div>
-                            <div>주소</div>
-                            <span>인천시 qwerqwer</span><!--받아온 정보 들어갑니다.-->
-                        </div>
-                        <div>
-                            <div>이메일</div>
-                            <span>qwerqwer@naver.com</span><!--받아온 정보 들어갑니다.-->
-                        </div>
-                        <div>
-                            <div>책 재목</div>
-                            <span>qwerqwer</span><!--받아온 정보 들어갑니다.-->
-                        </div>
                     </div>
-                </div>
+<!--                    밑에 주석으로 처리된 부분이 반복되어야할부분입니다.-->
             </div>
         </div>
         <div id="map" class="deliveryDetail-map" style="width:80%;height:850px;float: right"></div>
     </div>
 </section>
+<div th:text="${deliveryMap}" style="background-color: white"></div>
+<br>
+<div th:text="${path}" style="background-color: white"></div>
 </body>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3018d8b0b46abd897e34e5cbd691ca18"></script>
-<script>
+<script th:inline="javascript">
     var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
             center: new kakao.maps.LatLng(pathInfo[0].y, pathInfo[0].x), // 지도의 중심좌표
@@ -172,8 +188,6 @@
 
     // 지도에 선을 표시합니다
     polyline.setMap(map);
-
-
 
 
 </script>
