@@ -41,7 +41,7 @@
                 const container = document.createElement('div');
                 container.innerHTML = `
                                         <div id="deliveryManagement-pathInfo">
-                                            <div id="deliveryManagement-tradeInfo">
+                                            <div id="deliveryManagement-tradeInfo${cnt}" class="deliveryManagement-tradeInfo">
                                                 <div id="deliveryManagement-tradeInfo-tradeIdBox" style="display: flex; align-items:center; justify-content: center;" >
                                                     <a href="/super-admin/delivery-detail?path-id=${element.path_id}">PATH ID : ${element.path_id}</a>
                                                 </div>
@@ -53,22 +53,19 @@
                                                     <div>총 거리 : ${((element.total_distance)/1000).toFixed(2)}km</div>
                                                     <div>총 소요시간 : ${((element.total_duration)/3600).toFixed(2)}시간</div>
                                                 </div>
-                                                <div>현재 기사 : ${element.deliver_admin_id}</div>
+                                               <div>현재 기사 : ${element.deliver_admin_id ? element.deliver_admin_id : '미정'}</div>
                                             </div>
                                             <div>
                                                 <form action="/super-admin/match-driver" method="post" id="admin-selectForm">
                                                     <input type="hidden" value="${element.path_id}" name="path-id">
                                                     <select name="admin-id" class="admin-driverSelectBox" id="admin-driverSelectBox${cnt}">
                                                     </select>
-                                                    <input type="hidden" value="${element.deliver_admin_id}" name="current-admin">
+                                                    <input type="hidden" value="${element.deliver_admin_id ? element.deliver_admin_id : '0'}" name="current-admin">
                                                     <input type="submit" value="저장" id="admin-driverSelectButton">
                                                 </form>
                                             </div>
                                         </div>
                                         <div id="dropdown${cnt}"/>
-
-
-
                  `;
                 document.getElementById('output').appendChild(container);
                 let adminSelect = document.getElementById("admin-driverSelectBox" + cnt);
@@ -87,7 +84,7 @@
 
                 displayTradeTable(trade, cnt);
                 container.setAttribute("cnt", cnt.toString());
-                container.addEventListener("click", () => {
+                document.getElementById("deliveryManagement-tradeInfo"+ cnt).addEventListener("click",() => {
                     let current = Number(container.getAttribute("cnt"));
                     const tbl = document.getElementById("table" + current);
                     if (tbl.hidden === true){
