@@ -619,7 +619,7 @@ section {
     justify-content: space-between;
 }
 
-#deliveryManagement-tradeInfo{
+.deliveryManagement-tradeInfo{
     display: flex;
     align-items: center;
     justify-content:space-between;
@@ -631,7 +631,7 @@ section {
     margin-bottom: 10px;
     border-radius: 5px;
 }
-#deliveryManagement-tradeInfo-pathIdAndDeliveryDetailButton{
+.deliveryManagement-tradeInfo-pathIdAndDeliveryDetailButton{
     width: 10%;
     height: 100%;
     border-right: black solid 1px;
@@ -640,13 +640,13 @@ section {
     align-items: center;
     justify-content: center;
 }
-#deliveryManagement-tradeInfo-DeliveryDetailLink{
+.deliveryManagement-tradeInfo-DeliveryDetailLink{
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#deliveryManagement-tradeInfo-DeliveryDetailLink div{
+.deliveryManagement-tradeInfo-DeliveryDetailLink div{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -656,34 +656,34 @@ section {
     padding: 5px;
     text-align: center;
 }
-#deliveryManagement-tradeInfo-DeliveryDetailLink div:hover{
+.deliveryManagement-tradeInfo-DeliveryDetailLink div:hover{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border: white;
 }
 
-#deliveryManagement-tradeInfo-tradeIdBox{
+.deliveryManagement-tradeInfo-tradeIdBox{
     width: 10%;
     height: 100%;
     border-right: black solid 1px;
     padding: 10px;
 }
-#deliveryManagement-tradeInfo-firUser{
+.deliveryManagement-tradeInfo-firUser{
     width: 30%;
     height: 100%;
     padding: 10px;
     text-align: center;
 }
-#deliveryManagement-tradeInfo-secUser{
+.deliveryManagement-tradeInfo-secUser{
     width: 30%;
     height: 100%;
     padding: 10px;
     text-align: center;
 }
-#deliveryManagement-tradeInfo-imgBox{
+.deliveryManagement-tradeInfo-imgBox{
     width: 20%;
     height: 100%;
 }
-#deliveryManagement-tradeInfo-imgBox img{
+.deliveryManagement-tradeInfo-imgBox img{
     padding: 5px;
     width: 100%;
     height: auto;
@@ -733,7 +733,7 @@ section {
 .dropdown-table {
     width: 96%;
     border-collapse: collapse;
-    border: 1px solid #ddd;
+    border: 1px solid #4d4d4d;
     margin: 3px 10px 30px 10px;
 }
 

@@ -119,7 +119,7 @@ public class SuperAdminService {
         model.addAttribute("adminList", adminIdList);
     }
 
-    public void rollbackToAdmin(String currentAdminId) {
+    public void rollbackToAdmin(Long currentAdminId) {
         log.info("rollbackToAdmin()");
 
         adminDao.rollbackToAdmin(currentAdminId);
