@@ -824,10 +824,6 @@ section {
 
 
 /*delivery Detail*/
-#pathInfo{
-    color: black;
-    background-color: white;
-}
 
 /*여기서 부터 Delivery detail 의 side bar 부분입니다.*/
 #deliveryDetail{
@@ -894,7 +890,6 @@ section {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     margin-bottom: 2px;
-    height: 12%;
     width: 100%;
     padding: 5px;
     display: flex;
@@ -925,8 +920,8 @@ section {
     justify-content: space-between;
     margin: 1px;
     font-size: smaller;
-    height: 20%;
     width: 100%;
+
 }
 #deliveryDetail-sideBar-delInfoDetailList-Detail-info div div{
     background-color: rgba(0, 0, 0, 0.7);
@@ -935,11 +930,16 @@ section {
     padding-left: 4px;
     padding-right: 4px;
     width: 25%;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     margin-left: 5px;
+}
+#deliveryDetail-sideBar-delInfoDetailList-Detail-info div span{
+    text-align: right;
+    width: 75%;
 }
 
 /*여기서 부터 delivery Detail 의 map 부분입니다.*/
