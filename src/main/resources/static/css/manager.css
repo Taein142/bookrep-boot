@@ -619,7 +619,7 @@ section {
     justify-content: space-between;
 }
 
-.deliveryManagement-tradeInfo{
+#deliveryManagement-tradeInfo-out{
     display: flex;
     align-items: center;
     justify-content:space-between;
@@ -631,7 +631,16 @@ section {
     margin-bottom: 10px;
     border-radius: 5px;
 }
-.deliveryManagement-tradeInfo-pathIdAndDeliveryDetailButton{
+
+.deliveryManagement-tradeInfo{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 550px;
+    margin: 10px;
+}
+
+#deliveryManagement-tradeInfo-pathIdAndDeliveryDetailButton{
     width: 10%;
     height: 100%;
     border-right: black solid 1px;
@@ -640,13 +649,13 @@ section {
     align-items: center;
     justify-content: center;
 }
-.deliveryManagement-tradeInfo-DeliveryDetailLink{
+#deliveryManagement-tradeInfo-DeliveryDetailLink{
     text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.deliveryManagement-tradeInfo-DeliveryDetailLink div{
+#deliveryManagement-tradeInfo-DeliveryDetailLink div{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -656,34 +665,35 @@ section {
     padding: 5px;
     text-align: center;
 }
-.deliveryManagement-tradeInfo-DeliveryDetailLink div:hover{
+#deliveryManagement-tradeInfo-DeliveryDetailLink div:hover{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border: white;
 }
 
-.deliveryManagement-tradeInfo-tradeIdBox{
-    width: 10%;
+#deliveryManagement-tradeInfo-tradeIdBox{
+    width: 15%;
     height: 100%;
     border-right: black solid 1px;
     padding: 10px;
 }
-.deliveryManagement-tradeInfo-firUser{
+#deliveryManagement-tradeInfo-fir{
     width: 30%;
     height: 100%;
     padding: 10px;
     text-align: center;
 }
-.deliveryManagement-tradeInfo-secUser{
-    width: 30%;
+#deliveryManagement-tradeInfo-sec{
+    width: 40%;
     height: 100%;
     padding: 10px;
     text-align: center;
+    display: flex;
 }
-.deliveryManagement-tradeInfo-imgBox{
+#deliveryManagement-tradeInfo-imgBox{
     width: 20%;
     height: 100%;
 }
-.deliveryManagement-tradeInfo-imgBox img{
+#deliveryManagement-tradeInfo-imgBox img{
     padding: 5px;
     width: 100%;
     height: auto;
@@ -696,6 +706,27 @@ section {
     margin-left: 10px;
     border-radius: 5px;
     border: black solid 2px;
+}
+
+.deliveryManagement-move-btn {
+    background-color: #66916a;
+    border: none;
+    color: white;
+    padding: 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+
+.deliveryManagement-move-btn:hover {
+    background-color: #45a049;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #deliveryManagement-outputBox{
