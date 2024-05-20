@@ -80,7 +80,7 @@ public class SignController {
 
 		if (agreedToTerms == null || agreedToPrivacyPolicy == null ||
 				!agreedToTerms.equals("agree") || !agreedToPrivacyPolicy.equals("agree")) {
-			rttr.addFlashAttribute("msg", "메일인증해주세요");
+			rttr.addFlashAttribute("msg", "약관에 동의해주세요.");
 			return "redirect:/sign-up";
 		}
 
@@ -130,7 +130,7 @@ public class SignController {
 		log.info("modify()");
 
 		if (mailConfirm == null || !mailConfirm.equals("true")) {
-			rttr.addFlashAttribute("msg", "약관에 동의해주세요.");
+			rttr.addFlashAttribute("msg", "메일인증 해주세요");
 			return "redirect:/user/update";
 		}
 
