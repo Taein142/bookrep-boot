@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
@@ -62,7 +64,7 @@ public class SuperAdminController {
     }
 
     @GetMapping("super-admin/delivery-detail")
-    public String deliveryDetail(@RequestParam("path-id") Long pathId, Model model){
+    public String deliveryDetail(@RequestParam("path-id") Long pathId, Model model) throws IOException, ParserConfigurationException, InterruptedException {
         log.info("deliveryDetail()");
 
         superAdminService.getPathDetail(pathId, model);

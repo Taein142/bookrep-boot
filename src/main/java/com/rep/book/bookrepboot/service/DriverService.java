@@ -1,6 +1,7 @@
 package com.rep.book.bookrepboot.service;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.rep.book.bookrepboot.dao.PathDao;
 import com.rep.book.bookrepboot.dao.TradeDao;
 import com.rep.book.bookrepboot.dto.DeliveryDTO;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -29,13 +33,13 @@ public class DriverService {
     @Autowired
     private SuperAdminService superAdminService;
 
-    public void showDelivery(Model model, Long pathId) {
+    public void showDelivery(Model model, Long pathId) throws IOException, ParserConfigurationException, InterruptedException {
         log.info("showDelivery()");
 
         Long adminId = Long.parseLong(Objects.requireNonNull(SecurityUtil.getCurrentUserEmail()));
         log.info("adminId: {}", adminId);
 
-        PathDTO pathDTO = pathDao.getPathDetail(adminId);
+        PathDTO pathDTO = pathDao.getPathDetail(pathId);
         Map<String, DeliveryDTO> deliveryMap = superAdminService.packageDeliveryMap(pathDTO);
 
         model.addAttribute("path", pathDTO);
@@ -47,7 +51,8 @@ public class DriverService {
         PathDTO pathDTO = pathDao.getPathDetail(pathId);
         pathDao.completeDelivery(pathId);
 
-        List<TradeDTO> tradeList = new Gson().fromJson(pathDTO.getTrade_json(), List.class);
+        Type listType = new TypeToken<List<TradeDTO>>(){}.getType();
+        List<TradeDTO> tradeList = new Gson().fromJson(pathDTO.getTrade_json(), listType);
         for (TradeDTO tradeDTO : tradeList){
             tradeDao.completeTrade(tradeDTO);
         }

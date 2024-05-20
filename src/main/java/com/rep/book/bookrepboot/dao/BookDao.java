@@ -33,4 +33,6 @@ public interface BookDao {
 	List<BookDTO> getBookByPublisher(String keyword);
 
 	List<BookDTO> getBookByName(String keyword);
+
+    String convertIsbnToBookName(String isbn);
 }

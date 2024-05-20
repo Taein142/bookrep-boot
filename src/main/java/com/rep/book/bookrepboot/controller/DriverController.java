@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+
 @Slf4j
 @Controller
 public class DriverController {
@@ -27,7 +30,7 @@ public class DriverController {
     }
 
     @GetMapping("driver/delivery-detail")
-    public String deliveryDetail(@RequestParam("path-id") Long pathId, Model model){
+    public String deliveryDetail(@RequestParam("path-id") Long pathId, Model model) throws IOException, ParserConfigurationException, InterruptedException {
         log.info("deliveryDetail()");
 
         driverService.showDelivery(model, pathId);
