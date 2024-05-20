@@ -10,6 +10,6 @@ COPY . /home/app
 RUN gradle clean build
 
 FROM openjdk:21
-EXPOSE 5000
+EXPOSE 8080
 COPY --from=BUILD /home/app/build/libs/*.war app.war
 ENTRYPOINT [ "sh", "-c", "java -jar /app.war" ]
