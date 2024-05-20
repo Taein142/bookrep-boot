@@ -1,21 +1,39 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 변경</title>
+    <link rel="stylesheet" th:href="@{/css/customer.css}">
 </head>
 <style>
-    input {
-        margin: 10px;
-        padding: 5px;
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     }
-    button {
-        margin: 10px;
-        padding: 5px;
+
+    form {
+        width: 300px;
+        margin: 150px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
     }
+
+    input, button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+
     #guide {
-        margin: 10px;
-        padding: 5px;
+        margin-top: 10px;
+        font-size: 14px;
     }
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -23,13 +41,20 @@
         crossorigin="anonymous"></script>
 
 <body>
+<header>
+    <th:block th:insert="~{th/notLoggedInHeader}"></th:block>
+</header>
+<section>
     <form action="/pwd-change-proc" method="post">
         <input type="text" id="new_pwd" name="password" placeholder="새 비밀번호" required><br>
         <input type="text" id="check_pwd" name="fucku" placeholder="비밀번호 확인" required><br>
         <span id="guide"></span>
         <button id="apply">변경</button>
     </form>
-
+</section>
+<footer>
+    <th:block th:insert="~{th/footer}"></th:block>
+</footer>
 </body>
 <script>
     $(function () {
