@@ -12,8 +12,8 @@
     <th:blcok th:insert="~{th/adminHeader::header(admin)}"></th:blcok>
 </header>
 <section>
-    <div id="deliveryManagement">
-        <div id="deliveryManagement-outputBox">
+    <div id="delivery">
+        <div id="delivery-outputBox">
             <div id="output"></div>
         </div>
     </div>
@@ -35,16 +35,15 @@
             if (trade.length > 0) {
                 const container = document.createElement('div');
                 container.innerHTML = `
-                                        <div id="deliveryManagement-pathInfo">
-                                            <div id="deliveryManagement-tradeInfo">
-                                                <div id="deliveryManagement-tradeInfo-tradeIdBox" style="display: flex; align-items:center; justify-content: center;" >
-                                                    <a href="/driver/delivery-detail?path-id=${element.path_id}">PATH ID : ${element.path_id}</a>
+                                        <div id="delivery-OPFull-detail" style="display: flex; align-items: center; justify-content: center;">
+                                            <div id="delivery-OP-detail">
+                                                <div id="delivery-OP-detail-pathID">
+                                                    <a id="delivery-OP-detail-pathID-a" href="/driver/delivery-detail?path-id=${element.path_id}">PATH <br> ID : ${element.path_id}</a>
                                                 </div>
-                                                <div id="deliveryManagement-tradeInfo-firUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
+                                                <div id="delivery-OP-detail-tradeNum" >
                                                     <div>거래 개수 : ${trade.length}개</div>
-
                                                 </div>
-                                                <div id="deliveryManagement-tradeInfo-secUser" style="display: flex; align-items:center; justify-content: center; flex-direction: column">
+                                                <div id="delivery-OP-detail-distanceDuration">
                                                     <div>총 거리 : ${((element.total_distance)/1000).toFixed(2)}km</div>
                                                     <div>총 소요시간 : ${((element.total_duration)/3600).toFixed(2)}시간</div>
                                                 </div>
