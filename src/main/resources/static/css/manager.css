@@ -882,11 +882,11 @@ section {
 }
 #deliveryDetail-sideBar-delInfoDetailList{
     margin-top: 10px;
-    height: 75%;
+    height: 65%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
-#deliveryDetail-sideBar-delInfoDetailList-Detail{
+.deliveryDetail-sideBar-delInfoDetailList-Detail{
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 5px;
     margin-bottom: 2px;
@@ -948,6 +948,11 @@ section {
 }
 /*-----------------------------*/
 
+#output{
+    overflow: auto;
+    height: 100%;
+}
+=======
 
 
 

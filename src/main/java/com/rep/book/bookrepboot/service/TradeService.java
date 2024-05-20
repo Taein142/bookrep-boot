@@ -130,7 +130,7 @@ public class TradeService {
         try (AutoCloseableExecutorService executorService = new AutoCloseableExecutorService(10)) {
             executorService.getExecutorService().submit(() -> {
                 try {
-                    packageTradesForDeliver(1);
+                    packageTradesForDeliver(2);
                 } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }

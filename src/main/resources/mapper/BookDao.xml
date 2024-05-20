@@ -84,4 +84,7 @@
 		</if>
 		ORDER BY book_name
 	</select>
+    <select id="convertIsbnToBookName" resultType="java.lang.String" parameterType="java.lang.String">
+		SELECT book_name FROM book WHERE book_isbn = #{isbn}
+	</select>
 </mapper>

@@ -8,8 +8,8 @@
 <div th:fragment="header(admin)" class="header-bar">
     <div id="headerContent">
         <th:block sec:authorize="isAuthenticated()">
-            <div id="headerCenterContent" onclick="moveToAdminIndex()">
-                <img th:src="@{/images/newFullLogo.png}" alt="">
+            <div id="headerCenterContent">
+                <img th:src="@{/images/newFullLogo.png}" alt="" onclick="moveToAdminIndex()">
                 <h5>BOOKREP</h5>
             </div>
         </th:block>
