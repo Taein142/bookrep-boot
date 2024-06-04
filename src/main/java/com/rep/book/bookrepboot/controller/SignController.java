@@ -98,16 +98,6 @@ public class SignController {
 		return "findPassword";
 	}
 	
-	@PostMapping(value = "find-password", produces = "text/plain;charset=UTF-8")
-	@ResponseBody
-	public String findPassword(@RequestParam("email") String email, @RequestParam("name") String name) {
-		log.info("findPassword");
-		
-		String result = signService.findPassword(email, name);
-		
-		return result;
-	}
-	
 	@GetMapping("user/update")
 	public String showModify(HttpSession session, Model model) {
 		log.info("showModify()");

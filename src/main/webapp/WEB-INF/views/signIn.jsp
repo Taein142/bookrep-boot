@@ -20,7 +20,6 @@
 </sec:authorize>
 
 <div class="out-line">
-
     <fieldset class="out-line-box">
         <div class="sign-in-box">
 

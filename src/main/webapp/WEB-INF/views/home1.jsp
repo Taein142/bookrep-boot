@@ -38,7 +38,7 @@
 </sec:authorize>
 <div class="mainLogo" style="text-align: center;">
     <img alt="mainLogo" src="<%=request.getContextPath()%>/resources/images/newFullLogo.png"
-         style="width: 750px;height: 750px; padding-top: 50px;">
+         style="width: 500px;height: 500px; padding-top: 50px;">
 </div>
 <jsp:include page="footer.jsp"/>
 </body>

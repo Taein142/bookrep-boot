@@ -48,8 +48,6 @@
 </body>
 <script>
     const moveToHome = () => {
-
-
         location.href = "/";
     }
 

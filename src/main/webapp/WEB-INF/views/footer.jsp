@@ -7,7 +7,8 @@
     <title>푸터</title>
     <style>
         .footer-bar {
-            bottom: 0px;
+            position: fixed;
+            bottom: 0;
             width: 100%;
             height: 40px;
             background-color: rgb(186, 182, 182);

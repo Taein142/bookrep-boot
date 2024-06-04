@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <link rel="stylesheet" href="resources/css/signUp.css">
+    <link rel="stylesheet" href="../resources/css/signUp.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"></script>
@@ -148,7 +148,7 @@
                 email: email
             },
             success: function (cnt) { //컨트롤러에서 넘어온 cnt값을 받는다
-                if (cnt == 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+                if (cnt === 0) { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
                     if (email.match(pattern)){
                         checkEmail.innerText = "공백은 입력 불가합니다";
                         $('#email').val('');
